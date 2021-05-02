@@ -4,218 +4,257 @@
 # This file is distributed under the terms of the MIT license,
 # please read LICENSE.txt for more information.
 
-cmake_minimum_required(VERSION 2.6)
+# The newest CMake version can be easily acquired on Windows.
+cmake_minimum_required(VERSION 3.17)
 
 project(vaca)
 
-########################################
-# Options
+# The newest C++ version can be easily acquired on Windows.
+# Unlike linux, you just grab an updated compiler.
+# Either through MinGW (msys2) or the latest MSVC.
+set(CMAKE_CXX_STANDARD 17)
 
-option(SHARED "Build shared libraries" on)
-option(THEMES "Build examples using WinXP themes" on)
-
-set(VACA_PLATFORM "Windows" CACHE STRING
-  "Vaca as Win32 API wrapper or Allegro 4.2 wrapper")
-set_property(CACHE VACA_PLATFORM PROPERTY STRINGS
-  "Windows" "Allegro")
-
-if(VACA_PLATFORM STREQUAL "Windows")
-  set(VACA_WINDOWS 1)
-  set(vaca_platform_def "-DVACA_WINDOWS")
-elseif(VACA_PLATFORM STREQUAL "Allegro")
-  set(VACA_ALLEGRO 1)
-  set(vaca_platform_def "-DVACA_ALLEGRO")
+# Is this library being built directly or added as a subdirectory?
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    set(VACA_IS_MASTER TRUE)
+else()
+    set(VACA_IS_MASTER FALSE)
 endif()
 
-set(BUILD_SHARED_LIBS ${SHARED})
+# Whether to build a shared or static library
+option(VACA_BUILD_SHARED "Build shared libraries" OFF)
+# Whether to build examples using themes
+option(VACA_BUILD_THEMES "Build examples using WinXP themes" ON)
 
-########################################
-# Directories
+# Do not build tests and examples if added as a subdirectory
+if(VACA_IS_MASTER)
+    option(VACA_BUILD_EXAMPLES "Build examples" ON)
+    option(VACA_BUILD_TESTS "Build tests" ON)
+else(VACA_IS_MASTER)
+    option(VACA_BUILD_EXAMPLES "Build examples" OFF)
+    option(VACA_BUILD_TESTS "Build tests" OFF)
+endif(VACA_IS_MASTER)
 
-include_directories(${CMAKE_SOURCE_DIR})
-set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
+# Allow the user to select the desired windows version
+set(VACA_WINNT "WINXP" CACHE STRING "Desired Windows version. Windows 2000, XP, Vista, 7, 8, 8.1, 10")
+set_property(CACHE VACA_WINNT PROPERTY STRINGS "WIN2K" "WINXP" "VISTA" "WIN7" "WIN8" "WINBLUE" "WIN10")
+# Is Windows 2000?
+if(VACA_WINNT STREQUAL "WIN2K")
+    set(VACA_WIN32_WINNT "0x0500")
+# Is Windows XP?
+elseif(VACA_WINNT STREQUAL "WINXP")
+    set(VACA_WIN32_WINNT "0x0501")
+# Is Windows Vista?
+elseif(VACA_WINNT STREQUAL "VISTA")
+    set(VACA_WIN32_WINNT "0x0600")
+# Is Windows 7?
+elseif(VACA_WINNT STREQUAL "WIN7")
+    set(VACA_WIN32_WINNT "0x0601")
+# Is Windows 8?
+elseif(VACA_WINNT STREQUAL "WIN8")
+    set(VACA_WIN32_WINNT "0x0602")
+# Is Windows 8.1?
+elseif(VACA_WINNT STREQUAL "WINBLUE")
+    set(VACA_WIN32_WINNT "0x0603")
+# Is Windows 10?
+elseif(VACA_WINNT STREQUAL "WIN10")
+    set(VACA_WIN32_WINNT "0x0A00")
+# Fallback to XP
+else()
+    set(VACA_WIN32_WINNT "0x0501")
+    message(WARNING "Unknown windows version. Falling back to default: XP")
+endif()
 
-########################################
-# Main target: Vaca Library
+# Allow the user to select the desired internet explorer version
+set(VACA_IE "IE60" CACHE STRING "Desired IE version. Internet Explorer 5.0, 5.01, 5.5, 6.0, 6.0 SP1, 6.0 SP2, 7.0, 8.0, 9.0, 10.0, 11.0")
+set_property(CACHE VACA_IE PROPERTY STRINGS "IE50" "IE51" "IE55" "IE60" "IE61" "IE63" "IE70" "IE80" "IE90" "IE100" "IE110")
+# Is Internet Explorer 5.0, 5.0a, 5.0b?
+if(VACA_IE STREQUAL "IE50")
+    set(VACA_WIN32_IE "0x0500")
+# Is Internet Explorer 5.01?
+elseif(VACA_IE STREQUAL "IE51")
+    set(VACA_WIN32_IE "0x0501")
+# Is Internet Explorer 5.5?
+elseif(VACA_IE STREQUAL "IE55")
+    set(VACA_WIN32_IE "0x0550")
+# Is Internet Explorer 6.0?
+elseif(VACA_IE STREQUAL "IE60")
+    set(VACA_WIN32_IE "0x0600")
+# Is Internet Explorer 6.0 SP1?
+elseif(VACA_IE STREQUAL "IE61")
+    set(VACA_WIN32_IE "0x0601")
+# Is Internet Explorer 6.0 SP2?
+elseif(VACA_IE STREQUAL "IE63")
+    set(VACA_WIN32_IE "0x0603")
+# Is Internet Explorer 7.0?
+elseif(VACA_IE STREQUAL "IE70")
+    set(VACA_WIN32_IE "0x0700")
+# Is Internet Explorer 8.0?
+elseif(VACA_IE STREQUAL "IE80")
+    set(VACA_WIN32_IE "0x0800")
+# Is Internet Explorer 9.0?
+elseif(VACA_IE STREQUAL "IE90")
+    set(VACA_WIN32_IE "0x0900")
+# Is Internet Explorer 10.0 or 11.0?
+elseif(VACA_IE STREQUAL "IE100" OR VACA_IE STREQUAL "IE110")
+    set(VACA_WIN32_IE "0x0A00")
+# Fallback to Internet Explorer 6.0
+else()
+    set(VACA_WIN32_IE "0x0600")
+    message(WARNING "Unknown IE version. Falling back to default: Internet Explorer 6.0")
+endif()
 
+# Library source files
 set(VACA_SOURCES
-    vaca/Anchor.cpp
-    vaca/AnchorLayout.cpp
-    vaca/Application.cpp
-    vaca/BandedDockArea.cpp
-    vaca/BasicDockArea.cpp
-    vaca/Bix.cpp
-    vaca/BoxConstraint.cpp
-    vaca/BoxLayout.cpp
-    vaca/Brush.cpp
-    vaca/Button.cpp
-    vaca/ButtonBase.cpp
-    vaca/CancelableEvent.cpp
-    vaca/CheckBox.cpp
-    vaca/ClientLayout.cpp
-    vaca/Clipboard.cpp
-    vaca/CloseEvent.cpp
-    vaca/Color.cpp
-    vaca/ColorDialog.cpp
-    vaca/ComboBox.cpp
-    vaca/Command.cpp
-    vaca/CommandEvent.cpp
-    vaca/CommonDialog.cpp
-    vaca/Component.cpp
-    vaca/ConditionVariable.cpp
-    vaca/Constraint.cpp
-    vaca/ConsumableEvent.cpp
-    vaca/Cursor.cpp
-    vaca/CustomButton.cpp
-    vaca/CustomLabel.cpp
-    vaca/Debug.cpp
-    vaca/Dialog.cpp
-    vaca/DockArea.cpp
-    vaca/DockBar.cpp
-    vaca/DockFrame.cpp
-    vaca/DropFilesEvent.cpp
-    vaca/Event.cpp
-    vaca/Exception.cpp
-    vaca/FileDialog.cpp
-    vaca/FindFiles.cpp
-    vaca/FindTextDialog.cpp
-    vaca/FocusEvent.cpp
-    vaca/Font.cpp
-    vaca/FontDialog.cpp
-    vaca/Frame.cpp
-    vaca/Graphics.cpp
-    vaca/GraphicsPath.cpp
-    vaca/GroupBox.cpp
-    vaca/HttpRequest.cpp
-    vaca/Icon.cpp
-    vaca/Image.cpp
-    vaca/ImageList.cpp
-    vaca/KeyEvent.cpp
-    vaca/Keys.cpp
-    vaca/Label.cpp
-    vaca/Layout.cpp
-    vaca/LayoutEvent.cpp
-    vaca/LinkLabel.cpp
-    vaca/ListBox.cpp
-    vaca/ListColumn.cpp
-    vaca/ListItem.cpp
-    vaca/ListView.cpp
-    vaca/Mdi.cpp
-    vaca/Menu.cpp
-    vaca/MenuItemEvent.cpp
-    vaca/Message.cpp
-    vaca/MouseEvent.cpp
-    vaca/MsgBox.cpp
-    vaca/Mutex.cpp
-    vaca/PaintEvent.cpp
-    vaca/Pen.cpp
-    vaca/Point.cpp
-    vaca/PreferredSizeEvent.cpp
-    vaca/ProgressBar.cpp
-    vaca/Property.cpp
-    vaca/RadioButton.cpp
-    vaca/ReBar.cpp
-    vaca/Rect.cpp
-    vaca/Referenceable.cpp
-    vaca/Region.cpp
-    vaca/ResizeEvent.cpp
-    vaca/ResourceId.cpp
-    vaca/RichEdit.cpp
-    vaca/Scintilla.cpp
-    vaca/ScrollEvent.cpp
-    vaca/ScrollInfo.cpp
-    vaca/ScrollableWidget.cpp
-    vaca/Separator.cpp
-    vaca/SetCursorEvent.cpp
-    vaca/Size.cpp
-    vaca/Slider.cpp
-    vaca/SpinButton.cpp
-    vaca/Spinner.cpp
-    vaca/SplitBar.cpp
-    vaca/StatusBar.cpp
-    vaca/String.cpp
-    vaca/Style.cpp
-    vaca/Styles.cpp
-    vaca/System.cpp
-    vaca/Tab.cpp
-    vaca/TextEdit.cpp
-    vaca/Thread.cpp
-    vaca/TimePoint.cpp
-    vaca/Timer.cpp
-    vaca/ToggleButton.cpp
-    vaca/ToolBar.cpp
-    vaca/TreeNode.cpp
-    vaca/TreeView.cpp
-    vaca/TreeViewEvent.cpp
-    vaca/Vaca.cpp
-    vaca/Widget.cpp
-    vaca/WidgetClass.cpp)
+    source/Anchor.cpp
+    source/AnchorLayout.cpp
+    source/Application.cpp
+    source/BandedDockArea.cpp
+    source/BasicDockArea.cpp
+    source/Bix.cpp
+    source/BoxConstraint.cpp
+    source/BoxLayout.cpp
+    source/Brush.cpp
+    source/Button.cpp
+    source/ButtonBase.cpp
+    source/CancelableEvent.cpp
+    source/CheckBox.cpp
+    source/ClientLayout.cpp
+    source/Clipboard.cpp
+    source/CloseEvent.cpp
+    source/Color.cpp
+    source/ColorDialog.cpp
+    source/ComboBox.cpp
+    source/Command.cpp
+    source/CommandEvent.cpp
+    source/CommonDialog.cpp
+    source/Component.cpp
+    source/ConditionVariable.cpp
+    source/Constraint.cpp
+    source/ConsumableEvent.cpp
+    source/Cursor.cpp
+    source/CustomButton.cpp
+    source/CustomLabel.cpp
+    source/Debug.cpp
+    source/Dialog.cpp
+    source/DockArea.cpp
+    source/DockBar.cpp
+    source/DockFrame.cpp
+    source/DropFilesEvent.cpp
+    source/Event.cpp
+    source/Exception.cpp
+    source/FileDialog.cpp
+    source/FindFiles.cpp
+    source/FindTextDialog.cpp
+    source/FocusEvent.cpp
+    source/Font.cpp
+    source/FontDialog.cpp
+    source/Frame.cpp
+    source/Graphics.cpp
+    source/GraphicsPath.cpp
+    source/GroupBox.cpp
+    source/HttpRequest.cpp
+    source/Icon.cpp
+    source/Image.cpp
+    source/ImageList.cpp
+    source/KeyEvent.cpp
+    source/Keys.cpp
+    source/Label.cpp
+    source/Layout.cpp
+    source/LayoutEvent.cpp
+    source/LinkLabel.cpp
+    source/ListBox.cpp
+    source/ListColumn.cpp
+    source/ListItem.cpp
+    source/ListView.cpp
+    source/Mdi.cpp
+    source/Menu.cpp
+    source/MenuItemEvent.cpp
+    source/Message.cpp
+    source/MouseEvent.cpp
+    source/MsgBox.cpp
+    source/Mutex.cpp
+    source/PaintEvent.cpp
+    source/Pen.cpp
+    source/Point.cpp
+    source/PreferredSizeEvent.cpp
+    source/ProgressBar.cpp
+    source/Property.cpp
+    source/RadioButton.cpp
+    source/ReBar.cpp
+    source/Rect.cpp
+    source/Referenceable.cpp
+    source/Region.cpp
+    source/ResizeEvent.cpp
+    source/ResourceId.cpp
+    source/RichEdit.cpp
+    source/Scintilla.cpp
+    source/ScrollEvent.cpp
+    source/ScrollInfo.cpp
+    source/ScrollableWidget.cpp
+    source/Separator.cpp
+    source/SetCursorEvent.cpp
+    source/Size.cpp
+    source/Slider.cpp
+    source/SpinButton.cpp
+    source/Spinner.cpp
+    source/SplitBar.cpp
+    source/StatusBar.cpp
+    source/String.cpp
+    source/Style.cpp
+    source/Styles.cpp
+    source/System.cpp
+    source/Tab.cpp
+    source/TextEdit.cpp
+    source/Thread.cpp
+    source/TimePoint.cpp
+    source/Timer.cpp
+    source/ToggleButton.cpp
+    source/ToolBar.cpp
+    source/TreeNode.cpp
+    source/TreeView.cpp
+    source/TreeViewEvent.cpp
+    source/Vaca.cpp
+    source/Widget.cpp
+    source/WidgetClass.cpp
+)
 
-if(VACA_WINDOWS)
-  set(VACA_SOURCES ${VACA_SOURCES} vaca/win32/win32.cpp)
-endif(VACA_WINDOWS)
+# Should we create a shared or static library?
+if(VACA_BUILD_SHARED)
+    add_library(vaca SHARED ${VACA_SOURCES})
+    target_compile_definitions(vaca PUBLIC VACA_SHARED)
+else(VACA_BUILD_SHARED)
+    add_library(vaca STATIC ${VACA_SOURCES})
+    target_compile_definitions(vaca PUBLIC VACA_STATIC)
+endif(VACA_BUILD_SHARED)
 
-add_library(vaca ${VACA_SOURCES})
+# Library header files
+FILE(GLOB VACA_PUBLIC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+FILE(GLOB VACA_PRIVATE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.h")
+# Add the headers to the library
+target_sources(vaca PUBLIC VACA_PUBLIC_HEADERS)
+target_sources(vaca PRIVATE VACA_PRIVATE_HEADERS)
 
-######################################################################
-# Post-build commands to run examples and tests
+# Include folders
+target_include_directories(vaca PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(vaca PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/source)
 
-add_custom_command(TARGET vaca
-  POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/scintilla/SciLexer.dll ${CMAKE_CURRENT_BINARY_DIR}/examples
-  COMMENT "Copying SciLexer DLL to examples directory")
+# Platform dependent source files
+if(WIN32 OR MINGW)
+    target_sources(vaca PRIVATE vaca/win32/win32.cpp)
+endif()
 
-if(BUILD_SHARED_LIBS)
-  get_target_property(vaca_dll_location vaca LOCATION)
-  add_custom_command(TARGET vaca
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy ${vaca_dll_location} ${CMAKE_CURRENT_BINARY_DIR}/examples
-    COMMAND ${CMAKE_COMMAND} -E copy ${vaca_dll_location} ${CMAKE_CURRENT_BINARY_DIR}/tests
-    COMMENT "Copying vaca dll to examples and tests directories")
-endif(BUILD_SHARED_LIBS)
+# Platform dependent libraries
+if(WIN32 OR MINGW)
+    target_link_libraries(vaca PUBLIC user32 shell32 comctl32 comdlg32 gdi32 msimg32 winmm advapi32 ole32 shlwapi vfw32 wininet)
+endif()
 
-########################################
-# Win32 libraries
-
-set(win32_libs
-	User32 Shell32 ComCtl32 ComDlg32 Gdi32 Msimg32
-	WinMM AdvAPI32 Ole32 ShLwApi Vfw32 WinInet)
-
-########################################
-# Flags
-
-set(win32_flags "-DWINVER=0x0500 -D_WIN32_IE=0x0500 -D_WIN32_WINNT=0x0500")
-set(unicode_flags "-DUNICODE -D_UNICODE")
-if(NOT BUILD_SHARED_LIBS)
-  set(static_flags "-DVACA_STATIC")
-endif(NOT BUILD_SHARED_LIBS)
-
-set(common_flags "${win32_flags} ${unicode_flags} ${static_flags}")
-
-set_target_properties(vaca PROPERTIES
-  COMPILE_FLAGS "-DVACA_SRC ${common_flags} ${vaca_platform_def}")
-
-if(BUILD_SHARED_LIBS)
-  target_link_libraries(vaca ${win32_libs})
-endif(BUILD_SHARED_LIBS)
-
-########################################
-# Installation commands
-
-FILE(GLOB vaca_h_files "${CMAKE_CURRENT_SOURCE_DIR}/vaca/*.h")
-INSTALL(FILES ${vaca_h_files} DESTINATION include/vaca)
-
-INSTALL(TARGETS vaca
-  RUNTIME DESTINATION bin
-  LIBRARY DESTINATION lib
-  ARCHIVE DESTINATION lib)
-
-########################################
-# Examples
-
-add_subdirectory(examples)
-
-########################################
-# Tests
-
-add_subdirectory(tests)
+# Platform dependent definitions
+if(WIN32 OR MINGW)
+    # Windows version
+    target_compile_definitions(vaca PUBLIC WINVER=${VACA_PLATFORM} _WIN32_WINNT=${VACA_PLATFORM})
+    # Internet Explorer version
+    target_compile_definitions(vaca PUBLIC _WIN32_IE=${VACA_WIN32_IE})
+    # Enable unicode
+    target_compile_definitions(vaca PUBLIC UNICODE _UNICODE)
+endif()

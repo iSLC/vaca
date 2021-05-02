@@ -1,3 +1,6 @@
-doc/*.chm
-doc/*.tmp
-doc/html/
+# Executables
+*.exe
+*.dll
+
+# Hidden files and folders
+.*
