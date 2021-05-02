@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Button.h"
-#include "vaca/Debug.h"
+#include "VACA/Button.h"
+#include "VACA/Debug.h"
 
 using namespace vaca;
 

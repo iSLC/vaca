@@ -6,11 +6,11 @@
 
 #if 0
 
-#include "vaca/DockFrame.h"
-#include "vaca/DockBar.h"
-#include "vaca/ClientLayout.h"
-#include "vaca/Event.h"
-#include "vaca/Debug.h"
+#include "VACA/DockFrame.h"
+#include "VACA/DockBar.h"
+#include "VACA/ClientLayout.h"
+#include "VACA/Event.h"
+#include "VACA/Debug.h"
 
 using namespace vaca;
 

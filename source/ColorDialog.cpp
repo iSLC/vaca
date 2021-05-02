@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/ColorDialog.h"
-#include "vaca/Application.h"
-#include "vaca/win32.h"
+#include "VACA/ColorDialog.h"
+#include "VACA/Application.h"
+#include "VACA/win32.h"
 
 using namespace vaca;
 

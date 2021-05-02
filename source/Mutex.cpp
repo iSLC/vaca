@@ -4,7 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Mutex.h"
+#include "VACA/Mutex.h"
 
 #if defined(VACA_ON_WINDOWS)
   #include "win32/MutexImpl.h"

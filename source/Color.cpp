@@ -4,7 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Color.h"
+#include "VACA/Color.h"
 
 using namespace vaca;
 

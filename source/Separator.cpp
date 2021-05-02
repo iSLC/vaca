@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Separator.h"
-#include "vaca/WidgetClass.h"
-#include "vaca/PreferredSizeEvent.h"
+#include "VACA/Separator.h"
+#include "VACA/WidgetClass.h"
+#include "VACA/PreferredSizeEvent.h"
 
 using namespace vaca;
 

@@ -4,7 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/BoxConstraint.h"
+#include "VACA/BoxConstraint.h"
 
 using namespace vaca;
 

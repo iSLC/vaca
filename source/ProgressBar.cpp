@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/ProgressBar.h"
-#include "vaca/Debug.h"
-#include "vaca/WidgetClass.h"
-#include "vaca/PreferredSizeEvent.h"
-#include "vaca/win32.h"
+#include "VACA/ProgressBar.h"
+#include "VACA/Debug.h"
+#include "VACA/WidgetClass.h"
+#include "VACA/PreferredSizeEvent.h"
+#include "VACA/win32.h"
 
 #ifndef PBM_SETMARQUEE
 #define PBM_SETMARQUEE 1034

@@ -7,7 +7,7 @@
 #ifndef VACA_WIN32_H
 #define VACA_WIN32_H
 
-#include "vaca/base.h"
+#include "VACA/Base.h"
 
 #ifndef VACA_ON_WINDOWS
   #error You cannot use this header file outside Windows platform.

@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/TextEdit.h"
-#include "vaca/Event.h"
-#include "vaca/System.h"
-#include "vaca/WidgetClass.h"
-#include "vaca/PreferredSizeEvent.h"
+#include "VACA/TextEdit.h"
+#include "VACA/Event.h"
+#include "VACA/System.h"
+#include "VACA/WidgetClass.h"
+#include "VACA/PreferredSizeEvent.h"
 
 using namespace vaca;
 

@@ -10,9 +10,9 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-#include "vaca/Color.h"
-#include "vaca/GdiObject.h"
-#include "vaca/win32.h"
+#include "VACA/Color.h"
+#include "VACA/GdiObject.h"
+#include "VACA/win32.h"
 
 class vaca::Brush::BrushImpl : public GdiObject<HBRUSH>
 {

@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/MenuItemEvent.h"
-#include "vaca/Menu.h"
+#include "VACA/MenuItemEvent.h"
+#include "VACA/Menu.h"
 
 using namespace vaca;
 

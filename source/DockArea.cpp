@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/DockArea.h"
-#include "vaca/DockBar.h"
-#include "vaca/Frame.h"
-#include "vaca/Point.h"
-#include "vaca/Debug.h"
+#include "VACA/DockArea.h"
+#include "VACA/DockBar.h"
+#include "VACA/Frame.h"
+#include "VACA/Point.h"
+#include "VACA/Debug.h"
 
 using namespace vaca;
 

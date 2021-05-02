@@ -4,12 +4,12 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Mdi.h"
-#include "vaca/Application.h"
-#include "vaca/Debug.h"
-#include "vaca/Event.h"
-#include "vaca/ClientLayout.h"
-#include "vaca/Menu.h"
+#include "VACA/Mdi.h"
+#include "VACA/Application.h"
+#include "VACA/Debug.h"
+#include "VACA/Event.h"
+#include "VACA/ClientLayout.h"
+#include "VACA/Menu.h"
 
 using namespace vaca;
 

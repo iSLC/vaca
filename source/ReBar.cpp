@@ -5,13 +5,13 @@
 // please read LICENSE.txt for more information.
 
 
-#include "vaca/ReBar.h"
-#include "vaca/Event.h"
-#include "vaca/ImageList.h"
-#include "vaca/WidgetClass.h"
-#include "vaca/LayoutEvent.h"
-#include "vaca/PreferredSizeEvent.h"
-#include "vaca/win32.h"
+#include "VACA/ReBar.h"
+#include "VACA/Event.h"
+#include "VACA/ImageList.h"
+#include "VACA/WidgetClass.h"
+#include "VACA/LayoutEvent.h"
+#include "VACA/PreferredSizeEvent.h"
+#include "VACA/win32.h"
 
 // Warning:
 //   You must define WINVER & _WIN32_WINNT version, otherwise,

@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/StatusBar.h"
-#include "vaca/WidgetClass.h"
-#include "vaca/PreferredSizeEvent.h"
-#include "vaca/LayoutEvent.h"
+#include "VACA/StatusBar.h"
+#include "VACA/WidgetClass.h"
+#include "VACA/PreferredSizeEvent.h"
+#include "VACA/LayoutEvent.h"
 
 using namespace vaca;
 

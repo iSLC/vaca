@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/SetCursorEvent.h"
-#include "vaca/Widget.h"
-#include "vaca/Cursor.h"
+#include "VACA/SetCursorEvent.h"
+#include "VACA/Widget.h"
+#include "VACA/Cursor.h"
 
 using namespace vaca;
 

@@ -4,7 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Brush.h"
+#include "VACA/Brush.h"
 
 #if defined(VACA_WINDOWS)
   #include "win32/BrushImpl.h"

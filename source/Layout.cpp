@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Layout.h"
-#include "vaca/Debug.h"
-#include "vaca/Widget.h"
+#include "VACA/Layout.h"
+#include "VACA/Debug.h"
+#include "VACA/Widget.h"
 
 using namespace vaca;
 

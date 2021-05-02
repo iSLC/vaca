@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/PaintEvent.h"
-#include "vaca/Widget.h"
+#include "VACA/PaintEvent.h"
+#include "VACA/Widget.h"
 
 using namespace vaca;
 

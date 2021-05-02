@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/ListColumn.h"
-#include "vaca/ListView.h"
-#include "vaca/Debug.h"
-#include "vaca/win32.h"
+#include "VACA/ListColumn.h"
+#include "VACA/ListView.h"
+#include "VACA/Debug.h"
+#include "VACA/win32.h"
 
 using namespace vaca;
 

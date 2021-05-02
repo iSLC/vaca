@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/win32.h"
-#include "vaca/Point.h"
-#include "vaca/Size.h"
-#include "vaca/Rect.h"
-#include "vaca/Color.h"
+#include "VACA/win32.h"
+#include "VACA/Point.h"
+#include "VACA/Size.h"
+#include "VACA/Rect.h"
+#include "VACA/Color.h"
 
 using namespace vaca;
 

@@ -104,8 +104,24 @@ else()
     message(WARNING "Unknown IE version. Falling back to default: Internet Explorer 6.0")
 endif()
 
+# Should we create a shared or static library?
+if(VACA_BUILD_SHARED)
+    add_library(vaca SHARED source/Vaca.cpp)
+    target_compile_definitions(vaca PUBLIC VACA_SHARED)
+else(VACA_BUILD_SHARED)
+    add_library(vaca STATIC source/Vaca.cpp)
+    target_compile_definitions(vaca PUBLIC VACA_STATIC)
+endif(VACA_BUILD_SHARED)
+
+# Library header files
+FILE(GLOB VACA_PUBLIC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+FILE(GLOB VACA_PRIVATE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.h")
+# Add the headers to the library
+target_sources(vaca PUBLIC VACA_PUBLIC_HEADERS)
+target_sources(vaca PRIVATE VACA_PRIVATE_HEADERS)
+
 # Library source files
-set(VACA_SOURCES
+target_sources(vaca PRIVATE
     source/Anchor.cpp
     source/AnchorLayout.cpp
     source/Application.cpp
@@ -214,26 +230,9 @@ set(VACA_SOURCES
     source/TreeNode.cpp
     source/TreeView.cpp
     source/TreeViewEvent.cpp
-    source/Vaca.cpp
     source/Widget.cpp
     source/WidgetClass.cpp
 )
-
-# Should we create a shared or static library?
-if(VACA_BUILD_SHARED)
-    add_library(vaca SHARED ${VACA_SOURCES})
-    target_compile_definitions(vaca PUBLIC VACA_SHARED)
-else(VACA_BUILD_SHARED)
-    add_library(vaca STATIC ${VACA_SOURCES})
-    target_compile_definitions(vaca PUBLIC VACA_STATIC)
-endif(VACA_BUILD_SHARED)
-
-# Library header files
-FILE(GLOB VACA_PUBLIC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
-FILE(GLOB VACA_PRIVATE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.h")
-# Add the headers to the library
-target_sources(vaca PUBLIC VACA_PUBLIC_HEADERS)
-target_sources(vaca PRIVATE VACA_PRIVATE_HEADERS)
 
 # Include folders
 target_include_directories(vaca PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)

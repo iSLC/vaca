@@ -4,19 +4,19 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/TreeView.h"
-#include "vaca/TreeViewEvent.h"
-#include "vaca/System.h"
-#include "vaca/Debug.h"
-#include "vaca/ImageList.h"
-#include "vaca/WidgetClass.h"
-#include "vaca/MouseEvent.h"
-#include "vaca/Cursor.h"
-#include "vaca/SetCursorEvent.h"
+#include "VACA/TreeView.h"
+#include "VACA/TreeViewEvent.h"
+#include "VACA/System.h"
+#include "VACA/Debug.h"
+#include "VACA/ImageList.h"
+#include "VACA/WidgetClass.h"
+#include "VACA/MouseEvent.h"
+#include "VACA/Cursor.h"
+#include "VACA/SetCursorEvent.h"
 
-#include "vaca/Brush.h"
-#include "vaca/Pen.h"
-#include "vaca/win32.h"
+#include "VACA/Brush.h"
+#include "VACA/Pen.h"
+#include "VACA/win32.h"
 
 using namespace vaca;
 

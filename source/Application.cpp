@@ -4,15 +4,15 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Application.h"
-#include "vaca/Debug.h"
-#include "vaca/Frame.h"
-#include "vaca/Timer.h"
-#include "vaca/Graphics.h"
-#include "vaca/Font.h"
+#include "VACA/Application.h"
+#include "VACA/Debug.h"
+#include "VACA/Frame.h"
+#include "VACA/Timer.h"
+#include "VACA/Graphics.h"
+#include "VACA/Font.h"
 
 #ifndef NDEBUG
-#include "vaca/System.h"
+#include "VACA/System.h"
 #endif
 
 using namespace vaca;

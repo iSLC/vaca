@@ -4,12 +4,12 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Referenceable.h"
-#include "vaca/Debug.h"
+#include "VACA/Referenceable.h"
+#include "VACA/Debug.h"
 
 #ifndef NDEBUG
-#include "vaca/Mutex.h"
-#include "vaca/ScopedLock.h"
+#include "VACA/Mutex.h"
+#include "VACA/ScopedLock.h"
 #include <vector>
 #include <typeinfo>
   #ifdef VACA_ON_WINDOWS

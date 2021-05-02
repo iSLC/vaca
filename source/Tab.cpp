@@ -4,15 +4,15 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Tab.h"
-#include "vaca/Font.h"
-#include "vaca/Point.h"
-#include "vaca/Debug.h"
-#include "vaca/Event.h"
-#include "vaca/ClientLayout.h"
-#include "vaca/PreferredSizeEvent.h"
-#include "vaca/LayoutEvent.h"
-#include "vaca/win32.h"
+#include "VACA/Tab.h"
+#include "VACA/Font.h"
+#include "VACA/Point.h"
+#include "VACA/Debug.h"
+#include "VACA/Event.h"
+#include "VACA/ClientLayout.h"
+#include "VACA/PreferredSizeEvent.h"
+#include "VACA/LayoutEvent.h"
+#include "VACA/win32.h"
 
 using namespace vaca;
 

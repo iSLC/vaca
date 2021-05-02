@@ -4,7 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Command.h"
+#include "VACA/Command.h"
 
 using namespace vaca;
 

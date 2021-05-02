@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/FocusEvent.h"
-#include "vaca/Widget.h"
+#include "VACA/FocusEvent.h"
+#include "VACA/Widget.h"
 
 using namespace vaca;
 

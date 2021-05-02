@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Message.h"
-#include "vaca/String.h"
+#include "VACA/Message.h"
+#include "VACA/String.h"
 
 using namespace vaca;
 

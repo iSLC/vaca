@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Scintilla.h"
-#include "vaca/Font.h"
-#include "vaca/WidgetClass.h"
-#include "vaca/String.h"
-#include "vaca/Register.h"
+#include "VACA/Scintilla.h"
+#include "VACA/Font.h"
+#include "VACA/WidgetClass.h"
+#include "VACA/String.h"
+#include "VACA/Register.h"
 #include "scintilla/Scintilla.h"
 #include "scintilla/SciLexer.h"
 

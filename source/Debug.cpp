@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Debug.h"
-#include "vaca/Mutex.h"
-#include "vaca/ScopedLock.h"
-#include "vaca/System.h"
-#include "vaca/Thread.h"
+#include "VACA/Debug.h"
+#include "VACA/Mutex.h"
+#include "VACA/ScopedLock.h"
+#include "VACA/System.h"
+#include "VACA/Thread.h"
 
 #include <cstdio>
 

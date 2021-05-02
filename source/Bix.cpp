@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Bix.h"
-#include "vaca/Point.h"
-#include "vaca/ParseException.h"
-#include "vaca/Widget.h"
+#include "VACA/Bix.h"
+#include "VACA/Point.h"
+#include "VACA/ParseException.h"
+#include "VACA/Widget.h"
 
 #include <stack>
 #include <cassert>

@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Component.h"
-#include "vaca/SharedPtr.h"
-#include "vaca/Property.h"
-#include "vaca/Debug.h"
+#include "VACA/Component.h"
+#include "VACA/SharedPtr.h"
+#include "VACA/Property.h"
+#include "VACA/Debug.h"
 
 using namespace vaca;
 

@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/Label.h"
-#include "vaca/Font.h"
-#include "vaca/Debug.h"
-#include "vaca/WidgetClass.h"
-#include "vaca/PreferredSizeEvent.h"
+#include "VACA/Label.h"
+#include "VACA/Font.h"
+#include "VACA/Debug.h"
+#include "VACA/WidgetClass.h"
+#include "VACA/PreferredSizeEvent.h"
 
 using namespace vaca;
 

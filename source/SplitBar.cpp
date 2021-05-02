@@ -4,14 +4,14 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/SplitBar.h"
-#include "vaca/Color.h"
-#include "vaca/Brush.h"
-#include "vaca/Cursor.h"
-#include "vaca/MouseEvent.h"
-#include "vaca/PaintEvent.h"
-#include "vaca/System.h"
-#include "vaca/SetCursorEvent.h"
+#include "VACA/SplitBar.h"
+#include "VACA/Color.h"
+#include "VACA/Brush.h"
+#include "VACA/Cursor.h"
+#include "VACA/MouseEvent.h"
+#include "VACA/PaintEvent.h"
+#include "VACA/System.h"
+#include "VACA/SetCursorEvent.h"
 
 using namespace vaca;
 

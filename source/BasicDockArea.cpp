@@ -6,13 +6,13 @@
 
 #if 0
 
-#include "vaca/BasicDockArea.h"
-#include "vaca/DockBar.h"
-#include "vaca/Frame.h"
-#include "vaca/Point.h"
-#include "vaca/Debug.h"
-#include "vaca/Pen.h"
-#include "vaca/PreferredSizeEvent.h"
+#include "VACA/BasicDockArea.h"
+#include "VACA/DockBar.h"
+#include "VACA/Frame.h"
+#include "VACA/Point.h"
+#include "VACA/Debug.h"
+#include "VACA/Pen.h"
+#include "VACA/PreferredSizeEvent.h"
 
 using namespace vaca;
 

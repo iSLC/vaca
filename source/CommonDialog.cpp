@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/CommonDialog.h"
-#include "vaca/Widget.h"
-#include "vaca/Debug.h"
-#include "vaca/Application.h"
+#include "VACA/CommonDialog.h"
+#include "VACA/Widget.h"
+#include "VACA/Debug.h"
+#include "VACA/Application.h"
 
 using namespace vaca;
 

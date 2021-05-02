@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/FindFiles.h"
-#include "vaca/String.h"
+#include "VACA/FindFiles.h"
+#include "VACA/String.h"
 
 using namespace vaca;
 

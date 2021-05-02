@@ -4,7 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "vaca/TimePoint.h"
+#include "VACA/TimePoint.h"
 
 using namespace vaca;
 
