@@ -10,7 +10,7 @@
 #include "VACA/Pen.h"
 #include "VACA/Brush.h"
 #include "VACA/Graphics.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 using namespace vaca;
 

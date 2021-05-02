@@ -33,7 +33,7 @@
 #include "VACA/PreferredSizeEvent.h"
 #include "VACA/SetCursorEvent.h"
 #include "VACA/LayoutEvent.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 #include <iterator>
 

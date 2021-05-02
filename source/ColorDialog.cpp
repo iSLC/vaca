@@ -6,7 +6,7 @@
 
 #include "VACA/ColorDialog.h"
 #include "VACA/Application.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 using namespace vaca;
 

@@ -9,7 +9,7 @@
 #include "VACA/Debug.h"
 #include "VACA/Point.h"
 #include "VACA/Size.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 using namespace vaca;
 

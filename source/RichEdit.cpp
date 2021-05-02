@@ -9,7 +9,7 @@
 #include "VACA/System.h"
 #include "VACA/Register.h"
 #include "VACA/WidgetClass.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 #include <richedit.h>
 #include <memory>

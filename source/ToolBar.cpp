@@ -15,7 +15,7 @@
 #include "VACA/Command.h"
 #include "VACA/CommandEvent.h"
 #include "VACA/PreferredSizeEvent.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 using namespace vaca;
 

@@ -18,7 +18,7 @@
 #include "VACA/Pen.h"
 #include "VACA/Brush.h"
 #include "VACA/GraphicsPath.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 #include <cmath>
 #ifndef M_PI

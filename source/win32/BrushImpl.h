@@ -12,7 +12,7 @@
 
 #include "VACA/Color.h"
 #include "VACA/GdiObject.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 class vaca::Brush::BrushImpl : public GdiObject<HBRUSH>
 {

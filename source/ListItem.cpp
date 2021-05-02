@@ -7,7 +7,7 @@
 #include "VACA/ListItem.h"
 #include "VACA/ListView.h"
 #include "VACA/Debug.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 using namespace vaca;
 

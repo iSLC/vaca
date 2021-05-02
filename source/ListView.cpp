@@ -11,7 +11,7 @@
 #include "VACA/WidgetClass.h"
 #include "VACA/ListItem.h"
 #include "VACA/ListColumn.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 using namespace vaca;
 

@@ -10,7 +10,7 @@
 #include "VACA/System.h"
 #include "VACA/WidgetClass.h"
 #include "VACA/PreferredSizeEvent.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 using namespace vaca;
 

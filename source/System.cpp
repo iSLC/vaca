@@ -12,7 +12,7 @@
 #include "VACA/Debug.h"
 #include "VACA/ImageList.h"
 #include "VACA/ScopedLock.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 #include <cstdio>
 #include <cwchar>

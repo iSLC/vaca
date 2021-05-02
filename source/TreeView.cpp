@@ -16,7 +16,7 @@
 
 #include "VACA/Brush.h"
 #include "VACA/Pen.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 using namespace vaca;
 

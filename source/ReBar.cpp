@@ -11,7 +11,7 @@
 #include "VACA/WidgetClass.h"
 #include "VACA/LayoutEvent.h"
 #include "VACA/PreferredSizeEvent.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 // Warning:
 //   You must define WINVER & _WIN32_WINNT version, otherwise,

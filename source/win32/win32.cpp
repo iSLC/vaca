@@ -4,7 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 #include "VACA/Point.h"
 #include "VACA/Size.h"
 #include "VACA/Rect.h"

@@ -8,7 +8,7 @@
 #include "VACA/TreeView.h"
 #include "VACA/TreeViewEvent.h"
 #include "VACA/Debug.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 using namespace vaca;
 

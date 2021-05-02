@@ -106,10 +106,10 @@ endif()
 
 # Should we create a shared or static library?
 if(VACA_BUILD_SHARED)
-    add_library(vaca SHARED source/Vaca.cpp)
+    add_library(vaca SHARED source/VACA.cpp)
     target_compile_definitions(vaca PUBLIC VACA_SHARED)
 else(VACA_BUILD_SHARED)
-    add_library(vaca STATIC source/Vaca.cpp)
+    add_library(vaca STATIC source/VACA.cpp)
     target_compile_definitions(vaca PUBLIC VACA_STATIC)
 endif(VACA_BUILD_SHARED)
 
@@ -117,8 +117,8 @@ endif(VACA_BUILD_SHARED)
 FILE(GLOB VACA_PUBLIC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 FILE(GLOB VACA_PRIVATE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.h")
 # Add the headers to the library
-target_sources(vaca PUBLIC VACA_PUBLIC_HEADERS)
-target_sources(vaca PRIVATE VACA_PRIVATE_HEADERS)
+target_sources(vaca PUBLIC ${VACA_PUBLIC_HEADERS})
+target_sources(vaca PRIVATE ${VACA_PRIVATE_HEADERS})
 
 # Library source files
 target_sources(vaca PRIVATE
@@ -204,7 +204,7 @@ target_sources(vaca PRIVATE
     source/ResizeEvent.cpp
     source/ResourceId.cpp
     source/RichEdit.cpp
-    source/Scintilla.cpp
+    #source/Scintilla.cpp
     source/ScrollEvent.cpp
     source/ScrollInfo.cpp
     source/ScrollableWidget.cpp
@@ -240,7 +240,7 @@ target_include_directories(vaca PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/source)
 
 # Platform dependent source files
 if(WIN32 OR MINGW)
-    target_sources(vaca PRIVATE vaca/win32/win32.cpp)
+    target_sources(vaca PRIVATE source/win32/win32.cpp)
 endif()
 
 # Platform dependent libraries
@@ -251,7 +251,7 @@ endif()
 # Platform dependent definitions
 if(WIN32 OR MINGW)
     # Windows version
-    target_compile_definitions(vaca PUBLIC WINVER=${VACA_PLATFORM} _WIN32_WINNT=${VACA_PLATFORM})
+    target_compile_definitions(vaca PUBLIC WINVER=${VACA_WIN32_WINNT} _WIN32_WINNT=${VACA_WIN32_WINNT})
     # Internet Explorer version
     target_compile_definitions(vaca PUBLIC _WIN32_IE=${VACA_WIN32_IE})
     # Enable unicode

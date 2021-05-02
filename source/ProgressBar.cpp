@@ -8,7 +8,7 @@
 #include "VACA/Debug.h"
 #include "VACA/WidgetClass.h"
 #include "VACA/PreferredSizeEvent.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 #ifndef PBM_SETMARQUEE
 #define PBM_SETMARQUEE 1034

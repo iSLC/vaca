@@ -9,7 +9,7 @@
 #include "VACA/Debug.h"
 #include "VACA/ResourceException.h"
 #include "VACA/String.h"
-#include "VACA/win32.h"
+#include "VACA/Win32.h"
 
 using namespace vaca;
 
