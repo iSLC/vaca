@@ -75,7 +75,7 @@ void SpinButton::getRange(int& minValue, int& maxValue)
 
 void SpinButton::setRange(int minValue, int maxValue)
 {
-  sendMessage(UDM_SETRANGE32, minValue, maxValue);
+  sendMessage(UDM_SETRANGE32, static_cast<WPARAM>(minValue), maxValue);
 }
 
 int SpinButton::getValue()
@@ -107,7 +107,7 @@ int SpinButton::getBase()
 */
 void SpinButton::setBase(int base)
 {
-  sendMessage(UDM_SETBASE, base, 0);
+  sendMessage(UDM_SETBASE, static_cast<WPARAM>(base), 0);
 }
 
 Widget* SpinButton::getBuddy()

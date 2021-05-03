@@ -145,7 +145,7 @@ MsgBox::Result MsgBox::show(Widget* parent,
   int res = ::MessageBox(parent ? parent->getHandle(): NULL,
 			 text.c_str(),
 			 title.c_str(),
-			 flags);
+                         static_cast<UINT>(flags));
   Result result;
 
   switch (res) {

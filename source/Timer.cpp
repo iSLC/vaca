@@ -204,7 +204,7 @@ void Timer::run_timer_thread()
 	// ticks of this timer from its thread)
 	if (std::find(threads.begin(), threads.end(), id) == threads.end()) {
 	  threads.push_back(id);
-	  ::PostThreadMessage(id, WM_NULL, 0, 0);
+	  ::PostThreadMessage(static_cast<DWORD>(id), WM_NULL, 0, 0);
 	}
       }
 

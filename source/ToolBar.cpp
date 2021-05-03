@@ -213,7 +213,7 @@ void ToolSet::addButton(ToolButton* button)
   button->setButtonIndex(getButtonCount()-1);
 
   sendMessage(TB_INSERTBUTTON,
-	      button->getButtonIndex()+1,
+              static_cast<WPARAM>(button->getButtonIndex() + 1),
 	      reinterpret_cast<LPARAM>(&tbb));
 
   updatePreferredSizes();
@@ -234,8 +234,8 @@ void ToolSet::addSeparator(int width)
   tbb.fsStyle = BTNS_SEP;
   tbb.dwData = static_cast<DWORD_PTR>(NULL);
 
-  sendMessage(TB_INSERTBUTTON, getButtonCount(),
-	      reinterpret_cast<LPARAM>(&tbb));
+  sendMessage(TB_INSERTBUTTON, static_cast<WPARAM>(getButtonCount()),
+              reinterpret_cast<LPARAM>(&tbb));
 
   updatePreferredSizes();
 }
@@ -298,7 +298,7 @@ ToolButton* ToolSet::getButtonByIndex(int index) const
 
   if (const_cast<ToolSet*>(this)->
       sendMessage(TB_GETBUTTONINFO,
-		  index,
+                  static_cast<WPARAM>(index),
 		  reinterpret_cast<LPARAM>(&tbbi)) >= 0 &&
       tbbi.lParam) {
     return reinterpret_cast<ToolButton*>(tbbi.lParam);

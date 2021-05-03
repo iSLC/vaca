@@ -53,12 +53,12 @@ int ListBox::addItem(const String& text)
 */
 void ListBox::insertItem(int itemIndex, const String& text)
 {
-  sendMessage(LB_INSERTSTRING, itemIndex, reinterpret_cast<LPARAM>(text.c_str()));
+  sendMessage(LB_INSERTSTRING, static_cast<WPARAM>(itemIndex), reinterpret_cast<LPARAM>(text.c_str()));
 }
 
 void ListBox::removeItem(int itemIndex)
 {
-  sendMessage(LB_DELETESTRING, itemIndex, 0);
+  sendMessage(LB_DELETESTRING, static_cast<WPARAM>(itemIndex), 0);
 }
 
 /**
@@ -77,7 +77,7 @@ int ListBox::getItemCount()
 Rect ListBox::getItemBounds(int itemIndex)
 {
   RECT rc;
-  sendMessage(LB_GETITEMRECT, itemIndex, reinterpret_cast<LPARAM>(&rc));
+  sendMessage(LB_GETITEMRECT, static_cast<WPARAM>(itemIndex), reinterpret_cast<LPARAM>(&rc));
   return convert_to<Rect>(rc);
 }
 
@@ -86,12 +86,12 @@ Rect ListBox::getItemBounds(int itemIndex)
 */
 String ListBox::getItemText(int itemIndex)
 {
-  int len = sendMessage(LB_GETTEXTLEN, itemIndex, 0);
+  int len = sendMessage(LB_GETTEXTLEN, static_cast<WPARAM>(itemIndex), 0);
   if (!len)
     return L"";
   else {
     Char* buf = new Char[len+1];
-    sendMessage(LB_GETTEXT, itemIndex, reinterpret_cast<LPARAM>(buf));
+    sendMessage(LB_GETTEXT, static_cast<WPARAM>(itemIndex), reinterpret_cast<LPARAM>(buf));
     String str(buf);
     delete buf;
     return str;
@@ -127,7 +127,7 @@ int ListBox::getSelectedItem()
 */
 void ListBox::setSelectedItem(int itemIndex)
 {
-  sendMessage(LB_SETCURSEL, itemIndex, 0);
+  sendMessage(LB_SETCURSEL, static_cast<WPARAM>(itemIndex), 0);
 }
 
 /**
@@ -136,7 +136,7 @@ void ListBox::setSelectedItem(int itemIndex)
 */
 std::vector<int> ListBox::getSelectedItems()
 {
-  size_t count = sendMessage(LB_GETSELCOUNT, 0, 0);
+  size_t count = static_cast<size_t>(sendMessage(LB_GETSELCOUNT, 0, 0));
   if (count > 0) {
     std::vector<int> items(count);
     sendMessage(LB_GETSELITEMS, count, (LPARAM)(*items.begin()));

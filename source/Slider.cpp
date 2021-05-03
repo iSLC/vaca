@@ -128,7 +128,7 @@ void Slider::setTickVisible(bool state)
 */
 void Slider::setTickFreq(int freq)
 {
-  sendMessage(TBM_SETTICFREQ, freq, 0);
+  sendMessage(TBM_SETTICFREQ, static_cast<WPARAM>(freq), 0);
 }
 
 int Slider::getMinValue()

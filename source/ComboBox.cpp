@@ -50,7 +50,7 @@ int ComboBox::addItem(const String& text)
 */
 void ComboBox::insertItem(int itemIndex, const String& text)
 {
-  sendMessage(CB_INSERTSTRING, itemIndex, reinterpret_cast<LPARAM>(text.c_str()));
+  sendMessage(CB_INSERTSTRING, static_cast<WPARAM>(itemIndex), reinterpret_cast<LPARAM>(text.c_str()));
   updateMaxItemSize(text);
 }
 
@@ -61,7 +61,7 @@ void ComboBox::insertItem(int itemIndex, const String& text)
 */
 void ComboBox::removeItem(int itemIndex)
 {
-  sendMessage(CB_DELETESTRING, itemIndex, 0);
+  sendMessage(CB_DELETESTRING, static_cast<WPARAM>(itemIndex), 0);
 }
 
 /**
@@ -93,12 +93,12 @@ int ComboBox::getItemCount()
 */
 String ComboBox::getItemText(int itemIndex)
 {
-  int len = sendMessage(CB_GETLBTEXTLEN, itemIndex, 0);
+  int len = sendMessage(CB_GETLBTEXTLEN, static_cast<WPARAM>(itemIndex), 0);
   if (!len)
     return L"";
   else {
     Char* buf = new Char[len+1];
-    sendMessage(CB_GETLBTEXT, itemIndex, reinterpret_cast<LPARAM>(buf));
+    sendMessage(CB_GETLBTEXT, static_cast<WPARAM>(itemIndex), reinterpret_cast<LPARAM>(buf));
     String str(buf);
     delete buf;
     return str;
@@ -142,7 +142,7 @@ int ComboBox::getSelectedItem()
 */
 void ComboBox::setSelectedItem(int itemIndex)
 {
-  sendMessage(CB_SETCURSEL, itemIndex, 0);
+  sendMessage(CB_SETCURSEL, static_cast<WPARAM>(itemIndex), 0);
 }
 
 /**
@@ -157,7 +157,7 @@ void ComboBox::setSelectedItem(const String& firstText)
 
 void ComboBox::setDropDownVisibile(bool visible)
 {
-  sendMessage(CB_SHOWDROPDOWN, visible, 0);
+  sendMessage(CB_SHOWDROPDOWN, static_cast<WPARAM>(visible), 0);
 }
 
 bool ComboBox::isDropDownVisible()

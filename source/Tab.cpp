@@ -351,7 +351,7 @@ TabPage* Tab::getPage(int pageIndex)
 {
   assert(pageIndex >= 0 && pageIndex < getPageCount());
 
-  return dynamic_cast<TabPage*>(getChildren().at(pageIndex));
+  return dynamic_cast<TabPage*>(getChildren().at(static_cast<unsigned long long int>(pageIndex)));
 }
 
 void Tab::onPageChange(Event& ev)

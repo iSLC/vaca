@@ -63,7 +63,7 @@ void ReBarBand::setStyle(ReBarBandStyle style)
   REBARBANDINFO rbbi;
   rbbi.cbSize = sizeof(REBARBANDINFO);
   rbbi.fMask  = RBBIM_STYLE;
-  rbbi.fStyle = style;
+  rbbi.fStyle = static_cast<UINT>(style);
 
   setBand(&rbbi);
 }
@@ -161,9 +161,9 @@ void ReBarBand::setChild(Widget* widget)
   rbbi.cbSize     = sizeof(REBARBANDINFO);
   rbbi.fMask      = RBBIM_CHILD | RBBIM_CHILDSIZE;
   rbbi.hwndChild  = widget->getHandle();
-  rbbi.cx         = sz.w;
-  rbbi.cxMinChild = sz.w;
-  rbbi.cyMinChild = sz.h;
+  rbbi.cx         = static_cast<UINT>(sz.w);
+  rbbi.cxMinChild = static_cast<UINT>(sz.w);
+  rbbi.cyMinChild = static_cast<UINT>(sz.h);
 
   setBand(&rbbi);
 }
@@ -236,11 +236,11 @@ ReBarBand ReBar::addBand(Widget* item, ReBarBandStyle style, int position)
   REBARBANDINFO rbbi;
   rbbi.cbSize     = sizeof(REBARBANDINFO);
   rbbi.fMask      = RBBIM_STYLE | RBBIM_CHILD | RBBIM_SIZE | RBBIM_CHILDSIZE;
-  rbbi.fStyle     = style;
+  rbbi.fStyle     = static_cast<UINT>(style);
   rbbi.hwndChild  = item->getHandle();
-  rbbi.cx         = sz.w;
-  rbbi.cxMinChild = sz.w;
-  rbbi.cyMinChild = sz.h;
+  rbbi.cx         = static_cast<UINT>(sz.w);
+  rbbi.cxMinChild = static_cast<UINT>(sz.w);
+  rbbi.cyMinChild = static_cast<UINT>(sz.h);
 
   if (!sendMessage(RB_INSERTBAND, (WPARAM)position, (LPARAM)&rbbi))
     throw ReBarException(L"ReBar Error: Failed to append ReBar Band!");

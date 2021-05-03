@@ -31,7 +31,7 @@ String vaca::format_string(const Char* fmt, ...)
 
     va_list ap;
     va_start(ap, fmt);
-    int written = _vsnwprintf(buf.get(), size, fmt, ap);
+    int written = _vsnwprintf(buf.get(), static_cast<size_t>(size), fmt, ap);
     va_end(ap);
 
     if (written == size) {
@@ -76,7 +76,7 @@ std::string vaca::to_utf8(const String& string)
   if (required_size == 0)
     return std::string();
 
-  std::vector<char> buf(++required_size);
+  std::vector<char> buf(static_cast<unsigned long long int>(++required_size));
 
   WideCharToMultiByte(CP_UTF8, 0, 
 		      string.c_str(), string.size(),
@@ -96,7 +96,7 @@ String vaca::from_utf8(const std::string& string)
   if (required_size == 0)
     return String();
 
-  std::vector<wchar_t> buf(++required_size);
+  std::vector<wchar_t> buf(static_cast<unsigned long long int>(++required_size));
 
   MultiByteToWideChar(CP_UTF8, 0,
 		      string.c_str(), string.size(),
@@ -125,7 +125,7 @@ namespace {
 
 void vaca::split_string(const String& string, std::vector<String>& parts, const String& separators)
 {
-  size_t elements = 1 + std::count_if(string.begin(), string.end(), is_separator(&separators));
+  size_t elements = static_cast<size_t>(1 + std::count_if(string.begin(), string.end(), is_separator(&separators)));
   parts.resize(elements);
 
   size_t beg = 0, end;
@@ -252,7 +252,7 @@ template<> String vaca::convert_to(const double& from)
 */
 void vaca::copy_string_to(const String& src, Char* dest, int size)
 {
-  std::wcsncpy(dest, src.c_str(), size);
+  std::wcsncpy(dest, src.c_str(), static_cast<size_t>(size));
   dest[size-1] = L'\0';
 }
 

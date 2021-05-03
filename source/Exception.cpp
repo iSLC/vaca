@@ -90,7 +90,7 @@ void Exception::initialize()
   // get the error message in ASCII
   if (!FormatMessageA(flags,
 		      hmodule,
-		      m_errorCode,
+                      static_cast<DWORD>(m_errorCode),
 		      MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
 		      reinterpret_cast<LPSTR>(&msgbuf),
 		      0, NULL)) {

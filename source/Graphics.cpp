@@ -447,7 +447,7 @@ void Graphics::drawString(const String& str, const Color& color, int x, int y)
   SelectObject(m_handle, oldFont);
 
   SetBkMode(m_handle, oldMode);
-  SetTextColor(m_handle, oldColor);
+  SetTextColor(m_handle, static_cast<COLORREF>(oldColor));
 }
 
 void Graphics::drawString(const String& str, const Color& color, const Rect& _rc, int flags)
@@ -460,11 +460,11 @@ void Graphics::drawString(const String& str, const Color& color, const Rect& _rc
   RECT rc = convert_to<RECT>(_rc);
 
   HGDIOBJ oldFont = SelectObject(m_handle, reinterpret_cast<HGDIOBJ>(m_font.getHandle()));
-  DrawText(m_handle, str.c_str(), static_cast<int>(str.size()), &rc, flags);
+  DrawText(m_handle, str.c_str(), static_cast<int>(str.size()), &rc, static_cast<UINT>(flags));
   SelectObject(m_handle, oldFont);
 
   SetBkMode(m_handle, oldMode);
-  SetTextColor(m_handle, oldColor);
+  SetTextColor(m_handle, static_cast<COLORREF>(oldColor));
 }
 
 void Graphics::drawDisabledString(const String& str, const Rect& rc, int flags)
@@ -581,7 +581,7 @@ void Graphics::drawImageList(ImageList& imageList, int imageIndex, int x, int y,
   assert(imageList.getHandle());
 
   ImageList_Draw(imageList.getHandle(),
-		 imageIndex, m_handle, x, y, style);
+                 imageIndex, m_handle, x, y, static_cast<UINT>(style));
 }
 
 void Graphics::drawImageList(ImageList& imageList, int imageIndex, const Point& pt, int style)
@@ -1080,7 +1080,7 @@ Size Graphics::measureString(const String& str, int fitInWidth, int flags)
   HGDIOBJ oldFont = SelectObject(m_handle, reinterpret_cast<HGDIOBJ>(m_font.getHandle()));
 
   if (!str.empty()) {
-    DrawText(m_handle, str.c_str(), static_cast<int>(str.size()), &rc, flags | DT_CALCRECT);
+    DrawText(m_handle, str.c_str(), static_cast<int>(str.size()), &rc, static_cast<UINT>(flags | DT_CALCRECT));
   }
   else {
     SIZE sz;
@@ -1136,7 +1136,7 @@ void Graphics::drawBezier(const Pen& pen, CONST POINT* lppt, int numPoints)
   assert(m_handle);
 
   HGDIOBJ oldPen = SelectObject(m_handle, convert_to<HPEN>(pen));
-  PolyBezier(m_handle, lppt, numPoints);
+  PolyBezier(m_handle, lppt, static_cast<DWORD>(numPoints));
   SelectObject(m_handle, oldPen);
 }
 
@@ -1145,7 +1145,7 @@ void Graphics::drawBezierTo(const Pen& pen, CONST POINT* lppt, int numPoints)
   assert(m_handle);
 
   HGDIOBJ oldPen = SelectObject(m_handle, convert_to<HPEN>(pen));
-  PolyBezierTo(m_handle, lppt, numPoints);
+  PolyBezierTo(m_handle, lppt, static_cast<DWORD>(numPoints));
   SelectObject(m_handle, oldPen);
 }
 

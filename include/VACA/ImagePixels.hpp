@@ -60,7 +60,7 @@ public:
 
   void invertScanlines()
   {
-    std::vector<pixel_type> scanline(m_scanline);
+    std::vector<pixel_type> scanline(static_cast<unsigned long long int>(m_scanline));
     int top = 0;
     int bottom = (m_height-1)*m_scanline;
     for (int y=0; y<m_height/2; ++y) {
@@ -89,7 +89,7 @@ private:
     m_width = w;
     m_scanline = w;
     m_height = h;
-    m_buffer.resize(m_scanline * m_height);
+    m_buffer.resize(static_cast<unsigned long long int>(m_scanline * m_height));
   }
 };
 
@@ -136,11 +136,11 @@ public:
   int getScanlineSize() const { return get()->getScanlineSize(); }
 
   const pixel_type& operator[](int index) const {
-    return get()->operator[](index);
+    return get()->operator[](static_cast<size_t>(index));
   }
 
   pixel_type& operator[](int index) {
-    return get()->operator[](index);
+    return get()->operator[](static_cast<size_t>(index));
   }
 
   pixel_type getPixel(int x, int y) const {
@@ -162,10 +162,10 @@ public:
 
   static pixel_type makePixel(int r, int g, int b, int a) {
     return
-      ((a & 0xff) << 24) |
-      ((r & 0xff) << 16) |
-      ((g & 0xff) << 8) |
-      ((b & 0xff));
+            static_cast<pixel_type>(((a & 0xff) << 24) |
+                                    ((r & 0xff) << 16) |
+                                    ((g & 0xff) << 8) |
+                                    ((b & 0xff)));
   }
 
 };

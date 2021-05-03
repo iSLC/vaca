@@ -56,12 +56,12 @@ size_t RichEdit::getTextLength() const
   GETTEXTLENGTHEX tl;
   tl.flags = GTL_DEFAULT; // TODO test the difference with GTL_NUMCHARS
   tl.codepage = 1200;
-  return const_cast<RichEdit*>(this)->sendMessage(EM_GETTEXTLENGTHEX, (WPARAM)&tl, 0);
+  return static_cast<size_t>(const_cast<RichEdit *>(this)->sendMessage(EM_GETTEXTLENGTHEX, (WPARAM) &tl, 0));
 }
 
 size_t RichEdit::getTextLimit() const
 {
-  return const_cast<RichEdit*>(this)->sendMessage(EM_GETLIMITTEXT, 0, 0);
+  return static_cast<size_t>(const_cast<RichEdit *>(this)->sendMessage(EM_GETLIMITTEXT, 0, 0));
 }
 
 void RichEdit::setTextLimit(size_t maxChars)

@@ -79,7 +79,7 @@ void ProgressBar::getRange(int& minValue, int& maxValue)
 */
 void ProgressBar::setRange(int minValue, int maxValue)
 {
-  sendMessage(PBM_SETRANGE32, minValue, maxValue);
+  sendMessage(PBM_SETRANGE32, static_cast<WPARAM>(minValue), maxValue);
 }
 
 /**
@@ -95,7 +95,7 @@ int ProgressBar::getValue()
 */
 void ProgressBar::setValue(int value)
 {
-  sendMessage(PBM_SETPOS, value, 0);
+  sendMessage(PBM_SETPOS, static_cast<WPARAM>(value), 0);
 }
 
 /**
@@ -104,7 +104,7 @@ void ProgressBar::setValue(int value)
 */
 void ProgressBar::addValue(int delta)
 {
-  sendMessage(PBM_DELTAPOS, delta, 0);
+  sendMessage(PBM_DELTAPOS, static_cast<WPARAM>(delta), 0);
 }
 
 void ProgressBar::setMarquee(int msecsInterval)

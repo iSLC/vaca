@@ -181,14 +181,14 @@ HWND MdiClient::createHandle(LPCTSTR className, Widget* parent, Style style)
   ccs.hWindowMenu = NULL;//GetMenu(parent->m_hwnd);
   ccs.idFirstChild = VACA_FIRST_MDICHILD;
 
-  return CreateWindowEx(style.extended, className, L"",
-			style.regular,
-			CW_USEDEFAULT, CW_USEDEFAULT,
-			CW_USEDEFAULT, CW_USEDEFAULT,
+  return CreateWindowEx(static_cast<DWORD>(style.extended), className, L"",
+                        static_cast<DWORD>(style.regular),
+                        CW_USEDEFAULT, CW_USEDEFAULT,
+                        CW_USEDEFAULT, CW_USEDEFAULT,
 			parent ? parent->getHandle(): (HWND)NULL,
-			(HMENU)NULL,
-			Application::getHandle(),
-			(LPVOID)&ccs);
+                        (HMENU)NULL,
+                        Application::getHandle(),
+                        (LPVOID)&ccs);
 }
 
 /**

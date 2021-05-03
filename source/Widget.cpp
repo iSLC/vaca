@@ -626,7 +626,7 @@ void Widget::setFont(Font font)
 CommandId Widget::getId() const
 {
   assert(::IsWindow(m_handle));
-  return ::GetWindowLong(m_handle, GWL_ID);
+  return static_cast<CommandId>(::GetWindowLong(m_handle, GWL_ID));
 }
 
 void Widget::setId(CommandId id)
@@ -1564,7 +1564,7 @@ void Widget::setScrollInfo(Orientation orientation, const ScrollInfo& scrollInfo
   si.fMask  = SIF_RANGE | SIF_PAGE;
   si.nMin = scrollInfo.getMinPos();
   si.nMax = scrollInfo.getMaxPos();
-  si.nPage = scrollInfo.getPageSize();
+  si.nPage = static_cast<UINT>(scrollInfo.getPageSize());
 
   ::SetScrollInfo(m_handle, fnBar, &si, TRUE);
 }
@@ -2454,14 +2454,14 @@ void Widget::subClass()
 */
 HWND Widget::createHandle(LPCTSTR className, Widget* parent, Style style)
 {
-  return CreateWindowEx(style.extended, className, L"",
-			style.regular,
-			CW_USEDEFAULT, CW_USEDEFAULT,
-			CW_USEDEFAULT, CW_USEDEFAULT,
+  return CreateWindowEx(static_cast<DWORD>(style.extended), className, L"",
+                        static_cast<DWORD>(style.regular),
+                        CW_USEDEFAULT, CW_USEDEFAULT,
+                        CW_USEDEFAULT, CW_USEDEFAULT,
 			parent ? parent->getHandle(): (HWND)NULL,
-			(HMENU)NULL,
-			Application::getHandle(),
-			reinterpret_cast<LPVOID>(this));
+                        (HMENU)NULL,
+                        Application::getHandle(),
+                        reinterpret_cast<LPVOID>(this));
 }
 
 /**
@@ -2968,10 +2968,10 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
 
       count = DragQueryFile(hDrop, 0xFFFFFFFF, NULL, 0);
       for (index=0; index<count; ++index) {
-	length = DragQueryFile(hDrop, index, NULL, 0);
+	length = DragQueryFile(hDrop, static_cast<UINT>(index), NULL, 0);
 	if (length > 0) {
 	  Char* lpstr = new Char[length+1];
-	  DragQueryFile(hDrop, index, lpstr, length+1);
+	  DragQueryFile(hDrop, static_cast<UINT>(index), lpstr, static_cast<UINT>(length + 1));
 	  files.push_back(lpstr);
 	  delete[] lpstr;
 	}

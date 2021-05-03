@@ -198,9 +198,9 @@ int System::getFileImageIndex(const String& fileName, bool smallImage)
   SHFILEINFO shfi;
 
   SHGetFileInfo(fileName.c_str(), 0, &shfi, sizeof(shfi),
-		SHGFI_SYSICONINDEX |
-		(smallImage ? SHGFI_SMALLICON:
-			      SHGFI_LARGEICON));
+                static_cast<UINT>(SHGFI_SYSICONINDEX |
+                                  (smallImage ? SHGFI_SMALLICON :
+                                   SHGFI_LARGEICON)));
 
   return shfi.iIcon;
 }

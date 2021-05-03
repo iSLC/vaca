@@ -398,9 +398,9 @@ Size Frame::getNonClientSize()
   RECT nonClientRect = convert_to<RECT>(clientRect);
 
   ::AdjustWindowRectEx(&nonClientRect,
-		       GetWindowLong(hwnd, GWL_STYLE),
+                       static_cast<DWORD>(GetWindowLong(hwnd, GWL_STYLE)),
 		       m_menuBar ? true: false,
-		       GetWindowLong(hwnd, GWL_EXSTYLE));
+                       static_cast<DWORD>(GetWindowLong(hwnd, GWL_EXSTYLE)));
 
   return convert_to<Rect>(nonClientRect).getSize() - clientRect.getSize();
 }
@@ -599,11 +599,11 @@ bool Frame::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult
 	    Widget* child = *it;
 	    if ((child->getHandle() != getHandle()) &&
 		(child->getHandle() != hParam))
-	      child->sendMessage(WM_NCACTIVATE, keepActive, static_cast<LPARAM>(-1));
+	      child->sendMessage(WM_NCACTIVATE, static_cast<WPARAM>(keepActive), static_cast<LPARAM>(-1));
 	  }
 	}
 
-	lResult = defWndProc(WM_NCACTIVATE, keepActive, lParam);
+	lResult = defWndProc(WM_NCACTIVATE, static_cast<WPARAM>(keepActive), lParam);
 	return true;
       }
       break;

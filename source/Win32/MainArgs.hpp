@@ -17,7 +17,7 @@ void vaca::details::MainArgs::setArgs(int, char**)
 
   arglist = ::CommandLineToArgvW(::GetCommandLineW(), &argc);
   if (arglist != NULL) {
-    args.reserve(argc);
+    args.reserve(static_cast<unsigned long long int>(argc));
     for (int i=0; i<argc; ++i)
       args.push_back(arglist[i]);
 

@@ -116,33 +116,33 @@ bool FileDialog::doModal()
   ofn.lpstrFilter = m_filtersString.c_str();
   ofn.lpstrCustomFilter = NULL;
   ofn.nMaxCustFilter = 0;
-  ofn.nFilterIndex = m_defaultFilter;
+  ofn.nFilterIndex = static_cast<DWORD>(m_defaultFilter);
   ofn.lpstrFile = m_fileName;
   ofn.nMaxFile = FILENAME_BUFSIZE;
   ofn.lpstrFileTitle = NULL;
   ofn.nMaxFileTitle = 0;
   ofn.lpstrInitialDir = NULL;
   ofn.lpstrTitle = m_title.c_str();
-  ofn.Flags = 0
-// #define OFN_CREATEPROMPT 0x2000
-// #define OFN_ENABLEHOOK 32
-    | OFN_ENABLESIZING
-// #define OFN_ENABLETEMPLATE 64
-// #define OFN_ENABLETEMPLATEHANDLE 128
-    | OFN_EXPLORER
-// #define OFN_EXTENSIONDIFFERENT 0x400
-    | (m_showReadOnly ? 0: OFN_HIDEREADONLY)
-    | OFN_LONGNAMES
-    | OFN_NOCHANGEDIR
-// | OFN_NODEREFERENCELINKS
-// | OFN_NOLONGNAMES
-// | OFN_NONETWORKBUTTON
-// | OFN_NOREADONLYRETURN
-// | OFN_NOTESTFILECREATE
-// | OFN_NOVALIDATE
-// #define OFN_READONLY 1
-// #define OFN_SHAREAWARE 0x4000
-    | (m_showHelp ? OFN_SHOWHELP: 0)
+  ofn.Flags = static_cast<DWORD>(0
+                                 // #define OFN_CREATEPROMPT 0x2000
+                                 // #define OFN_ENABLEHOOK 32
+                                 | OFN_ENABLESIZING
+                                 // #define OFN_ENABLETEMPLATE 64
+                                 // #define OFN_ENABLETEMPLATEHANDLE 128
+                                 | OFN_EXPLORER
+                                 // #define OFN_EXTENSIONDIFFERENT 0x400
+                                 | (m_showReadOnly ? 0 : OFN_HIDEREADONLY)
+                                 | OFN_LONGNAMES
+                                 | OFN_NOCHANGEDIR
+                                 // | OFN_NODEREFERENCELINKS
+                                 // | OFN_NOLONGNAMES
+                                 // | OFN_NONETWORKBUTTON
+                                 // | OFN_NOREADONLYRETURN
+                                 // | OFN_NOTESTFILECREATE
+                                 // | OFN_NOVALIDATE
+                                 // #define OFN_READONLY 1
+                                 // #define OFN_SHAREAWARE 0x4000
+                                 | (m_showHelp ? OFN_SHOWHELP : 0))
     ;
 // | OFN_SHAREFALLTHROUGH
 // | OFN_SHARENOWARN

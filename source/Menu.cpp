@@ -100,7 +100,7 @@ void MenuItem::setText(const String& text)
     mii.dwTypeData = const_cast<LPTSTR>(text.c_str());
 
     SetMenuItemInfo(m_parent->getHandle(),
-		    m_parent->getMenuItemIndex(this),
+                    static_cast<UINT>(m_parent->getMenuItemIndex(this)),
 		    TRUE, &mii);
   }
 }
@@ -117,7 +117,7 @@ void MenuItem::setId(CommandId id)
     mii.wID = m_id;
 
     SetMenuItemInfo(m_parent->getHandle(),
-		    m_parent->getMenuItemIndex(this),
+                    static_cast<UINT>(m_parent->getMenuItemIndex(this)),
 		    TRUE, &mii);
   }
 }
@@ -129,7 +129,7 @@ bool MenuItem::isEnabled()
     mii.cbSize = sizeof(MENUITEMINFO);
     mii.fMask = MIIM_STATE;
     if (GetMenuItemInfo(m_parent->getHandle(),
-  			m_parent->getMenuItemIndex(this),
+                        static_cast<UINT>(m_parent->getMenuItemIndex(this)),
   			TRUE, &mii)) {
       m_enabled = (mii.fState & (MFS_DISABLED | MFS_GRAYED)) == 0;
     }
@@ -143,8 +143,8 @@ void MenuItem::setEnabled(bool state)
 
   if (m_parent) {
     ::EnableMenuItem(m_parent->getHandle(),
-		     m_parent->getMenuItemIndex(this),
-		     MF_BYPOSITION | (m_enabled ? MF_ENABLED: MF_GRAYED));
+                     static_cast<UINT>(m_parent->getMenuItemIndex(this)),
+                     static_cast<UINT>(MF_BYPOSITION | (m_enabled ? MF_ENABLED : MF_GRAYED)));
   }
 }
 
@@ -155,7 +155,7 @@ bool MenuItem::isChecked()
     mii.cbSize = sizeof(MENUITEMINFO);
     mii.fMask = MIIM_STATE;
     if (GetMenuItemInfo(m_parent->getHandle(),
-			m_parent->getMenuItemIndex(this),
+                        static_cast<UINT>(m_parent->getMenuItemIndex(this)),
 			TRUE, &mii)) {
       m_checked = (mii.fState & MFS_CHECKED) != 0;
     }
@@ -169,9 +169,9 @@ void MenuItem::setChecked(bool state)
 
   if (m_parent) {
     ::CheckMenuItem(m_parent->getHandle(),
-		    m_parent->getMenuItemIndex(this),
-		    MF_BYPOSITION |
-		    (state ? MF_CHECKED: MF_UNCHECKED));
+                    static_cast<UINT>(m_parent->getMenuItemIndex(this)),
+                    static_cast<UINT>(MF_BYPOSITION |
+                                      (state ? MF_CHECKED : MF_UNCHECKED)));
   }
 }
 
@@ -199,7 +199,8 @@ void MenuItem::setRadio(bool state)
     } while (last < count && !m_parent->getMenuItemByIndex(last)->isSeparator());
     last--;
 
-    ::CheckMenuRadioItem(m_parent->getHandle(), first, last, index, MF_BYPOSITION);
+    ::CheckMenuRadioItem(m_parent->getHandle(), static_cast<UINT>(first), static_cast<UINT>(last),
+                         static_cast<UINT>(index), MF_BYPOSITION);
   }
   else {
     setChecked(false);
@@ -379,7 +380,7 @@ void Menu::subClass()
     mii.dwTypeData = buf;
     mii.cch = sizeof(buf) / sizeof(Char);
 
-    BOOL res = GetMenuItemInfo(m_handle, itemIndex, TRUE, &mii);
+    BOOL res = GetMenuItemInfo(m_handle, static_cast<UINT>(itemIndex), TRUE, &mii);
     assert(res == TRUE);
 
     // the item can't have data
@@ -489,8 +490,8 @@ MenuItem* Menu::insert(int index, MenuItem* menuItem)
   mii.fMask = MIIM_FTYPE | MIIM_STATE | MIIM_ID | MIIM_DATA;
   mii.dwItemData = reinterpret_cast<ULONG_PTR>(menuItem);
   mii.fState =
-    (menuItem->isEnabled() ? MFS_ENABLED: MFS_DISABLED) |
-    (menuItem->isChecked() ? MFS_CHECKED: 0);
+          static_cast<UINT>((menuItem->isEnabled() ? MFS_ENABLED : MFS_DISABLED) |
+                            (menuItem->isChecked() ? MFS_CHECKED : 0));
   mii.wID = menuItem->getId();
 
   if (menuItem->isSeparator()) {
@@ -502,19 +503,19 @@ MenuItem* Menu::insert(int index, MenuItem* menuItem)
     Menu* menu = static_cast<Menu*>(menuItem);
     mii.hSubMenu = menu->getHandle();
     mii.dwTypeData = buf;
-    mii.cch = len;
+    mii.cch = static_cast<UINT>(len);
   }
   else {
     mii.fMask |= MIIM_STRING;
     mii.fType = MFT_STRING;
     mii.dwTypeData = buf;
-    mii.cch = len;
+    mii.cch = static_cast<UINT>(len);
     // HBITMAP hbmpChecked;
     // HBITMAP hbmpUnchecked;
     // HBITMAP hbmpItem;
   }
 
-  InsertMenuItem(m_handle, index, TRUE, &mii);
+  InsertMenuItem(m_handle, static_cast<UINT>(index), TRUE, &mii);
 
   delete[] buf;
 
@@ -561,7 +562,7 @@ MenuItem* Menu::remove(MenuItem* menuItem)
   assert(m_handle != NULL);
 
   // TODO check if this works
-  ::RemoveMenu(m_handle, getMenuItemIndex(menuItem), MF_BYPOSITION);
+  ::RemoveMenu(m_handle, static_cast<UINT>(getMenuItemIndex(menuItem)), MF_BYPOSITION);
 
   // see the "RemoveMenu Function" in the MSDN, you "must call the
   // DrawMenuBar function whenever a menu changes"
@@ -819,11 +820,11 @@ CommandId PopupMenu::doModal(Widget* widget,
     case VerticalAlign::Bottom: flags |= TPM_BOTTOMALIGN; break;
   }
 
-  CommandId id = TrackPopupMenuEx(getHandle(),
-				  flags,
-				  absPt.x, absPt.y,
-				  widget ? widget->getHandle(): NULL,
-				  NULL);
+  CommandId id = static_cast<CommandId>(TrackPopupMenuEx(getHandle(),
+                                                         flags,
+                                                         absPt.x, absPt.y,
+                                                         widget ? widget->getHandle() : NULL,
+                                                         NULL));
 
   return id;
 }

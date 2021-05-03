@@ -44,7 +44,7 @@ void TextEdit::setTextLimit(int textLimit)
 {
   assert(textLimit > 0);
 
-  sendMessage(EM_SETLIMITTEXT, textLimit, 0);
+  sendMessage(EM_SETLIMITTEXT, static_cast<WPARAM>(textLimit), 0);
 }
 
 /**
@@ -62,7 +62,7 @@ bool TextEdit::isReadOnly() const
 */
 void TextEdit::setReadOnly(bool readOnly)
 {
-  sendMessage(EM_SETREADONLY, readOnly, 0);
+  sendMessage(EM_SETREADONLY, static_cast<WPARAM>(readOnly), 0);
 }
 
 /**
@@ -121,7 +121,7 @@ void TextEdit::selectRange(int startIndex, int endIndex)
   // TODO
   //assert(startIndex >= 0 && startIndex <= endIndex && endIndex < getTextLength());
 
-  sendMessage(EM_SETSEL, startIndex, endIndex);
+  sendMessage(EM_SETSEL, static_cast<WPARAM>(startIndex), endIndex);
 }
 
 /**
@@ -216,7 +216,7 @@ Char TextEdit::getPasswordChar()
 
 void TextEdit::setPasswordChar(Char passChar)
 {
-  sendMessage(EM_SETPASSWORDCHAR, passChar, 0);
+  sendMessage(EM_SETPASSWORDCHAR, static_cast<WPARAM>(passChar), 0);
 }
 
 bool TextEdit::getWantReturnMode()
@@ -241,11 +241,11 @@ int TextEdit::getLineCount()
 
 String TextEdit::getLine(int lineNo)
 {
-  size_t length = getLineLength(lineNo);
+  size_t length = static_cast<size_t>(getLineLength(lineNo));
   if (length > 0) {
     Char* pstr = new Char[length];
 
-    sendMessage(EM_GETLINE, lineNo, reinterpret_cast<LPARAM>(pstr));
+    sendMessage(EM_GETLINE, static_cast<WPARAM>(lineNo), reinterpret_cast<LPARAM>(pstr));
 
     String str;
     str.reserve(length);
@@ -263,7 +263,7 @@ String TextEdit::getLine(int lineNo)
 
 int TextEdit::getLineLength(int lineNo)
 {
-  return static_cast<int>(sendMessage(EM_LINELENGTH, lineNo, 0));
+  return static_cast<int>(sendMessage(EM_LINELENGTH, static_cast<WPARAM>(lineNo), 0));
 }
 
 void TextEdit::scrollLines(int lines)

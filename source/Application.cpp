@@ -156,7 +156,7 @@ void Application::setProcessPriority(ProcessPriority priority)
       assert(false);	      // TODO throw invalid argument exception
       return;
   }
-  ::SetPriorityClass(::GetCurrentProcess(), nPriority);
+  ::SetPriorityClass(::GetCurrentProcess(), static_cast<DWORD>(nPriority));
 }
 
 /**

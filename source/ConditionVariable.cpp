@@ -199,7 +199,7 @@ bool ConditionVariable::waitFor(ScopedLock& lock, double seconds)
 
   int milliseconds = static_cast<int>(seconds*1000.0);
 
-  bool ret = (WaitForSingleObject(m_queue, milliseconds) == WAIT_OBJECT_0);
+  bool ret = (WaitForSingleObject(m_queue, static_cast<DWORD>(milliseconds)) == WAIT_OBJECT_0);
 
   unsigned was_waiting = 0;
   unsigned was_gone = 0;

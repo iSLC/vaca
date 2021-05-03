@@ -67,9 +67,9 @@ public:
 
     HPEN handle;
     if (width == 1)
-      handle = ExtCreatePen(PS_COSMETIC | flags, width, &lb, 0, NULL);
+      handle = ExtCreatePen(static_cast<DWORD>(PS_COSMETIC | flags), static_cast<DWORD>(width), &lb, 0, NULL);
     else
-      handle = ExtCreatePen(PS_GEOMETRIC | flags, width, &lb, 0, NULL);
+      handle = ExtCreatePen(static_cast<DWORD>(PS_GEOMETRIC | flags), static_cast<DWORD>(width), &lb, 0, NULL);
 
     setHandle(handle);
   }

@@ -95,9 +95,9 @@ Color::Color(const Color& color)
 */
 Color::Color(int r, int g, int b)
 {
-  m_raw = ((r & 0xff) |
-	   ((g & 0xff) << 8) |
-	   ((b & 0xff) << 16));
+  m_raw = static_cast<unsigned int>((r & 0xff) |
+                                    ((g & 0xff) << 8) |
+                                    ((b & 0xff) << 16));
 }
 
 Color::~Color()

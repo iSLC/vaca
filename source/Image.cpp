@@ -184,9 +184,9 @@ ImagePixels Image::getPixels() const
   bc.bcBitCount = 32; // TODO is it right? there are alpha channel?
 
   GetDIBits(get()->m_hdc, getHandle(),
-	    0, getHeight(),
-	    reinterpret_cast<LPVOID>(&imagePixels[0]),
-	    reinterpret_cast<BITMAPINFO*>(&bc), 0);
+            0, static_cast<UINT>(getHeight()),
+            reinterpret_cast<LPVOID>(&imagePixels[0]),
+            reinterpret_cast<BITMAPINFO*>(&bc), 0);
 
   imagePixels.invertScanlines();
 
@@ -207,10 +207,10 @@ void Image::setPixels(ImagePixels imagePixels)
   copy.invertScanlines();
 
   SetDIBits(get()->m_hdc,
-	    getHandle(),
-	    0, getHeight(),
-	    reinterpret_cast<LPVOID>(&copy[0]),
-	    reinterpret_cast<BITMAPINFO*>(&bc), DIB_RGB_COLORS);
+            getHandle(),
+            0, static_cast<UINT>(getHeight()),
+            reinterpret_cast<LPVOID>(&copy[0]),
+            reinterpret_cast<BITMAPINFO*>(&bc), DIB_RGB_COLORS);
 }
 
 HBITMAP Image::getHandle() const

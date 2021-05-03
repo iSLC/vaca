@@ -318,7 +318,7 @@ void vaca::CurrentThread::yield()
 
 void vaca::CurrentThread::sleep(int msecs)
 {
-  ::Sleep(msecs);
+  ::Sleep(static_cast<DWORD>(msecs));
 }
 
 /**
