@@ -52,7 +52,7 @@ void TextEdit::setTextLimit(int textLimit)
 */
 bool TextEdit::isReadOnly() const
 {
-  return (getStyle().regular & ES_READONLY) != 0 ? true: false;
+  return (getStyle().regular & ES_READONLY) != 0;
 }
 
 /**
@@ -73,7 +73,7 @@ void TextEdit::setReadOnly(bool readOnly)
 */
 bool TextEdit::canUndo() const
 {
-  return const_cast<TextEdit*>(this)->sendMessage(EM_CANUNDO, 0, 0) ? true: false;
+  return const_cast<TextEdit *>(this)->sendMessage(EM_CANUNDO, 0, 0) != 0;
 }
 
 /**
@@ -222,7 +222,7 @@ bool TextEdit::getWantReturnMode()
 {
   HWND hwnd = getHandle();
   assert(::IsWindow(hwnd));
-  return (GetWindowLong(hwnd, GWL_STYLE) & ES_WANTRETURN) != 0 ? true: false;
+  return (GetWindowLong(hwnd, GWL_STYLE) & ES_WANTRETURN) != 0;
 }
 
 void TextEdit::setWantReturnMode(bool wantReturn)

@@ -83,7 +83,7 @@ void RichEdit::setTextLimit(size_t maxChars)
 */
 bool RichEdit::canPaste() const
 {
-  return const_cast<RichEdit*>(this)->sendMessage(EM_CANPASTE, 0, 0) != 0 ? true: false;
+  return const_cast<RichEdit *>(this)->sendMessage(EM_CANPASTE, 0, 0) != 0;
 }
 
 /**
@@ -182,7 +182,7 @@ void RichEdit::setDetectUrls(bool state)
 */
 bool RichEdit::isDetectUrls()
 {
-  return sendMessage(EM_GETAUTOURLDETECT, 0, 0) != 0 ? true: false;
+  return sendMessage(EM_GETAUTOURLDETECT, 0, 0) != 0;
 }
 
 void RichEdit::cut()

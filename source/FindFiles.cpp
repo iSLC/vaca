@@ -25,7 +25,7 @@ bool FindFiles::next()
 {
   if (!m_handle) {
     m_handle = FindFirstFile(m_pattern.c_str(), &m_data);
-    return m_handle ? true: false;
+    return m_handle != nullptr;
   }
   else {
     return FindNextFile(m_handle, &m_data) ? true: false; 
@@ -44,10 +44,10 @@ String FindFiles::getFullFileName() const
 
 bool FindFiles::isFile() const
 {
-    return m_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ? false: true;
+    return (m_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0;
 }
 
 bool FindFiles::isDirectory() const
 {
-  return m_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ? true: false;
+  return (m_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
 }

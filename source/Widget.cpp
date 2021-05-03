@@ -556,7 +556,7 @@ void Widget::layout()
 bool Widget::isLayoutFree() const
 {
   // A widget is free of layout if it's hidden
-  return ((getStyle().regular & WS_VISIBLE) == WS_VISIBLE) ? false: true;
+  return !((getStyle().regular & WS_VISIBLE) == WS_VISIBLE);
 }
 
 // ===============================================================

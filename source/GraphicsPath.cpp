@@ -30,7 +30,7 @@ int GraphicsPath::Node::getType() const
 
 bool GraphicsPath::Node::isCloseFigure() const
 {
-  return m_flags & CloseFigure ? true: false;
+  return (m_flags & CloseFigure) != 0;
 }
 
 void GraphicsPath::Node::setCloseFigure(bool state)

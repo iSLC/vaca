@@ -21,7 +21,7 @@ Clipboard::~Clipboard()
 
 bool Clipboard::isText()
 {
-  return IsClipboardFormatAvailable(CF_TEXT) ? true: false;
+  return IsClipboardFormatAvailable(CF_TEXT) != 0;
 }
 
 String Clipboard::getString() const

@@ -145,8 +145,8 @@ void Frame::onCommand(CommandEvent& ev)
       VACA_TRACE("Frame::onCommand(%d), menuItem=%p\n", ev.getCommandId(), menuItem)
 
       if (menuItem != nullptr) {
-	MenuItemEvent ev(menuItem);
-	menuItem->onClick(ev);
+	MenuItemEvent e(menuItem);
+	menuItem->onClick(e);
       }
     }
   }
@@ -398,7 +398,7 @@ Size Frame::getNonClientSize()
 
   ::AdjustWindowRectEx(&nonClientRect,
                        static_cast<DWORD>(GetWindowLong(hwnd, GWL_STYLE)),
-		       m_menuBar ? true: false,
+                       m_menuBar != nullptr,
                        static_cast<DWORD>(GetWindowLong(hwnd, GWL_EXSTYLE)));
 
   return convert_to<Rect>(nonClientRect).getSize() - clientRect.getSize();
