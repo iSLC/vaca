@@ -29,7 +29,7 @@ public:
 
   [[nodiscard]] int getId() const;
 
-  String toString() const;
+  [[nodiscard]] String toString() const;
   LPTSTR toLPTSTR();
 
 };

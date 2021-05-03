@@ -46,7 +46,7 @@ public:
   Message(const Message& msg, void* payload);
   virtual ~Message();
 
-  void* getPayload() const;
+  [[nodiscard]] void* getPayload() const;
 
   inline bool operator==(const Message& message) const {
     return m_msg.message == message.m_msg.message;

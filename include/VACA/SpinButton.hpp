@@ -29,8 +29,8 @@ public:
   {
   }
 
-  int getValue() const { return m_value; }
-  int getDelta() const { return m_delta; }
+  [[nodiscard]] int getValue() const { return m_value; }
+  [[nodiscard]] int getDelta() const { return m_delta; }
   Side getSide() { return m_side; }
 
 };

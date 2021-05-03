@@ -14,8 +14,8 @@ ColorDialog::ColorDialog(const Color& color, Widget* parent)
   : CommonDialog(parent)
   , m_color(color)
 {
-  for (int i=0; i<16; ++i)
-    m_customColors[i] = RGB(255, 255, 255);
+  for (unsigned long & m_customColor : m_customColors)
+    m_customColor = RGB(255, 255, 255);
 }
 
 ColorDialog::~ColorDialog()

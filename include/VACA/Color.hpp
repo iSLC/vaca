@@ -40,8 +40,8 @@ public:
   [[nodiscard]] int getG() const;
   [[nodiscard]] int getB() const;
 
-  Color negative() const;
-  Color toBlackAndWhite() const;
+  [[nodiscard]] Color negative() const;
+  [[nodiscard]] Color toBlackAndWhite() const;
 
   Color& operator=(const Color& color);
 

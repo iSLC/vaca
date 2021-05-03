@@ -41,10 +41,10 @@ public:
   Timer(int interval);
   virtual ~Timer();
 
-  int getInterval() const;
+  [[nodiscard]] int getInterval() const;
   void setInterval(int interval);
 
-  bool isRunning() const;
+  [[nodiscard]] bool isRunning() const;
 
   void start();
   void stop();

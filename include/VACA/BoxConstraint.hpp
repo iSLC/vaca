@@ -29,7 +29,7 @@ public:
   BoxConstraint(bool expansive);
   ~BoxConstraint() override;
 
-  bool isExpansive() const;
+  [[nodiscard]] bool isExpansive() const;
   void setExpansive(bool expansive);
 
 };

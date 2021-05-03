@@ -60,22 +60,22 @@ protected:
 
 public:
 
-  bool isDrawEntire() const;
-  bool isFocusChanged() const;
-  bool isSelectionChanged() const;
+  [[nodiscard]] bool isDrawEntire() const;
+  [[nodiscard]] bool isFocusChanged() const;
+  [[nodiscard]] bool isSelectionChanged() const;
 
   // Visual Aspect
 
   // bool hasCheckedVisualAspect();
-  bool hasDefaultOptionVisualAspect() const;
-  bool hasDisabledVisualAspect() const;
-  bool hasFocusVisualAspect() const;
+  [[nodiscard]] bool hasDefaultOptionVisualAspect() const;
+  [[nodiscard]] bool hasDisabledVisualAspect() const;
+  [[nodiscard]] bool hasFocusVisualAspect() const;
   // bool hasGrayedVisualAspect();
   // bool hasHotLightVisualAspect();
   // bool hasInactiveVisualAspect();
-  bool hasNoAccelVisualAspect() const;
-  bool hasNoFocusRectVisualAspect() const;
-  bool hasSelectedVisualAspect() const;
+  [[nodiscard]] bool hasNoAccelVisualAspect() const;
+  [[nodiscard]] bool hasNoFocusRectVisualAspect() const;
+  [[nodiscard]] bool hasSelectedVisualAspect() const;
 
 };
 

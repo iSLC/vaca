@@ -31,12 +31,12 @@ public:
   bool isHorizontal();
   bool isVertical();
 
-  bool isHomogeneous() const;
+  [[nodiscard]] bool isHomogeneous() const;
 
-  int getBorder() const;
+  [[nodiscard]] int getBorder() const;
   void setBorder(int border);
 
-  int getChildSpacing() const;
+  [[nodiscard]] int getChildSpacing() const;
   void setChildSpacing(int childSpacing);
 
   Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn) override;

@@ -102,7 +102,7 @@ public:
 
      @see DockBar, DockInfo
   */
-  virtual void layout() = 0;
+  void layout() override = 0;
 
 private:
 

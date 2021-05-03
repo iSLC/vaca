@@ -144,7 +144,7 @@ public:
   [[nodiscard]] String getText() const override;
   void setText(const String& str) override;
 
-  int getPageIndex() const;
+  [[nodiscard]] int getPageIndex() const;
 
 };
 

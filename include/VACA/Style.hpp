@@ -33,8 +33,8 @@ namespace vaca {
 */
 struct VACA_DLL Style
 {
-  int regular;
-  int extended;
+  int regular{};
+  int extended{};
 
   Style(int regular, int extended);
   Style(const Style& style);

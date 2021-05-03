@@ -436,7 +436,7 @@ bool ListView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
 
     case LVN_GETDISPINFO: {
       auto* lplvdi = reinterpret_cast<NMLVDISPINFO*>(lpnmhdr);
-      size_t i = static_cast<size_t>(lplvdi->item.iItem);
+      auto i = static_cast<size_t>(lplvdi->item.iItem);
 
       assert(i >= 0 && i < m_items.size());
 
@@ -459,7 +459,7 @@ bool ListView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
 
     case LVN_ITEMCHANGING: {
       auto lpnmlv = reinterpret_cast<LPNMLISTVIEW>(lpnmhdr);
-      size_t i = static_cast<size_t>(lpnmlv->iItem);
+      auto i = static_cast<size_t>(lpnmlv->iItem);
       ListItem* item;
 
       if (i >= 0 && i < m_items.size())
@@ -475,7 +475,7 @@ bool ListView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
 
     case LVN_ITEMCHANGED: {
       auto lpnmlv = reinterpret_cast<LPNMLISTVIEW>(lpnmhdr);
-      size_t i = static_cast<size_t>(lpnmlv->iItem);
+      auto i = static_cast<size_t>(lpnmlv->iItem);
       ListItem* item;
 
       if (i >= 0 && i < m_items.size())
@@ -490,7 +490,7 @@ bool ListView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
 
     case LVN_COLUMNCLICK: {
       auto lpnmlv = reinterpret_cast<LPNMLISTVIEW>(lpnmhdr);
-      size_t i = static_cast<size_t>(lpnmlv->iSubItem);
+      auto i = static_cast<size_t>(lpnmlv->iSubItem);
       ListColumn* column;
 
       if (i >= 0 && i < m_columns.size())

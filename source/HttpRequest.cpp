@@ -167,7 +167,7 @@ size_t HttpRequest::getContentLength()
 
 bool HttpRequest::hasHeader(const String& headerName)
 {
-  DWORD bufLength = static_cast<DWORD>(headerName.size() + 1);
+  auto bufLength = static_cast<DWORD>(headerName.size() + 1);
   std::unique_ptr<char[]> buf(new char[bufLength]);
   DWORD index = 0;
 
@@ -192,7 +192,7 @@ bool HttpRequest::hasHeader(const String& headerName)
 */
 String HttpRequest::getHeader(const String& headerName)
 {
-  DWORD bufLength = static_cast<DWORD>(headerName.size() + 1);
+  auto bufLength = static_cast<DWORD>(headerName.size() + 1);
   std::unique_ptr<char[]> buf(new char[bufLength]);
   DWORD index = 0;
 

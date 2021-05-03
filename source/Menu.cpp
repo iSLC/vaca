@@ -813,11 +813,11 @@ CommandId PopupMenu::doModal(Widget* widget,
     case VerticalAlign::Bottom: flags |= TPM_BOTTOMALIGN; break;
   }
 
-  CommandId id = static_cast<CommandId>(TrackPopupMenuEx(getHandle(),
+  auto id = static_cast<CommandId>(TrackPopupMenuEx(getHandle(),
                                                          flags,
                                                          absPt.x, absPt.y,
-                                                         widget ? widget->getHandle() : NULL,
-                                                         NULL));
+                                                         widget ? widget->getHandle() : nullptr,
+                                                         nullptr));
 
   return id;
 }

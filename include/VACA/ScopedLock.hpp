@@ -39,7 +39,7 @@ class ScopedLock : private NonCopyable
   Mutex& m_mutex;
 
   // not defined
-  ScopedLock();
+  ScopedLock() = delete;
 
 public:
 

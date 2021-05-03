@@ -31,7 +31,7 @@ public:
   ~ListItem() override;
 
   ListView* getListView();
-  int getIndex() const;
+  [[nodiscard]] int getIndex() const;
   [[nodiscard]] Rect getBounds() const;
 
   virtual String getText(size_t columnIndex);

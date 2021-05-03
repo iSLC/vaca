@@ -135,7 +135,7 @@ void ListBox::setSelectedItem(int itemIndex)
 */
 std::vector<int> ListBox::getSelectedItems()
 {
-  size_t count = static_cast<size_t>(sendMessage(LB_GETSELCOUNT, 0, 0));
+  auto count = static_cast<size_t>(sendMessage(LB_GETSELCOUNT, 0, 0));
   if (count > 0) {
     std::vector<int> items(count);
     sendMessage(LB_GETSELITEMS, count, (LPARAM)(*items.begin()));

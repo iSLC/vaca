@@ -40,7 +40,7 @@ public:
 
   Menu* getParent();
   Menu* getRoot();
-  CommandId getId() const;
+  [[nodiscard]] CommandId getId() const;
 
   [[nodiscard]] const String& getText() const;
   void setText(const String& text);

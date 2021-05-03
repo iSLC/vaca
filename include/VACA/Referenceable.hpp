@@ -27,7 +27,7 @@ public:
   void ref();
   unsigned unref();
 
-  unsigned getRefCount() const;
+  [[nodiscard]] unsigned getRefCount() const;
 
 #ifndef NDEBUG
   static void showLeaks();

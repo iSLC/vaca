@@ -240,7 +240,7 @@ int TextEdit::getLineCount()
 
 String TextEdit::getLine(int lineNo)
 {
-  size_t length = static_cast<size_t>(getLineLength(lineNo));
+  auto length = static_cast<size_t>(getLineLength(lineNo));
   if (length > 0) {
     Char* pstr = new Char[length];
 

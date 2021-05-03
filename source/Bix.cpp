@@ -121,7 +121,7 @@ struct Bix::Matrix
   }
 
 
-  int getColFillsCount() const
+  [[nodiscard]] int getColFillsCount() const
   {
     int x, count = 0;
 
@@ -132,7 +132,7 @@ struct Bix::Matrix
     return count;
   }
 
-  int getRowFillsCount() const
+  [[nodiscard]] int getRowFillsCount() const
   {
      int y, count = 0;
 
@@ -365,7 +365,7 @@ Size Bix::getPreferredSize(const Size& fitIn)
     return Size(0, 0);
 }
 
-Size Bix::getPreferredSize(Matrix& mat)
+Size Bix::getPreferredSize(Matrix& mat) const
 {
   Size sz;
 

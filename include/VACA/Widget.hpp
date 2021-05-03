@@ -292,7 +292,7 @@ public:
   // REFRESH ISSUES
   // ===============================================================
 
-  bool isDoubleBuffered() const;
+  [[nodiscard]] bool isDoubleBuffered() const;
   void setDoubleBuffered(bool doubleBuffered);
 
   void validate();
@@ -329,7 +329,7 @@ public:
   void captureMouse();
   void releaseMouse();
   bool hasFocus();
-  bool hasMouse() const;
+  [[nodiscard]] bool hasMouse() const;
   bool hasMouseAbove();
   bool hasCapture();
 

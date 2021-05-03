@@ -67,10 +67,10 @@ public:
   [[nodiscard]] int getBorder() const;
   void setBorder(int border);
 
-  int getChildSpacing() const;
+  [[nodiscard]] int getChildSpacing() const;
   void setChildSpacing(int childSpacing);
 
-  int getMatrixColumns() const;
+  [[nodiscard]] int getMatrixColumns() const;
   void setMatrixColumns(int matrixColumns);
 
   Bix* add(int flags, int matrixColumns = 0);
@@ -90,7 +90,7 @@ protected:
 private:
 
   Size getPreferredSize(const Size& fitIn);
-  Size getPreferredSize(Matrix& mat);
+  Size getPreferredSize(Matrix& mat) const;
   void layout(WidgetsMovement& movement, Bix* parentBix, const Rect& rc);
 
   Size getMatrixDimension();

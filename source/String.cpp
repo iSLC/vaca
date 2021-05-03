@@ -123,7 +123,7 @@ namespace {
 
 void vaca::split_string(const String& string, std::vector<String>& parts, const String& separators)
 {
-  size_t elements = static_cast<size_t>(1 + std::count_if(string.begin(), string.end(), is_separator(&separators)));
+  auto elements = static_cast<size_t>(1 + std::count_if(string.begin(), string.end(), is_separator(&separators)));
   parts.resize(elements);
 
   size_t beg = 0, end;
