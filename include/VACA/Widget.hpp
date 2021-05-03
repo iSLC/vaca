@@ -232,7 +232,7 @@ public:
 
   virtual bool isLayoutFree() const;
 
-  void layout();
+    virtual void layout();
 
   // ===============================================================
   // TEXT & FONT
