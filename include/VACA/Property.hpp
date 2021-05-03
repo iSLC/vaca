@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_PROPERTY_HPP
-#define VACA_PROPERTY_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Referenceable.hpp"
@@ -24,5 +23,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_PROPERTY_HPP

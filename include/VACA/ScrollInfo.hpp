@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_SCROLLINFO_HPP
-#define VACA_SCROLLINFO_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -41,5 +40,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_SCROLLINFO_HPP

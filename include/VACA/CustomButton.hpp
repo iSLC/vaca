@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_CUSTOMBUTTON_HPP
-#define VACA_CUSTOMBUTTON_HPP
+#pragma once
 
 #include "VACA/Button.hpp"
 
@@ -81,5 +80,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_CUSTOMBUTTON_HPP

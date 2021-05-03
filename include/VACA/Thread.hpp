@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_THREAD_HPP
-#define VACA_THREAD_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Exception.hpp"
@@ -154,5 +153,3 @@ namespace details {
 }
 
 } // namespace vaca
-
-#endif // VACA_THREAD_HPP

@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_MSGBOX_HPP
-#define VACA_MSGBOX_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Color.hpp"
@@ -83,5 +82,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_MSGBOX_HPP

@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_PEN_HPP
-#define VACA_PEN_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Enum.hpp"
@@ -145,5 +144,3 @@ private:
 };
 
 } // namespace vaca
-
-#endif // VACA_PEN_HPP

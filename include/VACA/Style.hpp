@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_STYLE_HPP
-#define VACA_STYLE_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -52,5 +51,3 @@ struct VACA_DLL Style
 };
 
 } // namespace vaca
-
-#endif // VACA_STYLE_HPP

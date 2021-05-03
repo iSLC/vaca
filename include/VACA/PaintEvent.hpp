@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_PAINTEVENT_HPP
-#define VACA_PAINTEVENT_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Event.hpp"
@@ -31,5 +30,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_PAINTEVENT_HPP

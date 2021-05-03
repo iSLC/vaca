@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_SPINBUTTON_HPP
-#define VACA_SPINBUTTON_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
@@ -95,5 +94,3 @@ protected:
 };
 
 } // namespace vaca
-
-#endif // VACA_SPINBUTTON_HPP

@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_SHAREDPTR_HPP
-#define VACA_SHAREDPTR_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Referenceable.hpp"
@@ -131,5 +130,3 @@ bool operator!=(const SharedPtr<T>& ptr1, const SharedPtr<T>& ptr2)
 }
 
 } // namespace vaca
-
-#endif // VACA_SHAREDPTR_HPP

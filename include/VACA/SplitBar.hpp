@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_SPLITBAR_HPP
-#define VACA_SPLITBAR_HPP
+#pragma once
 
 #include "VACA/Point.hpp"
 #include "VACA/Widget.hpp"
@@ -88,5 +87,3 @@ private:
 };
 
 } // namespace vaca
-
-#endif // VACA_SPLITBAR_HPP

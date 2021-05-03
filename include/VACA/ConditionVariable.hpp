@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_CONDITIONVARIABLE_HPP
-#define VACA_CONDITIONVARIABLE_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/NonCopyable.hpp"
@@ -65,5 +64,3 @@ private:
 };
 
 } // namespace vaca
-
-#endif // VACA_CONDITIONVARIABLE_HPP

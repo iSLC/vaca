@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_LISTCOLUMN_HPP
-#define VACA_LISTCOLUMN_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Component.hpp"
@@ -54,5 +53,3 @@ private:
 };
 
 } // namespace vaca
-
-#endif // VACA_LISTCOLUMN_HPP

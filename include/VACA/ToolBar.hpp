@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_TOOLBAR_HPP
-#define VACA_TOOLBAR_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/DockBar.hpp"
@@ -242,5 +241,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_TOOLBAR_HPP

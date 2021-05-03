@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_MENU_HPP
-#define VACA_MENU_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Component.hpp"
@@ -199,5 +198,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_MENU_HPP

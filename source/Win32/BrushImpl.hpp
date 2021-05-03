@@ -4,6 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
+#pragma once
+
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0400
 #endif

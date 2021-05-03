@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_EVENT_HPP
-#define VACA_EVENT_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -32,5 +31,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_EVENT_HPP

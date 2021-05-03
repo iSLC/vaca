@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_BIND_HPP
-#define VACA_BIND_HPP
+#pragma once
 
 namespace vaca {
 
@@ -614,5 +613,3 @@ RefWrapper<T> Ref(T& ref)
 /** @} */
 
 } // namespace vaca
-
-#endif // VACA_BIND_HPP

@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_BUTTON_HPP
-#define VACA_BUTTON_HPP
+#pragma once
 
 #include "VACA/ButtonBase.hpp"
 
@@ -36,5 +35,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_BUTTON_HPP

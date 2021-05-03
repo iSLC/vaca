@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_SIGNAL_HPP
-#define VACA_SIGNAL_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Slot.hpp"
@@ -478,5 +477,3 @@ public:
 /** @} */
 
 } // namespace vaca
-
-#endif // VACA_SIGNAL_HPP

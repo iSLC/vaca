@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_LINKLABEL_HPP
-#define VACA_LINKLABEL_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/CustomLabel.hpp"
@@ -74,5 +73,3 @@ private:
 };
 
 } // namespace vaca
-
-#endif // VACA_LINKLABEL_HPP

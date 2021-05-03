@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_BASE_HPP
-#define VACA_BASE_HPP
+#pragma once
 
 // If there are not a defined target (like VACA_WINDOWS)...
 #if !defined(VACA_WINDOWS) &&			\
@@ -598,5 +597,3 @@ typedef SharedPtr<Widget> WidgetPtr;
 /** @} */
 
 } // namespace vaca
-
-#endif // VACA_BASE_HPP

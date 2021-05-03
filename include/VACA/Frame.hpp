@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_FRAME_HPP
-#define VACA_FRAME_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
@@ -100,5 +99,3 @@ private:
 };
 
 } // namespace vaca
-
-#endif // VACA_FRAME_HPP

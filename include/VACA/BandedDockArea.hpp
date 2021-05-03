@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_BANDEDDOCKAREA_H
-#define VACA_BANDEDDOCKAREA_H
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/DockArea.hpp"
@@ -62,5 +61,3 @@ private:
 };
 
 } // namespace vaca
-
-#endif // VACA_BANDEDDOCKAREA_H

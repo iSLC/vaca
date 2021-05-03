@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_WIDGETCLASS_HPP
-#define VACA_WIDGETCLASS_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -99,5 +98,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_WIDGETCLASS_HPP

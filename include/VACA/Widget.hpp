@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_WIDGET_HPP
-#define VACA_WIDGET_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Color.hpp"
@@ -468,5 +467,3 @@ private:
 VACA_DLL void delete_widget(Widget* widget);
 
 } // namespace vaca
-
-#endif // VACA_WIDGET_HPP

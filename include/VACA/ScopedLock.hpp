@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_SCOPEDLOCK_HPP
-#define VACA_SCOPEDLOCK_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Mutex.hpp"
@@ -75,5 +74,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_SCOPEDLOCK_HPP

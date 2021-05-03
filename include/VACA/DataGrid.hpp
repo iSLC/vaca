@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_DATAGRID_HPP
-#define VACA_DATAGRID_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -14,5 +13,3 @@ namespace vaca {
   // TODO
 
 } // namespace vaca
-
-#endif // VACA_DATAGRID_HPP

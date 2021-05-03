@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_SYSTEM_HPP
-#define VACA_SYSTEM_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Rect.hpp"
@@ -55,5 +54,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_SYSTEM_HPP

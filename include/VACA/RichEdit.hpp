@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_RICHEDIT_HPP
-#define VACA_RICHEDIT_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
@@ -74,5 +73,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_TEXTEDIT_HPP

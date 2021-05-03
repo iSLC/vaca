@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_ANCHOR_HPP
-#define VACA_ANCHOR_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Constraint.hpp"
@@ -38,5 +37,3 @@ public:
 }; // Anchor
 
 } // namespace vaca
-
-#endif // VACA_ANCHOR_HPP

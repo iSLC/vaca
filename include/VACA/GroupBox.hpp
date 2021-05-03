@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_GROUPBOX_HPP
-#define VACA_GROUPBOX_HPP
+#pragma once
 
 #include "VACA/Widget.hpp"
 
@@ -39,5 +38,3 @@ protected:
 };
 
 } // namespace vaca
-
-#endif // VACA_GROUPBOX_HPP

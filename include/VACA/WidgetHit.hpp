@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_WIDGETHIT_HPP
-#define VACA_WIDGETHIT_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -155,5 +154,3 @@ struct WidgetHitEnum
 typedef Enum<WidgetHitEnum> WidgetHit;
 
 } // namespace vaca
-
-#endif // VACA_WIDGETHIT_HPP

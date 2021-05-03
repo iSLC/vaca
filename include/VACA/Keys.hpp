@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_KEYS_HPP
-#define VACA_KEYS_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -243,5 +242,3 @@ struct Keys {
 };
 
 } // namespace vaca
-
-#endif // VACA_KEYS_HPP

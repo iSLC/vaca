@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_REFERENCEABLE_HPP
-#define VACA_REFERENCEABLE_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/NonCopyable.hpp"
@@ -39,5 +38,3 @@ private:
 };
 
 } // namespace vaca
-
-#endif // VACA_REFERENCEABLE_HPP

@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_TAB_HPP
-#define VACA_TAB_HPP
+#pragma once
 
 #include "VACA/Widget.hpp"
 #include "VACA/Font.hpp"
@@ -150,5 +149,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_TAB_HPP

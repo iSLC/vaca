@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_WIN32_HPP
-#define VACA_WIN32_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -33,5 +32,3 @@ namespace vaca {
   template<> VACA_DLL HBRUSH convert_to(const Brush& brush);
 
 }
-
-#endif // VACA_WIN32_HPP

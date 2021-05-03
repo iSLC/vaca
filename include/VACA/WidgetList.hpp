@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_WIDGETLIST_HPP
-#define VACA_WIDGETLIST_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -21,5 +20,3 @@ namespace vaca {
 typedef std::vector<Widget*> WidgetList;
 
 } // namespace vaca
-
-#endif // VACA_WIDGETLIST_HPP

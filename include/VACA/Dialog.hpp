@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_DIALOG_HPP
-#define VACA_DIALOG_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/Frame.hpp"
@@ -129,5 +128,3 @@ private:
 };
 
 } // namespace vaca
-
-#endif // VACA_DIALOG_HPP

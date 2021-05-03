@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_DEBUG_HPP
-#define VACA_DEBUG_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -61,5 +60,3 @@ inline trace_t make_trace(const char* filename, size_t line) {
 } // namespace details
 
 } // namespace vaca
-
-#endif // VACA_DEBUG_HPP

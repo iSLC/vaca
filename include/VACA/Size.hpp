@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_SIZE_HPP
-#define VACA_SIZE_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 
@@ -49,5 +48,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_SIZE_HPP

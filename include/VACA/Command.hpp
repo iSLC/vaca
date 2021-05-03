@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_COMMAND_HPP
-#define VACA_COMMAND_HPP
+#pragma once
 
 #include "VACA/Base.hpp"
 #include "VACA/NonCopyable.hpp"
@@ -118,5 +117,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_COMMAND_HPP

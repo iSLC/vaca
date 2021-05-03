@@ -4,8 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#ifndef VACA_PARSEEXCEPTION_HPP
-#define VACA_PARSEEXCEPTION_HPP
+#pragma once
 
 #include "VACA/Exception.hpp"
 
@@ -98,5 +97,3 @@ public:
 };
 
 } // namespace vaca
-
-#endif // VACA_PARSEEXCEPTION_HPP
