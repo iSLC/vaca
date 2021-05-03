@@ -42,7 +42,7 @@
 #endif
 
 #include <algorithm>
-#include <stdarg.h>
+#include <cstdarg>
 #include <string>
 
 #ifdef VACA_WINDOWS
