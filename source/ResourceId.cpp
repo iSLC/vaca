@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ResourceId.h"
-#include "VACA/String.h"
+#include "VACA/ResourceId.hpp"
+#include "VACA/String.hpp"
 
 using namespace vaca;
 

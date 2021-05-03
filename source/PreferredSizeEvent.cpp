@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/PreferredSizeEvent.h"
-#include "VACA/Widget.h"
+#include "VACA/PreferredSizeEvent.hpp"
+#include "VACA/Widget.hpp"
 
 using namespace vaca;
 

@@ -4,15 +4,15 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Thread.h"
-#include "VACA/Debug.h"
-#include "VACA/Frame.h"
-#include "VACA/Signal.h"
-#include "VACA/Timer.h"
-#include "VACA/Mutex.h"
-#include "VACA/ScopedLock.h"
-#include "VACA/Slot.h"
-#include "VACA/TimePoint.h"
+#include "VACA/Thread.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/Frame.hpp"
+#include "VACA/Signal.hpp"
+#include "VACA/Timer.hpp"
+#include "VACA/Mutex.hpp"
+#include "VACA/ScopedLock.hpp"
+#include "VACA/Slot.hpp"
+#include "VACA/TimePoint.hpp"
 
 #include <vector>
 #include <algorithm>

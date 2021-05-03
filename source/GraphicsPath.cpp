@@ -4,13 +4,13 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/GraphicsPath.h"
-#include "VACA/Point.h"
-#include "VACA/Region.h"
-#include "VACA/Pen.h"
-#include "VACA/Brush.h"
-#include "VACA/Graphics.h"
-#include "VACA/Win32.h"
+#include "VACA/GraphicsPath.hpp"
+#include "VACA/Point.hpp"
+#include "VACA/Region.hpp"
+#include "VACA/Pen.hpp"
+#include "VACA/Brush.hpp"
+#include "VACA/Graphics.hpp"
+#include "VACA/Win32.hpp"
 
 using namespace vaca;
 

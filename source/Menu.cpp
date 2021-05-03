@@ -4,15 +4,15 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Menu.h"
-#include "VACA/MenuItemEvent.h"
-#include "VACA/Debug.h"
-#include "VACA/System.h"
-#include "VACA/Mdi.h"
-#include "VACA/ResourceException.h"
-#include "VACA/ScopedLock.h"
-#include "VACA/Command.h"
-#include "VACA/Point.h"
+#include "VACA/Menu.hpp"
+#include "VACA/MenuItemEvent.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/System.hpp"
+#include "VACA/Mdi.hpp"
+#include "VACA/ResourceException.hpp"
+#include "VACA/ScopedLock.hpp"
+#include "VACA/Command.hpp"
+#include "VACA/Point.hpp"
 
 #include <stack>
 

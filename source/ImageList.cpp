@@ -4,12 +4,12 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ImageList.h"
-#include "VACA/Application.h"
-#include "VACA/Debug.h"
-#include "VACA/ResourceException.h"
-#include "VACA/String.h"
-#include "VACA/Win32.h"
+#include "VACA/ImageList.hpp"
+#include "VACA/Application.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/ResourceException.hpp"
+#include "VACA/String.hpp"
+#include "VACA/Win32.hpp"
 
 using namespace vaca;
 

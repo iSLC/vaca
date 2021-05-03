@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Cursor.h"
-#include "VACA/Application.h"
-#include "VACA/Debug.h"
-#include "VACA/ResourceException.h"
-#include "VACA/String.h"
+#include "VACA/Cursor.hpp"
+#include "VACA/Application.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/ResourceException.hpp"
+#include "VACA/String.hpp"
 
 using namespace vaca;
 

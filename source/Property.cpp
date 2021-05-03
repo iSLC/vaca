@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Property.h"
-#include "VACA/Debug.h"
+#include "VACA/Property.hpp"
+#include "VACA/Debug.hpp"
 
 using namespace vaca;
 

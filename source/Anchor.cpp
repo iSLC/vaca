@@ -4,7 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Anchor.h"
+#include "VACA/Anchor.hpp"
 
 using namespace vaca;
 

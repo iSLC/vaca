@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Pen.h"
+#include "VACA/Pen.hpp"
 
 #if defined(VACA_WINDOWS)
-  #include "win32/PenImpl.h"
+  #include "win32/PenImpl.hpp"
 #else
   #error Implement Pen class in your platform
 #endif

@@ -4,12 +4,12 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Dialog.h"
-#include "VACA/Debug.h"
-#include "VACA/Application.h"
-#include "VACA/CloseEvent.h"
-#include "VACA/WidgetClass.h"
-#include "VACA/CommandEvent.h"
+#include "VACA/Dialog.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/Application.hpp"
+#include "VACA/CloseEvent.hpp"
+#include "VACA/WidgetClass.hpp"
+#include "VACA/CommandEvent.hpp"
 
 #define WIN32_LEAN_AND_MEAN
 #include <winuser.h>

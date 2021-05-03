@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/FindTextDialog.h"
-#include "VACA/Debug.h"
-#include "VACA/Application.h"
-#include "VACA/WidgetClass.h"
-#include "VACA/CloseEvent.h"
+#include "VACA/FindTextDialog.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/Application.hpp"
+#include "VACA/WidgetClass.hpp"
+#include "VACA/CloseEvent.hpp"
 
 using namespace vaca;
 

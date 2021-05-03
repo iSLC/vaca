@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Clipboard.h"
-#include "VACA/Widget.h"
-#include "VACA/System.h"
-#include "VACA/String.h"
+#include "VACA/Clipboard.hpp"
+#include "VACA/Widget.hpp"
+#include "VACA/System.hpp"
+#include "VACA/String.hpp"
 
 using namespace vaca;
 

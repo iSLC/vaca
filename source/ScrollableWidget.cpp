@@ -4,13 +4,13 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ScrollableWidget.h"
-#include "VACA/ResizeEvent.h"
-#include "VACA/MouseEvent.h"
-#include "VACA/SetCursorEvent.h"
-#include "VACA/Cursor.h"
-#include "VACA/ScrollInfo.h"
-#include "VACA/ScrollEvent.h"
+#include "VACA/ScrollableWidget.hpp"
+#include "VACA/ResizeEvent.hpp"
+#include "VACA/MouseEvent.hpp"
+#include "VACA/SetCursorEvent.hpp"
+#include "VACA/Cursor.hpp"
+#include "VACA/ScrollInfo.hpp"
+#include "VACA/ScrollEvent.hpp"
 
 using namespace vaca;
 

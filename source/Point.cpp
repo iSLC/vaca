@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Point.h"
-#include "VACA/Size.h"
+#include "VACA/Point.hpp"
+#include "VACA/Size.hpp"
 
 using namespace vaca;
 

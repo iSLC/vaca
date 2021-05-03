@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Spinner.h"
-#include "VACA/PreferredSizeEvent.h"
-#include "VACA/LayoutEvent.h"
+#include "VACA/Spinner.hpp"
+#include "VACA/PreferredSizeEvent.hpp"
+#include "VACA/LayoutEvent.hpp"
 
 using namespace vaca;
 

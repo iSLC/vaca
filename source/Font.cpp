@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Font.h"
-#include "VACA/Debug.h"
-#include "VACA/Graphics.h"
-#include "VACA/String.h"
+#include "VACA/Font.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/Graphics.hpp"
+#include "VACA/String.hpp"
 
 using namespace vaca;
 

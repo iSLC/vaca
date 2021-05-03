@@ -4,15 +4,15 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/System.h"
-#include "VACA/Rect.h"
-#include "VACA/Point.h"
-#include "VACA/Size.h"
-#include "VACA/Color.h"
-#include "VACA/Debug.h"
-#include "VACA/ImageList.h"
-#include "VACA/ScopedLock.h"
-#include "VACA/Win32.h"
+#include "VACA/System.hpp"
+#include "VACA/Rect.hpp"
+#include "VACA/Point.hpp"
+#include "VACA/Size.hpp"
+#include "VACA/Color.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/ImageList.hpp"
+#include "VACA/ScopedLock.hpp"
+#include "VACA/Win32.hpp"
 
 #include <cstdio>
 #include <cwchar>

@@ -4,18 +4,18 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ToolBar.h"
-#include "VACA/AnchorLayout.h"
-#include "VACA/Anchor.h"
-#include "VACA/ClientLayout.h"
-#include "VACA/Event.h"
-#include "VACA/Debug.h"
-#include "VACA/ImageList.h"
-#include "VACA/DockFrame.h"
-#include "VACA/Command.h"
-#include "VACA/CommandEvent.h"
-#include "VACA/PreferredSizeEvent.h"
-#include "VACA/Win32.h"
+#include "VACA/ToolBar.hpp"
+#include "VACA/AnchorLayout.hpp"
+#include "VACA/Anchor.hpp"
+#include "VACA/ClientLayout.hpp"
+#include "VACA/Event.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/ImageList.hpp"
+#include "VACA/DockFrame.hpp"
+#include "VACA/Command.hpp"
+#include "VACA/CommandEvent.hpp"
+#include "VACA/PreferredSizeEvent.hpp"
+#include "VACA/Win32.hpp"
 
 using namespace vaca;
 

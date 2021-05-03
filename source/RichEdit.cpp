@@ -4,12 +4,12 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/RichEdit.h"
-#include "VACA/Event.h"
-#include "VACA/System.h"
-#include "VACA/Register.h"
-#include "VACA/WidgetClass.h"
-#include "VACA/Win32.h"
+#include "VACA/RichEdit.hpp"
+#include "VACA/Event.hpp"
+#include "VACA/System.hpp"
+#include "VACA/Register.hpp"
+#include "VACA/WidgetClass.hpp"
+#include "VACA/Win32.hpp"
 
 #include <richedit.h>
 #include <memory>

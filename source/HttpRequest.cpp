@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/HttpRequest.h"
-#include "VACA/String.h"
+#include "VACA/HttpRequest.hpp"
+#include "VACA/String.hpp"
 
 #include <memory>
 #include <cassert>

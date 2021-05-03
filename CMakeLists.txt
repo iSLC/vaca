@@ -240,7 +240,7 @@ target_include_directories(vaca PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/source)
 
 # Platform dependent source files
 if(WIN32 OR MINGW)
-    target_sources(vaca PRIVATE source/win32/win32.cpp)
+    target_sources(vaca PRIVATE source/Win32/Win32.cpp)
 endif()
 
 # Platform dependent libraries

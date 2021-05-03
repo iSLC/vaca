@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Layout.h"
-#include "VACA/Debug.h"
-#include "VACA/Widget.h"
+#include "VACA/Layout.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/Widget.hpp"
 
 using namespace vaca;
 
@@ -26,7 +26,7 @@ Size Layout::getPreferredSize(Widget* parent, WidgetList& widgets, const Size& f
 //////////////////////////////////////////////////////////////////////
 // WidgetsMovement
 
-#include "win32/WidgetsMovementImpl.h"
+#include "win32/WidgetsMovementImpl.hpp"
 
 WidgetsMovement::WidgetsMovement(const WidgetList& widgets)
   : m_impl(new WidgetsMovementImpl(widgets))

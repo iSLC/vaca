@@ -4,12 +4,12 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/AnchorLayout.h"
-#include "VACA/Anchor.h"
-#include "VACA/Size.h"
-#include "VACA/Point.h"
-#include "VACA/Debug.h"
-#include "VACA/Widget.h"
+#include "VACA/AnchorLayout.hpp"
+#include "VACA/Anchor.hpp"
+#include "VACA/Size.hpp"
+#include "VACA/Point.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/Widget.hpp"
 
 using namespace vaca;
 

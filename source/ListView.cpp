@@ -4,14 +4,14 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ListView.h"
-#include "VACA/System.h"
-#include "VACA/Debug.h"
-#include "VACA/ImageList.h"
-#include "VACA/WidgetClass.h"
-#include "VACA/ListItem.h"
-#include "VACA/ListColumn.h"
-#include "VACA/Win32.h"
+#include "VACA/ListView.hpp"
+#include "VACA/System.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/ImageList.hpp"
+#include "VACA/WidgetClass.hpp"
+#include "VACA/ListItem.hpp"
+#include "VACA/ListColumn.hpp"
+#include "VACA/Win32.hpp"
 
 using namespace vaca;
 

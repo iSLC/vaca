@@ -4,13 +4,13 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ListBox.h"
-#include "VACA/Event.h"
-#include "VACA/Debug.h"
-#include "VACA/System.h"
-#include "VACA/WidgetClass.h"
-#include "VACA/PreferredSizeEvent.h"
-#include "VACA/Win32.h"
+#include "VACA/ListBox.hpp"
+#include "VACA/Event.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/System.hpp"
+#include "VACA/WidgetClass.hpp"
+#include "VACA/PreferredSizeEvent.hpp"
+#include "VACA/Win32.hpp"
 
 using namespace vaca;
 

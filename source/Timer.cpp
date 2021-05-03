@@ -4,13 +4,13 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Timer.h"
-#include "VACA/Thread.h"
-#include "VACA/Debug.h"
-#include "VACA/Mutex.h"
-#include "VACA/ScopedLock.h"
-#include "VACA/TimePoint.h"
-#include "VACA/ConditionVariable.h"
+#include "VACA/Timer.hpp"
+#include "VACA/Thread.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/Mutex.hpp"
+#include "VACA/ScopedLock.hpp"
+#include "VACA/TimePoint.hpp"
+#include "VACA/ConditionVariable.hpp"
 
 #include <limits>
 #include <limits.h>		// because MSVC

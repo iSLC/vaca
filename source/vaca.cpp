@@ -4,13 +4,13 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/MainArgs.h"
-#include "VACA/Application.h"
+#include "VACA/MainArgs.hpp"
+#include "VACA/Application.hpp"
 
 using namespace vaca;
 
 #if defined(VACA_WINDOWS)
-  #include "win32/MainArgs.h"
+  #include "win32/MainArgs.hpp"
 #else
   #include "std/MainArgs.h"
 #endif

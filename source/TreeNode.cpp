@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/TreeNode.h"
-#include "VACA/TreeView.h"
-#include "VACA/TreeViewEvent.h"
-#include "VACA/Debug.h"
-#include "VACA/Win32.h"
+#include "VACA/TreeNode.hpp"
+#include "VACA/TreeView.hpp"
+#include "VACA/TreeViewEvent.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/Win32.hpp"
 
 using namespace vaca;
 

@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/MsgBox.h"
-#include "VACA/System.h"
-#include "VACA/Widget.h"
+#include "VACA/MsgBox.hpp"
+#include "VACA/System.hpp"
+#include "VACA/Widget.hpp"
 
 using namespace vaca;
 

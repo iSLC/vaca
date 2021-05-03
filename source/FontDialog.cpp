@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/FontDialog.h"
-#include "VACA/Font.h"
-#include "VACA/Widget.h"
-#include "VACA/Debug.h"
-#include "VACA/Application.h"
+#include "VACA/FontDialog.hpp"
+#include "VACA/Font.hpp"
+#include "VACA/Widget.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/Application.hpp"
 
 using namespace vaca;
 

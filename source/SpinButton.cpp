@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/SpinButton.h"
-#include "VACA/Application.h"
-#include "VACA/Debug.h"
-#include "VACA/WidgetClass.h"
-#include "VACA/PreferredSizeEvent.h"
+#include "VACA/SpinButton.hpp"
+#include "VACA/Application.hpp"
+#include "VACA/Debug.hpp"
+#include "VACA/WidgetClass.hpp"
+#include "VACA/PreferredSizeEvent.hpp"
 
 using namespace vaca;
 

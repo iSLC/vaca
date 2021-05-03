@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Mutex.h"
+#include "VACA/Mutex.hpp"
 
 #if defined(VACA_ON_WINDOWS)
-  #include "win32/MutexImpl.h"
+  #include "win32/MutexImpl.hpp"
 #elif defined(VACA_ON_UNIXLIKE)
   #include "unix/MutexImpl.h"
 #else
