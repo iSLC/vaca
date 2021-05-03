@@ -2616,8 +2616,8 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
       if (hasMouseAbove()) {
 	WidgetHit hitTest = WidgetHit::Error;
 	switch (LOWORD(lParam)) {
-	  case HTERROR: hitTest = WidgetHit::Error; break;
-	  case HTTRANSPARENT: hitTest = WidgetHit::Transparent; break;
+	  case static_cast<WORD>(HTERROR): hitTest = WidgetHit::Error; break;
+	  case static_cast<WORD>(HTTRANSPARENT): hitTest = WidgetHit::Transparent; break;
 	  case HTNOWHERE: hitTest = WidgetHit::Nowhere; break;
 	  case HTCLIENT: hitTest = WidgetHit::Client; break;
 	  case HTCAPTION: hitTest = WidgetHit::Caption; break;
