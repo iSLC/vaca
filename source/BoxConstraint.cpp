@@ -14,10 +14,9 @@ BoxConstraint::BoxConstraint(bool expansive)
 }
 
 BoxConstraint::~BoxConstraint()
-{
-}
+= default;
 
-bool BoxConstraint::isExpansive()
+bool BoxConstraint::isExpansive() const
 {
   return m_expansive;
 }

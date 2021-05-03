@@ -16,11 +16,7 @@ Style::Style(int regular, int extended)
 {
 }
 
-Style::Style(const Style& style)
-  : regular(style.regular),
-    extended(style.extended)
-{
-}
+Style::Style(const Style& style) = default;
 
 Style Style::operator+(const Style& style) const
 {

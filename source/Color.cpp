@@ -93,23 +93,21 @@ Color::Color(const Color& color)
    @param g Green component (0-255).
    @param b Blue component (0-255).
 */
-Color::Color(int r, int g, int b)
+Color::Color(int r, int g, int b) noexcept
 {
   m_raw = static_cast<unsigned int>((r & 0xff) |
                                     ((g & 0xff) << 8) |
                                     ((b & 0xff) << 16));
 }
 
-Color::~Color()
-{
-}
+Color::~Color() = default;
 
 /**
    Returns the red component of this color.
 */
 int Color::getR() const
 {
-  return (m_raw & 0xff);
+  return static_cast<int>(m_raw & 0xffu);
 }
 
 /**
@@ -117,7 +115,7 @@ int Color::getR() const
 */
 int Color::getG() const
 {
-  return (m_raw & 0xff00) >> 8;
+  return static_cast<int>((m_raw & 0xff00u) >> 8);
 }
 
 /**
@@ -125,25 +123,22 @@ int Color::getG() const
 */
 int Color::getB() const
 {
-  return (m_raw & 0xff0000) >> 16;
+  return static_cast<int>((m_raw & 0xff0000u) >> 16);
 }
 
-Color Color::negative()
+Color Color::negative() const
 {
   return Color(255-getR(), 255-getG(), 255-getB());
 }
 
-Color Color::toBlackAndWhite()
+Color Color::toBlackAndWhite() const
 {
   return (getR()*30+getG()*59+getB()*11)/100 < 128 ? Color::Black:
 						     Color::White;
 }
 
 Color& Color::operator=(const Color& color)
-{
-  m_raw = color.m_raw;
-  return *this;
-}
+= default;
 
 bool Color::operator==(const Color& color) const
 {

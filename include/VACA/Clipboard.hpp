@@ -19,12 +19,12 @@ class VACA_DLL Clipboard
 
 public:
 
-  Clipboard(Widget* owner = NULL);
+  Clipboard(Widget* owner = nullptr);
   virtual ~Clipboard();
 
-  bool isText() const;
+  [[nodiscard]] static bool isText() ;
 
-  String getString() const;
+  [[nodiscard]] String getString() const;
   void setString(const String& str);
 
 };

@@ -23,7 +23,7 @@ using namespace vaca;
    Creates a new tab control. A tab is a set of pages, each page has a
    group of widgets, so you can navigate through the pages.
 */
-TabBase::TabBase(Widget* parent, Style style)
+TabBase::TabBase(Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_TABCONTROL), parent, style)
 {
   m_userFont = getFont();
@@ -31,8 +31,7 @@ TabBase::TabBase(Widget* parent, Style style)
 }
 
 TabBase::~TabBase()
-{
-}
+= default;
 
 Font TabBase::getFont() const
 {
@@ -331,15 +330,14 @@ bool TabBase::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
 // ======================================================================
 // Tab
 
-Tab::Tab(Widget* parent, Style style)
+Tab::Tab(Widget* parent, const Style& style)
   : TabBase(parent, style)
 {
   setLayout(new ClientLayout);
 }
 
 Tab::~Tab()
-{
-}
+= default;
 
 /**
    Returns the page in the specified index.
@@ -362,9 +360,9 @@ void Tab::onPageChange(Event& ev)
   int pageIndex = 0;
   int selectedPage = getActivePage();
 
-  for (WidgetList::iterator
+  for (auto
 	 it = pages.begin(); it != pages.end(); ++it, ++pageIndex) {
-    TabPage* page = dynamic_cast<TabPage*>(*it);
+    auto* page = dynamic_cast<TabPage*>(*it);
 
     assert(page != NULL);
 
@@ -377,7 +375,7 @@ void Tab::onPageChange(Event& ev)
 // ======================================================================
 // TabPage
 
-TabPage::TabPage(const String& text, Tab* parent, Style style)
+TabPage::TabPage(const String& text, Tab* parent, const Style& style)
   : Widget(TabPageClass::getClassName(), parent, style)
 {
   setText(text);
@@ -390,20 +388,19 @@ TabPage::TabPage(const String& text, Tab* parent, Style style)
 }
 
 TabPage::~TabPage()
-{
-}
+= default;
 
 String TabPage::getText() const
 {
-  return static_cast<Tab*>(getParent())->getPageText(m_index);
+  return dynamic_cast<Tab*>(getParent())->getPageText(m_index);
 }
 
 void TabPage::setText(const String& str)
 {
-  static_cast<Tab*>(getParent())->setPageText(m_index, str);
+  dynamic_cast<Tab*>(getParent())->setPageText(m_index, str);
 }
 
-int TabPage::getPageIndex()
+int TabPage::getPageIndex() const
 {
   return m_index;
 }

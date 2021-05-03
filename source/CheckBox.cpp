@@ -8,12 +8,11 @@
 
 using namespace vaca;
 
-CheckBox::CheckBox(const String& text, Widget* parent, Style style)
+CheckBox::CheckBox(const String& text, Widget* parent, const Style& style)
   : ButtonBase(parent, style)
 {
   setText(text);
 }
 
 CheckBox::~CheckBox()
-{
-}
+= default;

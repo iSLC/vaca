@@ -11,12 +11,10 @@
 using namespace vaca;
 
 Layout::Layout()
-{
-}
+= default;
 
 Layout::~Layout()
-{
-}
+= default;
 
 Size Layout::getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn)
 {

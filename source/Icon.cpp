@@ -18,8 +18,7 @@ using namespace vaca;
    Creates a NULL icon.
 */
 Icon::Icon()
-{
-}
+= default;
 
 /**
    Makes a new pointer to the specified icon.
@@ -27,10 +26,7 @@ Icon::Icon()
    @param icon
      Icon to be referenced.
 */
-Icon::Icon(const Icon& icon)
-  : SharedPtr<GdiObj>(icon)
-{
-}
+Icon::Icon(const Icon& icon) = default;
 
 /**
    Loads an @msdn{ICON} resource.
@@ -43,15 +39,15 @@ Icon::Icon(const Icon& icon)
    @throw ResourceException
      When the resource with ID @a iconId wasn't found.
 */
-Icon::Icon(ResourceId iconId, const Size& sz)
+Icon::Icon(const ResourceId& iconId, const Size& sz)
   : SharedPtr<GdiObj>(new GdiObj)
 {
-  HICON handle = reinterpret_cast<HICON>
+  auto handle = reinterpret_cast<HICON>
     (::LoadImage(Application::getHandle(),
 		 MAKEINTRESOURCE(iconId.getId()),
 		 IMAGE_ICON,
 		 sz.w, sz.h, 0));
-  if (handle == NULL)
+  if (handle == nullptr)
     throw ResourceException(format_string(L"Can't load the icon resource %d", iconId.getId()));
 
   get()->setHandle(handle);
@@ -71,12 +67,12 @@ Icon::Icon(ResourceId iconId, const Size& sz)
 Icon::Icon(const String& fileName, const Size& sz)
   : SharedPtr<GdiObj>(new GdiObj)
 {
-  HICON handle = reinterpret_cast<HICON>
+  auto handle = reinterpret_cast<HICON>
     (::LoadImage(Application::getHandle(),
 		 fileName.c_str(),
 		 IMAGE_ICON,
 		 sz.w, sz.h, LR_LOADFROMFILE));
-  if (handle == NULL)
+  if (handle == nullptr)
     throw ResourceException(L"Can't load icon from file " + fileName);
 
   get()->setHandle(handle);
@@ -99,8 +95,7 @@ Icon::Icon(HICON handle)
    Deletes the wrapped @msdn{HICON} handle.
 */
 Icon::~Icon()
-{
-}
+= default;
 
 /**
    Returns the @msdn{HICON} handle.

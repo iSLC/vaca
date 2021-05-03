@@ -51,11 +51,11 @@ public:
   virtual ~ToolButton();
 
   // ToolSet* getSet() const { return m_set; }
-  int getButtonIndex() const { return m_buttonIndex; }
-  int getImageIndex() const { return m_imageIndex; }
-  CommandId getCommandId() const { return m_commandId; }
-  ToolButtonState getState() const { return m_state; }
-  String getText() const { return m_text; }
+  [[nodiscard]] int getButtonIndex() const { return m_buttonIndex; }
+  [[nodiscard]] int getImageIndex() const { return m_imageIndex; }
+  [[nodiscard]] CommandId getCommandId() const { return m_commandId; }
+  [[nodiscard]] ToolButtonState getState() const { return m_state; }
+  [[nodiscard]] String getText() const { return m_text; }
 
   // void setSet(ToolSet* set);
   void setButtonIndex(int buttonIndex) { m_buttonIndex = buttonIndex; }
@@ -64,8 +64,8 @@ public:
   void setState(ToolButtonState state);
   void setText(const String& text);
 
-  int getTBSTATE() const;
-  int getTBSTYLE() const;
+  [[nodiscard]] int getTBSTATE() const;
+  [[nodiscard]] int getTBSTYLE() const;
   // void setTBSTATE(int tbstate);
 
 };
@@ -95,11 +95,11 @@ public:
     static const Style Flat;
   };
 
-  ToolSet(Widget* parent, Style style = Styles::Default);
-  virtual ~ToolSet();
+  ToolSet(Widget* parent, const Style& style = Styles::Default);
+  ~ToolSet() override;
 
-  int getButtonCount() const;
-  int getRows() const;
+  [[nodiscard]] int getButtonCount() const;
+  [[nodiscard]] int getRows() const;
   Rect setRows(int rows, bool expand);
 
   void setImageList(const ImageList& imageList);
@@ -109,21 +109,21 @@ public:
 
   void updateButton(ToolButton* button);
 
-  ToolButton* getButtonById(CommandId id) const;
-  ToolButton* getButtonByIndex(int index) const;
+  [[nodiscard]] ToolButton* getButtonById(CommandId id) const;
+  [[nodiscard]] ToolButton* getButtonByIndex(int index) const;
 
-  int hitTest(const Point& pt) const;
+  [[nodiscard]] int hitTest(const Point& pt) const;
 
-  std::vector<Size> getPreferredSizes() const;
+  [[nodiscard]] std::vector<Size> getPreferredSizes() const;
   void updatePreferredSizes();
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onUpdateIndicators();
+  void onPreferredSize(PreferredSizeEvent& ev) override;
+  void onUpdateIndicators() override;
   // Reflected notifications
-  virtual bool onReflectedCommand(int id, int code, LRESULT& lResult);
-  virtual bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult);
+  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
+  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
 
 };
 
@@ -151,18 +151,18 @@ public:
   ToolBar(const String& title, Frame* parent,
 	  Style toolSetStyle = ToolSet::Styles::Default,
 	  Style style = ToolBar::Styles::Default);
-  virtual ~ToolBar();
+  ~ToolBar() override;
 
-  virtual Size getDockedSize(Side side) const;
-  virtual Size getFloatingSize() const;
+  [[nodiscard]] Size getDockedSize(Side side) const override;
+  [[nodiscard]] Size getFloatingSize() const override;
 
 protected:
   // Events
-  virtual void onCommand(CommandEvent& ev);
-  virtual void onUpdateIndicators();
-  virtual void onDocking();
-  virtual void onFloating();
-  virtual void onResizingFrame(DockFrame* frame, CardinalDirection dir, Rect& rc);
+  void onCommand(CommandEvent& ev) override;
+  void onUpdateIndicators() override;
+  void onDocking() override;
+  void onFloating() override;
+  void onResizingFrame(DockFrame* frame, CardinalDirection dir, Rect& rc) override;
 
 public:
   // ======================================================================

@@ -60,11 +60,11 @@ class VACA_DLL ScrollEvent : public Event
 public:
 
   ScrollEvent(Widget* source, Orientation orien, ScrollRequest req, int pos);
-  virtual ~ScrollEvent();
+  ~ScrollEvent() override;
 
-  Orientation getOrientation() const;
-  ScrollRequest getRequest() const;
-  int getPosition() const;
+  [[nodiscard]] Orientation getOrientation() const;
+  [[nodiscard]] ScrollRequest getRequest() const;
+  [[nodiscard]] int getPosition() const;
 
 };
 

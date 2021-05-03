@@ -55,12 +55,12 @@ class VACA_DLL Icon : private SharedPtr<GdiObject<HICON, Win32DestroyIcon> >
 public:
   Icon();
   Icon(const Icon& icon);
-  explicit Icon(ResourceId iconId, const Size& sz = Size(0, 0));
+  explicit Icon(const ResourceId& iconId, const Size& sz = Size(0, 0));
   explicit Icon(const String& fileName, const Size& sz = Size(0, 0));
   explicit Icon(HICON handle);
-  virtual ~Icon();
+  ~Icon() override;
 
-  HICON getHandle() const;
+  [[nodiscard]] HICON getHandle() const;
 };
 
 } // namespace vaca

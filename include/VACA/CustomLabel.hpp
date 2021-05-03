@@ -27,16 +27,16 @@ public:
     static const Style Default;
   };
 
-  CustomLabel(const String& text, Widget* parent, Style style = Styles::Default);
-  virtual ~CustomLabel();
+  CustomLabel(const String& text, Widget* parent, const Style& style = Styles::Default);
+  ~CustomLabel() override;
 
-  virtual TextAlign getTextAlign() const;
-  virtual void setTextAlign(TextAlign align);
+  [[nodiscard]] TextAlign getTextAlign() const override;
+  void setTextAlign(TextAlign align) override;
 
 protected:
 
   // Reflected notifications
-  virtual bool onReflectedDrawItem(Graphics& g, LPDRAWITEMSTRUCT lpDrawItem);
+  bool onReflectedDrawItem(Graphics& g, LPDRAWITEMSTRUCT lpDrawItem) override;
 
 };
 

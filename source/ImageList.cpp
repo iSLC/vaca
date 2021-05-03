@@ -23,7 +23,7 @@ ImageList::ImageList()
 ImageList::ImageList(const Size& sz)
   : SharedPtr<GdiObj>(new GdiObj(ImageList_Create(sz.w, sz.w, ILC_COLOR32, 0, 1)))
 {
-  if (getHandle() == NULL)
+  if (getHandle() == nullptr)
     throw ResourceException(L"Can't create the image-list");
 }
 
@@ -35,7 +35,7 @@ ImageList::ImageList(HIMAGELIST hImageList)
 /**
    Loads a ImageList from a @msdn{BITMAP} resource.
 */
-ImageList::ImageList(ResourceId bitmapId, int widthPerIcon, Color maskColor)
+ImageList::ImageList(ResourceId bitmapId, int widthPerIcon, const Color& maskColor)
   : SharedPtr<GdiObj>(new GdiObj())
 {
   HIMAGELIST himagelist =
@@ -47,7 +47,7 @@ ImageList::ImageList(ResourceId bitmapId, int widthPerIcon, Color maskColor)
 			IMAGE_BITMAP,
 			LR_CREATEDIBSECTION);
 
-  if (himagelist == NULL)
+  if (himagelist == nullptr)
     throw ResourceException(format_string(L"Can't create the image-list resource %d",
 					  bitmapId.getId()));
 
@@ -57,7 +57,7 @@ ImageList::ImageList(ResourceId bitmapId, int widthPerIcon, Color maskColor)
 /**
    Loads a ImageList from a file.
 */
-ImageList::ImageList(const String& fileName, int widthPerIcon, Color maskColor)
+ImageList::ImageList(const String& fileName, int widthPerIcon, const Color& maskColor)
   : SharedPtr<GdiObj>(new GdiObj())
 {
   HIMAGELIST himagelist =
@@ -68,15 +68,14 @@ ImageList::ImageList(const String& fileName, int widthPerIcon, Color maskColor)
 			convert_to<COLORREF>(maskColor),
 			IMAGE_BITMAP,
 			LR_LOADFROMFILE);
-  if (himagelist == NULL)
+  if (himagelist == nullptr)
     throw ResourceException(L"Can't load the image-list from file " + fileName);
 
   get()->setHandle(himagelist);
 }
 
 ImageList::~ImageList()
-{
-}
+= default;
 
 /**
    Returns how many images has this image list.
@@ -107,15 +106,15 @@ Size ImageList::getImageSize() const
    @return
      The index of the new image.
 */
-int ImageList::addImage(Image& image)
+int ImageList::addImage(Image& image) const
 {
   assert(getHandle());
   assert(image.getHandle());
 
-  return ImageList_Add(getHandle(), image.getHandle(), NULL);
+  return ImageList_Add(getHandle(), image.getHandle(), nullptr);
 }
 
-int ImageList::addImage(Image& image, Color maskColor)
+int ImageList::addImage(Image& image, const Color& maskColor) const
 {
   assert(getHandle());
   assert(image.getHandle());
@@ -125,13 +124,13 @@ int ImageList::addImage(Image& image, Color maskColor)
 			     convert_to<COLORREF>(maskColor));
 }
 
-void ImageList::removeImage(int index)
+void ImageList::removeImage(int index) const
 {
   assert(getHandle());
   ImageList_Remove(getHandle(), index);
 }
 
-void ImageList::removeAllImages()
+void ImageList::removeAllImages() const
 {
   assert(getHandle());
   ImageList_RemoveAll(getHandle());

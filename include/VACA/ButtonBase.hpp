@@ -21,9 +21,9 @@ class VACA_DLL ButtonBase : public Widget
 {
 public:
 
-  ButtonBase(Widget* parent, Style style);
+  ButtonBase(Widget* parent, const Style& style);
   explicit ButtonBase(HWND handle);
-  virtual ~ButtonBase();
+  ~ButtonBase() override;
 
   bool isSelected();
   void setSelected(bool state);
@@ -33,13 +33,13 @@ public:
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
 
   // New events
   virtual void onClick(Event& ev);
 
   // Reflected notifications
-  virtual bool onReflectedCommand(int id, int code, LRESULT& lResult);
+  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
 };
 
 } // namespace vaca

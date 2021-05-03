@@ -4,6 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
+#include <utility>
+
 #include "VACA/TreeViewEvent.hpp"
 #include "VACA/TreeView.hpp"
 
@@ -12,13 +14,12 @@ using namespace vaca;
 TreeViewEvent::TreeViewEvent(TreeView* treeView, TreeNode* treeNode, String label)
   : CancelableEvent(treeView)
   , m_treeNode(treeNode)
-  , m_label(label)
+  , m_label(std::move(label))
 {
 }
 
 TreeViewEvent::~TreeViewEvent()
-{
-}
+= default;
 
 TreeNode* TreeViewEvent::getTreeNode()
 {

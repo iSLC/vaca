@@ -21,18 +21,18 @@ class VACA_DLL Exception : public std::exception
 {
   String m_message;
   std::string m_what;
-  int m_errorCode;
+  int m_errorCode{};
 
 public:
 
   Exception();
   Exception(const String& message);
-  virtual ~Exception() throw();
+  ~Exception() noexcept override;
 
-  virtual const char* what() const throw();
-  virtual const String& getMessage() const throw();
+  [[nodiscard]] const char* what() const noexcept override;
+  [[nodiscard]] virtual const String& getMessage() const noexcept;
 
-  int getErrorCode() const;
+  [[nodiscard]] int getErrorCode() const;
 
 private:
 

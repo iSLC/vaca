@@ -30,21 +30,21 @@ public:
     static const Style AutoVerticalScroll;
   };
 
-  TextEdit(const String& text, Widget* parent, Style style = Styles::Default);
-  virtual ~TextEdit();
+  TextEdit(const String& text, Widget* parent, const Style& style = Styles::Default);
+  ~TextEdit() override;
 
   // ============================================================
   // ANY TEXT EDIT
   // ============================================================
 
-  int getTextLength() const;
-  int getTextLimit() const;
+  [[nodiscard]] int getTextLength() const;
+  [[nodiscard]] int getTextLimit() const;
   void setTextLimit(int textLimit);
 
-  bool isReadOnly() const;
+  [[nodiscard]] bool isReadOnly() const;
   void setReadOnly(bool readOnly);
 
-  bool canUndo() const;
+  [[nodiscard]] bool canUndo() const;
   void undo();
 
   void cut();
@@ -86,13 +86,13 @@ public:
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
 
   // New events
   virtual void onChange(Event& ev);
 
   // Reflected notifications
-  virtual bool onReflectedCommand(int id, int code, LRESULT& lResult);
+  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
 
 };
 

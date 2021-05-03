@@ -22,21 +22,21 @@ public:
   typedef UINT32 pixel_type;
 
 private:
-  int m_width;
-  int m_height;
-  int m_scanline;
+  int m_width{};
+  int m_height{};
+  int m_scanline{};
   std::vector<pixel_type> m_buffer;
 
 public:
   ImagePixelsHandle() { init(0, 0); }
   ImagePixelsHandle(int w, int h) { init(w, h); }
   ImagePixelsHandle(const Size& sz) { init(sz.w, sz.h); }
-  virtual ~ImagePixelsHandle() { }
+  ~ImagePixelsHandle() override = default;
 
-  Size getSize() const { return Size(m_width, m_height); }
-  int getWidth() const { return m_width; }
-  int getHeight() const { return m_height; }
-  int getScanlineSize() const { return m_scanline; }
+  [[nodiscard]] Size getSize() const { return Size(m_width, m_height); }
+  [[nodiscard]] int getWidth() const { return m_width; }
+  [[nodiscard]] int getHeight() const { return m_height; }
+  [[nodiscard]] int getScanlineSize() const { return m_scanline; }
 
   const pixel_type& operator[](size_t index) const {
     assert(index >= 0 && index < m_buffer.size());
@@ -48,7 +48,7 @@ public:
     return m_buffer[index];
   }
 
-  pixel_type getPixel(int x, int y) const {
+  [[nodiscard]] pixel_type getPixel(int x, int y) const {
     assert(x >= 0 && y >= 0 && x < m_width && y < m_height);
     return m_buffer[y*m_scanline + x];
   }
@@ -119,21 +119,20 @@ public:
   {
   }
 
-  virtual ~ImagePixels()
-  {
-  }
+  ~ImagePixels() override
+  = default;
 
-  ImagePixels clone() const
+  [[nodiscard]] ImagePixels clone() const
   {
     ImagePixels copy(getSize());
     get()->copyTo(*copy.get());
     return copy;
   }
 
-  Size getSize() const { return get()->getSize(); }
-  int getWidth() const { return get()->getWidth(); }
-  int getHeight() const { return get()->getHeight(); }
-  int getScanlineSize() const { return get()->getScanlineSize(); }
+  [[nodiscard]] Size getSize() const { return get()->getSize(); }
+  [[nodiscard]] int getWidth() const { return get()->getWidth(); }
+  [[nodiscard]] int getHeight() const { return get()->getHeight(); }
+  [[nodiscard]] int getScanlineSize() const { return get()->getScanlineSize(); }
 
   const pixel_type& operator[](int index) const {
     return get()->operator[](static_cast<size_t>(index));
@@ -143,7 +142,7 @@ public:
     return get()->operator[](static_cast<size_t>(index));
   }
 
-  pixel_type getPixel(int x, int y) const {
+  [[nodiscard]] pixel_type getPixel(int x, int y) const {
     return get()->getPixel(x, y);
   }
 
@@ -155,10 +154,10 @@ public:
     get()->invertScanlines();
   }
 
-  static int getR(pixel_type color) { return (color & 0x00ff0000) >> 16; }
-  static int getG(pixel_type color) { return (color & 0x0000ff00) >> 8; }
-  static int getB(pixel_type color) { return (color & 0x000000ff); }
-  static int getA(pixel_type color) { return (color & 0xff000000) >> 24; }
+  static int getR(pixel_type color) { return static_cast<int>((color & 0x00ff0000u) >> 16); }
+  static int getG(pixel_type color) { return static_cast<int>((color & 0x0000ff00u) >> 8); }
+  static int getB(pixel_type color) { return static_cast<int>(color & 0x000000ffu); }
+  static int getA(pixel_type color) { return static_cast<int>(color & 0xff000000u) >> 24; }
 
   static pixel_type makePixel(int r, int g, int b, int a) {
     return

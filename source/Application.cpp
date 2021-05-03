@@ -17,8 +17,8 @@
 
 using namespace vaca;
 
-HINSTANCE Application::m_HINSTANCE = NULL;
-Application* Application::m_instance = NULL;
+HINSTANCE Application::m_HINSTANCE = nullptr;
+Application* Application::m_instance = nullptr;
 std::vector<String> Application::m_args;
 
 /**
@@ -36,9 +36,9 @@ Application::Application()
   assert(Application::m_HINSTANCE == NULL);
   assert(Application::m_instance == NULL);
 
-  CoInitialize(NULL);
+  CoInitialize(nullptr);
 
-  Application::m_HINSTANCE = ::GetModuleHandle(NULL);
+  Application::m_HINSTANCE = ::GetModuleHandle(nullptr);
   Application::m_instance = this;
 
   INITCOMMONCONTROLSEX icce;
@@ -68,8 +68,8 @@ Application::~Application()
 
   Timer::stop_timer_thread();
 
-  Application::m_HINSTANCE = NULL;
-  Application::m_instance = NULL;
+  Application::m_HINSTANCE = nullptr;
+  Application::m_instance = nullptr;
 
 #ifndef NDEBUG
   Referenceable::showLeaks();

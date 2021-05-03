@@ -57,7 +57,7 @@ struct ThreadData
     threadId = id;
     breakLoop = false;
     updateIndicators = true;
-    outsideWidget = NULL;
+    outsideWidget = nullptr;
   }
 
 };
@@ -80,7 +80,7 @@ static ThreadData* get_thread_data()
   }
 
   // create the data for the this thread
-  ThreadData* data = new ThreadData(id);
+  auto* data = new ThreadData(id);
   VACA_TRACE("new data-thread %d\n", id);
 
   // add it to the list
@@ -97,7 +97,7 @@ static DWORD WINAPI ThreadProxy(LPVOID slot)
   // Force the creation of a message queue in this new thread...
   {
     MSG msg;
-    PeekMessage(&msg, NULL, WM_USER, WM_USER, PM_NOREMOVE);
+    PeekMessage(&msg, nullptr, WM_USER, WM_USER, PM_NOREMOVE);
   }
 
   std::unique_ptr<Slot0<void> > slot_ptr(reinterpret_cast<Slot0<void>*>(slot));
@@ -126,7 +126,7 @@ void Thread::_Thread(const Slot0<void>& slot)
   Slot0<void>* slotclone = slot.clone();
   DWORD id;
 
-  m_handle = CreateThread(NULL, 0,
+  m_handle = CreateThread(nullptr, 0,
 			  ThreadProxy,
 			  // clone the slot
 			  reinterpret_cast<LPVOID>(slotclone),
@@ -144,9 +144,9 @@ void Thread::_Thread(const Slot0<void>& slot)
 
 Thread::~Thread()
 {
-  if (isJoinable() && m_handle != NULL) {
+  if (isJoinable() && m_handle != nullptr) {
      CloseHandle(reinterpret_cast<HANDLE>(m_handle));
-     m_handle = NULL;
+     m_handle = nullptr;
   }
 
   VACA_TRACE("delete Thread (%p, %d)\n", this, m_id);
@@ -175,7 +175,7 @@ void Thread::join()
 
   WaitForSingleObject(reinterpret_cast<HANDLE>(m_handle), INFINITE);
   CloseHandle(reinterpret_cast<HANDLE>(m_handle));
-  m_handle = NULL;
+  m_handle = nullptr;
 
   VACA_TRACE("join Thread (%p, %d)\n", this, m_id);
 }
@@ -232,7 +232,7 @@ void Thread::setThreadPriority(ThreadPriority priority)
   ::SetThreadPriority(m_handle, nPriority);
 }
 
-void Thread::enqueueMessage(const Message& message)
+void Thread::enqueueMessage(const Message& message) const
 {
   MSG const* msg = (MSG const*)message;
 
@@ -285,7 +285,7 @@ void vaca::CurrentThread::doMessageLoopFor(Widget* widget)
   HWND hparent = widget->getParentHandle();
 
   // disable the parent HWND
-  if (hparent != NULL)
+  if (hparent != nullptr)
     ::EnableWindow(hparent, FALSE);
 
   // message loop
@@ -346,17 +346,15 @@ bool vaca::CurrentThread::getMessage(Message& message)
     // for each registered frame we should call updateIndicators to
     // update the state of all visible indicators (like top-level
     // items in the menu-bar and buttons in the tool-bar)
-    for (std::vector<Frame*>::iterator
-	   it = data->frames.begin(),
-	   end = data->frames.end(); it != end; ++it) {
-      (*it)->updateIndicators();
+    for (auto & frame : data->frames) {
+      frame->updateIndicators();
     }
   }
 
   // get the message from the queue
-  LPMSG msg = (LPMSG)message;
-  msg->hwnd = NULL;
-  BOOL bRet = ::GetMessage(msg, NULL, 0, 0);
+  auto msg = (LPMSG)message;
+  msg->hwnd = nullptr;
+  BOOL bRet = ::GetMessage(msg, nullptr, 0, 0);
 
   // WM_QUIT received?
   if (bRet == 0)
@@ -381,23 +379,23 @@ bool vaca::CurrentThread::getMessage(Message& message)
 */
 bool CurrentThread::peekMessage(Message& message)
 {
-  LPMSG msg = (LPMSG)message;
-  msg->hwnd = NULL;
-  return ::PeekMessage(msg, NULL, 0, 0, PM_REMOVE) != FALSE;
+  auto msg = (LPMSG)message;
+  msg->hwnd = nullptr;
+  return ::PeekMessage(msg, nullptr, 0, 0, PM_REMOVE) != FALSE;
 }
 
 void CurrentThread::processMessage(Message& message)
 {
-  LPMSG msg = (LPMSG)message;
+  auto msg = (LPMSG)message;
 
   if (!CurrentThread::details::preTranslateMessage(message)) {
     // Send preTranslateMessage to the active window (useful for
     // modeless dialogs). WARNING: Don't use GetForegroundWindow
     // because it returns windows from other applications
     HWND hactive = GetActiveWindow();
-    if (hactive != NULL && hactive != msg->hwnd) {
+    if (hactive != nullptr && hactive != msg->hwnd) {
       Widget* activeWidget = Widget::fromHandle(hactive);
-      if (activeWidget != NULL && activeWidget->preTranslateMessage(message))
+      if (activeWidget != nullptr && activeWidget->preTranslateMessage(message))
 	return;
     }
 
@@ -419,7 +417,7 @@ void CurrentThread::processMessage(Message& message)
 */
 bool CurrentThread::details::preTranslateMessage(Message& message)
 {
-  LPMSG msg = (LPMSG)message;
+  auto msg = (LPMSG)message;
 
   // TODO process messages that produce a update-indicators event
   if ((msg->message == WM_ACTIVATE) ||
@@ -433,7 +431,7 @@ bool CurrentThread::details::preTranslateMessage(Message& message)
     data->updateIndicatorsMark = TimePoint();
   }
 
-  if (msg->hwnd != NULL) {
+  if (msg->hwnd != nullptr) {
     Widget* widget = Widget::fromHandle(msg->hwnd);
     if (widget && widget->preTranslateMessage(message))
       return true;

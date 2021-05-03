@@ -31,19 +31,19 @@ public:
   bool isHorizontal();
   bool isVertical();
 
-  bool isHomogeneous();
+  bool isHomogeneous() const;
 
-  int getBorder();
+  int getBorder() const;
   void setBorder(int border);
 
-  int getChildSpacing();
+  int getChildSpacing() const;
   void setChildSpacing(int childSpacing);
 
-  virtual Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn);
+  Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn) override;
 
 protected:
 
-  virtual void layout(Widget* parent, WidgetList& widgets, const Rect& rc);
+  void layout(Widget* parent, WidgetList& widgets, const Rect& rc) override;
 
 };
 

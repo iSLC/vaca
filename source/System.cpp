@@ -24,7 +24,7 @@ using namespace vaca;
 /**
    Prints a line in the console.
 */
-void System::println(String line)
+void System::println(const String& line)
 {
 #ifdef _UNICODE
   _putws(line.c_str());
@@ -53,7 +53,7 @@ void System::printf(LPCTSTR fmt, ...)
 #endif
 }
 
-void System::print(String buf)
+void System::print(const String& buf)
 {
 #ifdef UNICODE
   fputws(buf.c_str(), stdout);
@@ -145,7 +145,7 @@ String System::getShellFolderPath(int folderCsidl, bool create)
 {
   Char* buf = new Char[MAX_PATH];
 
-  if (SHGetSpecialFolderPath(NULL, buf, folderCsidl, create))
+  if (SHGetSpecialFolderPath(nullptr, buf, folderCsidl, create))
     return String(buf);
   else
     return L"";

@@ -31,8 +31,7 @@ PreferredSizeEvent::PreferredSizeEvent(Widget* source, const Size& fitIn)
    Destroys the PreferredSizeEvent.
 */
 PreferredSizeEvent::~PreferredSizeEvent()
-{
-}
+= default;
 
 Size PreferredSizeEvent::fitInSize() const
 {

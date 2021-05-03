@@ -25,7 +25,7 @@ using namespace vaca;
 
 TreeViewIterator::TreeViewIterator()
 {
-  m_currentNode = NULL;
+  m_currentNode = nullptr;
 }
 
 TreeViewIterator::TreeViewIterator(TreeNode* node)
@@ -53,7 +53,7 @@ void TreeViewIterator::increment()
   }
   // if the node doesn't have children, we must go to the next brother
   else {
-    while (m_currentNode->m_parent != NULL) {
+    while (m_currentNode->m_parent != nullptr) {
       std::vector<TreeNode*>::iterator it, begin, end;
 
       begin = m_currentNode->m_parent->m_children.begin();
@@ -90,12 +90,12 @@ bool TreeViewIterator::equal(TreeViewIterator const& other) const
 // ======================================================================
 // TreeView
 
-TreeView::TreeView(Widget* parent, Style style)
+TreeView::TreeView(Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_TREEVIEW), parent, style)
 {
   m_root.m_owner = this;
   m_deleted = false;
-  m_dragSource = NULL;
+  m_dragSource = nullptr;
 
   // Widget::setBgColor(Color(TreeView_GetBkColor(getHandle())));
   setBgColor(System::getColor(COLOR_WINDOW));
@@ -106,7 +106,7 @@ TreeView::TreeView(HWND handle)
 {
   m_root.m_owner = this;
   m_deleted = false;
-  m_dragSource = NULL;
+  m_dragSource = nullptr;
 
   // Widget::setBgColor(Color(TreeView_GetBkColor(getHandle())));
   setBgColor(System::getColor(COLOR_WINDOW));
@@ -229,11 +229,11 @@ TreeNode* TreeView::getSelectedNode() const
 {
   assert(::IsWindow(getHandle()));
 
-  HTREEITEM htreeitem = TreeView_GetSelection(getHandle());
-  if (htreeitem != NULL)
+  auto htreeitem = TreeView_GetSelection(getHandle());
+  if (htreeitem != nullptr)
     return TreeNode::fromHandle(getHandle(), htreeitem);
   else
-    return NULL;
+    return nullptr;
 }
 
 /**
@@ -253,11 +253,11 @@ TreeNode* TreeView::getDropTarget() const
 {
   assert(::IsWindow(getHandle()));
 
-  HTREEITEM htreeitem = TreeView_GetDropHilight(getHandle());
-  if (htreeitem != NULL)
+  auto htreeitem = TreeView_GetDropHilight(getHandle());
+  if (htreeitem != nullptr)
     return TreeNode::fromHandle(getHandle(), htreeitem);
   else
-    return NULL;
+    return nullptr;
 }
 
 void TreeView::setDropTarget(TreeNode* node)
@@ -284,13 +284,13 @@ TreeNode* TreeView::getNodeInPoint(const Point& pt)
   tvht.pt.x = pt.x;
   tvht.pt.y = pt.y;
 
-  HTREEITEM htreeitem = reinterpret_cast<HTREEITEM>
+  auto htreeitem = reinterpret_cast<HTREEITEM>
     (sendMessage(TVM_HITTEST, 0, reinterpret_cast<LPARAM>(&tvht)));
 
-  if (htreeitem != NULL)
+  if (htreeitem != nullptr)
     return TreeNode::fromHandle(getHandle(), htreeitem);
   else
-    return NULL;
+    return nullptr;
 }
 
 void TreeView::setBgColor(const Color& color)
@@ -304,18 +304,18 @@ void TreeView::setBgColor(const Color& color)
 void TreeView::onMouseMove(MouseEvent& ev)
 {
   if (m_dragSource) {
-    ImageList_DragLeave(NULL);
+    ImageList_DragLeave(nullptr);
 
     TreeNode* node = getNodeInPoint(ev.getPoint());
     if (node)
       setDropTarget(node);
     else
-      setDropTarget(NULL);
+      setDropTarget(nullptr);
 
     Point pt = getAbsoluteClientBounds().getOrigin() + ev.getPoint();
 
     ImageList_DragMove(pt.x, pt.y);
-    ImageList_DragEnter(NULL, pt.x, pt.y);
+    ImageList_DragEnter(nullptr, pt.x, pt.y);
   }
 }
 
@@ -324,12 +324,12 @@ void TreeView::onMouseUp(MouseEvent& ev)
   if (m_dragSource) {
     releaseMouse();
 
-    ImageList_DragLeave(NULL);
+    ImageList_DragLeave(nullptr);
     ImageList_EndDrag();
 
     TreeNode* dropNode = getDropTarget();
 
-    if (dropNode != NULL &&
+    if (dropNode != nullptr &&
 	m_dragSource != dropNode &&
 	!m_dragSource->isAncestorOf(dropNode)) {
       // Remove the node from the TreeView
@@ -339,11 +339,11 @@ void TreeView::onMouseUp(MouseEvent& ev)
       dropNode->addNode(m_dragSource);
     }
 
-    setDropTarget(NULL);
+    setDropTarget(nullptr);
 
     // Select the source
     setSelectedNode(m_dragSource);
-    m_dragSource = NULL;
+    m_dragSource = nullptr;
   }
 }
 
@@ -352,7 +352,7 @@ void TreeView::onSetCursor(SetCursorEvent& ev)
   if (!ev.isConsumed() && m_dragSource) {
     TreeNode* dropNode = getDropTarget();
 
-    if (dropNode != NULL &&
+    if (dropNode != nullptr &&
 	m_dragSource != dropNode &&
 	!m_dragSource->isAncestorOf(dropNode)) {
       ev.setCursor(Cursor(SysCursor::Arrow));
@@ -437,8 +437,8 @@ bool TreeView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
   switch (lpnmhdr->code) {
 
     case TVN_GETDISPINFO: {
-      LPNMTVDISPINFO lptvdi = reinterpret_cast<LPNMTVDISPINFO>(lpnmhdr);
-      TreeNode* node = reinterpret_cast<TreeNode*>(lptvdi->item.lParam);
+      auto lptvdi = reinterpret_cast<LPNMTVDISPINFO>(lpnmhdr);
+      auto* node = reinterpret_cast<TreeNode*>(lptvdi->item.lParam);
 
       assert(node != NULL);
       // why why WHY?  When I delete a TreeNode (calling TreeView_DeleteItem)
@@ -467,8 +467,8 @@ bool TreeView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
       // TVN_ITEMEXPANDING
 
     case TVN_ITEMEXPANDING: {
-      LPNMTREEVIEW lppnmtv = reinterpret_cast<LPNMTREEVIEW>(lpnmhdr);
-      TreeNode* node = reinterpret_cast<TreeNode*>(lppnmtv->itemNew.lParam);
+      auto lppnmtv = reinterpret_cast<LPNMTREEVIEW>(lpnmhdr);
+      auto* node = reinterpret_cast<TreeNode*>(lppnmtv->itemNew.lParam);
 
       assert(node != NULL);
       if (node->m_deleted)
@@ -500,8 +500,8 @@ bool TreeView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
       // TVN_SELCHANGING
 
     case TVN_SELCHANGING: {
-      LPNMTREEVIEW lppnmtv = reinterpret_cast<LPNMTREEVIEW>(lpnmhdr);
-      TreeNode* node = reinterpret_cast<TreeNode*>(lppnmtv->itemNew.lParam);
+      auto lppnmtv = reinterpret_cast<LPNMTREEVIEW>(lpnmhdr);
+      auto* node = reinterpret_cast<TreeNode*>(lppnmtv->itemNew.lParam);
 
       assert(node != NULL);
       if (node->m_deleted)
@@ -522,8 +522,8 @@ bool TreeView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
       // TVN_ITEMEXPANDED
 
     case TVN_ITEMEXPANDED: {
-      LPNMTREEVIEW lppnmtv = reinterpret_cast<LPNMTREEVIEW>(lpnmhdr);
-      TreeNode* node = reinterpret_cast<TreeNode*>(lppnmtv->itemNew.lParam);
+      auto lppnmtv = reinterpret_cast<LPNMTREEVIEW>(lpnmhdr);
+      auto* node = reinterpret_cast<TreeNode*>(lppnmtv->itemNew.lParam);
 
       assert(node != NULL);
       if (node->m_deleted)
@@ -546,8 +546,8 @@ bool TreeView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
       // TVN_SELCHANGED
 
     case TVN_SELCHANGED: {
-      LPNMTREEVIEW lppnmtv = reinterpret_cast<LPNMTREEVIEW>(lpnmhdr);
-      TreeNode* node = reinterpret_cast<TreeNode*>(lppnmtv->itemNew.lParam);
+      auto lppnmtv = reinterpret_cast<LPNMTREEVIEW>(lpnmhdr);
+      auto* node = reinterpret_cast<TreeNode*>(lppnmtv->itemNew.lParam);
 
       assert(node != NULL);
       if (node->m_deleted)
@@ -561,8 +561,8 @@ bool TreeView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
     }
 
     case TVN_BEGINLABELEDIT: {
-      LPNMTVDISPINFO lptvdi = reinterpret_cast<LPNMTVDISPINFO>(lpnmhdr);
-      TreeNode* node = reinterpret_cast<TreeNode*>(lptvdi->item.lParam);
+      auto lptvdi = reinterpret_cast<LPNMTVDISPINFO>(lpnmhdr);
+      auto* node = reinterpret_cast<TreeNode*>(lptvdi->item.lParam);
 
       assert(node != NULL);
       if (node->m_deleted)
@@ -577,19 +577,19 @@ bool TreeView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
     }
 
     case TVN_ENDLABELEDIT: {
-      LPNMTVDISPINFO lptvdi = reinterpret_cast<LPNMTVDISPINFO>(lpnmhdr);
-      TreeNode* node = reinterpret_cast<TreeNode*>(lptvdi->item.lParam);
+      auto lptvdi = reinterpret_cast<LPNMTVDISPINFO>(lpnmhdr);
+      auto* node = reinterpret_cast<TreeNode*>(lptvdi->item.lParam);
 
       assert(node != NULL);
       if (node->m_deleted)
 	break;
 
       TreeViewEvent ev(this, node,
-		       lptvdi->item.pszText != NULL ? String(lptvdi->item.pszText):
+		       lptvdi->item.pszText != nullptr ? String(lptvdi->item.pszText):
 						      String(L""));
 
       // the label editing was canceled by the user?
-      if (lptvdi->item.pszText == NULL)
+      if (lptvdi->item.pszText == nullptr)
 	ev.cancel();
 
       onAfterLabelEdit(ev);
@@ -606,8 +606,8 @@ bool TreeView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
 
     case TVN_BEGINDRAG:
     case TVN_BEGINRDRAG: {
-      LPNMTREEVIEW lppnmtv = reinterpret_cast<LPNMTREEVIEW>(lpnmhdr);
-      TreeNode* node = reinterpret_cast<TreeNode*>(lppnmtv->itemNew.lParam);
+      auto lppnmtv = reinterpret_cast<LPNMTREEVIEW>(lpnmhdr);
+      auto* node = reinterpret_cast<TreeNode*>(lppnmtv->itemNew.lParam);
 
       captureMouse();
       m_dragSource = node;
@@ -626,7 +626,7 @@ bool TreeView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
 #endif
 
       int ex = 0;
-      if (m_normalImageList != NULL)
+      if (m_normalImageList != nullptr)
 	ex += m_normalImageList.getImageSize().w+2;
 
       ImageList_BeginDrag(m_dragImage.getHandle(), 0,
@@ -637,7 +637,7 @@ bool TreeView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
       // m_dragStartPoint = Point(lppnmtv->ptDrag.x, lppnmtv->ptDrag.y);
 
       ::ClientToScreen(getHandle(), &(lppnmtv->ptDrag));
-      ImageList_DragEnter(NULL, lppnmtv->ptDrag.x, lppnmtv->ptDrag.y);
+      ImageList_DragEnter(nullptr, lppnmtv->ptDrag.x, lppnmtv->ptDrag.y);
 
       return true;
     }

@@ -17,9 +17,9 @@ TreeNode::TreeNode(const String& text, int imageIndex, int selectedImageIndex)
   , m_image(imageIndex)
   , m_selectedImage(selectedImageIndex >= 0 ? selectedImageIndex: imageIndex)
 {
-  m_parent = NULL;
-  m_handle = NULL;
-  m_owner = NULL;
+  m_parent = nullptr;
+  m_handle = nullptr;
+  m_owner = nullptr;
 
   m_deleted = false;
 }
@@ -29,7 +29,7 @@ TreeNode::~TreeNode()
   m_deleted = true;
 
   // remove this node from the "m_children" field of the parent
-  if (m_parent != NULL)
+  if (m_parent != nullptr)
     remove_from_container(m_parent->m_children, this);
 
   // clone "m_children" collection, because when a TreeNode is
@@ -38,13 +38,12 @@ TreeNode::~TreeNode()
   TreeNodeList clone = m_children;
 
   // delete all sub-nodes (children), using the cloned collection
-  for (TreeNodeList::iterator
-	 it=clone.begin(); it!=clone.end(); ++it)
-    delete *it;
+  for (auto & it : clone)
+    delete it;
 
   // finally, we can remove the node from the Win32 TreeView control
   // (because it shouldn't have any children)
-  if (m_owner != NULL) {
+  if (m_owner != nullptr) {
     assert(TreeView_GetChild(m_owner->getHandle(), m_handle) == NULL);
 
     TreeView_DeleteItem(m_owner->getHandle(), m_handle);
@@ -53,8 +52,8 @@ TreeNode::~TreeNode()
 
 TreeNode* TreeNode::getParent()
 {
-  if (m_owner != NULL && &m_owner->m_root == m_parent)
-    return NULL;
+  if (m_owner != nullptr && &m_owner->m_root == m_parent)
+    return nullptr;
   else
     return m_parent;
 }
@@ -103,7 +102,7 @@ void TreeNode::removeNode(TreeNode* node)
   // remove this node from the "m_children" container of the parent
   remove_from_container(this->m_children, node);
 
-  node->m_parent = NULL;
+  node->m_parent = nullptr;
   node->removeFromTreeView();
 
   assert(node->m_handle == NULL);
@@ -114,7 +113,7 @@ bool TreeNode::isAncestorOf(TreeNode* child) const
   assert(child != NULL);
 
   child = child->getParent();
-  while (child != NULL) {
+  while (child != nullptr) {
     if (child == this)
       return true;
 
@@ -340,7 +339,7 @@ void TreeNode::addToTreeView(TreeView* treeView)
   assert(m_owner == NULL);
 
   m_owner = treeView;
-  if (treeView != NULL) {
+  if (treeView != nullptr) {
     TVINSERTSTRUCT is;
 
     is.hParent = m_parent->m_handle;
@@ -356,10 +355,9 @@ void TreeNode::addToTreeView(TreeView* treeView)
   }
 
   // Add all children too
-  for (TreeNodeList::iterator
-	 it=m_children.begin(); it!=m_children.end(); ++it) {
-    if ((*it)->m_owner == NULL)
-      (*it)->addToTreeView(treeView);
+  for (auto & it : m_children) {
+    if (it->m_owner == nullptr)
+      it->addToTreeView(treeView);
   }
 }
 
@@ -369,20 +367,19 @@ void TreeNode::addToTreeView(TreeView* treeView)
 void TreeNode::removeFromTreeView()
 {
   // Remove all children from the TreeView control
-  for (TreeNodeList::iterator
-	 it=m_children.begin(); it!=m_children.end(); ++it) {
-    (*it)->removeFromTreeView();
+  for (auto & it : m_children) {
+    it->removeFromTreeView();
   }
 
   // Remove the node from the Win32 TreeView control (because it
   // shouldn't have any children)
-  if (m_owner != NULL) {
+  if (m_owner != nullptr) {
     assert(m_handle != NULL);
 
     TreeView_DeleteItem(m_owner->getHandle(), m_handle);
 
-    m_handle = NULL;
-    m_owner = NULL;
+    m_handle = nullptr;
+    m_owner = nullptr;
   }
 
   assert(m_handle == NULL);

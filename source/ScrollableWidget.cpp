@@ -14,7 +14,7 @@
 
 using namespace vaca;
 
-ScrollableWidget::ScrollableWidget(Widget* parent, Style style)
+ScrollableWidget::ScrollableWidget(Widget* parent, const Style& style)
 : Widget(parent, style), m_fullSize(0, 0)
 {
 }

@@ -100,16 +100,16 @@ public:
 
   };
 
-  Dialog(const String& title, Widget* parent = NULL, Style style = Styles::Default);
-  Dialog(const WidgetClassName& className, const String& title, Widget* parent = NULL, Style style = Styles::Default);
-  explicit Dialog(ResourceId dialogId, Widget* parent = NULL);
+  Dialog(const String& title, Widget* parent = nullptr, const Style& style = Styles::Default);
+  Dialog(const WidgetClassName& className, const String& title, Widget* parent = nullptr, const Style& style = Styles::Default);
+  explicit Dialog(ResourceId dialogId, Widget* parent = nullptr);
   explicit Dialog(HWND handle);
-  virtual ~Dialog();
+  ~Dialog() override;
 
   void setReturnState(bool state);
 
   virtual bool doModal();
-  virtual bool preTranslateMessage(Message& message);
+  bool preTranslateMessage(Message& message) override;
 
   Widget* getNextFocusableWidget(Widget* widget);
   Widget* getPreviousFocusableWidget(Widget* widget);
@@ -120,7 +120,7 @@ public:
 protected:
   virtual void onOk();
   virtual void onCancel();
-  virtual void onCommand(CommandEvent& ev);
+  void onCommand(CommandEvent& ev) override;
 
 private:
   static INT_PTR CALLBACK globalDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);

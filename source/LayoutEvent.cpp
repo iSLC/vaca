@@ -19,8 +19,7 @@ LayoutEvent::LayoutEvent(Widget* source, const Rect& bounds)
    Destroys the LayoutEvent.
 */
 LayoutEvent::~LayoutEvent()
-{
-}
+= default;
 
 /**
    Returns the area where Widget#onLayout member function should

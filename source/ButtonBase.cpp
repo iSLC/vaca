@@ -13,7 +13,7 @@
 
 using namespace vaca;
 
-ButtonBase::ButtonBase(Widget* parent, Style style)
+ButtonBase::ButtonBase(Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_BUTTON), parent, style)
 {
 }
@@ -24,8 +24,7 @@ ButtonBase::ButtonBase(HWND handle)
 }
 
 ButtonBase::~ButtonBase()
-{
-}
+= default;
 
 /**
    Returns true if the button is selected or checked. It's useful to

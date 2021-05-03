@@ -27,21 +27,21 @@ class VACA_DLL ListColumn : public Component
 public:
 
   ListColumn(const String& text, TextAlign textAlign = TextAlign::Left);
-  virtual ~ListColumn();
+  ~ListColumn() override;
 
   ListView* getListView();
 
-  String getText() const;
+  [[nodiscard]] String getText() const;
   void setText(const String& text);
 
-  TextAlign getTextAlign() const;
+  [[nodiscard]] TextAlign getTextAlign() const;
   void setTextAlign(TextAlign textAlign);
 
-  int getWidth() const;
+  [[nodiscard]] int getWidth() const;
   void setWidth(int width);
   void setPreferredWidth(bool useHeader = true);
 
-  Rect getBounds() const;
+  [[nodiscard]] Rect getBounds() const;
 
   // int getIndex() const;
   // static ListColumn* fromIndex(HWND hwnd, int index);

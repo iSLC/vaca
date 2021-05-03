@@ -19,15 +19,15 @@ public:
     static const Style Default;
   };
 
-  StatusBar(Widget* parent, Style style = Styles::Default);
-  virtual ~StatusBar();
+  StatusBar(Widget* parent, const Style& style = Styles::Default);
+  ~StatusBar() override;
 
-  virtual bool isLayoutFree() const;
+  [[nodiscard]] bool isLayoutFree() const override;
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onLayout(LayoutEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
+  void onLayout(LayoutEvent& ev) override;
 };
 
 } // namespace vaca

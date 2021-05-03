@@ -36,9 +36,8 @@ Exception::Exception(const String& message)
 /**
    Destroys the exception.
 */
-Exception::~Exception() throw()
-{
-}
+Exception::~Exception() noexcept
+= default;
 
 /**
    Returns a printable C-string of the error.
@@ -47,12 +46,12 @@ Exception::~Exception() throw()
    create the exception, this member function returns the
    same string as #getMessage but in ASCII format.
 */
-const char* Exception::what() const throw()
+const char* Exception::what() const noexcept
 {
   return m_what.c_str();
 }
 
-const String& Exception::getMessage() const throw()
+const String& Exception::getMessage() const noexcept
 {
   return m_message;
 }
@@ -64,25 +63,25 @@ int Exception::getErrorCode() const
 
 void Exception::initialize()
 {
-  HMODULE hmodule = NULL;
+  HMODULE hmodule = nullptr;
   DWORD flags =
     FORMAT_MESSAGE_ALLOCATE_BUFFER |
     FORMAT_MESSAGE_FROM_SYSTEM |
     FORMAT_MESSAGE_IGNORE_INSERTS;
-  LPSTR msgbuf = NULL;
+  LPSTR msgbuf = nullptr;
 
   m_errorCode = static_cast<int>(GetLastError());
 
   // is it an network-error?
   if (m_errorCode >= NERR_BASE && m_errorCode <= MAX_NERR) {
     hmodule = LoadLibraryEx(L"netmsg.dll",
-			    NULL, LOAD_LIBRARY_AS_DATAFILE);
+			    nullptr, LOAD_LIBRARY_AS_DATAFILE);
     if (hmodule)
       flags |= FORMAT_MESSAGE_FROM_HMODULE;
   }
   else if (m_errorCode >= INTERNET_ERROR_BASE && m_errorCode <= INTERNET_ERROR_LAST) {
     hmodule = LoadLibraryEx(L"wininet.dll",
-			    NULL, LOAD_LIBRARY_AS_DATAFILE);
+			    nullptr, LOAD_LIBRARY_AS_DATAFILE);
     if (hmodule)
       flags |= FORMAT_MESSAGE_FROM_HMODULE;
   }
@@ -93,9 +92,9 @@ void Exception::initialize()
                       static_cast<DWORD>(m_errorCode),
 		      MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
 		      reinterpret_cast<LPSTR>(&msgbuf),
-		      0, NULL)) {
+		      0, nullptr)) {
     // error we can't load the string
-    msgbuf = NULL;
+    msgbuf = nullptr;
   }
 
   if (hmodule)

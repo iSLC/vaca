@@ -22,9 +22,9 @@ public:
     static const Style Default;
   };
 
-  Slider(Widget* parent, Style style = Styles::Default);
-  Slider(int minValue, int maxValue, int value, Widget* parent, Style style = Styles::Default);
-  virtual ~Slider();
+  Slider(Widget* parent, const Style& style = Styles::Default);
+  Slider(int minValue, int maxValue, int value, Widget* parent, const Style& style = Styles::Default);
+  ~Slider() override;
 
   Orientation getOrientation();
   void setOrientation(Orientation orientation);
@@ -54,8 +54,8 @@ public:
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onScroll(ScrollEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
+  void onScroll(ScrollEvent& ev) override;
   
   // New events
   virtual void onChange(Event& ev);

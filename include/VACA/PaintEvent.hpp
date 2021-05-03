@@ -22,11 +22,11 @@ class VACA_DLL PaintEvent : public Event
 public:
 
   PaintEvent(Widget* source, Graphics& graphics);
-  virtual ~PaintEvent();
+  ~PaintEvent() override;
 
   Graphics& getGraphics();
 
-  bool isPainted() const;
+  [[nodiscard]] bool isPainted() const;
 };
 
 } // namespace vaca

@@ -28,7 +28,7 @@ using namespace vaca;
 UINT FindTextDialog::m_findMsgId = 0;	// TODO add multithreading support
 
 FindTextDialog::FindTextDialog(bool replace, Widget* parent)
-  : Dialog(WidgetClassName::None, L"", NULL, Widget::Styles::None)
+  : Dialog(WidgetClassName::None, L"", nullptr, Widget::Styles::None)
   , m_replace(replace)
 {
   if (!m_findMsgId)
@@ -157,7 +157,7 @@ HWND FindTextDialog::createHandle(LPCTSTR className, Widget* parent, Style style
   m_findReplace.lpfnHook = &FindTextDialog::hookProc;
 
   if (m_replace) {
-    m_findReplace.lpstrReplaceWith = m_replace ? new Char[FINDREPLACE_BUFSIZE]: NULL;
+    m_findReplace.lpstrReplaceWith = m_replace ? new Char[FINDREPLACE_BUFSIZE]: nullptr;
     m_findReplace.wReplaceWithLen = static_cast<WORD>(m_replace ? FINDREPLACE_BUFSIZE : 0);
 
     ZeroMemory(m_findReplace.lpstrReplaceWith, m_findReplace.wReplaceWithLen);
@@ -169,7 +169,7 @@ HWND FindTextDialog::createHandle(LPCTSTR className, Widget* parent, Style style
 
 UINT_PTR CALLBACK FindTextDialog::hookProc(HWND hdlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-  FindTextDialog* dlg = dynamic_cast<FindTextDialog*>(Widget::fromHandle(hdlg));
+  auto* dlg = dynamic_cast<FindTextDialog*>(Widget::fromHandle(hdlg));
 
   switch (message) {
 

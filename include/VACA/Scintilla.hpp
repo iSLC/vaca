@@ -37,19 +37,19 @@ public:
   };
 
   SciEdit(Widget* parent, Style style = Styles::Default);
-  virtual ~SciEdit();
+  ~SciEdit() override;
 
-  virtual void setFont(Font font);
+  void setFont(Font font) override;
 
   // ======================================================================
   // Text retrieval and modification
-  virtual String getText() const;
-  virtual void setText(const String& str);
+  [[nodiscard]] String getText() const override;
+  void setText(const String& str) override;
   void setSavePoint();
-  String getLine(int line) const;
+  [[nodiscard]] String getLine(int line) const;
   void replaceSel(const String& str);
   void setReadOnly(bool readOnly);
-  bool getReadOnly() const;
+  [[nodiscard]] bool getReadOnly() const;
 // SCI_GETTEXTRANGE(<unused>, TextRange* tr)
 // SCI_GETSTYLEDTEXT(<unused>, TextRange* tr)
 // SCI_ALLOCATE(int bytes, <unused>)
@@ -61,7 +61,7 @@ public:
   void insertText(int pos, const String& str);
   void clearAll();
 // SCI_CLEARDOCUMENTSTYLE
-  char getCharAt(int pos) const;
+  [[nodiscard]] char getCharAt(int pos) const;
 // SCI_GETSTYLEAT(int pos)
 // SCI_SETSTYLEBITS(int bits)
 // SCI_GETSTYLEBITS
@@ -89,7 +89,7 @@ public:
   // ======================================================================
   // Overtype (overwrite-mode)
   void setOverwriteMode(bool state);
-  bool getOverwriteMode() const;
+  [[nodiscard]] bool getOverwriteMode() const;
 
   // ======================================================================
   // Cut, copy and paste
@@ -111,9 +111,9 @@ public:
   // ======================================================================
   // Undo and Redo
   void undo();
-  bool canUndo() const;
+  [[nodiscard]] bool canUndo() const;
   void redo();
-  bool canRedo() const;
+  [[nodiscard]] bool canRedo() const;
   void emptyUndoBuffer();
 // SCI_SETUNDOCOLLECTION(bool collectUndo)
 // SCI_GETUNDOCOLLECTION
@@ -122,28 +122,28 @@ public:
 
   // ======================================================================
   // Selection and information
-  int getTextLength() const;
-  int getLineCount() const;
-  int getFirstVisibleLine() const;
-  int getLinesOnScreen() const;
-  bool isModified() const;
+  [[nodiscard]] int getTextLength() const;
+  [[nodiscard]] int getLineCount() const;
+  [[nodiscard]] int getFirstVisibleLine() const;
+  [[nodiscard]] int getLinesOnScreen() const;
+  [[nodiscard]] bool isModified() const;
 // SCI_SETSEL(int anchorPos, int currentPos)
   void goToPos(int pos);
   void goToLine(int line);
   void setCurrentPos(int pos);
-  int getCurrentPos() const;
+  [[nodiscard]] int getCurrentPos() const;
   void setAnchor(int pos);
-  int getAnchor() const;
+  [[nodiscard]] int getAnchor() const;
 // SCI_SETSELECTIONSTART(int position)
 // SCI_SETSELECTIONEND(int position)
-  int getSelectionStart() const;
-  int getSelectionEnd() const;
+  [[nodiscard]] int getSelectionStart() const;
+  [[nodiscard]] int getSelectionEnd() const;
 // SCI_SELECTALL
 // SCI_LINEFROMPOSITION(int position)
 // SCI_POSITIONFROMLINE(int line)
 // SCI_GETLINEENDPOSITION(int line)
-  int getLineLength(int line) const;
-  String getSelText() const;
+  [[nodiscard]] int getLineLength(int line) const;
+  [[nodiscard]] String getSelText() const;
 // SCI_GETCURLINE(int textLen, char* text)
 // SCI_SELECTIONISRECTANGLE
 // SCI_SETSELECTIONMODE(int mode)
@@ -204,10 +204,10 @@ public:
   // ======================================================================
   // Line endings
   void setEolMode(int eolMode);
-  int getEolMode() const;
+  [[nodiscard]] int getEolMode() const;
   void convertEols(int eolMode);
   void setViewEol(bool visible);
-  bool getViewEol() const;
+  [[nodiscard]] bool getViewEol() const;
 
   // ======================================================================
   // Styling
@@ -585,7 +585,7 @@ public:
 
 protected:
   // Reflected notifications
-  virtual bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult);
+  bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult) override;
 
   // New events
 // SCN_STYLENEEDED

@@ -8,12 +8,11 @@
 
 using namespace vaca;
 
-ToggleButton::ToggleButton(const String& text, Widget* parent, Style style)
+ToggleButton::ToggleButton(const String& text, Widget* parent, const Style& style)
   : ButtonBase(parent, style)
 {
   setText(text);
 }
 
 ToggleButton::~ToggleButton()
-{
-}
+= default;

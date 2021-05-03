@@ -19,7 +19,7 @@ public:
 
   ResourceException() : Exception() { }
   ResourceException(const String& message) : Exception(message) { }
-  virtual ~ResourceException() throw() { }
+  ~ResourceException() noexcept override = default;
 
 };
 

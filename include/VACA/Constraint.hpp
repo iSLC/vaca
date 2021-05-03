@@ -29,7 +29,7 @@ class VACA_DLL Constraint : public Referenceable
 public:
 
   Constraint();
-  virtual ~Constraint();
+  ~Constraint() override;
 
 };
 

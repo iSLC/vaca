@@ -52,25 +52,25 @@ class VACA_DLL Bix : public Layout
 public:
 
   Bix(int flags, int matrixColumns = 0);
-  virtual ~Bix();
+  ~Bix() override;
 
-  bool isRow();
-  bool isCol();
-  bool isMat();
-  bool isEvenX();
-  bool isEvenY();
-  bool isEven();
-  bool isFillX();
-  bool isFillY();
-  bool isFill();
+  [[nodiscard]] bool isRow() const;
+  [[nodiscard]] bool isCol() const;
+  [[nodiscard]] bool isMat() const;
+  [[nodiscard]] bool isEvenX() const;
+  [[nodiscard]] bool isEvenY() const;
+  [[nodiscard]] bool isEven() const;
+  [[nodiscard]] bool isFillX() const;
+  [[nodiscard]] bool isFillY() const;
+  [[nodiscard]] bool isFill() const;
 
-  int getBorder();
+  [[nodiscard]] int getBorder() const;
   void setBorder(int border);
 
-  int getChildSpacing();
+  int getChildSpacing() const;
   void setChildSpacing(int childSpacing);
 
-  int getMatrixColumns();
+  int getMatrixColumns() const;
   void setMatrixColumns(int matrixColumns);
 
   Bix* add(int flags, int matrixColumns = 0);
@@ -79,13 +79,13 @@ public:
   void remove(Bix* subbix);
   void remove(Widget* child);
 
-  virtual Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn);
+  Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn) override;
 
   static Bix* parse(const Char* fmt, ...);
 
 protected:
 
-  virtual void layout(Widget* parent, WidgetList& widgets, const Rect& rc);
+  void layout(Widget* parent, WidgetList& widgets, const Rect& rc) override;
 
 private:
 

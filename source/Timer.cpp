@@ -18,7 +18,7 @@
 using namespace vaca;
 
 static Mutex               timer_mutex;		// monitor
-static Thread*             timer_thread = NULL; // the thread that process timers
+static Thread*             timer_thread = nullptr; // the thread that process timers
 static std::vector<Timer*> timers;              // list of timers to be processed
 static bool                timer_break = false; // break the loop in timer_thread_proc()
 static ConditionVariable   wakeup_condition;    // wake-up the timer thread loop
@@ -46,7 +46,7 @@ Timer::~Timer()
 
    @see #onTick
 */
-int Timer::getInterval()
+int Timer::getInterval() const
 {
   return m_interval;
 }
@@ -69,7 +69,7 @@ void Timer::setInterval(int interval)
 /**
    Returns true if the timer is running (generating ticks).
 */
-bool Timer::isRunning()
+bool Timer::isRunning() const
 {
   return m_running;
 }
@@ -229,7 +229,7 @@ void Timer::start_timer_thread()
 {
   ScopedLock hold(timer_mutex);
 
-  if (timer_thread == NULL)
+  if (timer_thread == nullptr)
     timer_thread = new Thread(&run_timer_thread);
 }
 
@@ -240,16 +240,16 @@ void Timer::start_timer_thread()
 */
 void Timer::stop_timer_thread()
 {
-  Thread* thrd = NULL;
+  Thread* thrd = nullptr;
 
   {
     ScopedLock hold(timer_mutex);
 
-    if (timer_thread == NULL)
+    if (timer_thread == nullptr)
       return;
 
     thrd = timer_thread;
-    timer_thread = NULL;
+    timer_thread = nullptr;
 
     timer_break = true;
     wakeup_condition.notifyOne();
@@ -258,7 +258,7 @@ void Timer::stop_timer_thread()
   thrd->join();
 
   delete thrd;
-  thrd = NULL;
+  thrd = nullptr;
 }
 
 /**

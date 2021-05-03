@@ -23,8 +23,7 @@ TimePoint::TimePoint()
    Destroys the TimePoint.
 */
 TimePoint::~TimePoint()
-{
-}
+= default;
 
 /**
    Resets the chronometer.

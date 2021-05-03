@@ -27,7 +27,7 @@ using namespace vaca;
      that you specified using #setImageList.
    @endwin32
 */
-ListView::ListView(Widget* parent, Style style)
+ListView::ListView(Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_LISTVIEW), parent,
 	   style | Style(LVS_SHAREIMAGELISTS | LVS_OWNERDATA, 0))
 {
@@ -435,7 +435,7 @@ bool ListView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
   switch (lpnmhdr->code) {
 
     case LVN_GETDISPINFO: {
-      NMLVDISPINFO* lplvdi = reinterpret_cast<NMLVDISPINFO*>(lpnmhdr);
+      auto* lplvdi = reinterpret_cast<NMLVDISPINFO*>(lpnmhdr);
       size_t i = static_cast<size_t>(lplvdi->item.iItem);
 
       assert(i >= 0 && i < m_items.size());
@@ -458,47 +458,47 @@ bool ListView::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
     }
 
     case LVN_ITEMCHANGING: {
-      LPNMLISTVIEW lpnmlv = reinterpret_cast<LPNMLISTVIEW>(lpnmhdr);
+      auto lpnmlv = reinterpret_cast<LPNMLISTVIEW>(lpnmhdr);
       size_t i = static_cast<size_t>(lpnmlv->iItem);
       ListItem* item;
 
       if (i >= 0 && i < m_items.size())
 	item = m_items[i];
       else
-	item = NULL;
+	item = nullptr;
 
-      ListViewEvent ev(this, item, NULL);
+      ListViewEvent ev(this, item, nullptr);
       onBeforeSelect(ev);
       lResult = ev.isCanceled() ? TRUE: FALSE;
       return true;
     }
 
     case LVN_ITEMCHANGED: {
-      LPNMLISTVIEW lpnmlv = reinterpret_cast<LPNMLISTVIEW>(lpnmhdr);
+      auto lpnmlv = reinterpret_cast<LPNMLISTVIEW>(lpnmhdr);
       size_t i = static_cast<size_t>(lpnmlv->iItem);
       ListItem* item;
 
       if (i >= 0 && i < m_items.size())
 	item = m_items[i];
       else
-	item = NULL;
+	item = nullptr;
 
-      ListViewEvent ev(this, item, NULL);
+      ListViewEvent ev(this, item, nullptr);
       onAfterSelect(ev);
       break;
     }
 
     case LVN_COLUMNCLICK: {
-      LPNMLISTVIEW lpnmlv = reinterpret_cast<LPNMLISTVIEW>(lpnmhdr);
+      auto lpnmlv = reinterpret_cast<LPNMLISTVIEW>(lpnmhdr);
       size_t i = static_cast<size_t>(lpnmlv->iSubItem);
       ListColumn* column;
 
       if (i >= 0 && i < m_columns.size())
 	column = m_columns[i];
       else
-	column = NULL;
+	column = nullptr;
 
-      ListViewEvent ev(this, NULL, column);
+      ListViewEvent ev(this, nullptr, column);
       onColumnClick(ev);
       break;
     }

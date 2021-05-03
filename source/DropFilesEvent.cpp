@@ -25,8 +25,7 @@ DropFilesEvent::DropFilesEvent(Widget* widget, std::vector<String> &files)
    Destroys the event.
 */
 DropFilesEvent::~DropFilesEvent()
-{
-}
+= default;
 
 /**
    @return The list of dropped files.

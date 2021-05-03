@@ -16,7 +16,7 @@
 
 using namespace vaca;
 
-ProgressBar::ProgressBar(Widget* parent, Style style)
+ProgressBar::ProgressBar(Widget* parent, const Style& style)
   : Widget(WidgetClassName(PROGRESS_CLASS), parent, style)
 {
   // default values
@@ -25,7 +25,7 @@ ProgressBar::ProgressBar(Widget* parent, Style style)
 }
 
 ProgressBar::ProgressBar(int minValue, int maxValue,
-			 Widget* parent, Style style)
+			 Widget* parent, const Style& style)
   : Widget(WidgetClassName(PROGRESS_CLASS), parent, style)
 {
   assert(minValue <= maxValue);
@@ -35,8 +35,7 @@ ProgressBar::ProgressBar(int minValue, int maxValue,
 }
 
 ProgressBar::~ProgressBar()
-{
-}
+= default;
 
 /**
    PBM_SETBKCOLOR

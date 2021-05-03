@@ -25,11 +25,11 @@ class VACA_DLL CancelableEvent : public Event
 
 public:
 
-  CancelableEvent(Component* source);
-  virtual ~CancelableEvent();
+  explicit CancelableEvent(Component* source);
+  ~CancelableEvent() override;
 
   void cancel();
-  bool isCanceled() const;
+  [[nodiscard]] bool isCanceled() const;
 
 };
 

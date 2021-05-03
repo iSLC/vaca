@@ -19,9 +19,9 @@ class MessageException : public Exception
 {
 public:
 
-  MessageException() { }
+  MessageException() = default;
   MessageException(const String& message) : Exception(message) { }
-  virtual ~MessageException() throw() { }
+  ~MessageException() noexcept override = default;
 
 };
 
@@ -37,7 +37,7 @@ class VACA_DLL Message
   friend class Thread;
   friend class Widget;
 
-  MSG m_msg;
+  MSG m_msg{};
 
 public:
 
@@ -46,7 +46,7 @@ public:
   Message(const Message& msg, void* payload);
   virtual ~Message();
 
-  void* getPayload();
+  void* getPayload() const;
 
   inline bool operator==(const Message& message) const {
     return m_msg.message == message.m_msg.message;

@@ -21,8 +21,8 @@ public:
     static const Style Default;
   };
 
-  ToggleButton(const String& text, Widget* parent, Style style = Styles::Default);
-  virtual ~ToggleButton();
+  ToggleButton(const String& text, Widget* parent, const Style& style = Styles::Default);
+  ~ToggleButton() override;
 
 };
 

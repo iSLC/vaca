@@ -16,7 +16,7 @@
 
 using namespace vaca;
 
-HINSTANCE RichEditRegister::hmod = NULL;
+HINSTANCE RichEditRegister::hmod = nullptr;
 
 /**
    Tries to load the Riched20 DLL.
@@ -25,15 +25,15 @@ HINSTANCE RichEditRegister::hmod = NULL;
 */
 RichEditRegister::RichEditRegister()
 {
-  if (hmod == NULL) {
+  if (hmod == nullptr) {
     // try SciLexer.dll
     hmod = LoadLibrary(L"Riched20.dll");
-    if (hmod == NULL)
+    if (hmod == nullptr)
       throw RegisterException(L"Cannot load Riched20.dll");
   }
 }
 
-RichEdit::RichEdit(const String& text, Widget* parent, Style style)
+RichEdit::RichEdit(const String& text, Widget* parent, const Style& style)
   : Widget(WidgetClassName(RICHEDIT_CLASS), parent, style)
 {
   setText(text);
@@ -41,8 +41,7 @@ RichEdit::RichEdit(const String& text, Widget* parent, Style style)
 }
 
 RichEdit::~RichEdit()
-{
-}
+= default;
 
 void RichEdit::setBgColor(const Color& color)
 {

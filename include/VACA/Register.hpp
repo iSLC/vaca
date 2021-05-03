@@ -22,9 +22,9 @@ class RegisterException : public Exception
 {
 public:
 
-  RegisterException() { }
+  RegisterException() = default;
   RegisterException(const String& message) : Exception(message) { }
-  virtual ~RegisterException() throw() { }
+  ~RegisterException() noexcept override = default;
 
 };
 

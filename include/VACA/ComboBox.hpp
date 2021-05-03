@@ -28,8 +28,8 @@ public:
     static const Style Editable;
   };
 
-  ComboBox(Widget* parent, Style style = Styles::Default);
-  virtual ~ComboBox();
+  ComboBox(Widget* parent, const Style& style = Styles::Default);
+  ~ComboBox() override;
 
   int addItem(const String& text);
   void insertItem(int itemIndex, const String& text);
@@ -55,15 +55,15 @@ public:
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onLayout(LayoutEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
+  void onLayout(LayoutEvent& ev) override;
 
   // New events
   virtual void onSelChange(Event& ev);
   virtual void onEditChange(Event& ev);
 
   // Reflected notifications
-  virtual bool onReflectedCommand(int id, int code, LRESULT& lResult);
+  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
 
 private:
   int getHeightForAllItems();

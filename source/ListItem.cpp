@@ -16,12 +16,12 @@ ListItem::ListItem(const String& text, int imageIndex)
   m_text.push_back(text);
   m_image = imageIndex;
   m_index = -1;
-  m_owner = NULL;
+  m_owner = nullptr;
 }
 
 ListItem::~ListItem()
 {
-  if (m_owner != NULL) {
+  if (m_owner != nullptr) {
     assert(m_index >= 0);
 
     // ListView_DeleteItem(m_owner->getHandle(), m_index);
@@ -33,7 +33,7 @@ ListView* ListItem::getListView()
   return m_owner;
 }
 
-int ListItem::getIndex()
+int ListItem::getIndex() const
 {
   return m_index;
 }
@@ -160,13 +160,13 @@ void ListItem::addToListView(ListView* listView)
 */
 void ListItem::removeFromListView()
 {
-  if (m_owner != NULL) {
+  if (m_owner != nullptr) {
     // assert(m_index >= 0);
 
     // ListView_DeleteItem(m_owner->getHandle(), m_index);
 
     // m_index = -1;
-    m_owner = NULL;
+    m_owner = nullptr;
   }
 
   // assert(m_index < 0);

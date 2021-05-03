@@ -66,7 +66,7 @@ public:
   /**
      Returns which mutex is being held.
   */
-  Mutex& getMutex() const
+  [[nodiscard]] Mutex& getMutex() const
   {
     return m_mutex;
   }

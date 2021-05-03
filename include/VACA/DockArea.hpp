@@ -52,15 +52,15 @@ public:
     static const Style Default;
   };
 
-  DockArea(Side side, Widget* parent, Style style = Styles::Default);
-  virtual ~DockArea();
+  DockArea(Side side, Widget* parent, const Style& style = Styles::Default);
+  ~DockArea() override;
 
   bool isHorizontal();
   bool isVertical();
 
   Side getSide();
 
-  virtual bool isLayoutFree() const;
+  [[nodiscard]] bool isLayoutFree() const override;
 
   /**
      Returns true if the point @a pt is inside a valid rectangle to dock
@@ -111,7 +111,7 @@ private:
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev) = 0;
+  void onPreferredSize(PreferredSizeEvent& ev) override = 0;
 
   // New events
   virtual void onAddDockBar(DockBar* dockBar);

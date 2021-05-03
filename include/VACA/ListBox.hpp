@@ -24,8 +24,8 @@ public:
     static const Style Default;
   };
 
-  ListBox(Widget* parent, Style style = Styles::Default);
-  virtual ~ListBox();
+  ListBox(Widget* parent, const Style& style = Styles::Default);
+  ~ListBox() override;
 
   int addItem(const String& text);
   void insertItem(int itemIndex, const String& text);
@@ -48,14 +48,14 @@ public:
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
 
   // New events
   virtual void onItemDoubleClick(Event& ev);
   virtual void onSelChange(Event& ev);
 
   // Reflected notifications
-  virtual bool onReflectedCommand(int id, int code, LRESULT& lResult);
+  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
 
 };
 
@@ -67,7 +67,7 @@ public:
     static const Style Default;
   };
 
-  DragListBox(Widget* parent, Style style = Styles::Default);
+  DragListBox(Widget* parent, const Style& style = Styles::Default);
 
 };
 

@@ -27,7 +27,7 @@ public:
   Command(CommandId id);
   virtual ~Command();
 
-  CommandId getId() const { return m_id; }
+  [[nodiscard]] CommandId getId() const { return m_id; }
 
   virtual void execute() = 0;
 
@@ -83,15 +83,15 @@ public:
     Execute.connect(m, t);
   }
 
-  virtual ~SignalCommand() { }
+  ~SignalCommand() override = default;
 
-  virtual void execute() { Execute(); }
+  void execute() override { Execute(); }
 
-  virtual bool isEnabled() {
+  bool isEnabled() override {
     return Enabled(true);	// true by default
   }
 
-  virtual bool isChecked() {
+  bool isChecked() override {
     return Checked(false);	// false by default
   }
 
@@ -113,7 +113,7 @@ public:
 
   void addCommand(Command* cmd);
   Command* removeCommand(Command* cmd);
-  Command* getCommandById(CommandId id) const;
+  [[nodiscard]] Command* getCommandById(CommandId id) const;
 };
 
 } // namespace vaca

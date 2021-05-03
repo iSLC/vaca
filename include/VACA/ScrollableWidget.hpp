@@ -35,21 +35,21 @@ public:
     static const Style Default;
   };
   
-  ScrollableWidget(Widget* parent, Style style = Styles::Default);
+  ScrollableWidget(Widget* parent, const Style& style = Styles::Default);
 
-  Size getFullSize() const;
+  [[nodiscard]] Size getFullSize() const;
   void setFullSize(const Size& sz);
 
   // Events
 protected:
-  virtual void onResize(ResizeEvent& ev);
-  virtual void onMouseEnter(MouseEvent& ev);
-  virtual void onMouseDown(MouseEvent& ev);
-  virtual void onMouseMove(MouseEvent& ev);
-  virtual void onMouseUp(MouseEvent& ev);
-  virtual void onMouseWheel(MouseEvent& ev);
-  virtual void onSetCursor(SetCursorEvent& ev);
-  virtual void onScroll(ScrollEvent& ev);
+  void onResize(ResizeEvent& ev) override;
+  void onMouseEnter(MouseEvent& ev) override;
+  void onMouseDown(MouseEvent& ev) override;
+  void onMouseMove(MouseEvent& ev) override;
+  void onMouseUp(MouseEvent& ev) override;
+  void onMouseWheel(MouseEvent& ev) override;
+  void onSetCursor(SetCursorEvent& ev) override;
+  void onScroll(ScrollEvent& ev) override;
 
 };
 

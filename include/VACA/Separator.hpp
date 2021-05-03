@@ -19,13 +19,13 @@ public:
     static const Style Default;
   };
 
-  Separator(Widget* parent, Style style = Styles::Default);
-  virtual ~Separator();
+  Separator(Widget* parent, const Style& style = Styles::Default);
+  ~Separator() override;
 
 protected:
 
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
 
 };
 

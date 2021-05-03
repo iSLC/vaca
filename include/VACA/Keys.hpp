@@ -230,7 +230,7 @@ struct Keys {
 
   // Masks
   static const int KeyCode   = 0x0000ffff;
-  static const int Modifiers = 0xffff0000;
+  static const int Modifiers = static_cast<int>(0xffff0000);
 
   // Modifiers
   static const int Shift     = 0x00010000;

@@ -88,7 +88,7 @@ static void create_atom()
        Widget::Styles::Visible) and styles for particular widgets (like
        TextEdit::Styles::ReadOnly for TextEdit).
 */
-Widget::Widget(const WidgetClassName& className, Widget* parent, Style style)
+Widget::Widget(const WidgetClassName& className, Widget* parent, const Style& style)
 {
   initialize();
 
@@ -110,7 +110,7 @@ Widget::Widget(const WidgetClassName& className, Widget* parent, Style style)
    @param style
   	Style for the widget.
 */
-Widget::Widget(Widget* parent, Style style)
+Widget::Widget(Widget* parent, const Style& style)
 {
   initialize();
 
@@ -143,17 +143,17 @@ Widget::Widget(HWND handle)
   initialize();
 
   // the handle must be a valid Win32 handle
-  if (handle == NULL || !::IsWindow(handle))
+  if (handle == nullptr || !::IsWindow(handle))
     throw CreateWidgetException(format_string(L"Cannot create a widget with an invalid handle."));
 
   // avoid double-subclassing
-  if (fromHandle(handle) != NULL)
+  if (fromHandle(handle) != nullptr)
     throw CreateWidgetException(format_string(L"Cannot subclass two times the same widget."));
 
   // calibrate members so this special Widget acts like a "HWND wrapper"
   m_handle            = handle;
-  m_defWndProc        = NULL; // m_baseWndProc will be used
-  m_destroyHandleProc = NULL; // to avoid destroying this widget in dtor
+  m_defWndProc        = nullptr; // m_baseWndProc will be used
+  m_destroyHandleProc = nullptr; // to avoid destroying this widget in dtor
 
   // subclass the handle
   subClass();
@@ -162,8 +162,8 @@ Widget::Widget(HWND handle)
 
   // add the widget to its parent
   HWND parent_handle = ::GetParent(handle);
-  Widget* parent = parent_handle ? Widget::fromHandle(parent_handle): NULL;
-  if (parent != NULL)
+  Widget* parent = parent_handle ? Widget::fromHandle(parent_handle): nullptr;
+  if (parent != nullptr)
     parent->addChildWin32(this, false);
 }
 
@@ -171,20 +171,20 @@ void Widget::initialize()
 {
   create_atom();
 
-  m_handle            = NULL;
-  m_parent            = NULL;
+  m_handle            = nullptr;
+  m_parent            = nullptr;
   m_fgColor           = System::getColor(COLOR_WINDOWTEXT);
   m_bgColor           = System::getColor(COLOR_3DFACE);
-  m_constraint        = NULL;
-  m_layout            = NULL;
-  m_baseWndProc       = NULL;
+  m_constraint        = nullptr;
+  m_layout            = nullptr;
+  m_baseWndProc       = nullptr;
   m_hasMouse          = false;
   m_deleteAfterEvent  = false;
   m_doubleBuffered    = false;
-  m_preferredSize     = NULL;
+  m_preferredSize     = nullptr;
   m_defWndProc        = ::DefWindowProc;
   m_destroyHandleProc = Widget_DestroyHandleProc;
-  m_hbrush            = NULL;
+  m_hbrush            = nullptr;
 }
 
 /**
@@ -215,7 +215,7 @@ Widget::~Widget()
   if (m_destroyHandleProc)
     ::ShowWindow(m_handle, SW_HIDE);
 
-  if (getParent() != NULL) {
+  if (getParent() != nullptr) {
     // this is very important!!! we cannot set the parent of the HWND:
     // MdiChild needs the parent HWND to send WM_MDIDESTROY
     getParent()->removeChildWin32(this, false); // <-- false means: do not call Win32's SetParent
@@ -224,18 +224,17 @@ Widget::~Widget()
   // delete all children (this is the case for children added using
   // "new" operator that were not deleted)
   WidgetList children = getChildren(); // we need a copy of the children's list because...
-  for (WidgetList::iterator
-	 it = children.begin(); it != children.end(); ++it) {
+  for (auto & it : children) {
     // ...each destructor will modify the m_children collection
-    delete (*it);
+    delete it;
   }
 
-  m_constraint = NULL;		// unref the constraint
-  m_layout = NULL;		// unref the layout manager
+  m_constraint = nullptr;		// unref the constraint
+  m_layout = nullptr;		// unref the layout manager
   delete m_preferredSize;	// delete the preferred size
 
   // restore the old window-procedure
-  if (m_baseWndProc != NULL)
+  if (m_baseWndProc != nullptr)
     SetWindowLongPtr(m_handle, GWLP_WNDPROC,
 		     reinterpret_cast<LONG_PTR>(m_baseWndProc));
 
@@ -248,7 +247,7 @@ Widget::~Widget()
   else
     RemoveProp(m_handle, VACA_ATOM);
 
-  m_handle = NULL;
+  m_handle = nullptr;
 }
 
 // ============================================================
@@ -267,7 +266,7 @@ Widget* Widget::getRoot()
 {
   Widget* root = this;
 
-  while (root->m_parent != NULL)
+  while (root->m_parent != nullptr)
     root = root->m_parent;
 
   return root;
@@ -288,18 +287,18 @@ Widget* Widget::getParent() const
 
 Widget* Widget::getFirstChild() const
 {
-  return !m_children.empty() ? m_children.front(): NULL;
+  return !m_children.empty() ? m_children.front(): nullptr;
 }
 
 Widget* Widget::getLastChild() const
 {
-  return !m_children.empty() ? m_children.back(): NULL;
+  return !m_children.empty() ? m_children.back(): nullptr;
 }
 
 Widget* Widget::getPreviousSibling() const
 {
   if (m_parent) {
-    WidgetList::iterator it = std::find(m_parent->m_children.begin(),
+    auto it = std::find(m_parent->m_children.begin(),
 					m_parent->m_children.end(), this);
 
     if (it != m_parent->m_children.end()) {
@@ -307,13 +306,13 @@ Widget* Widget::getPreviousSibling() const
 	return *(--it);
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 Widget* Widget::getNextSibling() const
 {
   if (m_parent) {
-    WidgetList::iterator it = std::find(m_parent->m_children.begin(),
+    auto it = std::find(m_parent->m_children.begin(),
 					m_parent->m_children.end(), this);
 
     if (it != m_parent->m_children.end()) {
@@ -321,7 +320,7 @@ Widget* Widget::getNextSibling() const
 	return *it;
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 /**
@@ -417,8 +416,8 @@ void Widget::moveBeforeWidget(Widget* sibling)
   assert(m_parent != NULL);
   remove_from_container(m_parent->m_children, this);
 
-  if (sibling != NULL) {
-    WidgetList::iterator it =
+  if (sibling != nullptr) {
+    auto it =
       std::find(m_parent->m_children.begin(),
 		m_parent->m_children.end(), sibling);
 
@@ -458,8 +457,8 @@ void Widget::moveAfterWidget(Widget* sibling)
   assert(m_parent != NULL);
   remove_from_container(m_parent->m_children, this);
 
-  if (sibling != NULL) {
-    WidgetList::iterator it =
+  if (sibling != nullptr) {
+    auto it =
       std::find(m_parent->m_children.begin(),
 		m_parent->m_children.end(), sibling);
 
@@ -501,7 +500,7 @@ LayoutPtr Widget::getLayout()
 
    @see getLayout, setConstraint
 */
-void Widget::setLayout(LayoutPtr layout)
+void Widget::setLayout(const LayoutPtr& layout)
 {
   m_layout = layout;
 }
@@ -525,7 +524,7 @@ ConstraintPtr Widget::getConstraint()
 
    @see getConstraint, setLayout
 */
-void Widget::setConstraint(ConstraintPtr constraint)
+void Widget::setConstraint(const ConstraintPtr& constraint)
 {
   m_constraint = constraint;
 }
@@ -644,11 +643,11 @@ void Widget::setId(CommandId id)
 Command* Widget::getCommandById(CommandId id)
 {
   // if this widget is a CommandsClient instance
-  if (CommandsClient* cc = dynamic_cast<CommandsClient*>(this)) {
+  if (auto* cc = dynamic_cast<CommandsClient*>(this)) {
     if (Command* cmd = cc->getCommandById(id))
       return cmd;
   }
-  return NULL;
+  return nullptr;
 }
 
 /**
@@ -666,19 +665,19 @@ Command* Widget::findCommandById(CommandId id)
 {
   Widget* widget = this;
 
-  while (widget != NULL) {
+  while (widget != nullptr) {
     if (Command* cmd = getCommandById(id))
       return cmd;
     widget = widget->getParent();
   }
 
   // check if the application is a CommandsClient
-  if (CommandsClient* cc = dynamic_cast<CommandsClient*>(Application::getInstance())) {
+  if (auto* cc = dynamic_cast<CommandsClient*>(Application::getInstance())) {
     if (Command* cmd = cc->getCommandById(id))
       return cmd;
   }
 
-  return NULL;
+  return nullptr;
 }
 
 // ===============================================================
@@ -702,7 +701,7 @@ Style Widget::getStyle() const
    @param style
      Set of styles to see if the widget has.
 */
-bool Widget::hasStyle(Style style) const
+bool Widget::hasStyle(const Style& style) const
 {
   return (getStyle() & style) == style;
 }
@@ -718,7 +717,7 @@ bool Widget::hasStyle(Style style) const
 
    @see addStyle, removeStyle
 */
-void Widget::setStyle(Style style)
+void Widget::setStyle(const Style& style)
 {
   assert(::IsWindow(m_handle));
 
@@ -735,7 +734,7 @@ void Widget::setStyle(Style style)
 
    @see setStyle
 */
-void Widget::addStyle(Style style)
+void Widget::addStyle(const Style& style)
 {
   assert(::IsWindow(m_handle));
 
@@ -747,7 +746,7 @@ void Widget::addStyle(Style style)
 
    @see setStyle
 */
-void Widget::removeStyle(Style style)
+void Widget::removeStyle(const Style& style)
 {
   assert(::IsWindow(m_handle));
 
@@ -774,7 +773,7 @@ Rect Widget::getBounds() const
   RECT rc;
   ::GetWindowRect(m_handle, &rc);
 
-  if (m_parent != NULL &&
+  if (m_parent != nullptr &&
       (::GetWindowLong(m_handle, GWL_STYLE) & WS_CAPTION) == 0) {
     POINT pt1 = { rc.left, rc.top };
     POINT pt2 = { rc.right, rc.bottom };
@@ -833,7 +832,7 @@ Rect Widget::getClientBounds() const
 Rect Widget::getAbsoluteClientBounds() const
 {
   RECT rc = convert_to<RECT>(getClientBounds());
-  ::MapWindowPoints(m_handle, NULL, (POINT*)&rc, 2);
+  ::MapWindowPoints(m_handle, nullptr, (POINT*)&rc, 2);
   return convert_to<Rect>(rc);
 }
 
@@ -889,7 +888,7 @@ void Widget::center()
   Rect workArea = System::getWorkAreaBounds();
   Rect refBounds, newBounds;
 
-  if (getParent() != NULL)
+  if (getParent() != nullptr)
     refBounds = getParent()->getAbsoluteBounds();
   else
     refBounds = workArea;
@@ -975,7 +974,7 @@ void Widget::setSize(int w, int h)
 */
 Size Widget::getPreferredSize()
 {
-  if (m_preferredSize != NULL)
+  if (m_preferredSize != nullptr)
     return *m_preferredSize;
   else {
     PreferredSizeEvent ev(this, Size(0, 0));
@@ -1001,7 +1000,7 @@ Size Widget::getPreferredSize()
 */
 Size Widget::getPreferredSize(const Size& fitIn)
 {
-  if (m_preferredSize != NULL)
+  if (m_preferredSize != nullptr)
     return *m_preferredSize;
   else {
     PreferredSizeEvent ev(this, fitIn);
@@ -1035,7 +1034,7 @@ void Widget::setPreferredSize(int fixedWidth, int fixedHeight)
 
    @see setDoubleBuffered
 */
-bool Widget::isDoubleBuffered()
+bool Widget::isDoubleBuffered() const
 {
   return m_doubleBuffered;
 }
@@ -1065,7 +1064,7 @@ void Widget::setDoubleBuffered(bool doubleBuffered)
 void Widget::validate()
 {
   assert(::IsWindow(m_handle));
-  ::ValidateRect(m_handle, NULL);
+  ::ValidateRect(m_handle, nullptr);
 }
 
 /**
@@ -1098,7 +1097,7 @@ void Widget::validate(const Rect& _rc)
 void Widget::invalidate(bool eraseBg)
 {
   assert(::IsWindow(m_handle));
-  ::InvalidateRect(m_handle, NULL, eraseBg);
+  ::InvalidateRect(m_handle, nullptr, eraseBg);
 }
 
 /**
@@ -1318,17 +1317,17 @@ int Widget::getOpacity()
 
   HMODULE hUser32 = GetModuleHandle(L"USER32.DLL");
   GLWAProc pGLWA;
-  if (hUser32 != NULL)
+  if (hUser32 != nullptr)
     pGLWA = (GLWAProc)GetProcAddress(hUser32, "GetLayeredWindowAttributes");
   else
-    pGLWA = NULL;
+    pGLWA = nullptr;
 
-  if (pGLWA == NULL) {
+  if (pGLWA == nullptr) {
     return 255;
   }
   else if (GetWindowLong(m_handle, GWL_EXSTYLE) & WS_EX_LAYERED) {
     BYTE opacity;
-    pGLWA(m_handle, NULL, &opacity, NULL);
+    pGLWA(m_handle, nullptr, &opacity, nullptr);
     return opacity;
   }
   else {
@@ -1351,10 +1350,10 @@ void Widget::setOpacity(int opacity)
   assert(opacity >= 0 && opacity < 256);
 
   HMODULE  hUser32 = GetModuleHandle(L"USER32.DLL");
-  SLWAProc pSLWA = (SLWAProc)GetProcAddress(hUser32, "SetLayeredWindowAttributes");
+  auto pSLWA = (SLWAProc)GetProcAddress(hUser32, "SetLayeredWindowAttributes");
 
   // The version of Windows running does not support translucent windows!
-  if (pSLWA == 0) {
+  if (pSLWA == nullptr) {
     // do nothing
     return;
   }
@@ -1433,7 +1432,7 @@ void Widget::releaseFocus()
     ::SetFocus(NULL);
 #else
   if (m_handle == ::GetFocus()) {
-    ::SetFocus(NULL);
+    ::SetFocus(nullptr);
   }
 #endif
 }
@@ -1483,7 +1482,7 @@ bool Widget::hasFocus()
 
    @see hasCapture, hasMouseAbove
 */
-bool Widget::hasMouse()
+bool Widget::hasMouse() const
 {
   return m_hasMouse;
 }
@@ -1657,7 +1656,7 @@ void Widget::setScrollPoint(const Point& pt)
 /**
    @todo docme
 */
-void Widget::hideScrollBar(Orientation orientation)
+void Widget::hideScrollBar(Orientation orientation) const
 {
   assert(::IsWindow(m_handle));
 
@@ -1684,7 +1683,7 @@ void Widget::scrollRect(const Rect& _rc, const Point& delta)
   RECT rc = convert_to<RECT>(_rc);
   ScrollWindowEx(m_handle,
 		 delta.x, delta.y,
-		 &rc, &rc, NULL, NULL,
+		 &rc, &rc, nullptr, nullptr,
 		 SW_ERASE | SW_INVALIDATE);
 }
 
@@ -1704,7 +1703,7 @@ void Widget::scrollRect(const Rect& _rc, const Point& delta)
 */
 bool Widget::preTranslateMessage(Message& message)
 {
-  if (m_parent != NULL)
+  if (m_parent != nullptr)
     return m_parent->preTranslateMessage(message);
   else
     return false;
@@ -1715,7 +1714,7 @@ bool Widget::preTranslateMessage(Message& message)
 
    @see @ref page_tn_015, @link page_examples Threads example@endlink
 */
-void Widget::enqueueMessage(const Message& message)
+void Widget::enqueueMessage(const Message& message) const
 {
   ::PostMessage(getHandle(),
 		message.m_msg.message,
@@ -1742,7 +1741,7 @@ HWND Widget::getHandle() const
 HWND Widget::getParentHandle() const
 {
   Widget* parent = getParent();
-  return parent != NULL ? parent->getHandle(): NULL;
+  return parent != nullptr ? parent->getHandle(): nullptr;
 }
 
 /**
@@ -1797,7 +1796,7 @@ void Widget::onPreferredSize(PreferredSizeEvent& ev)
   Size sz;
 
   // there is a layout?
-  if (m_layout != NULL) {
+  if (m_layout != nullptr) {
     // get the list of children
     WidgetList children = getChildren();
 
@@ -1806,9 +1805,7 @@ void Widget::onPreferredSize(PreferredSizeEvent& ev)
   }
 
   // Search for layout-free widgets
-  for (WidgetList::iterator
-	 it=m_children.begin(); it!=m_children.end(); ++it) {
-    Widget* child = *it;
+  for (auto child : m_children) {
     if (child->isLayoutFree()) {
       PreferredSizeEvent ev2(this, Size(0, 0));
       child->onPreferredSize(ev2);
@@ -1839,15 +1836,13 @@ void Widget::onLayout(LayoutEvent& ev)
   // Call onLayout() member function for layout-free children (they know
   // how to layout theirself). Generally, these widgets will modify the
   // bounds of LayoutEvent
-  for (WidgetList::iterator
-	 it=m_children.begin(); it!=m_children.end(); ++it) {
-    Widget* child = *it;
+  for (auto child : m_children) {
     if (child->isLayoutFree())
       child->onLayout(ev);
   }
 
   // Now we can use the layout manager with the bounds of LayoutEvent
-  if (m_layout != NULL && !m_children.empty())
+  if (m_layout != nullptr && !m_children.empty())
     m_layout->layout(this, m_children, ev.getBounds());
 }
 
@@ -2158,12 +2153,12 @@ void Widget::onCommand(CommandEvent& ev)
       }
     }
 
-    if (getParent() != NULL) {
+    if (getParent() != nullptr) {
       getParent()->onCommand(ev);
     }
     else {
       // check if the application is a CommandsClient
-      if (CommandsClient* cc = dynamic_cast<CommandsClient*>(Application::getInstance())) {
+      if (auto* cc = dynamic_cast<CommandsClient*>(Application::getInstance())) {
 	if (Command* cmd = cc->getCommandById(id)) {
 	  if (cmd->isEnabled()) {
 	    cmd->execute();
@@ -2182,9 +2177,7 @@ void Widget::onCommand(CommandEvent& ev)
 */
 void Widget::onUpdateIndicators()
 {
-  for (WidgetList::iterator
-	 it=m_children.begin(); it!=m_children.end(); ++it) {
-    Widget* child = *it;
+  for (auto child : m_children) {
     child->updateIndicators();
   }
 }
@@ -2322,11 +2315,11 @@ void Widget::removeChildWin32(Widget* child, bool setParent)
     invalidate(child->getBounds(), true);
     child->removeStyle(Style(WS_VISIBLE, 0));
 
-    ::SetParent(child->m_handle, NULL);
+    ::SetParent(child->m_handle, nullptr);
     child->removeStyle(Style(WS_CHILD, 0));
   }
 
-  child->m_parent = NULL;
+  child->m_parent = nullptr;
 }
 
 /**
@@ -2359,17 +2352,17 @@ void Widget::create(const WidgetClassName& className, Widget* parent, Style styl
   // all parents must to have the WS_EX_CONTROLPARENT style to avoid
   // infinite loops in Win32's dialog boxes (for more information see
   // the 'src/msw/window.cpp' file of 'wxWidgets' library)
-  if ((parent != NULL) &&
+  if ((parent != nullptr) &&
       (parent->getStyle().extended & WS_EX_CONTROLPARENT) != 0) {
     parent->addStyle(Style(0, WS_EX_CONTROLPARENT));
   }
 
   // fixup styles...
   // remove child style if you don't specify a parent
-  if (parent == NULL && style.regular & WS_CHILD) {
+  if (parent == nullptr && style.regular & WS_CHILD) {
     style.regular &= ~WS_CHILD;
   }
-  else if (parent != NULL && !(style.regular & WS_CHILD)) {
+  else if (parent != nullptr && !(style.regular & WS_CHILD)) {
     style.regular |= WS_CHILD;
   }
 
@@ -2380,17 +2373,17 @@ void Widget::create(const WidgetClassName& className, Widget* parent, Style styl
 
     CurrentThread::details::setOutsideWidget(this);
     m_handle = createHandle(className.c_str(), parent, style);
-    CurrentThread::details::setOutsideWidget(NULL);
+    CurrentThread::details::setOutsideWidget(nullptr);
   }
 
-  if (m_handle == NULL || !::IsWindow(m_handle))
+  if (m_handle == nullptr || !::IsWindow(m_handle))
     throw CreateWidgetException(format_string(L"Error creating widget of class \"%s\"",
 					      className.c_str()));
 
   subClass();
 
   // add the widget to its parent
-  if (parent != NULL)
+  if (parent != nullptr)
     parent->addChildWin32(this, false);
 }
 
@@ -2414,7 +2407,7 @@ void Widget::subClass()
 		      GWLP_WNDPROC,
 		      reinterpret_cast<LONG_PTR>(getGlobalWndProc())));
   if (m_baseWndProc == getGlobalWndProc())
-    m_baseWndProc = NULL;
+    m_baseWndProc = nullptr;
 
   // box the pointer...
   SetProp(m_handle, VACA_ATOM, reinterpret_cast<HANDLE>(this));
@@ -2458,8 +2451,8 @@ HWND Widget::createHandle(LPCTSTR className, Widget* parent, Style style)
                         static_cast<DWORD>(style.regular),
                         CW_USEDEFAULT, CW_USEDEFAULT,
                         CW_USEDEFAULT, CW_USEDEFAULT,
-			parent ? parent->getHandle(): (HWND)NULL,
-                        (HMENU)NULL,
+			parent ? parent->getHandle(): (HWND)nullptr,
+                        (HMENU)nullptr,
                         Application::getHandle(),
                         reinterpret_cast<LPVOID>(this));
 }
@@ -2544,7 +2537,7 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
   switch (message) {
 
     case WM_ERASEBKGND:
-      if (m_baseWndProc == NULL) {
+      if (m_baseWndProc == nullptr) {
 	HDC hdc = reinterpret_cast<HDC>(wParam);
 	// erase background only when the widget does not use
 	// double-buffering
@@ -2567,7 +2560,7 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
 
     case WM_PAINT:
       // if this is not a wrapped widget (like BUTTON, EDIT, etc.)...
-      if (m_baseWndProc == NULL) {
+      if (m_baseWndProc == nullptr) {
 	// ...we have to paint its content through an explicit onPaint event
 
 	PAINTSTRUCT ps;
@@ -2589,7 +2582,7 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
       break;
 
     case WM_DRAWITEM: {
-      LPDRAWITEMSTRUCT lpDrawItem = (LPDRAWITEMSTRUCT)lParam;
+      auto lpDrawItem = (LPDRAWITEMSTRUCT)lParam;
       Widget* child = Widget::fromHandle(lpDrawItem->hwndItem);
       HDC hdc = lpDrawItem->hDC;
       bool painted = false;
@@ -2803,10 +2796,10 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
     }
 
     case WM_COMMAND: {
-      if (reinterpret_cast<HWND>(lParam) != NULL) {
+      if (reinterpret_cast<HWND>(lParam) != nullptr) {
 	HWND hwndCtrl = reinterpret_cast<HWND>(lParam);
 	Widget* child = Widget::fromHandle(hwndCtrl);
-	if (child != NULL) {
+	if (child != nullptr) {
 	  MakeWidgetRef ref(child);
 	  ret = child->onReflectedCommand(LOWORD(wParam), // id
 					  HIWORD(wParam), // code
@@ -2825,9 +2818,9 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
     }
 
     case WM_NOTIFY: {
-      LPNMHDR lpnmhdr = reinterpret_cast<LPNMHDR>(lParam);
+      auto lpnmhdr = reinterpret_cast<LPNMHDR>(lParam);
       Widget* child = Widget::fromHandle(lpnmhdr->hwndFrom);
-      if (child != NULL) {
+      if (child != nullptr) {
 	MakeWidgetRef ref(child);
 	ret = child->onReflectedNotify(lpnmhdr, lResult);
       }
@@ -2835,13 +2828,13 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
     }
 
     case WM_SETFOCUS: {
-      FocusEvent ev(this, wParam == 0 ? NULL: Widget::fromHandle((HWND)wParam), this);
+      FocusEvent ev(this, wParam == 0 ? nullptr: Widget::fromHandle((HWND)wParam), this);
       onFocusEnter(ev);
       break;
     }
 
     case WM_KILLFOCUS: {
-      FocusEvent ev(this, this, wParam == 0 ? NULL: Widget::fromHandle((HWND)wParam));
+      FocusEvent ev(this, this, wParam == 0 ? nullptr: Widget::fromHandle((HWND)wParam));
       onFocusLeave(ev);
       break;
     }
@@ -2856,7 +2849,7 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
       HDC hdc = reinterpret_cast<HDC>(wParam);
       HWND hwndCtrl = reinterpret_cast<HWND>(lParam);
       Widget* child = Widget::fromHandle(hwndCtrl);
-      if (child != NULL) {
+      if (child != nullptr) {
 	COLORREF fgColor = convert_to<COLORREF>(child->getFgColor());
 	COLORREF bgColor = convert_to<COLORREF>(child->getBgColor());
 
@@ -2949,7 +2942,7 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
 	// reflect the message? (it is useful for the "Slider" widget)
 	if (lParam != 0) {
 	  Widget* child = Widget::fromHandle(reinterpret_cast<HWND>(lParam));
-	  if (child != NULL) {
+	  if (child != nullptr) {
 	    MakeWidgetRef ref(child);
 	    child->onScroll(ev);
 	  }
@@ -2962,17 +2955,17 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
     case WM_DROPFILES: {
       // TODO
       // DragQueryPoint(hDrop);
-      HDROP hDrop = reinterpret_cast<HDROP>(wParam);
+      auto hDrop = reinterpret_cast<HDROP>(wParam);
       std::vector<String> files;
       int index, count, length;
 
-      count = DragQueryFile(hDrop, 0xFFFFFFFF, NULL, 0);
+      count = DragQueryFile(hDrop, 0xFFFFFFFF, nullptr, 0);
       for (index=0; index<count; ++index) {
-	length = DragQueryFile(hDrop, static_cast<UINT>(index), NULL, 0);
+	length = DragQueryFile(hDrop, static_cast<UINT>(index), nullptr, 0);
 	if (length > 0) {
 	  Char* lpstr = new Char[length+1];
 	  DragQueryFile(hDrop, static_cast<UINT>(index), lpstr, static_cast<UINT>(length + 1));
-	  files.push_back(lpstr);
+	  files.emplace_back(lpstr);
 	  delete[] lpstr;
 	}
       }
@@ -3003,7 +2996,7 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
 */
 LRESULT Widget::defWndProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-  if (m_baseWndProc != NULL)
+  if (m_baseWndProc != nullptr)
     return CallWindowProc(m_baseWndProc, m_handle, message, wParam, lParam);
   else {
     assert(m_defWndProc != NULL);
@@ -3048,7 +3041,7 @@ bool Widget::doPaint(Graphics& g)
 
       // special coordinates transformation (to make the "imageG"
       // graphics transparent to "onPaint" member function)
-      SetViewportOrgEx(imageG.getHandle(), -clipBounds.x, -clipBounds.y, NULL);
+      SetViewportOrgEx(imageG.getHandle(), -clipBounds.x, -clipBounds.y, nullptr);
 
       // clear the background of the image
       imageG.fillRect(bgBrush, clipBounds);
@@ -3062,7 +3055,7 @@ bool Widget::doPaint(Graphics& g)
       painted = ev.isPainted();
 
       // restore the viewport origin (so drawImage works fine)
-      SetViewportOrgEx(imageG.getHandle(), 0, 0, NULL);
+      SetViewportOrgEx(imageG.getHandle(), 0, 0, nullptr);
 
       // bit transfer from image to graphics device
       g.drawImage(image, clipBounds.getOrigin());
@@ -3332,7 +3325,7 @@ LRESULT CALLBACK Widget::globalWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
   VACA_TRACE(convert_to<std::string>(preString + L" ("+ msgString + L")\n").c_str());
 #endif
 
-  if (widget != NULL) {
+  if (widget != nullptr) {
     LRESULT lResult;
     bool used = false;
 
@@ -3347,7 +3340,7 @@ LRESULT CALLBACK Widget::globalWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
   }
   else {
     widget = CurrentThread::details::getOutsideWidget();
-    if (widget != NULL) {
+    if (widget != nullptr) {
       assert(hwnd != NULL);
       widget->m_handle = hwnd;
       return widget->defWndProc(msg, wParam, lParam);
@@ -3372,7 +3365,7 @@ LRESULT CALLBACK Widget::globalWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 */
 MakeWidgetRef::MakeWidgetRef(Widget* widget)
 {
-  while (widget != NULL) {
+  while (widget != nullptr) {
     m_container.push_back(widget);
     widget->ref();
     widget = widget->getParent();
@@ -3384,10 +3377,9 @@ MakeWidgetRef::MakeWidgetRef(Widget* widget)
 */
 MakeWidgetRef::~MakeWidgetRef()
 {
-  for (std::vector<Widget*>::iterator
-	 it=m_container.begin(); it!=m_container.end(); ++it) {
-    (*it)->unref();
-    safeDelete(*it);
+  for (auto & it : m_container) {
+    it->unref();
+    safeDelete(it);
   }
 }
 

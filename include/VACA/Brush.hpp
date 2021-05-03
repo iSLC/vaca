@@ -37,7 +37,7 @@ public:
 
   Brush& operator=(const Brush& brush);
 
-  Color getColor() const;
+  [[nodiscard]] Color getColor() const;
 
 private:
   class BrushImpl;

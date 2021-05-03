@@ -17,8 +17,7 @@ FocusEvent::FocusEvent(Widget* source, Widget* oldFocus, Widget* newFocus)
 }
 
 FocusEvent::~FocusEvent()
-{
-}
+= default;
 
 Widget* FocusEvent::getOldFocus() const
 {

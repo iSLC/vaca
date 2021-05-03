@@ -37,26 +37,26 @@ using namespace vaca;
    @param style
        Style to put to this widget.
 */
-LinkLabel::LinkLabel(const String& urlOrText, Widget* parent, Style style)
+LinkLabel::LinkLabel(const String& urlOrText, Widget* parent, const Style& style)
   : CustomLabel(L"", parent, style)
 {
   // is a URL?
   if (urlOrText.find_first_of(L"www") != String::npos ||
       urlOrText.find_first_of(L"://") != String::npos ||
-      urlOrText.find_first_of(L"@"  ) != String::npos)
+      urlOrText.find_first_of(L'@'  ) != String::npos)
     m_url = urlOrText;
 
   init(urlOrText);
 }
 
-LinkLabel::LinkLabel(const String& url, const String& text, Widget* parent, Style style)
+LinkLabel::LinkLabel(const String& url, const String& text, Widget* parent, const Style& style)
   : CustomLabel(L"", parent, style)
   , m_url(url)
 {
   init(text);
 }
 
-LinkLabel::LinkLabel(const String& url, Image& image, Widget* parent, Style style)
+LinkLabel::LinkLabel(const String& url, Image& image, Widget* parent, const Style& style)
   : CustomLabel(L"", parent, style)
   , m_url(url)
 {
@@ -64,8 +64,7 @@ LinkLabel::LinkLabel(const String& url, Image& image, Widget* parent, Style styl
 }
 
 LinkLabel::~LinkLabel()
-{
-}
+= default;
 
 void LinkLabel::setFont(Font font)
 {
@@ -88,7 +87,7 @@ Color LinkLabel::getHoverColor()
 void LinkLabel::onPreferredSize(PreferredSizeEvent& ev)
 {
   // TODO add support for both: text and image
-  if (m_image != NULL)
+  if (m_image != nullptr)
     ev.setPreferredSize(m_image->getSize());
   else
     CustomLabel::onPreferredSize(ev);
@@ -111,7 +110,7 @@ void LinkLabel::onPaint(PaintEvent& ev)
   Rect bounds = getLinkBounds(g);
 
   // draw image
-  if (m_image != NULL) {
+  if (m_image != nullptr) {
     g.drawImage(*m_image, bounds.x, bounds.y);
   }
 
@@ -257,9 +256,9 @@ void LinkLabel::onClick(Event& ev)
   Click(ev);
 }
 
-void LinkLabel::init(String text, Image* image)
+void LinkLabel::init(const String& text, Image* image)
 {
-  m_underlineFont = NULL;
+  m_underlineFont = nullptr;
   m_image = image;
 
   updateFont(getFont());
@@ -271,7 +270,7 @@ void LinkLabel::init(String text, Image* image)
 void LinkLabel::click()
 {
   if (!m_url.empty())
-    ShellExecute(NULL, L"open", m_url.c_str(), NULL, NULL, SW_SHOW);
+    ShellExecute(nullptr, L"open", m_url.c_str(), nullptr, nullptr, SW_SHOW);
 
   Event ev(this);
   onClick(ev);
@@ -292,7 +291,7 @@ Rect LinkLabel::getLinkBounds(Graphics& g)
 
   // TODO add support for both: text and image
 
-  if (m_image != NULL) {
+  if (m_image != nullptr) {
     sz = m_image->getSize();
     pt.x += rc.w/2 - sz.w/2;
     pt.y += rc.h/2 - sz.h/2;

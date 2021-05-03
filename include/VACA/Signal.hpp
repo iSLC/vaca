@@ -36,7 +36,7 @@ protected:
   SlotList m_slots;
 
 public:
-  Signal0_base() { }
+  Signal0_base() = default;
   Signal0_base(const Signal0_base<R>& s)
   {
     copy(s);
@@ -64,7 +64,7 @@ public:
     return addSlot(new Slot0_mem<R, T>(m, t));
   }
 
-  const SlotList& getSlots() const
+  [[nodiscard]] const SlotList& getSlots() const
   {
     return m_slots;
   }
@@ -76,14 +76,14 @@ public:
 
   void disconnectAll()
   {
-    typename SlotList::iterator end = m_slots.end();
-    for (typename SlotList::iterator
+    auto end = m_slots.end();
+    for (auto
 	   it = m_slots.begin(); it != end; ++it)
       delete *it;
     m_slots.clear();
   }
 
-  bool empty() const
+  [[nodiscard]] bool empty() const
   {
     return m_slots.empty();
   }
@@ -97,8 +97,8 @@ private:
 
   void copy(const Signal0_base<R>& s)
   {
-    typename SlotList::const_iterator end = s.m_slots.end();
-    for (typename SlotList::const_iterator
+    auto end = s.m_slots.end();
+    for (auto
 	   it = s.m_slots.begin(); it != end; ++it) {
       m_slots.push_back((*it)->clone());
     }
@@ -153,15 +153,14 @@ template<>
 class Signal0<void> : public Signal0_base<void>
 {
 public:
-  Signal0() { }
+  Signal0() = default;
 
-  Signal0(const Signal0<void>& s)
-    : Signal0_base<void>(s) { }
+  Signal0(const Signal0<void>& s) = default;
 
   void operator()()
   {
-    SlotList::iterator end = m_slots.end();
-    for (SlotList::iterator
+    auto end = m_slots.end();
+    for (auto
 	   it = m_slots.begin(); it != end; ++it) {
       SlotType* slot = *it;
       (*slot)();
@@ -235,7 +234,7 @@ public:
     m_slots.clear();
   }
 
-  bool empty() const
+  [[nodiscard]] bool empty() const
   {
     return m_slots.empty();
   }
@@ -387,7 +386,7 @@ public:
     m_slots.clear();
   }
 
-  bool empty() const
+  [[nodiscard]] bool empty() const
   {
     return m_slots.empty();
   }

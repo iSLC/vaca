@@ -43,13 +43,13 @@ public:
   };
 
   Spinner(Widget* parent,
-	  Style spinStyle = SpinButton::Styles::Default,
-	  Style style = Spinner::Styles::Default);
+	  const Style& spinStyle = SpinButton::Styles::Default,
+	  const Style& style = Spinner::Styles::Default);
   Spinner(int minValue, int maxValue, int value,
 	  Widget* parent,
-	  Style spinStyle = SpinButton::Styles::Default,
-	  Style style = Spinner::Styles::Default);
-  virtual ~Spinner();
+	  const Style& spinStyle = SpinButton::Styles::Default,
+	  const Style& style = Spinner::Styles::Default);
+  ~Spinner() override;
 
   TextEdit& getTextEdit();
   SpinButton& getSpinButton();
@@ -68,8 +68,8 @@ public:
 protected:
 
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onLayout(LayoutEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
+  void onLayout(LayoutEvent& ev) override;
 
 };
 

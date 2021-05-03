@@ -20,15 +20,14 @@ ResourceId::ResourceId(const ResourceId& rc)
 }
 
 ResourceId::~ResourceId()
-{
-}
+= default;
 
 int ResourceId::getId() const
 {
   return m_id;
 }
 
-String ResourceId::toString()
+String ResourceId::toString() const
 {
   return convert_to<String>(m_id);
 }

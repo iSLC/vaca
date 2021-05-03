@@ -33,7 +33,7 @@ class VACA_DLL FileDialog : public CommonDialog
 public:
 
   FileDialog(const String& title, Widget* parent);
-  virtual ~FileDialog();
+  ~FileDialog() override;
 
   void setTitle(const String& str);
   void setDefaultExtension(const String& str);
@@ -45,7 +45,7 @@ public:
   String getFileName();
   void setFileName(const String& string);
 
-  virtual bool doModal();
+  bool doModal() override;
 
 protected:
   LPTSTR getOriginalFileName();
@@ -63,14 +63,14 @@ class VACA_DLL OpenFileDialog : public FileDialog
 
 public:
   OpenFileDialog(const String& title, Widget* parent);
-  virtual ~OpenFileDialog();
+  ~OpenFileDialog() override;
 
   void setMultiselect(bool state);
 
   std::vector<String> getFileNames();
 
 private:
-  virtual bool showDialog(LPOPENFILENAME lpofn);
+  bool showDialog(LPOPENFILENAME lpofn) override;
 };
 
 /**
@@ -80,10 +80,10 @@ class VACA_DLL SaveFileDialog : public FileDialog
 {
 public:
   SaveFileDialog(const String& title, Widget* parent);
-  virtual ~SaveFileDialog();
+  ~SaveFileDialog() override;
 
 private:
-  virtual bool showDialog(LPOPENFILENAME lpofn);
+  bool showDialog(LPOPENFILENAME lpofn) override;
 };
 
 } // namespace vaca

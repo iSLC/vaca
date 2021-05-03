@@ -15,7 +15,7 @@ using namespace vaca;
 // ======================================================================
 // RadioButton
 
-RadioButton::RadioButton(const String& text, RadioGroup& group, Widget* parent, Style style)
+RadioButton::RadioButton(const String& text, RadioGroup& group, Widget* parent, const Style& style)
   : ButtonBase(parent, style)
   , m_radioGroup(group)
 {
@@ -45,9 +45,7 @@ bool RadioButton::onReflectedCommand(int id, int code, LRESULT& lResult)
     // deselect all siblings RadioButtons
     RadioButtonList& siblings = m_radioGroup.m_members;
 
-    for (RadioButtonList::iterator
-	   it = siblings.begin(); it != siblings.end(); ++it) {
-      RadioButton* sibling = *it;
+    for (auto sibling : siblings) {
       if (sibling->getRadioGroup() == m_radioGroup &&
 	  sibling->isSelected()) {
 	sibling->setSelected(false);
@@ -74,14 +72,13 @@ RadioGroup::RadioGroup()
 }
 
 RadioGroup::~RadioGroup()
-{
-}
+= default;
 
 int RadioGroup::getSelectedIndex() const
 {
   for (unsigned i=0; i<m_members.size(); ++i)
     if (m_members[i]->isSelected())
-      return i;
+      return static_cast<int>(i);
 
   return -1;
 }

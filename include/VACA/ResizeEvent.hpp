@@ -19,9 +19,9 @@ class VACA_DLL ResizeEvent : public Event
 public:
 
   ResizeEvent(Component* source, const Size& size);
-  virtual ~ResizeEvent();
+  ~ResizeEvent() override;
 
-  Size getSize() const;
+  [[nodiscard]] Size getSize() const;
 
 };
 

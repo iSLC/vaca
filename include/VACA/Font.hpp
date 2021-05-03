@@ -49,17 +49,17 @@ class VACA_DLL FontMetrics
 {
   friend class Graphics;
 
-  TEXTMETRIC m_textMetric;
+  TEXTMETRIC m_textMetric{};
 
 public:
-  FontMetrics() { }
-  FontMetrics(const FontMetrics& fm) : m_textMetric(fm.m_textMetric) { }
-  int getHeight() const { return m_textMetric.tmHeight; }
-  int getAscent() const { return m_textMetric.tmAscent; }
-  int getDescent() const { return m_textMetric.tmDescent; }
-  int getAverageCharWidth() const { return m_textMetric.tmAveCharWidth; }
-  int getMaximumCharWidth() const { return m_textMetric.tmMaxCharWidth; }
-  int getLeading() const { return m_textMetric.tmInternalLeading; }
+  FontMetrics() = default;
+  FontMetrics(const FontMetrics& fm) = default;
+  [[nodiscard]] int getHeight() const { return m_textMetric.tmHeight; }
+  [[nodiscard]] int getAscent() const { return m_textMetric.tmAscent; }
+  [[nodiscard]] int getDescent() const { return m_textMetric.tmDescent; }
+  [[nodiscard]] int getAverageCharWidth() const { return m_textMetric.tmAveCharWidth; }
+  [[nodiscard]] int getMaximumCharWidth() const { return m_textMetric.tmMaxCharWidth; }
+  [[nodiscard]] int getLeading() const { return m_textMetric.tmInternalLeading; }
 };
 
 /**
@@ -85,17 +85,17 @@ public:
   Font();
   Font(const Font& font);
   Font(const Font& font, FontStyle style);
-  Font(String familyName, int size, FontStyle style = FontStyle::Regular);
+  Font(const String& familyName, int size, FontStyle style = FontStyle::Regular);
   explicit Font(HFONT hfont);
   Font(LPLOGFONT lplf);
-  virtual ~Font();
+  ~Font() override;
 
-  int getPointSize() const;
-  FontStyle getStyle() const;
+  [[nodiscard]] int getPointSize() const;
+  [[nodiscard]] FontStyle getStyle() const;
 
   Font& operator=(const Font& font);
 
-  HFONT getHandle() const;
+  [[nodiscard]] HFONT getHandle() const;
   bool getLogFont(LPLOGFONT lplf) const;
 
 private:

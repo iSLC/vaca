@@ -13,15 +13,14 @@
 
 using namespace vaca;
 
-GroupBox::GroupBox(const String& text, Widget* parent, Style style)
+GroupBox::GroupBox(const String& text, Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_BUTTON), parent, style)
 {
   setText(text);
 }
 
 GroupBox::~GroupBox()
-{
-}
+= default;
 
 Size GroupBox::getNonClientSize()
 {

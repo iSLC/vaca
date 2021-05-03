@@ -17,8 +17,7 @@ KeyEvent::KeyEvent(Widget* source, Keys::Type keys, Char charCode)
 }
 
 KeyEvent::~KeyEvent()
-{
-}
+= default;
 
 Keys::Type KeyEvent::getKeyCode() const
 {

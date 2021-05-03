@@ -36,11 +36,11 @@ public:
     static const Style Default;
   };
 
-  TabBase(Widget* parent, Style style = Styles::Default);
-  virtual ~TabBase();
+  TabBase(Widget* parent, const Style& style = Styles::Default);
+  ~TabBase() override;
 
-  virtual Font getFont() const;
-  virtual void setFont(Font font);
+  [[nodiscard]] Font getFont() const override;
+  void setFont(Font font) override;
 
   Side getSide();
   void setSide(Side side);
@@ -71,11 +71,11 @@ public:
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onLayout(LayoutEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
+  void onLayout(LayoutEvent& ev) override;
 
   // Reflected notifications
-  virtual bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult);
+  bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult) override;
 
   // New events
 //   virtual void onPageChanging(Event& ev);
@@ -104,14 +104,14 @@ public:
     static const Style Default;
   };
 
-  Tab(Widget* parent, Style style = Styles::Default);
-  virtual ~Tab();
+  Tab(Widget* parent, const Style& style = Styles::Default);
+  ~Tab() override;
 
   TabPage* getPage(int pageIndex);
 
 protected:
 
-  virtual void onPageChange(Event& ev);
+  void onPageChange(Event& ev) override;
 
 };
 
@@ -138,13 +138,13 @@ public:
     static const Style Default;
   };
 
-  TabPage(const String& text, Tab* parent, Style style = Styles::Default);
-  virtual ~TabPage();
+  TabPage(const String& text, Tab* parent, const Style& style = Styles::Default);
+  ~TabPage() override;
 
-  virtual String getText() const;
-  virtual void setText(const String& str);
+  [[nodiscard]] String getText() const override;
+  void setText(const String& str) override;
 
-  int getPageIndex();
+  int getPageIndex() const;
 
 };
 

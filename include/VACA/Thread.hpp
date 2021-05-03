@@ -60,7 +60,7 @@ public:
 
   CreateThreadException() : Exception() { }
   CreateThreadException(const String& message) : Exception(message) { }
-  virtual ~CreateThreadException() throw() { }
+  ~CreateThreadException() noexcept override = default;
 
 };
 
@@ -100,10 +100,10 @@ public:
     _Thread(Slot0_fun<void, F>(f));
   }
 
-  ThreadId getId() const;
+  [[nodiscard]] ThreadId getId() const;
 
   void join();
-  bool isJoinable() const;
+  [[nodiscard]] bool isJoinable() const;
 
   void setThreadPriority(ThreadPriority priority);
 
@@ -111,7 +111,7 @@ public:
   // MESSAGES
   // ===============================================================
 
-  void enqueueMessage(const Message& message);
+  void enqueueMessage(const Message& message) const;
 
 private:
   void _Thread(const Slot0<void>& slot);

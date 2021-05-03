@@ -9,15 +9,14 @@
 
 using namespace vaca;
 
-CustomLabel::CustomLabel(const String& text, Widget* parent, Style style)
+CustomLabel::CustomLabel(const String& text, Widget* parent, const Style& style)
   : Label(text, parent, style)
   , m_textAlign(TextAlign::Left)
 {
 }
 
 CustomLabel::~CustomLabel()
-{
-}
+= default;
 
 TextAlign CustomLabel::getTextAlign() const
 {

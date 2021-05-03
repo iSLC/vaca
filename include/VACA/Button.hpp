@@ -24,10 +24,10 @@ public:
     static const Style Default;
   };
 
-  Button(const String& text, Widget* parent, Style style = Styles::Default);
-  Button(const String& text, CommandId id, Widget* parent, Style style = Styles::Default);
+  Button(const String& text, Widget* parent, const Style& style = Styles::Default);
+  Button(const String& text, CommandId id, Widget* parent, const Style& style = Styles::Default);
   explicit Button(HWND handle);
-  virtual ~Button();
+  ~Button() override;
 
   bool isDefault();
   void setDefault(bool state);

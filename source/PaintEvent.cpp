@@ -17,8 +17,7 @@ PaintEvent::PaintEvent(Widget* source, Graphics& graphics)
 }
 
 PaintEvent::~PaintEvent()
-{
-}
+= default;
 
 Graphics& PaintEvent::getGraphics()
 {

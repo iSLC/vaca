@@ -17,9 +17,9 @@ class VACA_DLL Property : public Referenceable
 
 public:
   Property(const String& name);
-  virtual ~Property();
+  ~Property() override;
 
-  String getName() const;
+  [[nodiscard]] String getName() const;
 };
 
 } // namespace vaca

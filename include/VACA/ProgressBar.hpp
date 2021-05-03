@@ -25,11 +25,11 @@ public:
     static const Style Marquee;
   };
 
-  ProgressBar(Widget* parent, Style style = Styles::Default);
-  ProgressBar(int minValue, int maxValue, Widget* parent, Style style = Styles::Default);
-  virtual ~ProgressBar();
+  ProgressBar(Widget* parent, const Style& style = Styles::Default);
+  ProgressBar(int minValue, int maxValue, Widget* parent, const Style& style = Styles::Default);
+  ~ProgressBar() override;
 
-  virtual void setBgColor(const Color& color);
+  void setBgColor(const Color& color) override;
 
   int getMinimum();
   int getMaximum();
@@ -44,7 +44,7 @@ public:
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
 
 };
 

@@ -38,7 +38,7 @@ class CreateWidgetException : public Exception
 public:
   CreateWidgetException() : Exception() { }
   CreateWidgetException(const String& message) : Exception(message) { }
-  virtual ~CreateWidgetException() throw() { }
+  ~CreateWidgetException() noexcept override = default;
 };
 
 /**
@@ -88,7 +88,7 @@ private:
   /**
      The window handler to use with the Windows API.
   */
-  HWND m_handle;
+  HWND m_handle{};
 
   /**
      Sorted collection of children.
@@ -99,7 +99,7 @@ private:
      The parent widget. This could be NULL if the Widget is a Frame or
      something like that.
   */
-  Widget* m_parent;
+  Widget* m_parent{};
 
   /**
      Foreground color, generally borders and text color.
@@ -153,12 +153,12 @@ private:
 
      @see #setPreferredSize
   */
-  Size* m_preferredSize;
+  Size* m_preferredSize{};
 
   /**
      @todo Try to remove this field (it's only needed for WM_CTLCOLOR* events)
   */
-  HBRUSH m_hbrush;
+  HBRUSH m_hbrush{};
 
   // ============================================================
   // Special hooks...
@@ -169,7 +169,7 @@ private:
 
      It's set in #subClass member function.
   */
-  WNDPROC m_baseWndProc;
+  WNDPROC m_baseWndProc{};
 
   /**
      The default Win32's window procedure to be called if a
@@ -181,13 +181,13 @@ private:
 
      @see #setDefWndProc, #defWndProc
   */
-  WNDPROC m_defWndProc;
+  WNDPROC m_defWndProc{};
 
   /**
      Used by MdiChild to send a WM_MDIDESTROY instead of calling
      Win32's DestroyWindow function.
   */
-  void (*m_destroyHandleProc)(HWND hwnd);
+  void (*m_destroyHandleProc)(HWND hwnd){};
 
 public:
 
@@ -195,22 +195,22 @@ public:
   // CTOR & DTOR
   // ============================================================
 
-  Widget(const WidgetClassName& className, Widget* parent, Style style);
-  explicit Widget(Widget* parent, Style style = Styles::Default);
+  Widget(const WidgetClassName& className, Widget* parent, const Style& style);
+  explicit Widget(Widget* parent, const Style& style = Styles::Default);
   explicit Widget(HWND handle);
-  virtual ~Widget();
+  ~Widget() override;
 
   // ============================================================
   // PARENT & CHILDREN RELATIONSHIP
   // ============================================================
 
   Widget* getRoot();
-  Widget* getParent() const;
-  Widget* getFirstChild() const;
-  Widget* getLastChild() const;
-  Widget* getPreviousSibling() const;
-  Widget* getNextSibling() const;
-  WidgetList getChildren() const;
+  [[nodiscard]] Widget* getParent() const;
+  [[nodiscard]] Widget* getFirstChild() const;
+  [[nodiscard]] Widget* getLastChild() const;
+  [[nodiscard]] Widget* getPreviousSibling() const;
+  [[nodiscard]] Widget* getNextSibling() const;
+  [[nodiscard]] WidgetList getChildren() const;
 
   void addChild(Widget* child);
   void removeChild(Widget* child);
@@ -225,12 +225,12 @@ public:
   // ===============================================================
 
   LayoutPtr getLayout();
-  void setLayout(LayoutPtr layout);
+  void setLayout(const LayoutPtr& layout);
 
   ConstraintPtr getConstraint();
-  void setConstraint(ConstraintPtr constraint);
+  void setConstraint(const ConstraintPtr& constraint);
 
-  virtual bool isLayoutFree() const;
+  [[nodiscard]] virtual bool isLayoutFree() const;
 
     virtual void layout();
 
@@ -238,17 +238,17 @@ public:
   // TEXT & FONT
   // ===============================================================
 
-  virtual String getText() const;
+  [[nodiscard]] virtual String getText() const;
   virtual void setText(const String& str);
 
-  virtual Font getFont() const;
+  [[nodiscard]] virtual Font getFont() const;
   virtual void setFont(Font font);
 
   // ===============================================================
   // COMMAND
   // ===============================================================
 
-  CommandId getId() const;
+  [[nodiscard]] CommandId getId() const;
   void setId(CommandId id);
 
   Command* getCommandById(CommandId id);
@@ -258,21 +258,21 @@ public:
   // WIDGET STYLE
   // ===============================================================
 
-  Style getStyle() const;
-  bool hasStyle(Style style) const;
+  [[nodiscard]] Style getStyle() const;
+  [[nodiscard]] bool hasStyle(const Style& style) const;
 
-  void setStyle(Style style);
-  void addStyle(Style style);
-  void removeStyle(Style style);
+  void setStyle(const Style& style);
+  void addStyle(const Style& style);
+  void removeStyle(const Style& style);
 
   // ===============================================================
   // SIZE & POSITION
   // ===============================================================
 
-  Rect getBounds() const;
-  Rect getAbsoluteBounds() const;
-  Rect getClientBounds() const;
-  Rect getAbsoluteClientBounds() const;
+  [[nodiscard]] Rect getBounds() const;
+  [[nodiscard]] Rect getAbsoluteBounds() const;
+  [[nodiscard]] Rect getClientBounds() const;
+  [[nodiscard]] Rect getAbsoluteClientBounds() const;
 
   void setBounds(const Rect& rc);
   void setBounds(int x, int y, int w, int h);
@@ -292,7 +292,7 @@ public:
   // REFRESH ISSUES
   // ===============================================================
 
-  bool isDoubleBuffered();
+  bool isDoubleBuffered() const;
   void setDoubleBuffered(bool doubleBuffered);
 
   void validate();
@@ -329,7 +329,7 @@ public:
   void captureMouse();
   void releaseMouse();
   bool hasFocus();
-  bool hasMouse();
+  bool hasMouse() const;
   bool hasMouseAbove();
   bool hasCapture();
 
@@ -337,16 +337,16 @@ public:
   // SCROLL
   // ===============================================================
 
-  ScrollInfo getScrollInfo(Orientation orientation) const;
+  [[nodiscard]] ScrollInfo getScrollInfo(Orientation orientation) const;
   void setScrollInfo(Orientation orientation, const ScrollInfo& scrollInfo);
 
-  int getScrollPos(Orientation orientation) const;
+  [[nodiscard]] int getScrollPos(Orientation orientation) const;
   void setScrollPos(Orientation orientation, int pos);
 
-  Point getScrollPoint() const;
+  [[nodiscard]] Point getScrollPoint() const;
   void setScrollPoint(const Point& pt);
 
-  void hideScrollBar(Orientation orientation);
+  void hideScrollBar(Orientation orientation) const;
 
   void scrollRect(const Rect& rect, const Point& delta);
 
@@ -354,15 +354,15 @@ public:
   // MESSAGES
   // ===============================================================
 
-  void enqueueMessage(const Message& message);
+  void enqueueMessage(const Message& message) const;
   virtual bool preTranslateMessage(Message& message);
 
   // ===============================================================
   // WIN32 SPECIFIC
   // ===============================================================
 
-  HWND getHandle() const;
-  HWND getParentHandle() const;
+  [[nodiscard]] HWND getHandle() const;
+  [[nodiscard]] HWND getParentHandle() const;
 
   static Widget* fromHandle(HWND hwnd);
   static WNDPROC getGlobalWndProc();

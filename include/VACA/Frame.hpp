@@ -31,8 +31,8 @@ public:
 */
 class VACA_DLL Frame : public Register<FrameClass>, public Widget
 {
-  MenuBar* m_menuBar;		       // The menu bar.
-  bool m_counted;		       // true if this Frame is counted in the frames' list
+  MenuBar* m_menuBar{};		       // The menu bar.
+  bool m_counted{};		       // true if this Frame is counted in the frames' list
   Icon m_smallIcon;
   Icon m_bigIcon;
 
@@ -49,23 +49,23 @@ public:
     static const Style InitiallyMaximized;
   };
 
-  Frame(const String& title, Widget* parent = NULL, Style style = Styles::Default);
-  Frame(const WidgetClassName& className, const String& title, Widget* parent = NULL, Style style = Styles::Default);
+  Frame(const String& title, Widget* parent = nullptr, const Style& style = Styles::Default);
+  Frame(const WidgetClassName& className, const String& title, Widget* parent = nullptr, const Style& style = Styles::Default);
   explicit Frame(HWND handle);
-  virtual ~Frame();
+  ~Frame() override;
 
-  virtual void setVisible(bool visible);
+  void setVisible(bool visible) override;
 
   MenuBar* getMenuBar();
   virtual MenuBar* setMenuBar(MenuBar* menuBar);
 
   void setSmallIcon(const Icon& icon);
   void setBigIcon(const Icon& icon);
-  void setIcon(ResourceId iconId);
+  void setIcon(const ResourceId& iconId);
 
   virtual Size getNonClientSize();
 
-  virtual bool isLayoutFree() const;
+  [[nodiscard]] bool isLayoutFree() const override;
   virtual bool keepSynchronized();
 
   Signal1<void, Event&> Activate;     ///< @see onActivate
@@ -73,14 +73,14 @@ public:
   Signal1<void, CloseEvent&> Close;   ///< @see onClose
   Signal2<void, CardinalDirection, Rect&> Resizing; ///< @see onResizing
 
-  virtual bool preTranslateMessage(Message& message);
+  bool preTranslateMessage(Message& message) override;
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onResize(ResizeEvent& ev);
-  virtual void onCommand(CommandEvent& ev);
-  virtual void onUpdateIndicators();
+  void onPreferredSize(PreferredSizeEvent& ev) override;
+  void onResize(ResizeEvent& ev) override;
+  void onCommand(CommandEvent& ev) override;
+  void onUpdateIndicators() override;
 
   // New events
   virtual void onActivate(Event& ev);
@@ -88,7 +88,7 @@ protected:
   virtual void onClose(CloseEvent& ev);
   virtual void onResizing(CardinalDirection dir, Rect& rc);
 
-  virtual bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult);
+  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
 
 private:
 

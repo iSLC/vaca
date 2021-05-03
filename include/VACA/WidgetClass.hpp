@@ -41,7 +41,7 @@ public:
   bool operator==(const WidgetClassName& className) const;
   bool operator!=(const WidgetClassName& className) const;
 
-  inline const Char* c_str() const { return m_className.c_str(); }
+  [[nodiscard]] inline const Char* c_str() const { return m_className.c_str(); }
 };
 
 /**

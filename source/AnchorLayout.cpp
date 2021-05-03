@@ -32,17 +32,15 @@ void AnchorLayout::layout(Widget* parent, WidgetList& widgets, const Rect& paren
   Size delta(parentRc.getSize() - m_refSize);
   WidgetsMovement movement(widgets);
 
-  for (WidgetList::iterator it=widgets.begin(); it!=widgets.end(); ++it) {
-    Widget* widget = *it;
-
+  for (auto widget : widgets) {
     if (widget->isLayoutFree())
       continue;
 
     Constraint* constraint = widget->getConstraint();
-    if (constraint == NULL)
+    if (constraint == nullptr)
       continue;
 
-    Anchor* anchor = static_cast<Anchor*>(constraint);
+    auto* anchor = dynamic_cast<Anchor*>(constraint);
     assert(anchor != NULL);
 
     Sides sides = anchor->getSides();

@@ -10,7 +10,7 @@
 
 using namespace vaca;
 
-Spinner::Spinner(Widget* parent, Style spinStyle, Style style)
+Spinner::Spinner(Widget* parent, const Style& spinStyle, const Style& style)
   : Widget(SpinnerClass::getClassName(), parent, style)
   , m_edit(L"", this)
   , m_spin(this, spinStyle)
@@ -19,7 +19,7 @@ Spinner::Spinner(Widget* parent, Style spinStyle, Style style)
 }
 
 Spinner::Spinner(int minValue, int maxValue, int posValue,
-		 Widget* parent, Style spinStyle, Style style)
+		 Widget* parent, const Style& spinStyle, const Style& style)
   : Widget(SpinnerClass::getClassName(), parent, style)
   , m_edit(L"", this)
   , m_spin(minValue, maxValue, posValue, this, spinStyle)
@@ -28,8 +28,7 @@ Spinner::Spinner(int minValue, int maxValue, int posValue,
 }
 
 Spinner::~Spinner()
-{
-}
+= default;
 
 TextEdit& Spinner::getTextEdit()
 {

@@ -25,7 +25,7 @@ using namespace vaca;
 #  define ODS_NOFOCUSRECT 512
 #endif
 
-CustomButton::CustomButton(const String& text, Widget* parent, Style style)
+CustomButton::CustomButton(const String& text, Widget* parent, const Style& style)
   : Button(text, parent, style)
   , m_itemAction(0)
   , m_itemState(0)
@@ -33,8 +33,7 @@ CustomButton::CustomButton(const String& text, Widget* parent, Style style)
 }
 
 CustomButton::~CustomButton()
-{
-}
+= default;
 
 bool CustomButton::onReflectedDrawItem(Graphics& g, LPDRAWITEMSTRUCT lpDrawItem)
 {
@@ -49,7 +48,7 @@ bool CustomButton::onReflectedDrawItem(Graphics& g, LPDRAWITEMSTRUCT lpDrawItem)
 /**
    Returns true if you should draw the entire widget.
 */
-bool CustomButton::isDrawEntire()
+bool CustomButton::isDrawEntire() const
 {
   return (m_itemAction & ODA_DRAWENTIRE) == ODA_DRAWENTIRE;
 }
@@ -59,7 +58,7 @@ bool CustomButton::isDrawEntire()
    CustomButton::drawEntire first). Use CustomButton::isStateFocus to
    known if the Widget has or not the focus.
 */
-bool CustomButton::isFocusChanged()
+bool CustomButton::isFocusChanged() const
 {
   return (m_itemAction & ODA_FOCUS) == ODA_FOCUS;
 }
@@ -70,7 +69,7 @@ bool CustomButton::isFocusChanged()
    CustomButton::isStateSelected to known if the Widget is or not
    selected.
 */
-bool CustomButton::isSelectionChanged()
+bool CustomButton::isSelectionChanged() const
 {
   return (m_itemAction & ODA_SELECT) == ODA_SELECT;
 }
@@ -85,7 +84,7 @@ bool CustomButton::isSelectionChanged()
 /**
    Returns true if this button is the default one.
 */
-bool CustomButton::hasDefaultOptionVisualAspect()
+bool CustomButton::hasDefaultOptionVisualAspect() const
 {
   return (m_itemState & ODS_DEFAULT) == ODS_DEFAULT;
 }
@@ -93,7 +92,7 @@ bool CustomButton::hasDefaultOptionVisualAspect()
 /**
    Returns true if this widget must be drawn disabled.
 */
-bool CustomButton::hasDisabledVisualAspect()
+bool CustomButton::hasDisabledVisualAspect() const
 {
   return (m_itemState & ODS_DISABLED) == ODS_DISABLED;
 }
@@ -101,7 +100,7 @@ bool CustomButton::hasDisabledVisualAspect()
 /**
    Returns true if this widget must be drawn with the focus.
 */
-bool CustomButton::hasFocusVisualAspect()
+bool CustomButton::hasFocusVisualAspect() const
 {
   return (m_itemState & ODS_FOCUS) == ODS_FOCUS;
 }
@@ -127,7 +126,7 @@ bool CustomButton::hasFocusVisualAspect()
    Indicates that you shouldn't draw the accelerator character
    underscored.
 */
-bool CustomButton::hasNoAccelVisualAspect()
+bool CustomButton::hasNoAccelVisualAspect() const
 {
   return (m_itemState & ODS_NOACCEL) == ODS_NOACCEL;
 }
@@ -136,12 +135,12 @@ bool CustomButton::hasNoAccelVisualAspect()
    Indicates that you shouldn't draw the focus even when the button
    has the focus (CustomButton::hasFocusVisualAspect is true).
 */
-bool CustomButton::hasNoFocusRectVisualAspect()
+bool CustomButton::hasNoFocusRectVisualAspect() const
 {
   return (m_itemState & ODS_NOFOCUSRECT) == ODS_NOFOCUSRECT;
 }
 
-bool CustomButton::hasSelectedVisualAspect()
+bool CustomButton::hasSelectedVisualAspect() const
 {
   return (m_itemState & ODS_SELECTED) == ODS_SELECTED;
 }

@@ -31,7 +31,7 @@ using namespace vaca;
 
 MenuItem::MenuItem()
 {
-  m_parent = NULL;
+  m_parent = nullptr;
   m_id = 0;
   m_enabled = true;
   m_checked = false;
@@ -46,7 +46,7 @@ MenuItem::MenuItem()
 */
 MenuItem::MenuItem(const String& text, CommandId id, Keys::Type defaultShortcut)
 {
-  m_parent = NULL;
+  m_parent = nullptr;
   m_text = text;
   m_id = id;
   m_enabled = true;
@@ -59,7 +59,7 @@ MenuItem::MenuItem(const String& text, CommandId id, Keys::Type defaultShortcut)
 MenuItem::~MenuItem()
 {
   Menu* parent = getParent();
-  if (parent != NULL)
+  if (parent != nullptr)
     parent->remove(this);
 }
 
@@ -72,13 +72,13 @@ Menu* MenuItem::getRoot()
 {
   Menu* root = m_parent;
   if (root) {
-    while (root->m_parent != NULL)
+    while (root->m_parent != nullptr)
       root = root->m_parent;
   }
   return root;
 }
 
-CommandId MenuItem::getId()
+CommandId MenuItem::getId() const
 {
   return m_id;
 }
@@ -92,7 +92,7 @@ void MenuItem::setText(const String& text)
 {
   m_text = text;
 
-  if (m_parent != NULL) {
+  if (m_parent != nullptr) {
     MENUITEMINFO mii;
 
     mii.cbSize = sizeof(MENUITEMINFO);
@@ -109,7 +109,7 @@ void MenuItem::setId(CommandId id)
 {
   m_id = id;
 
-  if (m_parent != NULL) {
+  if (m_parent != nullptr) {
     MENUITEMINFO mii;
 
     mii.cbSize = sizeof(MENUITEMINFO);
@@ -216,12 +216,11 @@ void MenuItem::addShortcut(Keys::Type shortcut)
 
 MenuItem* MenuItem::checkShortcuts(Keys::Type pressedKey)
 {
-  for (std::vector<Keys::Type>::iterator
-	 it=m_shortcuts.begin(); it!=m_shortcuts.end(); ++it) {
-    if (pressedKey == (*it))
+  for (int & m_shortcut : m_shortcuts) {
+    if (pressedKey == m_shortcut)
       return this;
   }
-  return NULL;
+  return nullptr;
 }
 
 bool MenuItem::isMenu() const { return false; }
@@ -260,7 +259,7 @@ void MenuItem::onUpdate(MenuItemEvent& ev)
     // search the command in the frame where is the menu-bar
     Menu* rootMenu = getRoot();
     if (rootMenu && rootMenu->isMenuBar()) {
-      MenuBar* menuBar = static_cast<MenuBar*>(rootMenu);
+      auto* menuBar = dynamic_cast<MenuBar*>(rootMenu);
       if (Frame* frame = menuBar->getFrame()) {
 	if (Command* cmd = frame->getCommandById(m_id))
 	  updateFromCommand(cmd);
@@ -268,7 +267,7 @@ void MenuItem::onUpdate(MenuItemEvent& ev)
     }
 
     // check if the application is a CommandsClient
-    if (CommandsClient* cc = dynamic_cast<CommandsClient*>(Application::getInstance())) {
+    if (auto* cc = dynamic_cast<CommandsClient*>(Application::getInstance())) {
       if (Command* cmd = cc->getCommandById(m_id))
 	updateFromCommand(cmd);
     }
@@ -286,12 +285,10 @@ void MenuItem::updateFromCommand(Command* cmd)
 // MenuSeparator
 
 MenuSeparator::MenuSeparator()
-{
-}
+= default;
 
 MenuSeparator::~MenuSeparator()
-{
-}
+= default;
 
 bool MenuSeparator::isSeparator() const
 {
@@ -323,7 +320,7 @@ Menu::Menu(CommandId menuId)
   m_handle = ::LoadMenu(Application::getHandle(),
 		       MAKEINTRESOURCE(menuId));
 
-  if (m_handle == NULL)
+  if (m_handle == nullptr)
     throw ResourceException(format_string(L"Can't load the menu resource %d", menuId));
 
   subClass();
@@ -386,12 +383,12 @@ void Menu::subClass()
     // the item can't have data
     assert(mii.dwItemData == 0);
 
-    MenuItem* menuItem = NULL;
+    MenuItem* menuItem = nullptr;
 
     switch (mii.fType) {
 
       case MFT_STRING:
-	if (mii.hSubMenu != NULL) {
+	if (mii.hSubMenu != nullptr) {
 	  menuItem = new Menu(mii.hSubMenu);
 	  menuItem->m_text = buf;
 	}
@@ -500,7 +497,7 @@ MenuItem* Menu::insert(int index, MenuItem* menuItem)
   else if (menuItem->isMenu()) {
     mii.fMask |= MIIM_STRING | MIIM_SUBMENU;
     mii.fType = MFT_STRING;
-    Menu* menu = static_cast<Menu*>(menuItem);
+    Menu* menu = dynamic_cast<Menu*>(menuItem);
     mii.hSubMenu = menu->getHandle();
     mii.dwTypeData = buf;
     mii.cch = static_cast<UINT>(len);
@@ -569,12 +566,12 @@ MenuItem* Menu::remove(MenuItem* menuItem)
   // http://msdn.microsoft.com/en-us/library/ms647994(VS.85).aspx
   Menu* rootMenu = getRoot();
   if (rootMenu && rootMenu->isMenuBar()) {
-    MenuBar* menuBar = static_cast<MenuBar*>(rootMenu);
+    auto* menuBar = dynamic_cast<MenuBar*>(rootMenu);
     Frame* frame = menuBar->getFrame();
-    ::DrawMenuBar(frame ? frame->getHandle(): NULL);
+    ::DrawMenuBar(frame ? frame->getHandle(): nullptr);
   }
 
-  menuItem->m_parent = NULL;
+  menuItem->m_parent = nullptr;
   remove_from_container(m_container, menuItem);
 
   return menuItem;
@@ -617,9 +614,9 @@ MenuItem* Menu::getMenuItemByIndex(int index)
 MenuItem* Menu::getMenuItemById(CommandId id)
 {
   if (id == 0)
-    return NULL;
+    return nullptr;
 
-  MenuItem* menuItem = NULL;
+  MenuItem* menuItem = nullptr;
 
   std::stack<MenuItem*> stack;
   stack.push(this);
@@ -632,15 +629,14 @@ MenuItem* Menu::getMenuItemById(CommandId id)
     stack.pop();
 
     if (menuItem->isMenu()) {
-      MenuItemList& subMenus(static_cast<Menu*>(menuItem)->m_container);
+      MenuItemList& subMenus(dynamic_cast<Menu*>(menuItem)->m_container);
 
-      for (MenuItemList::iterator it=subMenus.begin();
-	   it!=subMenus.end(); ++it)
-	stack.push(*it);
+      for (auto & subMenu : subMenus)
+	stack.push(subMenu);
     }
   }
 
-  return NULL;
+  return nullptr;
 }
 
 int Menu::getMenuItemIndex(MenuItem* menuItem)
@@ -668,13 +664,13 @@ MenuItemList Menu::getMenuItems()
 
 MenuItem* Menu::checkShortcuts(Keys::Type pressedKey)
 {
-  for (MenuItemList::iterator it=m_container.begin(); it!=m_container.end(); ++it) {
-    MenuItem* menuItem = (*it)->checkShortcuts(pressedKey);
-    if (menuItem != NULL)
+  for (auto & it : m_container) {
+    MenuItem* menuItem = it->checkShortcuts(pressedKey);
+    if (menuItem != nullptr)
       return menuItem;
   }
 
-  return NULL;
+  return nullptr;
 }
 
 // PopupMenu* Menu::getPopupMenu()
@@ -723,19 +719,18 @@ HMENU Menu::getHandle()
 
 MenuBar::MenuBar()
   : Menu()
-  , m_frame(NULL)
+  , m_frame(nullptr)
 {
 }
 
 MenuBar::MenuBar(CommandId menuId)
   : Menu(menuId)
-  , m_frame(NULL)
+  , m_frame(nullptr)
 {
 }
 
 MenuBar::~MenuBar()
-{
-}
+= default;
 
 Frame* MenuBar::getFrame()
 {
@@ -757,16 +752,15 @@ MdiListMenu* MenuBar::getMdiListMenu()
     stack.pop();
 
     if (menuItem->isMdiList())
-      return static_cast<MdiListMenu*>(menuItem);
+      return dynamic_cast<MdiListMenu*>(menuItem);
     else if (menuItem->isMenu()) {
-      MenuItemList container = static_cast<Menu*>(menuItem)->getMenuItems();
-      for (MenuItemList::iterator it=container.begin();
-	   it!=container.end(); ++it)
-	stack.push(*it);
+      MenuItemList container = dynamic_cast<Menu*>(menuItem)->getMenuItems();
+      for (auto & it : container)
+	stack.push(it);
     }
   }
 
-  return NULL;
+  return nullptr;
 }
 
 bool MenuBar::isMenuBar() const { return true; }
@@ -780,8 +774,7 @@ PopupMenu::PopupMenu()
 }
 
 PopupMenu::~PopupMenu()
-{
-}
+= default;
 
 /**
    Displays the popup-menu in the screen at the specified location.
@@ -838,8 +831,7 @@ MdiListMenu::MdiListMenu(const String& text)
 }
 
 MdiListMenu::~MdiListMenu()
-{
-}
+= default;
 
 bool MdiListMenu::isMdiList() const
 {

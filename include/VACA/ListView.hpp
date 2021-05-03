@@ -65,47 +65,47 @@ public:
     static const Style ShowSelectionAlways;
   };
 
-  ListView(Widget* parent, Style style = Styles::Default);
-  virtual ~ListView();
+  ListView(Widget* parent, const Style& style = Styles::Default);
+  ~ListView() override;
 
-  virtual void setBgColor(const Color& color);
+  void setBgColor(const Color& color) override;
 
-  Color getTextColor() const;
+  [[nodiscard]] Color getTextColor() const;
   void setTextColor(const Color& color);
 
-  Color getTextBgColor() const;
+  [[nodiscard]] Color getTextBgColor() const;
   void setTextBgColor(const Color& color);
 
-  ListViewType getType() const;
+  [[nodiscard]] ListViewType getType() const;
   void setType(ListViewType type);
 
   void setImageList(const ImageList& imageList);
   void setSmallImageList(const ImageList& imageList);
   void setStateImageList(const ImageList& imageList);
-  ImageList getImageList() const;
-  ImageList getSmallImageList() const;
-  ImageList getStateImageList() const;
+  [[nodiscard]] ImageList getImageList() const;
+  [[nodiscard]] ImageList getSmallImageList() const;
+  [[nodiscard]] ImageList getStateImageList() const;
 
   int addColumn(ListColumn* column);
   // int insertColumn(int columnIndex, const String& header, TextAlign textAlign = TextAlign::Left);
   void removeColumn(ListColumn* column);
   void removeAllColumns();
 
-  int getColumnCount() const;
-  ListColumn* getColumn(size_t columnIndex) const;
+  [[nodiscard]] int getColumnCount() const;
+  [[nodiscard]] ListColumn* getColumn(size_t columnIndex) const;
 
   int addItem(ListItem* item);
   // int insertItem(int itemIndex, const String& text, int imageIndex = -1);
   void removeItem(ListItem* item);
   void removeAllItems();
 
-  int getItemCount() const;
-  ListItem* getItem(size_t index) const;
+  [[nodiscard]] int getItemCount() const;
+  [[nodiscard]] ListItem* getItem(size_t index) const;
   // Rect getItemBounds(int itemIndex, int code = LVIR_BOUNDS);
 
   // void editItemText(int itemIndex);
 
-  int getSelectedItemCount() const;
+  [[nodiscard]] int getSelectedItemCount() const;
 
 //   void sortItems(std::less<ListItem> functor);
 //   int getCurrentItem();
@@ -117,7 +117,7 @@ public:
 
 protected:
   // Events
-  virtual void onResize(ResizeEvent& ev);
+  void onResize(ResizeEvent& ev) override;
 
   // New events
   virtual void onBeforeSelect(ListViewEvent& ev);
@@ -125,7 +125,7 @@ protected:
   virtual void onColumnClick(ListViewEvent& ev);
 
   // Reflected notifications
-  virtual bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult);
+  bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult) override;
 
 private:
 
@@ -151,8 +151,8 @@ public:
   {
   }
 
-  ListItem* getItem() const { return m_item; }
-  ListColumn* getColumn() const { return m_column; }
+  [[nodiscard]] ListItem* getItem() const { return m_item; }
+  [[nodiscard]] ListColumn* getColumn() const { return m_column; }
 
 };
 

@@ -17,15 +17,15 @@ using namespace vaca;
 
 ImageHandle::ImageHandle()
 {
-  m_hdc = NULL;
-  m_graphics = NULL;
+  m_hdc = nullptr;
+  m_graphics = nullptr;
 }
 
 ImageHandle::ImageHandle(HBITMAP handle)
   : GdiObject<HBITMAP>(handle)
 {
-  m_hdc = NULL;
-  m_graphics = NULL;
+  m_hdc = nullptr;
+  m_graphics = nullptr;
 }
 
 ImageHandle::~ImageHandle()
@@ -49,7 +49,7 @@ Image::Image(ResourceId imageId)
 {
   // HBITMAP
   HBITMAP hbmp = LoadBitmap(Application::getHandle(), imageId.toLPTSTR());
-  if (hbmp == NULL)
+  if (hbmp == nullptr)
     throw ResourceException(format_string(L"Can't load the image resource %d",
 					  imageId.getId()));
 
@@ -66,7 +66,7 @@ Image::Image(const String& fileName)
   copy_string_to(fileName, lpstr, size);
 
   // HBITMAP
-  HBITMAP hbmp = reinterpret_cast<HBITMAP>
+  auto hbmp = reinterpret_cast<HBITMAP>
     (LoadImage(Application::getHandle(),
 	       lpstr,
 	       IMAGE_BITMAP,
@@ -74,7 +74,7 @@ Image::Image(const String& fileName)
 	       LR_LOADFROMFILE));
   delete[] lpstr;
 
-  if (hbmp == NULL)
+  if (hbmp == nullptr)
     throw ResourceException(L"Can't load the image from file " + fileName);
 
   get()->m_hdc = GetDC(GetDesktopWindow());
@@ -116,14 +116,9 @@ Image::Image(const Size& sz, Graphics& g)
 
 }
 
-Image::Image(const Image& image)
-  : SharedPtr<ImageHandle>(image)
-{
-}
+Image::Image(const Image& image) = default;
 
-Image::~Image()
-{
-}
+Image::~Image() = default;
 
 int Image::getWidth() const
 {
@@ -140,7 +135,7 @@ Size Image::getSize() const
   BITMAPCOREHEADER bc;
   ZeroMemory(&bc, sizeof(bc));
   bc.bcSize = sizeof(bc);
-  GetDIBits(get()->m_hdc, getHandle(), 0, 0, NULL,
+  GetDIBits(get()->m_hdc, getHandle(), 0, 0, nullptr,
 	    reinterpret_cast<BITMAPINFO*>(&bc), 0);
   return Size(bc.bcWidth, bc.bcHeight);
 }
@@ -150,7 +145,7 @@ int Image::getDepth() const
   BITMAPCOREHEADER bc;
   ZeroMemory(&bc, sizeof(bc));
   bc.bcSize = sizeof(bc);
-  GetDIBits(get()->m_hdc, getHandle(), 0, 0, NULL,
+  GetDIBits(get()->m_hdc, getHandle(), 0, 0, nullptr,
 	    reinterpret_cast<BITMAPINFO*>(&bc), 0);
   return bc.bcBitCount;
 }
@@ -162,7 +157,7 @@ Graphics& Image::getGraphics()
 {
   ImageHandle* ptr = get();
 
-  if (ptr->m_graphics == NULL) {
+  if (ptr->m_graphics == nullptr) {
     assert(ptr->m_hdc != NULL);
     ptr->m_graphics = new Graphics(ptr->m_hdc, *this);
   }
@@ -175,7 +170,7 @@ ImagePixels Image::getPixels() const
   BITMAPCOREHEADER bc;
   ZeroMemory(&bc, sizeof(bc));
   bc.bcSize = sizeof(bc);
-  GetDIBits(get()->m_hdc, getHandle(), 0, 0, NULL,
+  GetDIBits(get()->m_hdc, getHandle(), 0, 0, nullptr,
 	    reinterpret_cast<BITMAPINFO*>(&bc), 0);
 
   ImagePixels imagePixels(bc.bcWidth,
@@ -193,12 +188,12 @@ ImagePixels Image::getPixels() const
   return imagePixels;
 }
 
-void Image::setPixels(ImagePixels imagePixels)
+void Image::setPixels(const ImagePixels& imagePixels)
 {
   BITMAPCOREHEADER bc;
   ZeroMemory(&bc, sizeof(bc));
   bc.bcSize = sizeof(bc);
-  GetDIBits(get()->m_hdc, getHandle(), 0, 0, NULL,
+  GetDIBits(get()->m_hdc, getHandle(), 0, 0, nullptr,
 	    reinterpret_cast<BITMAPINFO*>(&bc), 0);
 
   bc.bcBitCount = 32;
@@ -263,12 +258,12 @@ void Image::init(int width, int height, int depth)
   binf.bmiColors[0] = dummy;
   binf.bmiHeader = bhdr;
 
-  char* bits = NULL;
+  char* bits = nullptr;
 
   get()->m_hdc = GetDC(GetDesktopWindow());
   get()->setHandle(CreateDIBSection(get()->m_hdc, &binf, DIB_RGB_COLORS,
 				    reinterpret_cast<void**>(&bits),
-				    NULL, 0));
+				    nullptr, 0));
 
   // TODO handle error
 }

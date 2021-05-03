@@ -19,10 +19,7 @@ Region::Region()
   assert(getHandle()); // TODO exception
 }
 
-Region::Region(const Region& rgn)
-  : SharedPtr<GdiObject<HRGN> >(rgn)
-{
-}
+Region::Region(const Region& rgn) = default;
 
 Region::Region(HRGN hrgn)
   : SharedPtr<GdiObject<HRGN> >(new GdiObject<HRGN>)
@@ -40,8 +37,7 @@ Region::Region(const Rect& rc)
 }
 
 Region::~Region()
-{
-}
+= default;
 
 /**
    Returns true if the Region is empty.
@@ -90,7 +86,7 @@ Region Region::clone() const
 
   // copy the this region to "rgn"
   Region copy;
-  int res = CombineRgn(copy->getHandle(), getHandle(), NULL, RGN_COPY);
+  int res = CombineRgn(copy->getHandle(), getHandle(), nullptr, RGN_COPY);
   if (res == ERROR) {
     assert(false);	// TODO exception
   }

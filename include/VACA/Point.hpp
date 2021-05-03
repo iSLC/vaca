@@ -24,7 +24,7 @@ public:
   Point(const Point& point);
   explicit Point(const Size& size);
 
-  const Point& operator=(const Point& pt);
+  Point& operator=(const Point& pt) = default;
   const Point& operator+=(const Point& pt);
   const Point& operator-=(const Point& pt);
   const Point& operator+=(int value);

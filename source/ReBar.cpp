@@ -44,8 +44,7 @@ ReBarBand::ReBarBand(const ReBarBand& band)
 }
 
 ReBarBand::~ReBarBand()
-{
-}
+= default;
 
 ReBarBandStyle ReBarBand::getStyle() const
 {
@@ -80,7 +79,7 @@ void ReBarBand::getColors(Color& fg, Color& bg) const
   bg = convert_to<Color>(rbbi.clrBack);
 }
 
-void ReBarBand::setColors(Color fg, Color bg)
+void ReBarBand::setColors(const Color& fg, const Color& bg)
 {
   REBARBANDINFO rbbi;
   rbbi.cbSize = sizeof(REBARBANDINFO);
@@ -180,7 +179,7 @@ void ReBarBand::getBand(REBARBANDINFO* rbbi) const
 
 // ======================================================================
 
-ReBar::ReBar(Widget* parent, Style style)
+ReBar::ReBar(Widget* parent, const Style& style)
   : Widget(WidgetClassName(REBARCLASSNAME), parent, style)
 {
   REBARINFO rbi;

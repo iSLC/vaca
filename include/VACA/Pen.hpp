@@ -132,11 +132,11 @@ public:
 
   Pen& operator=(const Pen& pen);
 
-  Color getColor() const;
-  int getWidth() const;
-  PenStyle getStyle() const;
-  PenEndCap getEndCap() const;
-  PenJoin getJoin() const;
+  [[nodiscard]] Color getColor() const;
+  [[nodiscard]] int getWidth() const;
+  [[nodiscard]] PenStyle getStyle() const;
+  [[nodiscard]] PenEndCap getEndCap() const;
+  [[nodiscard]] PenJoin getJoin() const;
 
 private:
   class PenImpl;

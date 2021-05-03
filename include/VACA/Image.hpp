@@ -28,7 +28,7 @@ class VACA_DLL ImageHandle : public GdiObject<HBITMAP>
 public:
   ImageHandle();
   ImageHandle(HBITMAP handle);
-  virtual ~ImageHandle();
+  ~ImageHandle() override;
 };
 
 /**
@@ -63,25 +63,25 @@ public:
   Image(const Size& sz, int depth);
   Image(const Size& sz, Graphics& g);
   Image(const Image& image);
-  virtual ~Image();
+  ~Image() override;
 
-  bool isValid() const { return get()->isValid(); }
+  [[nodiscard]] bool isValid() const { return get()->isValid(); }
 
-  int getWidth() const;
-  int getHeight() const;
-  Size getSize() const;
-  int getDepth() const;
+  [[nodiscard]] int getWidth() const;
+  [[nodiscard]] int getHeight() const;
+  [[nodiscard]] Size getSize() const;
+  [[nodiscard]] int getDepth() const;
 
   Graphics& getGraphics();
 
-  ImagePixels getPixels() const;
-  void setPixels(ImagePixels imagePixels);
+  [[nodiscard]] ImagePixels getPixels() const;
+  void setPixels(const ImagePixels& imagePixels);
 
-  HBITMAP getHandle() const;
+  [[nodiscard]] HBITMAP getHandle() const;
 
   Image& operator=(const Image& image);
 
-  Image clone() const;
+  [[nodiscard]] Image clone() const;
 
   bool operator==(const Image& image) const { return get() == image.get(); }
   bool operator!=(const Image& image) const { return get() != image.get(); }

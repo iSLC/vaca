@@ -34,7 +34,7 @@ public:
 
   AnchorLayout(const Size& refSize);
 
-  virtual void layout(Widget* parent, WidgetList& widgets, const Rect& rc);
+  void layout(Widget* parent, WidgetList& widgets, const Rect& rc) override;
 
 };
 

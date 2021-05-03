@@ -18,8 +18,7 @@ ResizeEvent::ResizeEvent(Component* source, const Size& size)
    Destroys the ResizeEvent.
 */
 ResizeEvent::~ResizeEvent()
-{
-}
+= default;
 
 Size ResizeEvent::getSize() const
 {

@@ -37,27 +37,27 @@ Component::~Component()
 
 PropertyPtr Component::getProperty(const String& name)
 {
-  Properties::iterator it = m_properties.find(name);
+  auto it = m_properties.find(name);
   if (it != m_properties.end())
     return it->second;
   else
     return PropertyPtr();
 }
 
-void Component::setProperty(PropertyPtr property)
+void Component::setProperty(const PropertyPtr& property)
 {
   m_properties[property->getName()] = property;
 }
 
 bool Component::hasProperty(const String& name)
 {
-  Properties::iterator it = m_properties.find(name);
+  auto it = m_properties.find(name);
   return it != m_properties.end();
 }
 
 void Component::removeProperty(const String& name)
 {
-  Properties::iterator it = m_properties.find(name);
+  auto it = m_properties.find(name);
   if (it != m_properties.end())
     m_properties.erase(it);
 }

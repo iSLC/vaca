@@ -15,8 +15,8 @@ namespace vaca {
 */
 class VACA_DLL TimePoint
 {
-  LARGE_INTEGER m_point;
-  LARGE_INTEGER m_freq;
+  LARGE_INTEGER m_point{};
+  LARGE_INTEGER m_freq{};
 
 public:
   TimePoint();
@@ -24,7 +24,7 @@ public:
 
   void reset();
 
-  double elapsed() const;
+  [[nodiscard]] double elapsed() const;
 };
 
 } // namespace vaca

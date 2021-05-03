@@ -10,8 +10,7 @@
 using namespace vaca;
 
 Message::Message()
-{
-}
+= default;
 
 /**
    Creates a custom message that can be sent to a specific Widget.
@@ -29,7 +28,7 @@ Message::Message(const String& name)
   if (message == 0 || message < 0xC000 || message > 0xFFFF)
     throw MessageException(format_string(L"Error registering type of message '%s'.", name.c_str()));
 
-  m_msg.hwnd = NULL;
+  m_msg.hwnd = nullptr;
   m_msg.message = message;
   m_msg.wParam = 0;
   m_msg.lParam = 0;
@@ -64,8 +63,7 @@ Message::Message(const Message& msg, void* payload)
    Does nothing.
 */
 Message::~Message()
-{
-}
+= default;
 
 /**
    Returns the user data specified in the creation of this message.
@@ -76,7 +74,7 @@ Message::~Message()
 
    @see Message#Message(const Message&, void*)
 */
-void* Message::getPayload()
+void* Message::getPayload() const
 {
   return reinterpret_cast<void*>(m_msg.lParam);
 }

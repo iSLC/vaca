@@ -68,24 +68,24 @@ class VACA_DLL MouseEvent : public ConsumableEvent
 
 public:
 
-  MouseEvent(Widget* source, Point point, int clicks, int flags, MouseButton trigger, int delta = 0);
-  virtual ~MouseEvent();
+  MouseEvent(Widget* source, const Point& point, int clicks, int flags, MouseButton trigger, int delta = 0);
+  ~MouseEvent() override;
 
-  int getX() const;
-  int getY() const;
-  Point getPoint() const;
+  [[nodiscard]] int getX() const;
+  [[nodiscard]] int getY() const;
+  [[nodiscard]] Point getPoint() const;
 
-  int getClicks() const;
-  MouseButton getButton() const;
+  [[nodiscard]] int getClicks() const;
+  [[nodiscard]] MouseButton getButton() const;
 
-  bool isLeftButtonPressed() const;
-  bool isRightButtonPressed() const;
-  bool isMiddleButtonPressed() const;
-  bool isShiftKeyPressed() const;
-  bool isControlKeyPressed() const;
-  bool isAltKeyPressed() const;
+  [[nodiscard]] bool isLeftButtonPressed() const;
+  [[nodiscard]] bool isRightButtonPressed() const;
+  [[nodiscard]] bool isMiddleButtonPressed() const;
+  [[nodiscard]] bool isShiftKeyPressed() const;
+  [[nodiscard]] bool isControlKeyPressed() const;
+  [[nodiscard]] bool isAltKeyPressed() const;
 
-  int getDelta() const;
+  [[nodiscard]] int getDelta() const;
 
 };
 

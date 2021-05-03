@@ -18,9 +18,9 @@ class VACA_DLL CommandEvent : public ConsumableEvent
 public:
 
   CommandEvent(Component* source, CommandId commandId);
-  virtual ~CommandEvent();
+  ~CommandEvent() override;
 
-  CommandId getCommandId() const;
+  [[nodiscard]] CommandId getCommandId() const;
 
 };
 

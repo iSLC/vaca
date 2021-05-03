@@ -23,7 +23,7 @@ class VACA_DLL CommonDialog : public Component
 public:
 
   CommonDialog(Widget* parent);
-  virtual ~CommonDialog();
+  ~CommonDialog() override;
 
   Widget* getParent();
   HWND getParentHandle();

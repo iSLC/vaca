@@ -18,13 +18,13 @@ using namespace vaca;
 const int Slider::MinLimit = SHRT_MIN; // std::numeric_limits<short>::min();
 const int Slider::MaxLimit = SHRT_MAX; // std::numeric_limits<short>::max();
 
-Slider::Slider(Widget* parent, Style style)
+Slider::Slider(Widget* parent, const Style& style)
   : Widget(WidgetClassName(TRACKBAR_CLASS), parent, style)
 {
 }
 
 Slider::Slider(int minValue, int maxValue, int value,
-	       Widget* parent, Style style)
+	       Widget* parent, const Style& style)
   : Widget(WidgetClassName(TRACKBAR_CLASS), parent, style)
 {
   setRange(minValue, maxValue);
@@ -32,8 +32,7 @@ Slider::Slider(int minValue, int maxValue, int value,
 }
 
 Slider::~Slider()
-{
-}
+= default;
 
 Orientation Slider::getOrientation()
 {

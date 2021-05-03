@@ -23,8 +23,8 @@ public:
     static const Style Default;
   };
 
-  CheckBox(const String& text, Widget* parent, Style style = Styles::Default);
-  virtual ~CheckBox();
+  CheckBox(const String& text, Widget* parent, const Style& style = Styles::Default);
+  ~CheckBox() override;
 
 };
 

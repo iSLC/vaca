@@ -15,8 +15,7 @@ CancelableEvent::CancelableEvent(Component* source)
 }
 
 CancelableEvent::~CancelableEvent()
-{
-}
+= default;
 
 /**
    Cancels the event.

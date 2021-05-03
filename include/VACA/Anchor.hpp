@@ -26,12 +26,12 @@ class VACA_DLL Anchor : public Constraint
 public:
 
   Anchor(const Rect& refRect, Sides borders);
-  virtual ~Anchor();
+  ~Anchor() override;
 
-  Rect getRefRect() const;
+  [[nodiscard]] Rect getRefRect() const;
   void setRefRect(const Rect& refRect);
 
-  Sides getSides() const;
+  [[nodiscard]] Sides getSides() const;
   void setSides(Sides borders);
 
 }; // Anchor

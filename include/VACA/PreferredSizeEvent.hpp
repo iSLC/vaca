@@ -20,13 +20,13 @@ class VACA_DLL PreferredSizeEvent : public Event
 public:
 
   PreferredSizeEvent(Widget* source, const Size& fitIn);
-  virtual ~PreferredSizeEvent();
+  ~PreferredSizeEvent() override;
 
-  Size fitInSize() const;
-  int fitInWidth() const;
-  int fitInHeight() const;
+  [[nodiscard]] Size fitInSize() const;
+  [[nodiscard]] int fitInWidth() const;
+  [[nodiscard]] int fitInHeight() const;
 
-  Size getPreferredSize() const;
+  [[nodiscard]] Size getPreferredSize() const;
   void setPreferredSize(const Size& preferredSize);
   void setPreferredSize(int w, int h);
 

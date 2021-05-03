@@ -25,15 +25,14 @@ using namespace vaca;
    @param parent The parent Widget.
    @param style Add the LBS_MULTIPLESEL if you want a multiselection ListBox.
 */
-ListBox::ListBox(Widget* parent, Style style)
+ListBox::ListBox(Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_LISTBOX), parent, style)
 {
   setBgColor(System::getColor(COLOR_WINDOW));
 }
 
 ListBox::~ListBox()
-{
-}
+= default;
 
 /**
    (LB_ADDSTRING)
@@ -206,7 +205,7 @@ bool ListBox::onReflectedCommand(int id, int code, LRESULT& lResult)
 // ======================================================================
 // DragListBox
 
-DragListBox::DragListBox(Widget* parent, Style style)
+DragListBox::DragListBox(Widget* parent, const Style& style)
   : ListBox(parent, style)
 {
   BOOL res;

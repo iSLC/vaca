@@ -38,7 +38,7 @@ class VACA_DLL TreeNode : public Component
 public:
 
   TreeNode(const String& text = L"", int imageIndex = -1, int selectedImageIndex = -1);
-  virtual ~TreeNode();
+  ~TreeNode() override;
 
   TreeNode* getParent();
   TreeNodeList getChildren();
@@ -61,8 +61,8 @@ public:
   bool isExpanded();
   void setExpanded(bool state);
 
-  Rect getBounds() const;
-  Rect getRowBounds() const;
+  [[nodiscard]] Rect getBounds() const;
+  [[nodiscard]] Rect getRowBounds() const;
   void ensureVisible();
 
   HTREEITEM getHandle();

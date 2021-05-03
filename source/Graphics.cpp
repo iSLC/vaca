@@ -53,7 +53,7 @@ void Graphics::initialize()
 */
 Graphics::Graphics()
 {
-  m_handle      = ::GetDC(NULL);
+  m_handle      = ::GetDC(nullptr);
   m_autoRelease = true;
   m_autoDelete  = false;
 
@@ -72,7 +72,7 @@ Graphics::Graphics(HDC hdc)
   m_handle         = hdc;
   m_autoRelease = false;
   m_autoDelete  = false;
-  m_font        = NULL;
+  m_font        = nullptr;
 
   initialize();
 }
@@ -87,7 +87,7 @@ Graphics::Graphics(HDC hdc, Image& image)
   m_handle      = CreateCompatibleDC(hdc);
   m_autoRelease = false;
   m_autoDelete  = true;
-  m_font        = NULL;
+  m_font        = nullptr;
 
   SelectObject(m_handle, image.getHandle());
   initialize();
@@ -116,7 +116,7 @@ Graphics::~Graphics()
   ::DeleteObject(reinterpret_cast<HGDIOBJ>(m_nullPen));
 
   if (m_autoRelease)
-    ::ReleaseDC(NULL, m_handle);
+    ::ReleaseDC(nullptr, m_handle);
   else if (m_autoDelete)
     ::DeleteDC(m_handle);
 }
@@ -203,7 +203,7 @@ Font Graphics::getFont() const
   return m_font;
 }
 
-void Graphics::setFont(Font font)
+void Graphics::setFont(const Font& font)
 {
   m_font = font;
 }
@@ -259,7 +259,7 @@ void Graphics::setMiterLimit(double limit)
 {
   assert(m_handle);
 
-  SetMiterLimit(m_handle, static_cast<FLOAT>(limit), NULL);
+  SetMiterLimit(m_handle, static_cast<FLOAT>(limit), nullptr);
 }
 
 FillRule Graphics::getFillRule() const
@@ -274,20 +274,20 @@ void Graphics::setFillRule(FillRule fillRule)
 
 void Graphics::tracePath(const GraphicsPath& path, const Point& pt)
 {
-  GraphicsPath::const_iterator it = path.begin();
-  GraphicsPath::const_iterator end = path.end();
+  auto it = path.begin();
+  auto end = path.end();
 
   assert(m_handle);
 
   BeginPath(m_handle);
-  MoveToEx(m_handle, pt.x, pt.y, NULL);
+  MoveToEx(m_handle, pt.x, pt.y, nullptr);
 
   for (; it != end; ++it) {
     switch (it->getType()) {
       case GraphicsPath::MoveTo:
   	MoveToEx(m_handle,
 		 pt.x + it->getPoint().x,
-		 pt.y + it->getPoint().y, NULL);
+		 pt.y + it->getPoint().y, nullptr);
   	break;
       case GraphicsPath::LineTo:
   	LineTo(m_handle,
@@ -328,10 +328,10 @@ void Graphics::getPath(GraphicsPath& path) const
 
   path.clear();
 
-  int npoints = GetPath(m_handle, NULL, NULL, 0);
+  int npoints = GetPath(m_handle, nullptr, nullptr, 0);
   if (npoints > 0) {
-    LPPOINT points = new POINT[npoints];
-    LPBYTE types = new BYTE[npoints];
+    auto points = new POINT[npoints];
+    auto types = new BYTE[npoints];
 
     npoints = GetPath(m_handle, points, types, npoints);
 
@@ -509,7 +509,7 @@ void Graphics::drawImage(Image& image, int dstX, int dstY, int srcX, int srcY, i
 #else
 
   HDC maskHDC = CreateCompatibleDC(m_handle);
-  HBITMAP theMask = CreateBitmap(width, height, 1, 1, NULL);
+  HBITMAP theMask = CreateBitmap(width, height, 1, 1, nullptr);
   HGDIOBJ oldMask = SelectObject(maskHDC, theMask);
   COLORREF oldBkColor = SetBkColor(source.getHandle(), convert_to<COLORREF>(bgColor));
 
@@ -603,7 +603,7 @@ void Graphics::drawLine(const Pen& pen, int x1, int y1, int x2, int y2)
 
   MoveToEx(m_handle, x1, y1, &oldPos);
   LineTo(m_handle, x2, y2);
-  MoveToEx(m_handle, oldPos.x, oldPos.y, NULL);
+  MoveToEx(m_handle, oldPos.x, oldPos.y, nullptr);
 
   SelectObject(m_handle, oldPen);
 }
@@ -622,9 +622,9 @@ void Graphics::drawBezier(const Pen& pen, const std::vector<Point>& points)
 
   assert(numPoints >= 4);
 
-  POINT* pts = new POINT[numPoints];
+  auto* pts = new POINT[numPoints];
   POINT* pt = pts;
-  for (std::vector<Point>::const_iterator
+  for (auto
 	 it = points.begin(),
 	 end = points.end(); it != end; ++it, ++pt) {
     *pt = convert_to<POINT>(*it);
@@ -714,7 +714,7 @@ void Graphics::draw3dRect(int x, int y, int w, int h, const Color& topLeft, cons
   LineTo(m_handle, x-1, y+h-1);
 
   SelectObject(m_handle, oldPen);
-  MoveToEx(m_handle, oldPos.x, oldPos.y, NULL);
+  MoveToEx(m_handle, oldPos.x, oldPos.y, nullptr);
 
   DeleteObject(pen1);
   DeleteObject(pen2);
@@ -824,9 +824,9 @@ void Graphics::drawPolyline(const Pen& pen, const std::vector<Point>& points)
 
   assert(numPoints >= 2);
 
-  POINT* pts = new POINT[numPoints];
+  auto* pts = new POINT[numPoints];
   POINT* pt = pts;
-  for (std::vector<Point>::const_iterator
+  for (auto
 	 it = points.begin(),
 	 end = points.end(); it != end; ++it, ++pt) {
     *pt = convert_to<POINT>(*it);
@@ -1170,5 +1170,4 @@ ScreenGraphics::ScreenGraphics()
 }
 
 ScreenGraphics::~ScreenGraphics()
-{
-}
+= default;

@@ -34,15 +34,15 @@ class VACA_DLL KeyEvent : public ConsumableEvent
 public:
 
   KeyEvent(Widget* source, Keys::Type keys, Char charCode);
-  virtual ~KeyEvent();
+  ~KeyEvent() override;
 
-  Keys::Type getKeyCode() const;
-  Keys::Type getModifiers() const;
-  Char getCharCode() const;
+  [[nodiscard]] Keys::Type getKeyCode() const;
+  [[nodiscard]] Keys::Type getModifiers() const;
+  [[nodiscard]] Char getCharCode() const;
 
-  bool isShift() const;
-  bool isControl() const;
-  bool isAlt() const;
+  [[nodiscard]] bool isShift() const;
+  [[nodiscard]] bool isControl() const;
+  [[nodiscard]] bool isAlt() const;
 
 };
 

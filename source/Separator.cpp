@@ -10,14 +10,13 @@
 
 using namespace vaca;
 
-Separator::Separator(Widget* parent, Style style)
+Separator::Separator(Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_STATIC), parent, style)
 {
 }
 
 Separator::~Separator()
-{
-}
+= default;
 
 /**
    The preferred size of a separator is a 2x2 box. It is your

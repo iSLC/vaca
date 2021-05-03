@@ -11,14 +11,13 @@
 
 using namespace vaca;
 
-StatusBar::StatusBar(Widget* parent, Style style)
+StatusBar::StatusBar(Widget* parent, const Style& style)
   : Widget(WidgetClassName(STATUSCLASSNAME), parent, style)
 {
 }
 
 StatusBar::~StatusBar()
-{
-}
+= default;
 
 /**
    A status bar is arranged by a Frame, but doesn't depend of the

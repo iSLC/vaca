@@ -33,11 +33,11 @@ public:
     static const Style PathEllipsis;
   };
 
-  Label(const String& text, Widget* parent, Style style = Styles::Default);
+  Label(const String& text, Widget* parent, const Style& style = Styles::Default);
   explicit Label(HWND handle);
-  virtual ~Label();
+  ~Label() override;
 
-  virtual TextAlign getTextAlign() const;
+  [[nodiscard]] virtual TextAlign getTextAlign() const;
   virtual void setTextAlign(TextAlign align);
 
 protected:
@@ -46,8 +46,8 @@ protected:
   int getFlagsForDrawString();
 
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onResize(ResizeEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
+  void onResize(ResizeEvent& ev) override;
 
 };
 

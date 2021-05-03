@@ -18,15 +18,13 @@ Command::Command(CommandId id)
 }
 
 Command::~Command()
-{
-}
+= default;
 
 // ======================================================================
 // CommandsClient
 
 CommandsClient::CommandsClient()
-{
-}
+= default;
 
 CommandsClient::~CommandsClient()
 {
@@ -55,11 +53,9 @@ Command* CommandsClient::removeCommand(Command* cmd)
 
 Command* CommandsClient::getCommandById(CommandId id) const
 {
-  for (std::vector<Command*>::const_iterator
-	 it=m_commands.begin(); it!=m_commands.end(); ++it) {
-    Command* cmd = *it;
+  for (auto cmd : m_commands) {
     if (cmd->getId() == id)
       return cmd;
   }
-  return NULL;
+  return nullptr;
 }

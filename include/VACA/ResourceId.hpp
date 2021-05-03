@@ -27,9 +27,9 @@ public:
   ResourceId(const ResourceId& rc);
   virtual ~ResourceId();
 
-  int getId() const;
+  [[nodiscard]] int getId() const;
 
-  String toString();
+  String toString() const;
   LPTSTR toLPTSTR();
 
 };

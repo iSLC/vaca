@@ -30,7 +30,7 @@ using namespace vaca;
 
    @see onClose()
 */
-Frame::Frame(const String& title, Widget* parent, Style style)
+Frame::Frame(const String& title, Widget* parent, const Style& style)
   : Widget(FrameClass::getClassName(), parent, style)
 {
   initialize(title);
@@ -40,7 +40,7 @@ Frame::Frame(const String& title, Widget* parent, Style style)
    Creates a frame with a custom WNDCLASS. @a className can be NULL if
    you want to call Widget::create() by your self.
 */
-Frame::Frame(const WidgetClassName& className, const String& title, Widget* parent, Style style)
+Frame::Frame(const WidgetClassName& className, const String& title, Widget* parent, const Style& style)
   : Widget(className, parent, style)
 {
   initialize(title);
@@ -54,7 +54,7 @@ Frame::Frame(HWND handle)
 
 void Frame::initialize(const String& title)
 {
-  m_menuBar = NULL;
+  m_menuBar = nullptr;
   m_counted = false;
 
   // we can set the title of the window now if we have the HWND (for
@@ -79,13 +79,13 @@ bool Frame::preTranslateMessage(Message& message)
 {
   MSG& msg(*(LPMSG)message);
 
-  if (m_menuBar != NULL && isEnabled()) {
+  if (m_menuBar != nullptr && isEnabled()) {
     // TODO accelerators
     if (msg.message == WM_KEYDOWN) {
       Keys::Type keys = Keys::fromMessageParams(msg.wParam, msg.lParam);
       MenuItem* menuItem = m_menuBar->checkShortcuts(keys);
 
-      if (menuItem != NULL) {
+      if (menuItem != nullptr) {
 	// update the menuItem status before (onUpdate stuff)
 	updateMenuItem(menuItem);
 
@@ -139,12 +139,12 @@ void Frame::onCommand(CommandEvent& ev)
 {
   if (!ev.isConsumed()) {
     // use menu bar
-    if (m_menuBar != NULL) {
+    if (m_menuBar != nullptr) {
       MenuItem* menuItem = m_menuBar->getMenuItemById(ev.getCommandId());
 
       VACA_TRACE("Frame::onCommand(%d), menuItem=%p\n", ev.getCommandId(), menuItem);
 
-      if (menuItem != NULL) {
+      if (menuItem != nullptr) {
 	MenuItemEvent ev(menuItem);
 	menuItem->onClick(ev);
       }
@@ -207,12 +207,11 @@ void Frame::onUpdateIndicators()
   Widget::onUpdateIndicators();
 
   // update menu-bar
-  if (m_menuBar != NULL) {
+  if (m_menuBar != nullptr) {
     MenuItemList children = m_menuBar->getMenuItems();
 
     // update menus
-    for (MenuItemList::iterator it=children.begin(); it!=children.end(); ++it) {
-      MenuItem* menuItem = *it;
+    for (auto menuItem : children) {
       updateMenuItem(menuItem);
     }
 
@@ -234,8 +233,8 @@ void Frame::setVisible(bool visible)
 
   // synchronize all the group
   WidgetList group = getSynchronizedGroup();
-  for (WidgetList::iterator it=group.begin(); it!=group.end(); ++it)
-    (*it)->setVisible(visible);
+  for (auto & it : group)
+    it->setVisible(visible);
 
   // Show the window
   if (visible) {
@@ -248,7 +247,7 @@ void Frame::setVisible(bool visible)
 
     ::ShowWindow(hwnd, swCmd);
     ::UpdateWindow(hwnd);
-    if (m_menuBar != NULL)
+    if (m_menuBar != nullptr)
       ::DrawMenuBar(hwnd);
 
     // layout children
@@ -267,7 +266,7 @@ void Frame::setVisible(bool visible)
   // the parent, and then hide the non-active window.
   else {
     // activate the parent
-    if (getParent() != NULL)
+    if (getParent() != nullptr)
       ::SetActiveWindow(getParent()->getHandle());
 
     // then hide this non-active window
@@ -331,7 +330,7 @@ MenuBar* Frame::setMenuBar(MenuBar* menuBar)
 
   MenuBar* oldMenuBar = m_menuBar;
 
-  if (m_menuBar) m_menuBar->setFrame(NULL);
+  if (m_menuBar) m_menuBar->setFrame(nullptr);
   m_menuBar = menuBar;
   if (m_menuBar) m_menuBar->setFrame(this);
 
@@ -376,7 +375,7 @@ void Frame::setBigIcon(const Icon& icon)
 
    @see #setSmallIcon, #setBigIcon
 */
-void Frame::setIcon(ResourceId iconId)
+void Frame::setIcon(const ResourceId& iconId)
 {
   setSmallIcon(Icon(iconId, Size(32, 32)));
   setBigIcon(Icon(iconId, Size(16, 16)));
@@ -443,9 +442,9 @@ WidgetList Frame::getSynchronizedGroup()
   WidgetList children = getChildren();
   WidgetList container;
 
-  for (WidgetList::iterator it=children.begin(); it!=children.end(); ++it) {
-    Frame* child = dynamic_cast<Frame*>(*it);
-    if (child != NULL && child->keepSynchronized())
+  for (auto & it : children) {
+    auto* child = dynamic_cast<Frame*>(it);
+    if (child != nullptr && child->keepSynchronized())
       container.push_back(child);
   }
 
@@ -498,11 +497,11 @@ bool Frame::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult
 
     case WM_INITMENU:
     case WM_INITMENUPOPUP: {
-      HMENU hmenu = reinterpret_cast<HMENU>(wParam);
-      if (hmenu == NULL)
+      auto hmenu = reinterpret_cast<HMENU>(wParam);
+      if (hmenu == nullptr)
 	break;
 
-      Menu* menu = NULL;
+      Menu* menu = nullptr;
 
       MENUINFO mi;
       mi.cbSize = sizeof(MENUINFO);
@@ -510,12 +509,11 @@ bool Frame::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult
       if (::GetMenuInfo(hmenu, &mi))
 	menu = reinterpret_cast<Menu* >(mi.dwMenuData);
 
-      if (menu != NULL) {
+      if (menu != nullptr) {
 	MenuItemList children = menu->getMenuItems();
 
 	// Update menus
-	for (MenuItemList::iterator it=children.begin(); it!=children.end(); ++it) {
-	  MenuItem* menuItem = *it;
+	for (auto menuItem : children) {
 	  updateMenuItem(menuItem);
 	}
       }
@@ -523,7 +521,7 @@ bool Frame::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult
     }
 
     case WM_SIZING: {
-      LPRECT lprc = reinterpret_cast<LPRECT>(lParam);
+      auto lprc = reinterpret_cast<LPRECT>(lParam);
       Rect rc(convert_to<Rect>(*lprc));
       CardinalDirection dir;
 
@@ -549,8 +547,8 @@ bool Frame::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult
       HWND hParam  = reinterpret_cast<HWND>(lParam);
 
       // synchronize all the group
-      for (WidgetList::iterator it=group.begin(); it!=group.end(); ++it) {
-	HWND hwndChild = (*it)->getHandle();
+      for (auto & it : group) {
+	HWND hwndChild = it->getHandle();
 
 	if (hwndChild != hParam)
 	  EnableWindow(hwndChild, static_cast<BOOL>(wParam));
@@ -584,8 +582,7 @@ bool Frame::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult
 	// if the other window to be activated/desactivated belong to
 	// the synchronized group, we don't need to
 	// synchronize/repaint all the group
-	for (WidgetList::iterator it=group.begin(); it!=group.end(); ++it) {
-	  Widget* child = *it;
+	for (auto child : group) {
 	  if (child->getHandle() == hParam) {
 	    keepActive = true;
 	    syncGroup = false;
@@ -595,8 +592,7 @@ bool Frame::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult
 
 	// synchronize the group
 	if (syncGroup) {
-	  for (WidgetList::iterator it=group.begin(); it!=group.end(); ++it) {
-	    Widget* child = *it;
+	  for (auto child : group) {
 	    if ((child->getHandle() != getHandle()) &&
 		(child->getHandle() != hParam))
 	      child->sendMessage(WM_NCACTIVATE, static_cast<WPARAM>(keepActive), static_cast<LPARAM>(-1));

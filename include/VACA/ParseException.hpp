@@ -26,7 +26,7 @@ public:
   /**
      Creates a ParserException without more information.
   */
-  ParseException() throw()
+  ParseException() noexcept
     : Exception()
     , m_line(-1)
     , m_column(-1)
@@ -44,7 +44,7 @@ public:
      @param column Column number (0 should be the first column).
      @param index Index of the character where the error was found (starting in 0).
   */
-  ParseException(const String& message, int line = -1, int column = -1, int index = -1) throw()
+  ParseException(const String& message, int line = -1, int column = -1, int index = -1) noexcept
     : Exception(message)
     , m_line(line)
     , m_column(column)
@@ -55,9 +55,8 @@ public:
   /**
      Destroys the exception.
   */
-  virtual ~ParseException() throw()
-  {
-  }
+  ~ParseException() noexcept override
+  = default;
 
   /**
      Returns the line number where the error was found.
@@ -66,7 +65,7 @@ public:
 
      @see #getColumn
   */
-  int getLine() const
+  [[nodiscard]] int getLine() const
   {
     return m_line;
   }
@@ -78,7 +77,7 @@ public:
 
      @see #getLine
   */
-  int getColumn() const
+  [[nodiscard]] int getColumn() const
   {
     return m_column;
   }
@@ -89,7 +88,7 @@ public:
 
      @warning 0 should be the first character.
   */
-  int getIndex() const
+  [[nodiscard]] int getIndex() const
   {
     return m_index;
   }

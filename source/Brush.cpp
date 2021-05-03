@@ -19,10 +19,7 @@ Brush::Brush()
 {
 }
 
-Brush::Brush(const Brush& brush)
-  : m_impl(brush.m_impl)		// Copy shared pointers
-{
-}
+Brush::Brush(const Brush& brush) = default;
 
 Brush::Brush(const Color& color)
   : m_impl(new BrushImpl(color))
@@ -30,15 +27,10 @@ Brush::Brush(const Color& color)
 }
 
 Brush::~Brush()
-{
-}
+= default;
 
 Brush& Brush::operator=(const Brush& brush)
-{
-  // Copy shared pointers
-  m_impl = brush.m_impl;
-  return *this;
-}
+= default;
 
 Color Brush::getColor() const
 {

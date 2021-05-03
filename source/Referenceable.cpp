@@ -100,7 +100,7 @@ unsigned Referenceable::unref()
 
    If it's zero you can delete the object safely.
 */
-unsigned Referenceable::getRefCount()
+unsigned Referenceable::getRefCount() const
 {
   return m_refCount;
 }

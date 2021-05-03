@@ -22,18 +22,18 @@ public:
     static const Style Default;
   };
 
-  GroupBox(const String& text, Widget* parent, Style style = Styles::Default);
-  virtual ~GroupBox();
+  GroupBox(const String& text, Widget* parent, const Style& style = Styles::Default);
+  ~GroupBox() override;
 
   Size getNonClientSize();
 
 protected:
 
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onLayout(LayoutEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
+  void onLayout(LayoutEvent& ev) override;
 
-  virtual bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult);
+  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
 
 };
 

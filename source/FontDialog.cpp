@@ -19,8 +19,7 @@ FontDialog::FontDialog(const Font& font, Widget* parent)
 }
 
 FontDialog::~FontDialog()
-{
-}
+= default;
 
 bool FontDialog::doModal()
 {
@@ -28,16 +27,16 @@ bool FontDialog::doModal()
 
   cf.lStructSize = sizeof(CHOOSEFONT);
   cf.hwndOwner = getParentHandle();
-  cf.hDC = NULL;
+  cf.hDC = nullptr;
   cf.lpLogFont = &m_logFont;
   cf.iPointSize = 0; 
   cf.Flags = CF_SCREENFONTS | CF_LIMITSIZE;
   cf.rgbColors = RGB(0,0,0); 
   cf.lCustData = 0L; 
-  cf.lpfnHook = (LPCFHOOKPROC)NULL; 
-  cf.lpTemplateName = (LPTSTR)NULL; 
+  cf.lpfnHook = (LPCFHOOKPROC)nullptr;
+  cf.lpTemplateName = (LPTSTR)nullptr;
   cf.hInstance = (HINSTANCE)Application::getHandle();
-  cf.lpszStyle = (LPTSTR)NULL; 
+  cf.lpszStyle = (LPTSTR)nullptr;
   cf.nFontType = SCREEN_FONTTYPE; 
   cf.nSizeMin = 4; 
   cf.nSizeMax = 72; 

@@ -9,9 +9,7 @@
 using namespace vaca;
 
 Constraint::Constraint()
-{
-}
+= default;
 
 Constraint::~Constraint()
-{
-}
+= default;

@@ -37,18 +37,18 @@ public:
     static const Style AutoVerticalScroll;
   };
 
-  RichEdit(const String& text, Widget* parent, Style style = Styles::Default);
-  virtual ~RichEdit();
+  RichEdit(const String& text, Widget* parent, const Style& style = Styles::Default);
+  ~RichEdit() override;
 
-  virtual void setBgColor(const Color& color);
+  void setBgColor(const Color& color) override;
 
-  size_t getTextLength() const;
-  size_t getTextLimit() const;
+  [[nodiscard]] size_t getTextLength() const;
+  [[nodiscard]] size_t getTextLimit() const;
   void setTextLimit(size_t textLimit);
 
-  bool canPaste() const;
-  bool canUndo() const;
-  bool canRedo() const;
+  [[nodiscard]] bool canPaste() const;
+  [[nodiscard]] bool canUndo() const;
+  [[nodiscard]] bool canRedo() const;
   void undo();
   void redo();
   void setUndoLimit(int maximumActions);
@@ -68,7 +68,7 @@ public:
   void deselect();
 
   void getSelection(int& start, int& end);
-  String getSelectedText() const;
+  [[nodiscard]] String getSelectedText() const;
 
 };
 

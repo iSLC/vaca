@@ -12,7 +12,7 @@
 
 using namespace vaca;
 
-SpinButton::SpinButton(Widget* parent, Style style)
+SpinButton::SpinButton(Widget* parent, const Style& style)
   : Widget(WidgetClassName(UPDOWN_CLASS), parent, style)
 {
   // default values
@@ -21,7 +21,7 @@ SpinButton::SpinButton(Widget* parent, Style style)
 }
 
 SpinButton::SpinButton(int minValue, int maxValue, int value,
-		       Widget* parent, Style style)
+		       Widget* parent, const Style& style)
   : Widget(WidgetClassName(UPDOWN_CLASS), parent, style)
 {
   assert(minValue <= value);
@@ -32,8 +32,7 @@ SpinButton::SpinButton(int minValue, int maxValue, int value,
 }
 
 SpinButton::~SpinButton()
-{
-}
+= default;
 
 bool SpinButton::isHorizontal()
 {
@@ -113,10 +112,10 @@ void SpinButton::setBase(int base)
 Widget* SpinButton::getBuddy()
 {
   HWND hwndBuddy = reinterpret_cast<HWND>(sendMessage(UDM_GETBUDDY, 0, 0));
-  if (hwndBuddy != NULL)
+  if (hwndBuddy != nullptr)
     return Widget::fromHandle(hwndBuddy);
   else
-    return NULL;
+    return nullptr;
 }
 
 void SpinButton::setBuddy(Widget* buddy)
@@ -129,7 +128,7 @@ void SpinButton::onPreferredSize(PreferredSizeEvent& ev)
   Widget* buddy = getBuddy();
   Size sz;
 
-  if (buddy != NULL)
+  if (buddy != nullptr)
     sz = Size(17, buddy->getPreferredSize().h);
   else
     sz = Size(17, 17);
@@ -166,7 +165,7 @@ bool SpinButton::onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult)
     return true;
 
   if (lpnmhdr->code == UDN_DELTAPOS) {
-    LPNMUPDOWN lpnmud = reinterpret_cast<LPNMUPDOWN>(lpnmhdr);
+    auto lpnmud = reinterpret_cast<LPNMUPDOWN>(lpnmhdr);
     Side side;
 
     // horizontal

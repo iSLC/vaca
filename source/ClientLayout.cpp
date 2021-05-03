@@ -20,15 +20,13 @@ ClientLayout::ClientLayout(int border)
 }
 
 ClientLayout::~ClientLayout()
-{
-}
+= default;
 
 Size ClientLayout::getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn)
 {
   Size sz(0, 0);
 
-  for (WidgetList::iterator it=widgets.begin(); it!=widgets.end(); ++it) {
-    Widget* widget = *it;
+  for (auto widget : widgets) {
     if (!widget->isLayoutFree()) {
       Size pref = widget->getPreferredSize(fitIn);
       if (sz.w < pref.w) sz.w = pref.w;
@@ -45,8 +43,7 @@ void ClientLayout::layout(Widget* parent, WidgetList& widgets, const Rect& rc)
   bounds.shrink(m_border);
   WidgetsMovement movement(widgets);
 
-  for (WidgetList::iterator it=widgets.begin(); it!=widgets.end(); ++it) {
-    Widget* widget = *it;
+  for (auto widget : widgets) {
     if (!widget->isLayoutFree())
       movement.moveWidget(widget, bounds);
   }

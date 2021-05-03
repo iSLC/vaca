@@ -19,8 +19,7 @@ ColorDialog::ColorDialog(const Color& color, Widget* parent)
 }
 
 ColorDialog::~ColorDialog()
-{
-}
+= default;
 
 bool ColorDialog::doModal()
 {
@@ -28,7 +27,7 @@ bool ColorDialog::doModal()
 
   cc.lStructSize = sizeof(CHOOSECOLOR);
   cc.hwndOwner = getParentHandle();
-  cc.hInstance = NULL;
+  cc.hInstance = nullptr;
   cc.rgbResult = convert_to<COLORREF>(m_color);
   cc.lpCustColors = m_customColors;
   cc.Flags = 0

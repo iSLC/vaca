@@ -52,11 +52,11 @@ public:
   public:
     Node(int type, const Point& point);
 
-    int getType() const;
-    bool isCloseFigure() const;
+    [[nodiscard]] int getType() const;
+    [[nodiscard]] bool isCloseFigure() const;
     void setCloseFigure(bool closeFigure);
     Point& getPoint();
-    const Point& getPoint() const;
+    [[nodiscard]] const Point& getPoint() const;
   };
 
 private:
@@ -72,12 +72,12 @@ public:
   iterator begin();
   iterator end();
 
-  const_iterator begin() const;
-  const_iterator end() const;
+  [[nodiscard]] const_iterator begin() const;
+  [[nodiscard]] const_iterator end() const;
 
   void clear();
-  bool empty() const;
-  unsigned size() const;
+  [[nodiscard]] bool empty() const;
+  [[nodiscard]] unsigned size() const;
 
   GraphicsPath& offset(int dx, int dy);
   GraphicsPath& offset(const Point& point);
@@ -96,7 +96,7 @@ public:
   GraphicsPath& flatten();
   GraphicsPath& widen(const Pen& pen);
 
-  Region toRegion() const;
+  [[nodiscard]] Region toRegion() const;
 
 private:
   void addNode(int type, const Point& pt);

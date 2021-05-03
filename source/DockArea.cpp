@@ -12,7 +12,7 @@
 
 using namespace vaca;
 
-DockArea::DockArea(Side side, Widget* parent, Style style)
+DockArea::DockArea(Side side, Widget* parent, const Style& style)
   : Widget(DockAreaClass::getClassName(), parent, style)
   , m_side(side)
 {
@@ -26,10 +26,10 @@ DockArea::~DockArea()
   WidgetList::iterator it;
 
   for (it=children.begin(); it!=children.end(); ++it) {
-    DockBar* dockBar = static_cast<DockBar*>(*it);
+    auto* dockBar = dynamic_cast<DockBar*>(*it);
 
     removeDockBar(dockBar);
-    dockBar->m_dockArea = NULL;
+    dockBar->m_dockArea = nullptr;
     dockBar->setVisible(false);
   }
 }

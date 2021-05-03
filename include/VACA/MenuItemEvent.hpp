@@ -17,7 +17,7 @@ class VACA_DLL MenuItemEvent : public Event
 public:
 
   MenuItemEvent(MenuItem* source);
-  virtual ~MenuItemEvent();
+  ~MenuItemEvent() override;
 
   MenuItem* getMenuItem();
 

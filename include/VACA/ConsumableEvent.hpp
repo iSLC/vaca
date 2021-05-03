@@ -23,10 +23,10 @@ class VACA_DLL ConsumableEvent : public Event
 public:
 
   ConsumableEvent(Component* source);
-  virtual ~ConsumableEvent();
+  ~ConsumableEvent() override;
 
   void consume();
-  bool isConsumed() const;
+  [[nodiscard]] bool isConsumed() const;
 
 };
 

@@ -26,15 +26,15 @@ public:
   typedef std::map<String, PropertyPtr> Properties;
 
   Component();
-  virtual ~Component();
+  ~Component() override;
 
   PropertyPtr getProperty(const String& name);
-  void setProperty(PropertyPtr property);
+  void setProperty(const PropertyPtr& property);
 
   bool hasProperty(const String& name);
   void removeProperty(const String& name);
 
-  const Properties& getProperties() const;
+  [[nodiscard]] const Properties& getProperties() const;
 
 private:
   Properties m_properties;

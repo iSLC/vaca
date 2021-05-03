@@ -15,7 +15,7 @@ class VACA_DLL FindFiles : public NonCopyable
 {
   String m_pattern;
   HANDLE m_handle;
-  WIN32_FIND_DATA m_data;
+  WIN32_FIND_DATA m_data{};
 
 public:
 
@@ -24,10 +24,10 @@ public:
 
   bool next();
 
-  String getFileName() const;
-  String getFullFileName() const;
-  bool isFile() const;
-  bool isDirectory() const;
+  [[nodiscard]] String getFileName() const;
+  [[nodiscard]] String getFullFileName() const;
+  [[nodiscard]] bool isFile() const;
+  [[nodiscard]] bool isDirectory() const;
 
 };
 

@@ -22,10 +22,7 @@ Cursor::Cursor()
 {
 }
 
-Cursor::Cursor(const Cursor& cursor)
-  : SharedPtr<GdiObj>(cursor)
-{
-}
+Cursor::Cursor(const Cursor& cursor) = default;
 
 /**
    @throw ResourceException
@@ -76,8 +73,8 @@ Cursor::Cursor(SysCursor cursor)
     case SysCursor::WaitBg:    winCursor = IDC_APPSTARTING; break;
   }
 
-  HCURSOR handle = ::LoadCursor(NULL, winCursor);
-  if (handle == NULL)
+  HCURSOR handle = ::LoadCursor(nullptr, winCursor);
+  if (handle == nullptr)
     throw ResourceException(format_string(L"Can't load the SysCursor %d", int(cursor)));
 
   get()->setHandle(handle);
@@ -90,13 +87,13 @@ Cursor::Cursor(SysCursor cursor)
 Cursor::Cursor(const String& fileName)
   : SharedPtr<GdiObj>(new GdiObj)
 {
-  HCURSOR handle = reinterpret_cast<HCURSOR>
+  auto handle = reinterpret_cast<HCURSOR>
     (::LoadImage(Application::getHandle(),
 		 fileName.c_str(),
 		 IMAGE_CURSOR,
 		 0, 0, LR_LOADFROMFILE));
 
-  if (handle == NULL)
+  if (handle == nullptr)
     throw ResourceException(L"Can't load cursor from file " + fileName);
 
   get()->setHandle(handle);
@@ -108,8 +105,7 @@ Cursor::Cursor(HCURSOR handle)
 }
 
 Cursor::~Cursor()
-{
-}
+= default;
 
 HCURSOR Cursor::getHandle() const
 {

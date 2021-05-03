@@ -15,8 +15,7 @@ ConsumableEvent::ConsumableEvent(Component* source)
 }
 
 ConsumableEvent::~ConsumableEvent()
-{
-}
+= default;
 
 /**
    Consumes the event.

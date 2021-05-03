@@ -22,7 +22,7 @@ class VACA_DLL TreeViewEvent : public CancelableEvent
 public:
 
   TreeViewEvent(TreeView* treeView, TreeNode* treeNode, String label = L"");
-  virtual ~TreeViewEvent();
+  ~TreeViewEvent() override;
 
   TreeView* getTreeView();
   TreeNode* getTreeNode();

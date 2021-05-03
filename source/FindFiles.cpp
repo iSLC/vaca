@@ -12,7 +12,7 @@ using namespace vaca;
 FindFiles::FindFiles(const String& pattern)
 {
   m_pattern = pattern;
-  m_handle = NULL;
+  m_handle = nullptr;
 }
 
 FindFiles::~FindFiles()

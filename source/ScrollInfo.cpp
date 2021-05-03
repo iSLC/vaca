@@ -21,8 +21,7 @@ ScrollInfo::ScrollInfo(int minPos, int maxPos, int pageSize)
 }
 
 ScrollInfo::~ScrollInfo()
-{
-}
+= default;
 
 int ScrollInfo::getMinPos() const
 {

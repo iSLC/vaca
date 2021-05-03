@@ -15,8 +15,7 @@ CommandEvent::CommandEvent(Component* source, CommandId commandId)
 }
 
 CommandEvent::~CommandEvent()
-{
-}
+= default;
 
 CommandId CommandEvent::getCommandId() const
 {

@@ -23,7 +23,7 @@ class VACA_DLL CloseEvent : public CancelableEvent
 public:
 
   CloseEvent(Frame* source);
-  virtual ~CloseEvent();
+  ~CloseEvent() override;
 
 };
 

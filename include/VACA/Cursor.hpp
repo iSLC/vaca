@@ -87,11 +87,11 @@ public:
   explicit Cursor(SysCursor cursor);
   explicit Cursor(const String& fileName);
   explicit Cursor(HCURSOR handle);
-  virtual ~Cursor();
+  ~Cursor() override;
 
   Cursor& operator=(const Cursor& cursor);
 
-  HCURSOR getHandle() const;
+  [[nodiscard]] HCURSOR getHandle() const;
 
 };
 

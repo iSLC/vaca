@@ -24,10 +24,10 @@ public:
 
   ClientLayout();
   ClientLayout(int border);
-  virtual ~ClientLayout();
+  ~ClientLayout() override;
 
-  virtual Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn);
-  virtual void layout(Widget* parent, WidgetList& widgets, const Rect& rc);
+  Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn) override;
+  void layout(Widget* parent, WidgetList& widgets, const Rect& rc) override;
 
 };
 

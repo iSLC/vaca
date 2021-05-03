@@ -18,16 +18,16 @@ namespace vaca {
 class VACA_DLL ColorDialog : public CommonDialog
 {
   Color m_color;
-  COLORREF m_customColors[16];
+  COLORREF m_customColors[16]{};
 
 public:
 
   ColorDialog(const Color& color, Widget* parent);
-  virtual ~ColorDialog();
+  ~ColorDialog() override;
 
-  virtual bool doModal();
+  bool doModal() override;
 
-  Color getColor() const;
+  [[nodiscard]] Color getColor() const;
 
 };
 

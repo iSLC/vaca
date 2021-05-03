@@ -26,7 +26,7 @@ public:
   Slot0(const Slot0& s) { (void)s; }
   virtual ~Slot0() { }
   virtual R operator()() = 0;
-  virtual Slot0* clone() const = 0;
+  [[nodiscard]] virtual Slot0* clone() const = 0;
 };
 
 // ======================================================================
@@ -51,9 +51,9 @@ class Slot0_fun<void, F> : public Slot0<void>
 public:
   Slot0_fun(const F& f) : f(f) { }
   Slot0_fun(const Slot0_fun& s) : Slot0<void>(s), f(s.f) { }
-  ~Slot0_fun() { }
-  void operator()() { f(); }
-  Slot0_fun* clone() const { return new Slot0_fun(*this); }
+  ~Slot0_fun() override { }
+  void operator()() override { f(); }
+  Slot0_fun* clone() const override { return new Slot0_fun(*this); }
 };
   
 // ======================================================================
@@ -80,9 +80,9 @@ class Slot0_mem<void, T> : public Slot0<void>
 public:
   Slot0_mem(void (T::*m)(), T* t) : m(m), t(t) { }
   Slot0_mem(const Slot0_mem& s) : Slot0<void>(s), m(s.m), t(s.t) { }
-  ~Slot0_mem() { }
-  void operator()() { (t->*m)(); }
-  Slot0_mem* clone() const { return new Slot0_mem(*this); }
+  ~Slot0_mem() override { }
+  void operator()() override { (t->*m)(); }
+  Slot0_mem* clone() const override { return new Slot0_mem(*this); }
 };
 
 // ======================================================================

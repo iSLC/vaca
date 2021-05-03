@@ -55,12 +55,12 @@ public:
   Rect(const Point& point1, const Point& point2);
   Rect(int x, int y, int w, int h);
 
-  bool isEmpty() const;
+  [[nodiscard]] bool isEmpty() const;
 
-  Point getCenter() const;
-  Point getOrigin() const;
-  Point getPoint2() const;
-  Size getSize() const;
+  [[nodiscard]] Point getCenter() const;
+  [[nodiscard]] Point getOrigin() const;
+  [[nodiscard]] Point getPoint2() const;
+  [[nodiscard]] Size getSize() const;
 
   Rect& setOrigin(const Point& pt);
   Rect& setSize(const Size& sz);
@@ -73,12 +73,12 @@ public:
   Rect& enlarge(int unit);
   Rect& shrink(int unit);
 
-  bool contains(const Point& pt) const;
-  bool contains(const Rect& rc) const;
-  bool intersects(const Rect& rc) const;
+  [[nodiscard]] bool contains(const Point& pt) const;
+  [[nodiscard]] bool contains(const Rect& rc) const;
+  [[nodiscard]] bool intersects(const Rect& rc) const;
 
-  Rect createUnion(const Rect& rc) const;
-  Rect createIntersect(const Rect& rc) const;
+  [[nodiscard]] Rect createUnion(const Rect& rc) const;
+  [[nodiscard]] Rect createIntersect(const Rect& rc) const;
 
   bool operator==(const Rect& rc) const;
   bool operator!=(const Rect& rc) const;

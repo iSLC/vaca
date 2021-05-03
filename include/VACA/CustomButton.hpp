@@ -50,32 +50,32 @@ public:
     static const Style Default;
   };
 
-  CustomButton(const String& text, Widget* parent, Style style = Styles::Default);
-  virtual ~CustomButton();
+  CustomButton(const String& text, Widget* parent, const Style& style = Styles::Default);
+  ~CustomButton() override;
 
 protected:
 
   // Reflected notifications
-  virtual bool onReflectedDrawItem(Graphics& g, LPDRAWITEMSTRUCT lpDrawItem);
+  bool onReflectedDrawItem(Graphics& g, LPDRAWITEMSTRUCT lpDrawItem) override;
 
 public:
 
-  bool isDrawEntire();
-  bool isFocusChanged();
-  bool isSelectionChanged();
+  bool isDrawEntire() const;
+  bool isFocusChanged() const;
+  bool isSelectionChanged() const;
 
   // Visual Aspect
 
   // bool hasCheckedVisualAspect();
-  bool hasDefaultOptionVisualAspect();
-  bool hasDisabledVisualAspect();
-  bool hasFocusVisualAspect();
+  bool hasDefaultOptionVisualAspect() const;
+  bool hasDisabledVisualAspect() const;
+  bool hasFocusVisualAspect() const;
   // bool hasGrayedVisualAspect();
   // bool hasHotLightVisualAspect();
   // bool hasInactiveVisualAspect();
-  bool hasNoAccelVisualAspect();
-  bool hasNoFocusRectVisualAspect();
-  bool hasSelectedVisualAspect();
+  bool hasNoAccelVisualAspect() const;
+  bool hasNoFocusRectVisualAspect() const;
+  bool hasSelectedVisualAspect() const;
 
 };
 

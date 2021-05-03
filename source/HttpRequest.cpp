@@ -39,7 +39,7 @@ HttpRequest::InetHandle::~InetHandle()
 HttpRequest::InetConnection::InetConnection(const String& agentName)
   : InetHandle(InternetOpen(agentName.c_str(),
 			    INTERNET_OPEN_TYPE_DIRECT,
-			    NULL, NULL, 0),
+			    nullptr, nullptr, 0),
 	       L"Can't connect to Internet")
 {
 }
@@ -52,7 +52,7 @@ HttpRequest::InetSession::InetSession(InetConnection& conn,
   : InetHandle(InternetConnect(conn.handle,
 			       host.c_str(),
 			       INTERNET_DEFAULT_HTTP_PORT,
-			       NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0),
+			       nullptr, nullptr, INTERNET_SERVICE_HTTP, 0, 0),
 	       String(L"Can't open a HTTP session with ") + host)
 {
 }
@@ -66,7 +66,7 @@ HttpRequest::InetRequest::InetRequest(InetSession& ses,
   : InetHandle(HttpOpenRequest(ses.handle,
 			       method.c_str(),
 			       object.c_str(),
-			       NULL, NULL, NULL,
+			       nullptr, nullptr, nullptr,
 			       INTERNET_FLAG_NO_UI, 0),
 	       L"Can't send a " + method + L" request to " + object)
 {
@@ -84,8 +84,7 @@ HttpRequest::HttpRequest(const String& url,
 }
 
 HttpRequest::~HttpRequest()
-{
-}
+= default;
 
 /**
    Sends the HTTP request.
@@ -97,7 +96,7 @@ HttpRequest::~HttpRequest()
 int HttpRequest::send(const String& headers, const char* body)
 {
   if (HttpSendRequest(req.handle,
-		      headers.empty() ? NULL: headers.c_str(),
+		      headers.empty() ? nullptr: headers.c_str(),
                       static_cast<DWORD>(headers.size()),
 		      reinterpret_cast<LPVOID>(const_cast<char*>(body)),
                       static_cast<DWORD>(body ? strlen(body) : 0))) {

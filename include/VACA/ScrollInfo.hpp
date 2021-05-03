@@ -29,9 +29,9 @@ public:
   ScrollInfo(int minPos, int maxPos, int pageSize);
   virtual ~ScrollInfo();
 
-  int getMinPos() const;
-  int getMaxPos() const;
-  int getPageSize() const;
+  [[nodiscard]] int getMinPos() const;
+  [[nodiscard]] int getMaxPos() const;
+  [[nodiscard]] int getPageSize() const;
 
   void setMinPos(int minPos);
   void setMaxPos(int maxPos);

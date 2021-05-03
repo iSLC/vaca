@@ -142,7 +142,7 @@ MsgBox::Result MsgBox::show(Widget* parent,
       break;
   }
 
-  int res = ::MessageBox(parent ? parent->getHandle(): NULL,
+  int res = ::MessageBox(parent ? parent->getHandle(): nullptr,
 			 text.c_str(),
 			 title.c_str(),
                          static_cast<UINT>(flags));
@@ -174,7 +174,7 @@ void MsgBox::showException(Widget* parent, const Exception& exception)
   String msg(exception.getMessage());
   std::string what(exception.what());
 
-  if (what.size() > 0) {
+  if (!what.empty()) {
     msg += L"\r\n";
     msg += convert_to<String>(what);
   }

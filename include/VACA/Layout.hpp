@@ -31,7 +31,7 @@ class VACA_DLL Layout : public Referenceable
 {
 public:
   Layout();
-  virtual ~Layout();
+  ~Layout() override;
 
   virtual Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn);
   virtual void layout(Widget* parent, WidgetList& widgets, const Rect& rc) = 0;

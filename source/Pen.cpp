@@ -19,10 +19,8 @@ Pen::Pen()
 {
 }
 
-Pen::Pen(const Pen& pen)
-  : m_impl(pen.m_impl)		// Copy shared pointers
-{
-}
+// Copy shared pointers
+Pen::Pen(const Pen& pen) = default;
 
 /**
    Creates a pen.
@@ -50,15 +48,10 @@ Pen::Pen(const Color& color, int width,
      the HPEN handle.
 */
 Pen::~Pen()
-{
-}
+= default;
 
 Pen& Pen::operator=(const Pen& pen)
-{
-  // Copy shared pointers
-  m_impl = pen.m_impl;
-  return *this;
-}
+= default;
 
 /**
    Gets pen's color.

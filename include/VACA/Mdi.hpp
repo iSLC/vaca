@@ -41,15 +41,15 @@ public:
     static const Style Default;
   };
 
-  MdiChild(const String& title, MdiClient* parent, Style style = Styles::Default);
-  MdiChild(const String& title, MdiFrame* parent, Style style = Styles::Default);
-  virtual ~MdiChild();
+  MdiChild(const String& title, MdiClient* parent, const Style& style = Styles::Default);
+  MdiChild(const String& title, MdiFrame* parent, const Style& style = Styles::Default);
+  ~MdiChild() override;
 
 protected:
   // Reflected notifications
   // virtual bool onReflectedCommand(int id, int code, LRESULT& lResult);
 
-  virtual bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult);
+  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
 //   virtual LRESULT defWndProc(UINT message, WPARAM wParam, LPARAM lParam);
 
 private:
@@ -67,8 +67,8 @@ public:
     static const Style Default;
   };
 
-  MdiClient(Widget* parent, Style style = Styles::Default);
-  virtual ~MdiClient();
+  MdiClient(Widget* parent, const Style& style = Styles::Default);
+  ~MdiClient() override;
 
   void cascade();
   void tileHorizontal();
@@ -77,18 +77,18 @@ public:
 
   MdiChild* getActive();
   void activate(MdiChild* mdiChild);
-  void activateNext(MdiChild* mdiChild = NULL);
-  void activatePrevious(MdiChild* mdiChild = NULL);
+  void activateNext(MdiChild* mdiChild = nullptr);
+  void activatePrevious(MdiChild* mdiChild = nullptr);
 
   MdiChild* getChildById(int wID);
 
   // void maximize(MdiChild* window);
   // void restore(MdiChild* window);
 
-  virtual bool preTranslateMessage(Message& message);
+  bool preTranslateMessage(Message& message) override;
 
 private:
-  virtual HWND createHandle(LPCTSTR className, Widget* parent, Style style);
+  HWND createHandle(LPCTSTR className, Widget* parent, Style style) override;
 };
 
 /**
@@ -115,19 +115,19 @@ public:
     static const Style Default;
   };
 
-  MdiFrame(const String& title, Widget* parent = NULL, Style style = Styles::Default,
+  MdiFrame(const String& title, Widget* parent = nullptr, const Style& style = Styles::Default,
 	   bool customMdiClient = false);
 //   MdiFrame(Widget* parent, Style style = ChildStyle); // TODO ChildStyle???
-  virtual ~MdiFrame();
+  ~MdiFrame() override;
 
   MdiClient* getMdiClient();
   MdiClient* setMdiClient(MdiClient* mdiClient);
 
-  virtual MenuBar* setMenuBar(MenuBar* menubar);
+  MenuBar* setMenuBar(MenuBar* menubar) override;
   void refreshMenuBar();
 
 protected:
-  virtual bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult);
+  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
 //   virtual LRESULT defWndProc(UINT message, WPARAM wParam, LPARAM lParam);
 };
 

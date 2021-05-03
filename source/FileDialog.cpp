@@ -73,7 +73,7 @@ void FileDialog::setShowHelp(bool state)
 
 void FileDialog::addFilter(const String& extensions, const String& description, bool defaultFilter)
 {
-  m_filters.push_back(std::make_pair(extensions, description));
+  m_filters.emplace_back(extensions, description);
 
   if (defaultFilter)
     m_defaultFilter = static_cast<int>(m_filters.size());
@@ -98,11 +98,10 @@ bool FileDialog::doModal()
 {
   // make the m_filtersString
   m_filtersString.clear();
-  for (std::vector<std::pair<String, String> >::iterator it=m_filters.begin();
-       it!=m_filters.end(); ++it) {
-    m_filtersString.append(it->first);
+  for (auto & m_filter : m_filters) {
+    m_filtersString.append(m_filter.first);
     m_filtersString.push_back('\0');
-    m_filtersString.append(it->second);
+    m_filtersString.append(m_filter.second);
     m_filtersString.push_back('\0');
   }
   m_filtersString.push_back('\0');
@@ -114,14 +113,14 @@ bool FileDialog::doModal()
   ofn.hwndOwner = getParentHandle();
   ofn.hInstance = Application::getHandle();
   ofn.lpstrFilter = m_filtersString.c_str();
-  ofn.lpstrCustomFilter = NULL;
+  ofn.lpstrCustomFilter = nullptr;
   ofn.nMaxCustFilter = 0;
   ofn.nFilterIndex = static_cast<DWORD>(m_defaultFilter);
   ofn.lpstrFile = m_fileName;
   ofn.nMaxFile = FILENAME_BUFSIZE;
-  ofn.lpstrFileTitle = NULL;
+  ofn.lpstrFileTitle = nullptr;
   ofn.nMaxFileTitle = 0;
-  ofn.lpstrInitialDir = NULL;
+  ofn.lpstrInitialDir = nullptr;
   ofn.lpstrTitle = m_title.c_str();
   ofn.Flags = static_cast<DWORD>(0
                                  // #define OFN_CREATEPROMPT 0x2000
@@ -156,10 +155,10 @@ bool FileDialog::doModal()
   ofn.nFileExtension = 0;
   ofn.lpstrDefExt = m_defaultExtension.c_str();
   ofn.lCustData = 0;
-  ofn.lpfnHook = NULL;
-  ofn.lpTemplateName = NULL;
+  ofn.lpfnHook = nullptr;
+  ofn.lpTemplateName = nullptr;
 #if (_WIN32_WINNT >= 0x0500)
-  ofn.pvReserved = NULL;
+  ofn.pvReserved = nullptr;
   ofn.dwReserved = 0;
   ofn.FlagsEx = 0;
 #endif
@@ -177,8 +176,7 @@ OpenFileDialog::OpenFileDialog(const String& title, Widget* parent)
 }
 
 OpenFileDialog::~OpenFileDialog()
-{
-}
+= default;
 
 /**
    By default it's false.
@@ -237,8 +235,7 @@ SaveFileDialog::SaveFileDialog(const String& title, Widget* parent)
 }
 
 SaveFileDialog::~SaveFileDialog()
-{
-}
+= default;
 
 bool SaveFileDialog::showDialog(LPOPENFILENAME lpofn)
 {

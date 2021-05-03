@@ -33,13 +33,6 @@ Point::Point(const Size& size)
   y = size.h;
 }
 
-const Point& Point::operator=(const Point& pt)
-{
-  x = pt.x;
-  y = pt.y;
-  return *this;
-}
-
 const Point& Point::operator+=(const Point& pt)
 {
   x += pt.x;

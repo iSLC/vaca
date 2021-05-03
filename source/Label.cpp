@@ -20,7 +20,7 @@ using namespace vaca;
      will be underlined. So if you want to show a string with the '&',
      you have to use "&&".
 */
-Label::Label(const String& text, Widget* parent, Style style)
+Label::Label(const String& text, Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_STATIC), parent, style)
 {
   setText(text);
@@ -32,8 +32,7 @@ Label::Label(HWND handle)
 }
 
 Label::~Label()
-{
-}
+= default;
 
 /**
    Returns the current text alignment.

@@ -24,10 +24,10 @@ public:
   Size(const Size& size);
   explicit Size(const Point& point);
 
-  Size createUnion(const Size& sz) const;
-  Size createIntersect(const Size& sz) const;
+  [[nodiscard]] Size createUnion(const Size& sz) const;
+  [[nodiscard]] Size createIntersect(const Size& sz) const;
 
-  const Size& operator=(const Size& sz);
+  Size& operator=(const Size& sz);
   const Size& operator+=(const Size& sz);
   const Size& operator-=(const Size& sz);
   const Size& operator+=(int value);

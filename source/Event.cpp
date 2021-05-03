@@ -24,8 +24,7 @@ Event::Event(Component* source)
    Destroys the event.
 */
 Event::~Event()
-{
-}
+= default;
 
 /**
    Returns the event's source.

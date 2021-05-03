@@ -18,11 +18,11 @@ using namespace vaca;
 #define SPLITBAR_DEFAULT_SIZE		5
 #define SPLITBAR_DEFAULT_POS		50
 
-SplitBar::SplitBar(Orientation orientation, Widget* parent, Style style)
+SplitBar::SplitBar(Orientation orientation, Widget* parent, const Style& style)
   : Widget(SplitBarClass::getClassName(), parent, style)
   , m_orientation(orientation)
-  , m_pane1(NULL)
-  , m_pane2(NULL)
+  , m_pane1(nullptr)
+  , m_pane2(nullptr)
   , m_barSize(SPLITBAR_DEFAULT_SIZE)
   , m_barPos(SPLITBAR_DEFAULT_POS)
   , m_fullDrag(true)
@@ -32,8 +32,7 @@ SplitBar::SplitBar(Orientation orientation, Widget* parent, Style style)
 }
 
 SplitBar::~SplitBar()
-{
-}
+= default;
 
 void SplitBar::setPane1(Widget* widget)
 {
@@ -264,9 +263,7 @@ void SplitBar::updateChildrenVisibility()
 {
   // Hide children that aren't first or second
   WidgetList children = getChildren();
-  for (WidgetList::iterator
-	 it = children.begin(); it != children.end(); ++it) {
-    Widget* child = *it;
+  for (auto child : children) {
     child->setVisible(child == m_pane1 ||
 		      child == m_pane2);
   }

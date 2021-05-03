@@ -23,7 +23,7 @@ using namespace vaca;
 // ToolButton
 
 ToolButton::ToolButton(CommandId id, int imageIndex, ToolButtonState state)
-  : m_set(NULL)
+  : m_set(nullptr)
   , m_buttonIndex(-1)
   , m_imageIndex(imageIndex)
   , m_commandId(id)
@@ -32,7 +32,7 @@ ToolButton::ToolButton(CommandId id, int imageIndex, ToolButtonState state)
 }
 
 ToolButton::ToolButton(const ToolButton& button)
-  : m_set(NULL)
+  : m_set(nullptr)
   , m_buttonIndex(button.m_buttonIndex)
   , m_imageIndex(button.m_imageIndex)
   , m_commandId(button.m_commandId)
@@ -41,7 +41,7 @@ ToolButton::ToolButton(const ToolButton& button)
 }
 
 ToolButton::ToolButton(CommandId commandId, int imageIndex, const String& text, ToolButtonState state)
-  : m_set(NULL)
+  : m_set(nullptr)
   , m_buttonIndex(-1)
   , m_imageIndex(imageIndex)
   , m_commandId(commandId)
@@ -51,8 +51,7 @@ ToolButton::ToolButton(CommandId commandId, int imageIndex, const String& text, 
 }
 
 ToolButton::~ToolButton()
-{
-}
+= default;
 
 void ToolButton::setState(ToolButtonState state)
 {
@@ -102,7 +101,7 @@ int ToolButton::getTBSTYLE() const
 // the TB_BUTTONSTRUCTSIZE message, anyway, I'll try don't use those
 // messages.
 
-ToolSet::ToolSet(Widget* parent, Style style)
+ToolSet::ToolSet(Widget* parent, const Style& style)
   : Widget(WidgetClassName(TOOLBARCLASSNAME), parent, style)
 {
   // sendMessage(TB_SETEXTENDEDSTYLE, 0,
@@ -286,7 +285,7 @@ ToolButton* ToolSet::getButtonById(CommandId id) const
     return reinterpret_cast<ToolButton*>(tbbi.lParam);
   }
   else
-    return NULL;
+    return nullptr;
 }
 
 ToolButton* ToolSet::getButtonByIndex(int index) const
@@ -304,7 +303,7 @@ ToolButton* ToolSet::getButtonByIndex(int index) const
     return reinterpret_cast<ToolButton*>(tbbi.lParam);
   }
   else
-    return NULL;
+    return nullptr;
 }
 
 /**
@@ -430,7 +429,7 @@ void ToolSet::updatePreferredSizes()
     // ======================================================================
 
     // add a null preferred size (for rows=0)
-    m_preferredSizes.push_back(Size(0, 0));
+    m_preferredSizes.emplace_back(0, 0);
 
     // add a each preferred size for specified rows
     for (int rows=1; rows<=maxRows; ++rows)

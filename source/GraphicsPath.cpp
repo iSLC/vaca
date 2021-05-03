@@ -55,12 +55,10 @@ const Point& GraphicsPath::Node::getPoint() const
 // GraphicsPath
 
 GraphicsPath::GraphicsPath()
-{
-}
+= default;
 
 GraphicsPath::~GraphicsPath()
-{
-}
+= default;
 
 GraphicsPath::iterator GraphicsPath::begin()
 {
@@ -99,9 +97,9 @@ unsigned GraphicsPath::size() const
 
 GraphicsPath& GraphicsPath::offset(int dx, int dy)
 {
-  for (iterator it=begin(); it!=end(); ++it) {
-    it->getPoint().x += dx;
-    it->getPoint().y += dy;
+  for (auto & it : *this) {
+    it.getPoint().x += dx;
+    it.getPoint().y += dy;
   }
   return *this;
 }
@@ -191,5 +189,5 @@ Region GraphicsPath::toRegion() const
 
 void GraphicsPath::addNode(int type, const Point& pt)
 {
-  m_nodes.push_back(Node(type, pt));
+  m_nodes.emplace_back(type, pt);
 }

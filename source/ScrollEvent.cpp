@@ -18,8 +18,7 @@ ScrollEvent::ScrollEvent(Widget* source, Orientation orien, ScrollRequest req, i
 }
 
 ScrollEvent::~ScrollEvent()
-{
-}
+= default;
 
 Orientation ScrollEvent::getOrientation() const
 {

@@ -17,8 +17,7 @@ CommonDialog::CommonDialog(Widget* parent)
 }
 
 CommonDialog::~CommonDialog()
-{
-}
+= default;
 
 Widget* CommonDialog::getParent()
 {
@@ -27,5 +26,5 @@ Widget* CommonDialog::getParent()
 
 HWND CommonDialog::getParentHandle()
 {
-  return m_parent != NULL ? m_parent->getHandle(): NULL;
+  return m_parent != nullptr ? m_parent->getHandle(): nullptr;
 }

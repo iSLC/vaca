@@ -50,17 +50,17 @@ public:
     static const Style Default;
   };
 
-  DockFrame(DockBar* dockBar, Widget* parent = NULL, Style style = Styles::Default);
-  virtual ~DockFrame();
+  DockFrame(DockBar* dockBar, Widget* parent = nullptr, Style style = Styles::Default);
+  ~DockFrame() override;
 
 protected:
 
-  virtual bool keepSynchronized();
+  bool keepSynchronized() override;
 
   // Events
-  virtual void onResizing(CardinalDirection dir, Rect& rc);
+  void onResizing(CardinalDirection dir, Rect& rc) override;
 
-  virtual bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult);
+  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
 };
 
 } // namespace vaca

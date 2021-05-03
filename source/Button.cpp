@@ -9,13 +9,13 @@
 
 using namespace vaca;
 
-Button::Button(const String& text, Widget* parent, Style style)
+Button::Button(const String& text, Widget* parent, const Style& style)
   : ButtonBase(parent, style)
 {
   setText(text);
 }
 
-Button::Button(const String& text, CommandId id, Widget* parent, Style style)
+Button::Button(const String& text, CommandId id, Widget* parent, const Style& style)
   : ButtonBase(parent, style)
 {
   setText(text);
@@ -28,8 +28,7 @@ Button::Button(HWND handle)
 }
 
 Button::~Button()
-{
-}
+= default;
 
 bool Button::isDefault()
 {

@@ -15,8 +15,7 @@ MenuItemEvent::MenuItemEvent(MenuItem* source)
 }
 
 MenuItemEvent::~MenuItemEvent()
-{
-}
+= default;
 
 MenuItem* MenuItemEvent::getMenuItem()
 {

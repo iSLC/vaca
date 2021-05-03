@@ -36,13 +36,13 @@ public:
 
   MenuItem();
   MenuItem(const String& text, CommandId id, Keys::Type defaultShortcut = Keys::None);
-  virtual ~MenuItem();
+  ~MenuItem() override;
 
   Menu* getParent();
   Menu* getRoot();
-  CommandId getId();
+  CommandId getId() const;
 
-  const String& getText() const;
+  [[nodiscard]] const String& getText() const;
   void setText(const String& text);
   void setId(CommandId id);
 
@@ -58,10 +58,10 @@ public:
 
   virtual MenuItem* checkShortcuts(Keys::Type pressedKey);
 
-  virtual bool isMenu() const;
-  virtual bool isMenuBar() const;
-  virtual bool isSeparator() const;
-  virtual bool isMdiList() const;
+  [[nodiscard]] virtual bool isMenu() const;
+  [[nodiscard]] virtual bool isMenuBar() const;
+  [[nodiscard]] virtual bool isSeparator() const;
+  [[nodiscard]] virtual bool isMdiList() const;
 
 protected:
   // Events
@@ -79,9 +79,9 @@ class VACA_DLL MenuSeparator : public MenuItem
 {
 public:
   MenuSeparator();
-  virtual ~MenuSeparator();
+  ~MenuSeparator() override;
 
-  virtual bool isSeparator() const;
+  [[nodiscard]] bool isSeparator() const override;
 };
 
 //   class CheckBoxMenuItem : public MenuItem {
@@ -112,7 +112,7 @@ public:
   explicit Menu(const String& text);
   explicit Menu(CommandId menuId);
   explicit Menu(HMENU hmenu);
-  virtual ~Menu();
+  ~Menu() override;
 
   MenuItem* add(MenuItem* menuItem);
   MenuItem* add(const String& text, CommandId id, Keys::Type defaultShortcut = Keys::None);
@@ -133,11 +133,11 @@ public:
   int getItemCount();
   MenuItemList getMenuItems();
 
-  virtual MenuItem* checkShortcuts(Keys::Type pressedKey);
+  MenuItem* checkShortcuts(Keys::Type pressedKey) override;
 
   // PopupMenu* getPopupMenu();
 
-  virtual bool isMenu() const;
+  [[nodiscard]] bool isMenu() const override;
 
 //   Menu* getMenuByHMENU(HMENU hmenu);
 
@@ -159,13 +159,13 @@ class VACA_DLL MenuBar : public Menu
 public:
   MenuBar();
   explicit MenuBar(CommandId menuId);
-  virtual ~MenuBar();
+  ~MenuBar() override;
 
   Frame* getFrame();
 
   MdiListMenu* getMdiListMenu();
 
-  virtual bool isMenuBar() const;
+  [[nodiscard]] bool isMenuBar() const override;
 
 private:
   void setFrame(Frame* frame);
@@ -176,7 +176,7 @@ class VACA_DLL PopupMenu : public Menu
 public:
 
   PopupMenu();
-  virtual ~PopupMenu();
+  ~PopupMenu() override;
 
   CommandId doModal(Widget* widget,
 		    const Point& pt,
@@ -192,9 +192,9 @@ class VACA_DLL MdiListMenu : public Menu
 {
 public:
   MdiListMenu(const String& text);
-  virtual ~MdiListMenu();
+  ~MdiListMenu() override;
 
-  virtual bool isMdiList() const;
+  [[nodiscard]] bool isMdiList() const override;
 };
 
 } // namespace vaca

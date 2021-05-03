@@ -65,7 +65,7 @@ public:
   /**
      Destroys the handle using the @a Destroyer template-parameter.
   */
-  virtual ~GdiObject() {
+  ~GdiObject() override {
     if (isValid())
       Destroyer::destroy(m_handle);
   }
@@ -73,7 +73,7 @@ public:
   /**
      Returns true if the handle is valid (not NULL).
   */
-  bool isValid() const {
+  [[nodiscard]] bool isValid() const {
     return m_handle != NULL;
   }
 

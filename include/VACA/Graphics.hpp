@@ -41,8 +41,8 @@ class VACA_DLL Graphics : private NonCopyable
   friend class Application;
 
   HDC m_handle;
-  HPEN m_nullPen;
-  HBRUSH m_nullBrush;
+  HPEN m_nullPen{};
+  HBRUSH m_nullBrush{};
   bool m_autoRelease : 1;
   bool m_autoDelete : 1;
   Font m_font;
@@ -75,8 +75,8 @@ public:
   // ======================================================================
   // Font
 
-  Font getFont() const;
-  void setFont(Font font);
+  [[nodiscard]] Font getFont() const;
+  void setFont(const Font& font);
   void getFontMetrics(FontMetrics& fontMetrics);
 
   // ======================================================================
@@ -90,15 +90,15 @@ public:
   // ======================================================================
   // Low-level path routines
 
-  double getMiterLimit() const;
+  [[nodiscard]] double getMiterLimit() const;
   void setMiterLimit(double limit);
 
-  FillRule getFillRule() const;
+  [[nodiscard]] FillRule getFillRule() const;
   void setFillRule(FillRule fillRule);
 
   void tracePath(const GraphicsPath& path, const Point& pt);
   void getPath(GraphicsPath& path) const;
-  Region getRegionFromPath() const;
+  [[nodiscard]] Region getRegionFromPath() const;
 
   void strokePath(const Pen& pen);
   void fillPath(const Brush& brush);
@@ -182,7 +182,7 @@ public:
   // SetROP2 wrapper
   void setRop2(int drawMode);
 
-  HDC getHandle() const;
+  [[nodiscard]] HDC getHandle() const;
 
 private:
 
@@ -201,7 +201,7 @@ class VACA_DLL ScreenGraphics : public Graphics
 {
 public:
   ScreenGraphics();
-  virtual ~ScreenGraphics();
+  ~ScreenGraphics() override;
 };
 
 } // namespace vaca

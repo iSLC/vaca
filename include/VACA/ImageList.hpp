@@ -53,19 +53,19 @@ public:
   ImageList();
   explicit ImageList(const Size& sz);
   explicit ImageList(HIMAGELIST hImageList);
-  ImageList(ResourceId bitmapId, int widthPerIcon, Color maskColor);
-  ImageList(const String& fileName, int widthPerIcon, Color maskColor);
-  virtual ~ImageList();
+  ImageList(ResourceId bitmapId, int widthPerIcon, const Color& maskColor);
+  ImageList(const String& fileName, int widthPerIcon, const Color& maskColor);
+  ~ImageList() override;
 
-  int getImageCount() const;
-  Size getImageSize() const;
+  [[nodiscard]] int getImageCount() const;
+  [[nodiscard]] Size getImageSize() const;
 
-  int addImage(Image& image);
-  int addImage(Image& image, Color maskColor);
-  void removeImage(int index);
-  void removeAllImages();
+  int addImage(Image& image) const;
+  int addImage(Image& image, const Color& maskColor) const;
+  void removeImage(int index) const;
+  void removeAllImages() const;
 
-  HIMAGELIST getHandle() const;
+  [[nodiscard]] HIMAGELIST getHandle() const;
 
 };
 

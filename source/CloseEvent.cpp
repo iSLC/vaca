@@ -24,5 +24,4 @@ CloseEvent::CloseEvent(Frame* source)
    Destroys the CloseEvent.
 */
 CloseEvent::~CloseEvent()
-{
-}
+= default;

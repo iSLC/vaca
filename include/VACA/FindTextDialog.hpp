@@ -19,13 +19,13 @@ class VACA_DLL FindTextDialog : public Dialog
 {
   static UINT m_findMsgId;
 
-  FINDREPLACE m_findReplace;
+  FINDREPLACE m_findReplace{};
   bool m_replace;
 
 public:
 
   FindTextDialog(bool replace, Widget* parent);
-  virtual ~FindTextDialog();
+  ~FindTextDialog() override;
 
   String getFindWhat();
   String getReplaceWith();
@@ -55,7 +55,7 @@ private:
   void getTextFromDlgItem(int id, String& s);
   void setTextFromDlgItem(int id, const String& s);
 
-  virtual HWND createHandle(LPCTSTR className, Widget* parent, Style style);
+  HWND createHandle(LPCTSTR className, Widget* parent, Style style) override;
   static UINT_PTR CALLBACK hookProc(HWND hdlg, UINT uiMsg, WPARAM wParam, LPARAM lParam);
 
 };

@@ -63,9 +63,9 @@ ConditionVariable::ConditionVariable()
   , m_blocked(0)
   , m_waiting(0)
 {
-  m_gate = CreateSemaphore(0, 1, 1, NULL);
-  m_queue = CreateSemaphore(0, 0, (std::numeric_limits<long>::max)(), NULL);
-  m_mutex = CreateMutex(0, 0, NULL);
+  m_gate = CreateSemaphore(nullptr, 1, 1, nullptr);
+  m_queue = CreateSemaphore(nullptr, 0, (std::numeric_limits<long>::max)(), nullptr);
+  m_mutex = CreateMutex(nullptr, 0, nullptr);
 
   if (!m_gate || !m_queue || !m_mutex) {
     if (m_gate) CloseHandle(m_gate);
@@ -108,12 +108,12 @@ void ConditionVariable::notifyOne()
       --m_blocked;
     }
     else
-      ReleaseSemaphore(m_gate, 1, 0);
+      ReleaseSemaphore(m_gate, 1, nullptr);
   }
 
   ReleaseMutex(m_mutex);
   if (signals)
-    ReleaseSemaphore(m_queue, static_cast<LONG>(signals), 0);
+    ReleaseSemaphore(m_queue, static_cast<LONG>(signals), nullptr);
 }
 
 void ConditionVariable::notifyAll()
@@ -141,12 +141,12 @@ void ConditionVariable::notifyAll()
       m_blocked = 0;
     }
     else
-      ReleaseSemaphore(m_gate, 1, 0);
+      ReleaseSemaphore(m_gate, 1, nullptr);
   }
 
   ReleaseMutex(m_mutex);
   if (signals)
-    ReleaseSemaphore(m_queue, static_cast<LONG>(signals), 0);
+    ReleaseSemaphore(m_queue, static_cast<LONG>(signals), nullptr);
 }
 
 void ConditionVariable::wait(ScopedLock& lock)
@@ -165,7 +165,7 @@ void ConditionVariable::wait(ScopedLock& lock)
   if (was_waiting != 0) {
     if (--m_waiting == 0) {
       if (m_blocked != 0) {
-	ReleaseSemaphore(m_gate, 1, 0); // open m_gate
+	ReleaseSemaphore(m_gate, 1, nullptr); // open m_gate
 	was_waiting = 0;
       }
       else if (m_gone != 0)
@@ -178,7 +178,7 @@ void ConditionVariable::wait(ScopedLock& lock)
     // no call to notify_* is made
     WaitForSingleObject(m_gate, INFINITE);
     m_blocked -= m_gone;
-    ReleaseSemaphore(m_gate, 1, 0);
+    ReleaseSemaphore(m_gate, 1, nullptr);
     m_gone = 0;
   }
   ReleaseMutex(m_mutex);
@@ -188,7 +188,7 @@ void ConditionVariable::wait(ScopedLock& lock)
       // better now than spurious later
       WaitForSingleObject(m_queue, INFINITE);
     }
-    ReleaseSemaphore(m_gate, 1, 0);
+    ReleaseSemaphore(m_gate, 1, nullptr);
   }
 }
 
@@ -216,7 +216,7 @@ bool ConditionVariable::waitFor(ScopedLock& lock, double seconds)
     }
     if (--m_waiting == 0) {
       if (m_blocked != 0) {
-	ReleaseSemaphore(m_gate, 1, 0); // open m_gate
+	ReleaseSemaphore(m_gate, 1, nullptr); // open m_gate
 	was_waiting = 0;
       }
       else if (m_gone != 0)
@@ -229,7 +229,7 @@ bool ConditionVariable::waitFor(ScopedLock& lock, double seconds)
     // no call to notify_* is made
     WaitForSingleObject(m_gate, INFINITE);
     m_blocked -= m_gone;
-    ReleaseSemaphore(m_gate, 1, 0);
+    ReleaseSemaphore(m_gate, 1, nullptr);
     m_gone = 0;
   }
   ReleaseMutex(m_mutex);
@@ -239,7 +239,7 @@ bool ConditionVariable::waitFor(ScopedLock& lock, double seconds)
       // better now than spurious later
       WaitForSingleObject(m_queue, INFINITE);
     }
-    ReleaseSemaphore(m_gate, 1, 0);
+    ReleaseSemaphore(m_gate, 1, nullptr);
   }
 
   return ret;
@@ -249,5 +249,5 @@ void ConditionVariable::enterWait()
 {
   WaitForSingleObject(m_gate, INFINITE);
   ++m_blocked;
-  ReleaseSemaphore(m_gate, 1, 0);
+  ReleaseSemaphore(m_gate, 1, nullptr);
 }

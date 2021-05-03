@@ -24,7 +24,7 @@ using namespace vaca;
 */
 struct Bix::Element
 {
-  virtual ~Element() { }
+  virtual ~Element() = default;
   virtual int getFlags() = 0;
   virtual bool isLayoutFree() = 0;
   virtual Size getPreferredSize(const Size& fitIn) = 0;
@@ -38,11 +38,11 @@ struct Bix::SubBixElement : public Bix::Element
 {
   Bix* bix;
   SubBixElement(Bix* b) { bix=b; }
-  virtual ~SubBixElement() { delete bix; }
-  virtual int getFlags() { return bix->m_flags; };
-  virtual bool isLayoutFree() { return false; }
-  virtual Size getPreferredSize(const Size& fitIn) { return bix->getPreferredSize(fitIn); }
-  virtual void setBounds(WidgetsMovement& movement, Bix* parentBix, const Rect& rc) {
+  ~SubBixElement() override { delete bix; }
+  int getFlags() override { return bix->m_flags; };
+  bool isLayoutFree() override { return false; }
+  Size getPreferredSize(const Size& fitIn) override { return bix->getPreferredSize(fitIn); }
+  void setBounds(WidgetsMovement& movement, Bix* parentBix, const Rect& rc) override {
     bix->layout(movement, parentBix, rc);
   }
 };
@@ -59,11 +59,11 @@ struct Bix::WidgetElement : public Bix::Element
     widget=w;
     flags=f;
   }
-  virtual ~WidgetElement() { }
-  virtual int getFlags() { return flags; };
-  virtual bool isLayoutFree() { return widget->isLayoutFree(); }
-  virtual Size getPreferredSize(const Size& fitIn) { return widget->getPreferredSize(fitIn); }
-  virtual void setBounds(WidgetsMovement& movement, Bix* parentBix, const Rect& rc) {
+  ~WidgetElement() override = default;
+  int getFlags() override { return flags; };
+  bool isLayoutFree() override { return widget->isLayoutFree(); }
+  Size getPreferredSize(const Size& fitIn) override { return widget->getPreferredSize(fitIn); }
+  void setBounds(WidgetsMovement& movement, Bix* parentBix, const Rect& rc) override {
     movement.moveWidget(widget, rc);
   }
 };
@@ -89,7 +89,7 @@ struct Bix::Matrix
       elem[y] = new Element*[cols];
       size[y] = new Size[cols];
       for (int x=0; x<cols; ++x)
-	elem[y][x] = NULL;
+	elem[y][x] = nullptr;
     }
 
     col_fill = new bool[cols];
@@ -114,14 +114,14 @@ struct Bix::Matrix
     delete[] row_fill;
   }
 
-  void setElementAt(int x, int y, Element* e) {
+  void setElementAt(int x, int y, Element* e) const {
     elem[y][x] = e;
     if (e->getFlags() & BixFillX) col_fill[x] = true;
     if (e->getFlags() & BixFillY) row_fill[y] = true;
   }
 
 
-  int getColFillsCount()
+  int getColFillsCount() const
   {
     int x, count = 0;
 
@@ -132,7 +132,7 @@ struct Bix::Matrix
     return count;
   }
 
-  int getRowFillsCount()
+  int getRowFillsCount() const
   {
      int y, count = 0;
 
@@ -143,14 +143,14 @@ struct Bix::Matrix
     return count;
   }
 
-  void calcCellsSize(const Size& fitIn)
+  void calcCellsSize(const Size& fitIn) const
   {
     int x, y;
 
     // get the preferred size of each element in the matrix
     for (y=0; y<rows; ++y)
       for (x=0; x<cols; ++x)
-	if (elem[y][x] != NULL)
+	if (elem[y][x] != nullptr)
 	  size[y][x] = elem[y][x]->getPreferredSize(fitIn);
 
     // fill the first row with the maximum width of each column
@@ -181,8 +181,8 @@ Bix::Bix(int flags, int matrixColumns)
 
 Bix::~Bix()
 {
-  for (Elements::iterator it=m_elements.begin(); it!=m_elements.end(); ++it)
-    delete *it;
+  for (auto & m_element : m_elements)
+    delete m_element;
 
   m_elements.clear();
 }
@@ -190,7 +190,7 @@ Bix::~Bix()
 /**
    Returns true if it's a horizontal Bix (row vector).
 */
-bool Bix::isRow()
+bool Bix::isRow() const
 {
   return (m_flags & BixTypeMask) == BixRow;
 }
@@ -198,7 +198,7 @@ bool Bix::isRow()
 /**
    Returns true if it's a vertical Bix (column vector).
 */
-bool Bix::isCol()
+bool Bix::isCol() const
 {
   return (m_flags & BixTypeMask) == BixCol;
 }
@@ -206,42 +206,42 @@ bool Bix::isCol()
 /**
    Returns true if this Bix is a matrix.
 */
-bool Bix::isMat()
+bool Bix::isMat() const
 {
   return (m_flags & BixTypeMask) == BixMat;
 }
 
-bool Bix::isEvenX()
+bool Bix::isEvenX() const
 {
   return (m_flags & BixEvenX) == BixEvenX;
 }
 
-bool Bix::isEvenY()
+bool Bix::isEvenY() const
 {
   return (m_flags & BixEvenY) == BixEvenY;
 }
 
-bool Bix::isEven()
+bool Bix::isEven() const
 {
   return (m_flags & BixEven) == BixEven;
 }
 
-bool Bix::isFillX()
+bool Bix::isFillX() const
 {
   return (m_flags & BixFillX) == BixFillX;
 }
 
-bool Bix::isFillY()
+bool Bix::isFillY() const
 {
   return (m_flags & BixFillY) == BixFillY;
 }
 
-bool Bix::isFill()
+bool Bix::isFill() const
 {
   return (m_flags & BixFill) == BixFill;
 }
 
-int Bix::getBorder()
+int Bix::getBorder() const
 {
   return m_border;
 }
@@ -254,7 +254,7 @@ void Bix::setBorder(int border)
 /**
    Returns the space between each child.
 */
-int Bix::getChildSpacing()
+int Bix::getChildSpacing() const
 {
   return m_childSpacing;
 }
@@ -271,7 +271,7 @@ void Bix::setChildSpacing(int childSpacing)
   m_childSpacing = childSpacing;
 }
 
-int Bix::getMatrixColumns()
+int Bix::getMatrixColumns() const
 {
   return m_cols;
 }
@@ -310,8 +310,8 @@ void Bix::remove(Bix* subbix)
   Elements::iterator it;
 
   for (it = m_elements.begin(); it != m_elements.end(); ++it) {
-    SubBixElement* element = dynamic_cast<SubBixElement*>(*it);
-    if (element != NULL &&
+    auto* element = dynamic_cast<SubBixElement*>(*it);
+    if (element != nullptr &&
 	element->bix == subbix) {
       remove_from_container(m_elements, element);
       return;
@@ -327,8 +327,8 @@ void Bix::remove(Widget* child)
   Elements::iterator it;
 
   for (it = m_elements.begin(); it != m_elements.end(); ++it) {
-    WidgetElement* element = dynamic_cast<WidgetElement*>(*it);
-    if (element != NULL &&
+    auto* element = dynamic_cast<WidgetElement*>(*it);
+    if (element != nullptr &&
 	element->widget == child) {
       remove_from_container(m_elements, element);
       return;
@@ -491,7 +491,7 @@ void Bix::layout(WidgetsMovement& movement, Bix* parentBix, const Rect& rc)
     for (y=0; y<mat.rows; ++y) {
       pt.x = rc.x+m_border;
       for (x=0; x<mat.cols; ++x) {
-	if (mat.elem[y][x] != NULL)
+	if (mat.elem[y][x] != nullptr)
 	  mat.elem[y][x]->setBounds(movement,
 				    parentBix,
 				    Rect(pt, Size(mat.size[0][x].w,
@@ -515,8 +515,8 @@ Size Bix::getMatrixDimension()
       cols = 0;
       rows = 1;
 
-      for (Elements::iterator it=m_elements.begin(); it!=m_elements.end(); ++it) {
-	if (!(*it)->isLayoutFree())
+      for (auto & m_element : m_elements) {
+	if (!m_element->isLayoutFree())
 	  cols++;
       }
       break;
@@ -527,8 +527,8 @@ Size Bix::getMatrixDimension()
       cols = 1;
       rows = 0;
 
-      for (Elements::iterator it=m_elements.begin(); it!=m_elements.end(); ++it) {
-	if (!(*it)->isLayoutFree())
+      for (auto & m_element : m_elements) {
+	if (!m_element->isLayoutFree())
 	  rows++;
       }
       break;
@@ -541,8 +541,8 @@ Size Bix::getMatrixDimension()
 
       int x = 0;
 
-      for (Elements::iterator it=m_elements.begin(); it!=m_elements.end(); ++it) {
-	if (!(*it)->isLayoutFree())
+      for (auto & m_element : m_elements) {
+	if (!m_element->isLayoutFree())
 	  ++x;
 
 	if (x == cols) {
@@ -569,9 +569,9 @@ void Bix::fillMatrix(Matrix& mat)
     case BixRow: {
       int x = 0;
 
-      for (Elements::iterator it=m_elements.begin(); it!=m_elements.end(); ++it) {
-	if (!(*it)->isLayoutFree())
-	  mat.setElementAt(x++, 0, *it);
+      for (auto & m_element : m_elements) {
+	if (!m_element->isLayoutFree())
+	  mat.setElementAt(x++, 0, m_element);
       }
 
       mat.row_fill[0] = true;
@@ -582,9 +582,9 @@ void Bix::fillMatrix(Matrix& mat)
     case BixCol: {
       int y = 0;
 
-      for (Elements::iterator it=m_elements.begin(); it!=m_elements.end(); ++it) {
-	if (!(*it)->isLayoutFree())
-	  mat.setElementAt(0, y++, *it);
+      for (auto & m_element : m_elements) {
+	if (!m_element->isLayoutFree())
+	  mat.setElementAt(0, y++, m_element);
       }
 
       mat.col_fill[0] = true;
@@ -595,9 +595,9 @@ void Bix::fillMatrix(Matrix& mat)
     case BixMat: {
       int x = 0, y = 0;
 
-      for (Elements::iterator it=m_elements.begin(); it!=m_elements.end(); ++it) {
-	if (!(*it)->isLayoutFree()) {
-	  mat.setElementAt(x, y, *it);
+      for (auto & m_element : m_elements) {
+	if (!m_element->isLayoutFree()) {
+	  mat.setElementAt(x, y, m_element);
 	  ++x;
 	}
 
@@ -677,9 +677,9 @@ Bix* Bix::parse(const Char* fmt, ...)
 
 #define NEW_BIX(flags)							\
   if (mainBix == NULL)							\
-    mainBix = newBix = new Bix(flags | fill);				\
+    mainBix = newBix = new Bix((flags) | fill);				\
   else									\
-    newBix = bixes.top()->add(flags | fill);				\
+    newBix = bixes.top()->add((flags) | fill);				\
   bixes.push(newBix);							\
   columns.push(new int(0));
 
@@ -688,8 +688,8 @@ Bix* Bix::parse(const Char* fmt, ...)
 
   // ----------------------------------------
 
-  Bix* mainBix = NULL;		// first Bix created
-  Bix* newBix = NULL;		// current new Bix
+  Bix* mainBix = nullptr;		// first Bix created
+  Bix* newBix = nullptr;		// current new Bix
   std::stack<Bix*> bixes;	// current stack of bixes
   std::stack<int*> columns;	// columns for bixes
   int fill = 0;			// want to fill next widget/bix
@@ -755,7 +755,7 @@ Bix* Bix::parse(const Char* fmt, ...)
 
 	    // row or matrix
 	  case L'X':
-	    if (mainBix != NULL)
+	    if (mainBix != nullptr)
 	      (*columns.top())++;
 
 	    // matrix
@@ -775,7 +775,7 @@ Bix* Bix::parse(const Char* fmt, ...)
 
 	    // column
 	  case L'Y':
-	    if (mainBix != NULL)
+	    if (mainBix != nullptr)
 	      (*columns.top())++;
 
 	    PARSE_ASSERT(p[1] == L'[', L"'[' expected after 'Y' to open the column");

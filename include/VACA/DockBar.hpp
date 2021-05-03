@@ -80,18 +80,18 @@ public:
   };
 
   DockBar(const String& title, Frame* parent, Style style = Styles::Default);
-  virtual ~DockBar();
+  ~DockBar() override;
 
-  virtual void setVisible(bool visible);
+  void setVisible(bool visible) override;
 
   void setFullDrag(bool state);
-  bool isFullDrag() const;
+  [[nodiscard]] bool isFullDrag() const;
 
   void setFloatingGripper(bool state);
-  bool isFloatingGripper() const;
+  [[nodiscard]] bool isFloatingGripper() const;
 
-  bool isDocked() const;
-  bool isFloating() const;
+  [[nodiscard]] bool isDocked() const;
+  [[nodiscard]] bool isFloating() const;
 
   void dockIn(DockArea* dockArea);
   void floatOut();
@@ -101,37 +101,37 @@ public:
   DockFrame* getDockFrame();
   DockInfo* getDockInfo();
 
-  virtual Size getDockedSize(Side side) const;
-  virtual Size getFloatingSize() const;
+  [[nodiscard]] virtual Size getDockedSize(Side side) const;
+  [[nodiscard]] virtual Size getFloatingSize() const;
 
 protected:
 
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
   virtual void onDockFrameClose(CloseEvent& ev);
-  virtual void onPaint(PaintEvent& ev);
-  virtual void onLayout(LayoutEvent& ev);
-  virtual void onResize(ResizeEvent& ev);
-  virtual void onMouseDown(MouseEvent& ev);
-  virtual void onMouseMove(MouseEvent& ev);
-  virtual void onMouseUp(MouseEvent& ev);
-  virtual void onDoubleClick(MouseEvent& ev);
+  void onPaint(PaintEvent& ev) override;
+  void onLayout(LayoutEvent& ev) override;
+  void onResize(ResizeEvent& ev) override;
+  void onMouseDown(MouseEvent& ev) override;
+  void onMouseMove(MouseEvent& ev) override;
+  void onMouseUp(MouseEvent& ev) override;
+  void onDoubleClick(MouseEvent& ev) override;
   // New events
   virtual void onDocking();
   virtual void onFloating();
   virtual void onResizingFrame(DockFrame* frame, CardinalDirection dir, Rect& rc);
 
   virtual void paintGripper(Graphics& g);
-  virtual Size measureGripper(bool docked, Side dockSide) const;
-  virtual Side getGripperSide(bool docked, Side dockSide) const;
-  virtual bool isGripperVisible(bool docked, Side dockSide) const;
+  [[nodiscard]] virtual Size measureGripper(bool docked, Side dockSide) const;
+  [[nodiscard]] virtual Side getGripperSide(bool docked, Side dockSide) const;
+  [[nodiscard]] virtual bool isGripperVisible(bool docked, Side dockSide) const;
 
-  virtual bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult);
+  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
 
 private:
 
   void makeDock(DockArea* dockArea, DockInfo* dockInfo);
-  void makeFloat(const Rect* rect = NULL);
+  void makeFloat(const Rect* rect = nullptr);
 
   void beginDrag();
   void dragBar();

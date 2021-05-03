@@ -33,15 +33,15 @@ public:
 
   Color();
   Color(const Color& color);
-  Color(int r, int g, int b);
+  Color(int r, int g, int b) noexcept;
   virtual ~Color();
 
-  int getR() const;
-  int getG() const;
-  int getB() const;
+  [[nodiscard]] int getR() const;
+  [[nodiscard]] int getG() const;
+  [[nodiscard]] int getB() const;
 
-  Color negative();
-  Color toBlackAndWhite();
+  Color negative() const;
+  Color toBlackAndWhite() const;
 
   Color& operator=(const Color& color);
 

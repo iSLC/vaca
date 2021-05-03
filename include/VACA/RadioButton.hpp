@@ -37,7 +37,7 @@ public:
   RadioGroup();
   virtual ~RadioGroup();
 
-  int getSelectedIndex() const;
+  [[nodiscard]] int getSelectedIndex() const;
   void setSelectedIndex(int index);
 
   bool operator==(const RadioGroup& other) const;
@@ -74,17 +74,17 @@ public:
   };
 
   RadioButton(const String& text, RadioGroup& group, Widget* parent,
-	      Style style = Styles::Default);
-  virtual ~RadioButton();
+	      const Style& style = Styles::Default);
+  ~RadioButton() override;
 
-  const RadioGroup& getRadioGroup() const;
+  [[nodiscard]] const RadioGroup& getRadioGroup() const;
 
 protected:
   // Events
-  virtual void onClick(Event& ev);
+  void onClick(Event& ev) override;
 
   // Reflected notifications
-  virtual bool onReflectedCommand(int id, int code, LRESULT& lResult);
+  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
 };
 
 } // namespace vaca

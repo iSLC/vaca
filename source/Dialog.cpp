@@ -21,7 +21,7 @@ using namespace vaca;
 
    @see doModal(), DialogStyle
 */
-Dialog::Dialog(const String& title, Widget* parent, Style style)
+Dialog::Dialog(const String& title, Widget* parent, const Style& style)
   : Frame(WidgetClassName::None, title, parent, style)
 {
   setDefWndProc(DefDlgProc);
@@ -39,7 +39,7 @@ Dialog::Dialog(const String& title, Widget* parent, Style style)
    Creates a dialog with a custom WNDCLASS. @a className can be NULL
    if you want to call Widget::create() by your self.
 */
-Dialog::Dialog(const WidgetClassName& className, const String& title, Widget* parent, Style style)
+Dialog::Dialog(const WidgetClassName& className, const String& title, Widget* parent, const Style& style)
   : Frame(WidgetClassName::None, title, parent, style)
 {
   setDefWndProc(DefDlgProc);
@@ -55,7 +55,7 @@ Dialog::Dialog(const WidgetClassName& className, const String& title, Widget* pa
 Dialog::Dialog(ResourceId dialogId, Widget* parent)
   : Frame(::CreateDialog(Application::getHandle(),
 			 dialogId.toLPTSTR(),
-			 parent ? parent->getHandle() : NULL,
+			 parent ? parent->getHandle() : nullptr,
 			 Dialog::globalDlgProc))
 {
   m_state = false;
@@ -68,8 +68,7 @@ Dialog::Dialog(HWND handle)
 }
 
 Dialog::~Dialog()
-{
-}
+= default;
 
 /**
    You can use this to set the doModal()'s return value.
@@ -114,10 +113,10 @@ Widget* Dialog::getNextFocusableWidget(Widget* widget)
   assert(::IsWindow(getHandle()));
 
   HWND hwnd = GetNextDlgTabItem(getHandle(),
-				widget != NULL ? widget->getHandle(): NULL,
+				widget != nullptr ? widget->getHandle(): nullptr,
 				FALSE);
 
-  return hwnd != NULL ? Widget::fromHandle(hwnd): NULL;
+  return hwnd != nullptr ? Widget::fromHandle(hwnd): nullptr;
 }
 
 Widget* Dialog::getPreviousFocusableWidget(Widget* widget)
@@ -125,10 +124,10 @@ Widget* Dialog::getPreviousFocusableWidget(Widget* widget)
   assert(::IsWindow(getHandle()));
 
   HWND hwnd = GetNextDlgTabItem(getHandle(),
-				widget ? widget->getHandle(): NULL,
+				widget ? widget->getHandle(): nullptr,
 				TRUE);
 
-  return hwnd != NULL ? Widget::fromHandle(hwnd): NULL;
+  return hwnd != nullptr ? Widget::fromHandle(hwnd): nullptr;
 }
 
 /**

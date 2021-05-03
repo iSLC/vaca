@@ -23,7 +23,7 @@ class VACA_DLL HttpRequestException : public Exception
 public:
   HttpRequestException() : Exception() { }
   HttpRequestException(const String& message) : Exception(message) { }
-  virtual ~HttpRequestException() throw() { }
+  ~HttpRequestException() noexcept override = default;
 };
 
 /**
@@ -63,7 +63,7 @@ public:
   HttpRequest(const String& url, const String& method = L"GET");
   virtual ~HttpRequest();
 
-  int send(const String& headers = L"", const char* body = NULL);
+  int send(const String& headers = L"", const char* body = nullptr);
   std::size_t read(char* buf, std::size_t length);
 
   int getStatusCode();

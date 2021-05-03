@@ -12,7 +12,7 @@
 
 using namespace vaca;
 
-TextEdit::TextEdit(const String& text, Widget* parent, Style style)
+TextEdit::TextEdit(const String& text, Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_EDIT), parent, style)
 {
   setText(text);
@@ -20,8 +20,7 @@ TextEdit::TextEdit(const String& text, Widget* parent, Style style)
 }
 
 TextEdit::~TextEdit()
-{
-}
+= default;
 
 int TextEdit::getTextLength() const
 {

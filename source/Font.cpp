@@ -22,10 +22,7 @@ Font::Font()
 /**
    Makes a reference to the specified font.
 */
-Font::Font(const Font& font)
-  : SharedPtr<GdiObject<HFONT> >(font)
-{
-}
+Font::Font(const Font& font) = default;
 
 /**
    Makes a copy of the font changing it's style.
@@ -43,7 +40,7 @@ Font::Font(const Font& font, FontStyle style)
   }
 }
 
-Font::Font(String familyName, int size, FontStyle style)
+Font::Font(const String& familyName, int size, FontStyle style)
 {
   ScreenGraphics g;
   LOGFONT lf;
@@ -81,8 +78,7 @@ Font::Font(LPLOGFONT lplf)
 }
 
 Font::~Font()
-{
-}
+= default;
 
 /**
    Returns the size of the font in points.

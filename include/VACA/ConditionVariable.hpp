@@ -21,7 +21,7 @@ public:
 
   CreateConditionVariableException() : Exception() { }
   CreateConditionVariableException(const String& message) : Exception(message) { }
-  virtual ~CreateConditionVariableException() throw() { }
+  ~CreateConditionVariableException() noexcept override = default;
 
 };
 

@@ -25,20 +25,13 @@ WidgetClassName::WidgetClassName(const String& className)
 {
 }
 
-WidgetClassName::WidgetClassName(const WidgetClassName& className)
-  : m_className(className.m_className)
-{
-}
+WidgetClassName::WidgetClassName(const WidgetClassName& className) = default;
 
 WidgetClassName::~WidgetClassName()
-{
-}
+= default;
 
 WidgetClassName& WidgetClassName::operator=(const WidgetClassName& className)
-{
-  m_className = className.m_className;
-  return *this;
-}
+= default;
 
 bool WidgetClassName::operator==(const WidgetClassName& className) const
 {

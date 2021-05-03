@@ -71,7 +71,7 @@ std::string vaca::to_utf8(const String& string)
   int required_size =
     WideCharToMultiByte(CP_UTF8, 0,
                         string.c_str(), static_cast<int>(string.size()),
-                        NULL, 0, NULL, NULL);
+                        nullptr, 0, nullptr, nullptr);
 
   if (required_size == 0)
     return std::string();
@@ -81,7 +81,7 @@ std::string vaca::to_utf8(const String& string)
   WideCharToMultiByte(CP_UTF8, 0,
                       string.c_str(), static_cast<int>(string.size()),
                       &buf[0], required_size,
-                      NULL, NULL);
+                      nullptr, nullptr);
 
   return std::string(&buf[0]);
 }
@@ -91,7 +91,7 @@ String vaca::from_utf8(const std::string& string)
   int required_size =
     MultiByteToWideChar(CP_UTF8, 0,
                         string.c_str(), static_cast<int>(string.size()),
-                        NULL, 0);
+                        nullptr, 0);
 
   if (required_size == 0)
     return String();
@@ -110,12 +110,10 @@ namespace {
   {
     const String* separators;
     is_separator(const String* separators) : separators(separators) { }
-    bool operator()(Char chr)
+    bool operator()(Char chr) const
     {
-      for (String::const_iterator
-	     it = separators->begin(),
-	     end = separators->end(); it != end; ++it) {
-	if (chr == *it)
+      for (wchar_t separator : *separators) {
+	if (chr == separator)
 	  return true;
       }
       return false;
@@ -146,7 +144,7 @@ template<> std::string vaca::convert_to(const Char* const& from)
 {
   int len = static_cast<int>(std::wcslen(from) + 1);
   std::unique_ptr<char[]> ansiBuf(new char[len]);
-  int ret = WideCharToMultiByte(CP_ACP, 0, from, len, ansiBuf.get(), len, NULL, NULL);
+  int ret = WideCharToMultiByte(CP_ACP, 0, from, len, ansiBuf.get(), len, nullptr, nullptr);
   if (ret == 0)
     return "";
   else
@@ -157,7 +155,7 @@ template<> std::string vaca::convert_to(const String& from)
 {
   int len = static_cast<int>(from.size() + 1);
   std::unique_ptr<char[]> ansiBuf(new char[len]);
-  int ret = WideCharToMultiByte(CP_ACP, 0, from.c_str(), len, ansiBuf.get(), len, NULL, NULL);
+  int ret = WideCharToMultiByte(CP_ACP, 0, from.c_str(), len, ansiBuf.get(), len, nullptr, nullptr);
   if (ret == 0)
     return "";
   else
@@ -166,32 +164,32 @@ template<> std::string vaca::convert_to(const String& from)
 
 template<> int vaca::convert_to(const String& from)
 {
-  return (int)std::wcstol(from.c_str(), NULL, 10);
+  return (int)std::wcstol(from.c_str(), nullptr, 10);
 }
 
 template<> long vaca::convert_to(const String& from)
 {
-  return std::wcstol(from.c_str(), NULL, 10);
+  return std::wcstol(from.c_str(), nullptr, 10);
 }
 
 template<> unsigned int vaca::convert_to(const String& from)
 {
-  return (unsigned int)std::wcstoul(from.c_str(), NULL, 10);
+  return (unsigned int)std::wcstoul(from.c_str(), nullptr, 10);
 }
 
 template<> unsigned long vaca::convert_to(const String& from)
 {
-  return std::wcstoul(from.c_str(), NULL, 10);
+  return std::wcstoul(from.c_str(), nullptr, 10);
 }
 
 template<> float vaca::convert_to(const String& from)
 {
-  return (float)std::wcstod(from.c_str(), NULL);
+  return (float)std::wcstod(from.c_str(), nullptr);
 }
 
 template<> double vaca::convert_to(const String& from)
 {
-  return std::wcstod(from.c_str(), NULL);
+  return std::wcstod(from.c_str(), nullptr);
 }
 
 template<> String vaca::convert_to(const char* const& from)

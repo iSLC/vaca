@@ -10,15 +10,14 @@
 
 using namespace vaca;
 
-SetCursorEvent::SetCursorEvent(Widget* source, Point point, WidgetHit hit)
+SetCursorEvent::SetCursorEvent(Widget* source, const Point& point, WidgetHit hit)
   : MouseEvent(source, point, 0, 0, MouseButton::None)
   , m_hit(hit)
 {
 }
 
 SetCursorEvent::~SetCursorEvent()
-{
-}
+= default;
 
 void SetCursorEvent::setCursor(const Cursor& cursor)
 {

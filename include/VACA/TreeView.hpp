@@ -58,7 +58,7 @@ public:
 private:
   void increment();
   void decrement();
-  bool equal(TreeViewIterator const& other) const;
+  [[nodiscard]] bool equal(TreeViewIterator const& other) const;
 };
 
 /**
@@ -101,37 +101,37 @@ public:
     static const Style Default;
   };
 
-  TreeView(Widget* parent, Style style = Styles::Default);
+  TreeView(Widget* parent, const Style& style = Styles::Default);
   explicit TreeView(HWND handle);
-  virtual ~TreeView();
+  ~TreeView() override;
 
   iterator begin();
   iterator end();
 
-  bool isDragAndDrop() const;
+  [[nodiscard]] bool isDragAndDrop() const;
   void setDragAndDrop(bool state);
 
   void setImageList(const ImageList& imageList);
   void setStateImageList(const ImageList& imageList);
 
-  int getRowHeight() const;
+  [[nodiscard]] int getRowHeight() const;
   void setRowHeight(int height);
 
   void addNode(TreeNode* node);
   void removeNode(TreeNode* node);
 
-  int getNodeCount() const;
-  int getVisibleCount() const;
+  [[nodiscard]] int getNodeCount() const;
+  [[nodiscard]] int getVisibleCount() const;
 
-  TreeNode* getSelectedNode() const;
+  [[nodiscard]] TreeNode* getSelectedNode() const;
   void setSelectedNode(TreeNode* node);
 
-  TreeNode* getDropTarget() const;
+  [[nodiscard]] TreeNode* getDropTarget() const;
   void setDropTarget(TreeNode* node);
 
   TreeNode* getNodeInPoint(const Point& pt);
 
-  virtual void setBgColor(const Color& color);
+  void setBgColor(const Color& color) override;
 
   // Signals
   Signal1<void, TreeViewEvent&> BeforeExpand;
@@ -147,9 +147,9 @@ public:
 
 protected:
   // Events
-  virtual void onMouseMove(MouseEvent& ev);
-  virtual void onMouseUp(MouseEvent& ev);
-  virtual void onSetCursor(SetCursorEvent& ev);
+  void onMouseMove(MouseEvent& ev) override;
+  void onMouseUp(MouseEvent& ev) override;
+  void onSetCursor(SetCursorEvent& ev) override;
 
   // New events
   virtual void onBeforeExpand(TreeViewEvent& ev);
@@ -164,7 +164,7 @@ protected:
 //   virtual void onEndDrag(TreeViewEvent& ev);
 
   // Reflected notifications
-  virtual bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult);
+  bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult) override;
 
 };
 

@@ -24,22 +24,22 @@ public:
   Region(const Region& rgn);
   explicit Region(HRGN hrgn);
   explicit Region(const Rect& rc);
-  virtual ~Region();
+  ~Region() override;
 
-  bool isEmpty() const;
-  bool isSimple() const;
-  bool isComplex() const;
+  [[nodiscard]] bool isEmpty() const;
+  [[nodiscard]] bool isSimple() const;
+  [[nodiscard]] bool isComplex() const;
 
   Region& operator=(const Region& rgn);
-  Region clone() const;
+  [[nodiscard]] Region clone() const;
 
-  Rect getBounds() const;
+  [[nodiscard]] Rect getBounds() const;
 
   Region& offset(int dx, int dy);
   Region& offset(const Point& point);
 
-  bool contains(const Point& pt) const;
-  bool contains(const Rect& rc) const;
+  [[nodiscard]] bool contains(const Point& pt) const;
+  [[nodiscard]] bool contains(const Rect& rc) const;
 
   bool operator==(const Region& rgn) const;
   bool operator!=(const Region& rgn) const;
@@ -60,7 +60,7 @@ public:
   static Region fromEllipse(const Rect& rc);
   static Region fromRoundRect(const Rect& rc, const Size& ellipseSize);
 
-  HRGN getHandle() const;
+  [[nodiscard]] HRGN getHandle() const;
 
 };
 

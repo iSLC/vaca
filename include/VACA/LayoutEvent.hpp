@@ -19,9 +19,9 @@ class VACA_DLL LayoutEvent : public Event
 public:
 
   LayoutEvent(Widget* source, const Rect& bounds);
-  virtual ~LayoutEvent();
+  ~LayoutEvent() override;
 
-  Rect getBounds() const;
+  [[nodiscard]] Rect getBounds() const;
   void setBounds(const Rect& rc);
 
 };

@@ -39,7 +39,7 @@ class ReBarException : public Exception
 public:
   ReBarException() : Exception() { }
   ReBarException(const String& message) : Exception(message) { }
-  virtual ~ReBarException() throw() { }
+  ~ReBarException() noexcept override = default;
 };
 
 /**
@@ -55,19 +55,19 @@ public:
   ReBarBand(const ReBarBand& band);
   virtual ~ReBarBand();
 
-  ReBarBandStyle getStyle() const;
+  [[nodiscard]] ReBarBandStyle getStyle() const;
   void setStyle(ReBarBandStyle style);
 
   void getColors(Color& fg, Color& bg) const;
-  void setColors(Color fg, Color bg);
+  void setColors(const Color& fg, const Color& bg);
 
-  String getText() const;
+  [[nodiscard]] String getText() const;
   void setText(const String& text);
 
-  int getImageIndex() const;
+  [[nodiscard]] int getImageIndex() const;
   void setImageIndex(int index);
 
-  Widget* getChild() const;
+  [[nodiscard]] Widget* getChild() const;
   void setChild(Widget* widget);
 
   inline void operator=(const ReBarBand& rbb) {
@@ -93,10 +93,10 @@ public:
     static const Style Default;
   };
 
-  ReBar(Widget* parent, Style style = ReBar::Styles::Default);
-  virtual ~ReBar();
+  ReBar(Widget* parent, const Style& style = ReBar::Styles::Default);
+  ~ReBar() override;
 
-  virtual bool isLayoutFree() const;
+  [[nodiscard]] bool isLayoutFree() const override;
 
   void setImageList(const ImageList& imageList);
 
@@ -110,8 +110,8 @@ public:
   Color getBgColor();
   Color getFgColor();
 
-  virtual void setBgColor(const Color& color);
-  virtual void setFgColor(const Color& color);
+  void setBgColor(const Color& color) override;
+  void setFgColor(const Color& color) override;
 
   Rect getBandRect(int index);
   int getRowCount();
@@ -128,9 +128,9 @@ public:
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onLayout(LayoutEvent& ev);
-  virtual bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
+  void onLayout(LayoutEvent& ev) override;
+  bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult) override;
   virtual void onAutoSize(Event& ev);
 
 };

@@ -19,10 +19,10 @@ class VACA_DLL FocusEvent : public Event
 public:
 
   FocusEvent(Widget* source, Widget* oldFocus, Widget* newFocus);
-  virtual ~FocusEvent();
+  ~FocusEvent() override;
 
-  Widget* getOldFocus() const;
-  Widget* getNewFocus() const;
+  [[nodiscard]] Widget* getOldFocus() const;
+  [[nodiscard]] Widget* getNewFocus() const;
 
 };
 

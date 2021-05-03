@@ -25,9 +25,9 @@ class VACA_DLL System
 {
 public:
 
-  static void println(String line);
+  static void println(const String& line);
   static void printf(LPCTSTR fmt, ...);
-  static void print(String buf);
+  static void print(const String& buf);
 
   static String getCurrentDirectory();
   static String getWindowsDirectory();

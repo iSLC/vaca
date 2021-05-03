@@ -17,17 +17,16 @@ Clipboard::Clipboard(Widget* owner)
 }
 
 Clipboard::~Clipboard()
-{
-}
+= default;
 
-bool Clipboard::isText() const
+bool Clipboard::isText()
 {
   return IsClipboardFormatAvailable(CF_TEXT) ? true: false;
 }
 
 String Clipboard::getString() const
 {
-  HWND hwndOwner = m_owner ? m_owner->getHandle(): NULL;
+  HWND hwndOwner = m_owner ? m_owner->getHandle(): nullptr;
   String str;
 
   if (!IsClipboardFormatAvailable(CF_TEXT) &&
@@ -38,18 +37,18 @@ String Clipboard::getString() const
     return str;
 
   HGLOBAL hglobal = GetClipboardData(CF_UNICODETEXT);
-  if (hglobal != NULL) {
-    LPWSTR lpwstr = static_cast<LPWSTR>(GlobalLock(hglobal));
-    if (lpwstr != NULL) {
+  if (hglobal != nullptr) {
+    auto lpwstr = static_cast<LPWSTR>(GlobalLock(hglobal));
+    if (lpwstr != nullptr) {
       str = lpwstr;
       GlobalUnlock(hglobal);
     }
   }
   else {
     hglobal = GetClipboardData(CF_TEXT);
-    if (hglobal != NULL) {
-      LPSTR lpstr = static_cast<LPSTR>(GlobalLock(hglobal));
-      if (lpstr != NULL) {
+    if (hglobal != nullptr) {
+      auto lpstr = static_cast<LPSTR>(GlobalLock(hglobal));
+      if (lpstr != nullptr) {
 	str = convert_to<String>(lpstr);
 	GlobalUnlock(hglobal);
       }
@@ -63,7 +62,7 @@ String Clipboard::getString() const
 
 void Clipboard::setString(const String& str)
 {
-  HWND hwndOwner = m_owner ? m_owner->getHandle(): NULL;
+  HWND hwndOwner = m_owner ? m_owner->getHandle(): nullptr;
 
   if (!OpenClipboard(hwndOwner))
     return;
@@ -72,7 +71,7 @@ void Clipboard::setString(const String& str)
 
   int len = static_cast<int>(str.size());
   HGLOBAL hglobal = GlobalAlloc(GMEM_MOVEABLE, sizeof(Char)*(len+1));
-  LPTSTR lptstr = static_cast<LPTSTR>(GlobalLock(hglobal));
+  auto lptstr = static_cast<LPTSTR>(GlobalLock(hglobal));
   copy_string_to(str, lptstr, len+1);
   GlobalUnlock(hglobal);
  

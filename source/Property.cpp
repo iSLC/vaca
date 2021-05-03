@@ -21,8 +21,7 @@ Property::Property(const String& name)
    Destroys the property.
 */
 Property::~Property()
-{
-}
+= default;
 
 String Property::getName() const
 {

@@ -28,13 +28,13 @@ class VACA_DLL ListItem : public Component
 public:
 
   ListItem(const String& text = L"", int imageIndex = -1);
-  virtual ~ListItem();
+  ~ListItem() override;
 
   ListView* getListView();
-  int getIndex();
-  Rect getBounds() const;
+  int getIndex() const;
+  [[nodiscard]] Rect getBounds() const;
 
-  virtual String getText(size_t columnIndex = 0);
+  virtual String getText(size_t columnIndex);
   virtual int getImage();
 
   void setText(const String& text, size_t columnIndex = 0);
@@ -42,7 +42,7 @@ public:
 
   void update();
 
-  bool isSelected() const;
+  [[nodiscard]] bool isSelected() const;
   void setSelected(bool state);
 
   void ensureVisible();

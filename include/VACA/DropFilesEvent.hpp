@@ -20,7 +20,7 @@ class VACA_DLL DropFilesEvent : public Event
 public:
 
   DropFilesEvent(Widget* source, std::vector<String>& files);
-  virtual ~DropFilesEvent();
+  ~DropFilesEvent() override;
 
   std::vector<String> getFiles();
 

@@ -18,12 +18,12 @@ class VACA_DLL SetCursorEvent : public MouseEvent
 
 public:
 
-  SetCursorEvent(Widget* source, Point point, WidgetHit hit);
-  virtual ~SetCursorEvent();
+  SetCursorEvent(Widget* source, const Point& point, WidgetHit hit);
+  ~SetCursorEvent() override;
 
   void setCursor(const Cursor& cursor);
 
-  WidgetHit getWidgetHit() const;
+  [[nodiscard]] WidgetHit getWidgetHit() const;
 
 };
 

@@ -17,15 +17,14 @@ using namespace vaca;
 // ======================================================================
 // ComboBox
 
-ComboBox::ComboBox(Widget* parent, Style style)
+ComboBox::ComboBox(Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_COMBOBOX), parent, style)
 {
   setBgColor(System::getColor(COLOR_WINDOW));
 }
 
 ComboBox::~ComboBox()
-{
-}
+= default;
 
 /**
    @win32
@@ -130,7 +129,7 @@ int ComboBox::getSelectedItem()
   if (index != CB_ERR && index >= 0)
     return index;
   else
-    return index;
+    return -1;
 }
 
 /**

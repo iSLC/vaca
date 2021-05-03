@@ -45,12 +45,7 @@ Size Size::createIntersect(const Size& sz) const
 	      min_value(h, sz.h));
 }
 
-const Size& Size::operator=(const Size& sz)
-{
-  w = sz.w;
-  h = sz.h;
-  return *this;
-}
+Size& Size::operator=(const Size& sz) = default;
 
 const Size& Size::operator+=(const Size& sz)
 {

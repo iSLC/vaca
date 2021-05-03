@@ -17,7 +17,7 @@ ListColumn::ListColumn(const String& text, TextAlign textAlign)
   , m_width(0)
 {
   m_index = -1;
-  m_owner = NULL;
+  m_owner = nullptr;
 }
 
 ListColumn::~ListColumn()
@@ -33,7 +33,7 @@ ListColumn::~ListColumn()
 */
 int ListColumn::getWidth() const
 {
-  if (m_owner != NULL) {
+  if (m_owner != nullptr) {
     assert(::IsWindow(m_owner->getHandle()));
     assert(m_index >= 0);
 
@@ -50,7 +50,7 @@ int ListColumn::getWidth() const
 */
 void ListColumn::setWidth(int width)
 {
-  if (m_owner != NULL) {
+  if (m_owner != nullptr) {
     assert(::IsWindow(m_owner->getHandle()));
     assert(m_index >= 0);
 
@@ -70,7 +70,7 @@ void ListColumn::setWidth(int width)
 */
 void ListColumn::setPreferredWidth(bool useHeader)
 {
-  if (m_owner != NULL) {
+  if (m_owner != nullptr) {
     assert(::IsWindow(m_owner->getHandle()));
     assert(m_index >= 0);
 
@@ -85,11 +85,11 @@ void ListColumn::setPreferredWidth(bool useHeader)
 
 Rect ListColumn::getBounds() const
 {
-  if (m_owner != NULL) {
+  if (m_owner != nullptr) {
     assert(::IsWindow(m_owner->getHandle()));
 
     HWND hHeader = ListView_GetHeader(m_owner->getHandle());
-    if (hHeader != NULL) {
+    if (hHeader != nullptr) {
       RECT rc;
       if (Header_GetItemRect(hHeader, m_index, &rc))
 	return convert_to<Rect>(rc);
@@ -105,7 +105,7 @@ void ListColumn::addToListView(ListView* listView)
   assert(m_owner == NULL);
 
   m_owner = listView;
-  if (listView != NULL) {
+  if (listView != nullptr) {
     LVCOLUMN lvc;
 
     lvc.mask = LVCF_FMT | LVCF_TEXT;
@@ -137,6 +137,6 @@ void ListColumn::removeFromListView()
 
   ListView_DeleteColumn(m_owner->getHandle(), m_index);
 
-  m_owner = NULL;
+  m_owner = nullptr;
   m_index = -1;
 }

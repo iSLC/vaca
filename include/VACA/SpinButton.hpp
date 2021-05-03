@@ -29,8 +29,8 @@ public:
   {
   }
 
-  int getValue() { return m_value; }
-  int getDelta() { return m_delta; }
+  int getValue() const { return m_value; }
+  int getDelta() const { return m_delta; }
   Side getSide() { return m_side; }
 
 };
@@ -52,9 +52,9 @@ public:
     static const Style HotTrack;
   };
 
-  SpinButton(Widget* parent, Style style = Styles::Default);
-  SpinButton(int minValue, int maxValue, int value, Widget* parent, Style style = Styles::Default);
-  virtual ~SpinButton();
+  SpinButton(Widget* parent, const Style& style = Styles::Default);
+  SpinButton(int minValue, int maxValue, int value, Widget* parent, const Style& style = Styles::Default);
+  ~SpinButton() override;
 
   bool isHorizontal();
   bool isVertical();
@@ -80,7 +80,7 @@ public:
 
 protected:
   // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
+  void onPreferredSize(PreferredSizeEvent& ev) override;
 
   // New events
   virtual void onChange(SpinButtonEvent& ev);
@@ -89,7 +89,7 @@ protected:
   // Events
 //   virtual void onScroll(ScrollEvent& ev);
   // Reflected notifications
-  virtual bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult);
+  bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult) override;
 
 };
 
