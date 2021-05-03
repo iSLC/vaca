@@ -16,7 +16,7 @@ const WidgetClassName WidgetClassName::None;
 // WidgetClassName
 
 WidgetClassName::WidgetClassName()
-  : m_className(L"")
+  :
 {
 }
 

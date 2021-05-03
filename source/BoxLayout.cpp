@@ -109,19 +109,19 @@ Size BoxLayout::getPreferredSize(Widget* parent, WidgetList& widgets, const Size
     Size pref = widget->getPreferredSize(_fitIn);
 
     if (isHorizontal()) {
-      GET_CHILD_SIZE(w, h);
+      GET_CHILD_SIZE(w, h)
     }
     else {
-      GET_CHILD_SIZE(h, w);
+      GET_CHILD_SIZE(h, w)
     }
   }
 
   if (childCount > 0) {
     if (isHorizontal()) {
-      FINAL_SIZE(w);
+      FINAL_SIZE(w)
     }
     else {
-      FINAL_SIZE(h);
+      FINAL_SIZE(h)
     }
   }
 
@@ -246,9 +246,9 @@ void BoxLayout::layout(Widget* parent, WidgetList& widgets, const Rect& rc)
 // 					Size(max_value(0, rc.w-m_border), 0));
 
   if (isHorizontal()) {
-    FIXUP(x, y, w, h);
+    FIXUP(x, y, w, h)
   }
   else {
-    FIXUP(y, x, h, w);
+    FIXUP(y, x, h, w)
   }
 }

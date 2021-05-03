@@ -21,7 +21,7 @@ using namespace vaca;
 FileDialog::FileDialog(const String& title, Widget* parent)
   : CommonDialog(parent)
   , m_title(title)
-  , m_defaultExtension(L"")
+  ,
   , m_showReadOnly(false)
   , m_showHelp(false)
   , m_defaultFilter(0)

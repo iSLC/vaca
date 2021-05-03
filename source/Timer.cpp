@@ -13,7 +13,7 @@
 #include "VACA/ConditionVariable.hpp"
 
 #include <limits>
-#include <limits.h>		// because MSVC
+#include <climits>		// because MSVC
 
 using namespace vaca;
 

@@ -301,7 +301,7 @@ bool MenuSeparator::isSeparator() const
 Menu::Menu()
 {
   m_handle = ::CreateMenu();
-  VACA_TRACE("%p = CreateMenu()\n", m_handle);
+  VACA_TRACE("%p = CreateMenu()\n", m_handle)
 
   subClass();
 }
@@ -310,7 +310,7 @@ Menu::Menu(const String& text)
   : MenuItem(text, 0)
 {
   m_handle = ::CreatePopupMenu();
-  VACA_TRACE("%p = CreatePopupMenu()\n", m_handle);
+  VACA_TRACE("%p = CreatePopupMenu()\n", m_handle)
 
   subClass();
 }

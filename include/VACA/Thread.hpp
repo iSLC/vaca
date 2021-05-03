@@ -97,7 +97,7 @@ public:
   */
   template<typename F>
   explicit Thread(F f) {
-    _Thread(Slot0_fun<void, F>(f));
+      Thread_(Slot0_fun<void, F>(f));
   }
 
   [[nodiscard]] ThreadId getId() const;
@@ -114,7 +114,7 @@ public:
   void enqueueMessage(const Message& message) const;
 
 private:
-  void _Thread(const Slot0<void>& slot);
+  void Thread_(const Slot0<void>& slot);
 
 };
 
@@ -146,7 +146,7 @@ namespace CurrentThread
     VACA_DLL void removeFrame(Frame* frame);
   }
 
-};
+}
 
 namespace details {
   VACA_DLL void removeAllThreadData();

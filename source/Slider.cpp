@@ -11,7 +11,7 @@
 #include "VACA/WidgetClass.hpp"
 #include "VACA/PreferredSizeEvent.hpp"
 #include <limits>
-#include <limits.h>
+#include <climits>
 
 using namespace vaca;
 

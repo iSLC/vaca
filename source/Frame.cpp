@@ -142,7 +142,7 @@ void Frame::onCommand(CommandEvent& ev)
     if (m_menuBar != nullptr) {
       MenuItem* menuItem = m_menuBar->getMenuItemById(ev.getCommandId());
 
-      VACA_TRACE("Frame::onCommand(%d), menuItem=%p\n", ev.getCommandId(), menuItem);
+      VACA_TRACE("Frame::onCommand(%d), menuItem=%p\n", ev.getCommandId(), menuItem)
 
       if (menuItem != nullptr) {
 	MenuItemEvent ev(menuItem);

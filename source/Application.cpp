@@ -51,7 +51,7 @@ Application::Application()
 
   InitCommonControlsEx(&icce);
 
-  VACA_TRACE("Application started\n");
+  VACA_TRACE("Application started\n")
 }
 
 /**
@@ -75,7 +75,7 @@ Application::~Application()
   Referenceable::showLeaks();
 #endif
 
-  VACA_TRACE("Application finished\n");
+  VACA_TRACE("Application finished\n")
 
   // close the log file
   details::removeAllThreadData();

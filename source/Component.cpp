@@ -20,7 +20,7 @@ using namespace vaca;
 */
 Component::Component()
 {
-  VACA_TRACE("new Component (%p)\n", this);
+  VACA_TRACE("new Component (%p)\n", this)
 }
 
 /**
@@ -32,7 +32,7 @@ Component::Component()
 */
 Component::~Component()
 {
-  VACA_TRACE("delete Component (%p)\n", this);
+  VACA_TRACE("delete Component (%p)\n", this)
 }
 
 PropertyPtr Component::getProperty(const String& name)

@@ -3349,7 +3349,7 @@ LRESULT CALLBACK Widget::globalWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 
   // never should be here...
 
-  VACA_TRACE("------------ LOST MESSAGE: %p %d %d %d ---------------\n", hwnd, msg, wParam, lParam);
+  VACA_TRACE("------------ LOST MESSAGE: %p %d %d %d ---------------\n", hwnd, msg, wParam, lParam)
   Beep(900, 100);
 
   return FALSE;

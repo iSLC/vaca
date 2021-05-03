@@ -705,7 +705,7 @@ Bix* Bix::parse(const Char* fmt, ...)
       if (!isspace(*p)) {
 	// expect a close?
 	if (expectClose) {
-	  PARSE_ASSERT((*p == L',' || *p == L';' || *p == L']'), L"',' or ';' or ']' expected");
+	  PARSE_ASSERT((*p == L',' || *p == L';' || *p == L']'), L"',' or ';' or ']' expected")
 	  expectClose = false;
 	}
 
@@ -713,7 +713,7 @@ Bix* Bix::parse(const Char* fmt, ...)
 
 	  // widget
 	  case L'%':
-	    PARSE_ASSERT(!bixes.empty(), L"Bix expected before '%'");
+	    PARSE_ASSERT(!bixes.empty(), L"Bix expected before '%'")
 
 	    (*columns.top())++;
 
@@ -760,14 +760,14 @@ Bix* Bix::parse(const Char* fmt, ...)
 
 	    // matrix
 	    if (p[1] == L'Y') {
-	      PARSE_ASSERT(p[2] == L'[', L"'[' expected after 'XY' to open the matrix");
-	      NEW_BIX(BixMat);
+	      PARSE_ASSERT(p[2] == L'[', L"'[' expected after 'XY' to open the matrix")
+	      NEW_BIX(BixMat)
 	      p += 2;
 	    }
 	    // row
 	    else {
-	      PARSE_ASSERT(p[1] == L'[', L"'[' expected after 'X' to open the row");
-	      NEW_BIX(BixRow);
+	      PARSE_ASSERT(p[1] == L'[', L"'[' expected after 'X' to open the row")
+	      NEW_BIX(BixRow)
 	      ADVANCE();
 	    }
 	    fill = 0;
@@ -778,8 +778,8 @@ Bix* Bix::parse(const Char* fmt, ...)
 	    if (mainBix != nullptr)
 	      (*columns.top())++;
 
-	    PARSE_ASSERT(p[1] == L'[', L"'[' expected after 'Y' to open the column");
-	    NEW_BIX(BixCol);
+	    PARSE_ASSERT(p[1] == L'[', L"'[' expected after 'Y' to open the column")
+	    NEW_BIX(BixCol)
 	    ADVANCE();
 
 	    fill = 0;
@@ -796,12 +796,12 @@ Bix* Bix::parse(const Char* fmt, ...)
 	    break;
 
 	  case L',':
-	    PARSE_ASSERT(!bixes.empty(), L"Bix expected before ','");
+	    PARSE_ASSERT(!bixes.empty(), L"Bix expected before ','")
 	    break;
 
 	    // row separator
 	  case L';':
-	    PARSE_ASSERT(!bixes.empty(), L"Bix expected before ';'");
+	    PARSE_ASSERT(!bixes.empty(), L"Bix expected before ';'")
 
 	    bixes.top()->setMatrixColumns(*columns.top());
 	    (*columns.top()) = 0;
@@ -817,7 +817,7 @@ Bix* Bix::parse(const Char* fmt, ...)
 	n_column = 0;
       }
     }
-    PARSE_ASSERT(bixes.empty(), L"']' expected to close Bixes before end of string");
+    PARSE_ASSERT(bixes.empty(), L"']' expected to close Bixes before end of string")
   }
   catch (...) {
     delete mainBix;

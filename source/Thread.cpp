@@ -81,7 +81,7 @@ static ThreadData* get_thread_data()
 
   // create the data for the this thread
   auto* data = new ThreadData(id);
-  VACA_TRACE("new data-thread %d\n", id);
+  VACA_TRACE("new data-thread %d\n", id)
 
   // add it to the list
   dataOfEachThread.push_back(data);
@@ -110,7 +110,7 @@ Thread::Thread()
   m_handle = ::GetCurrentThread();
   m_id = ::GetCurrentThreadId();
 
-  VACA_TRACE("current Thread (%p, %d)\n", this, m_id);
+  VACA_TRACE("current Thread (%p, %d)\n", this, m_id)
 }
 
 /**
@@ -121,7 +121,7 @@ Thread::Thread()
 
    @internal
 */
-void Thread::_Thread(const Slot0<void>& slot)
+void Thread::Thread_(const Slot0<void>& slot)
 {
   Slot0<void>* slotclone = slot.clone();
   DWORD id;
@@ -138,7 +138,7 @@ void Thread::_Thread(const Slot0<void>& slot)
 
   m_id = id;
 
-  VACA_TRACE("new Thread (%p, %d)\n", this, m_id);
+  VACA_TRACE("new Thread (%p, %d)\n", this, m_id)
   ResumeThread(m_handle);
 }
 
@@ -149,7 +149,7 @@ Thread::~Thread()
      m_handle = nullptr;
   }
 
-  VACA_TRACE("delete Thread (%p, %d)\n", this, m_id);
+  VACA_TRACE("delete Thread (%p, %d)\n", this, m_id)
 }
 
 /**
@@ -177,7 +177,7 @@ void Thread::join()
   CloseHandle(reinterpret_cast<HANDLE>(m_handle));
   m_handle = nullptr;
 
-  VACA_TRACE("join Thread (%p, %d)\n", this, m_id);
+  VACA_TRACE("join Thread (%p, %d)\n", this, m_id)
 }
 
 /**
@@ -483,7 +483,7 @@ void details::removeAllThreadData()
   std::vector<ThreadData*>::iterator it, end = dataOfEachThread.end();
 
   for (it=dataOfEachThread.begin(); it!=end; ++it) {
-    VACA_TRACE("delete data-thread %d\n", (*it)->threadId);
+    VACA_TRACE("delete data-thread %d\n", (*it)->threadId)
     delete *it;
   }
 

@@ -100,7 +100,7 @@ void ListItem::setSelected(bool state)
   assert(::IsWindow(m_owner->getHandle()));
 
   ListView_SetItemState(m_owner->getHandle(), m_index,
-			(state ? LVIS_SELECTED: 0), LVIS_SELECTED);
+			(state ? LVIS_SELECTED: 0), LVIS_SELECTED)
 }
 
 void ListItem::update()
