@@ -171,7 +171,7 @@ template<> int vaca::convert_to(const String& from)
 
 template<> long vaca::convert_to(const String& from)
 {
-  return (long)std::wcstol(from.c_str(), NULL, 10);
+  return std::wcstol(from.c_str(), NULL, 10);
 }
 
 template<> unsigned int vaca::convert_to(const String& from)
@@ -181,7 +181,7 @@ template<> unsigned int vaca::convert_to(const String& from)
 
 template<> unsigned long vaca::convert_to(const String& from)
 {
-  return (unsigned long)std::wcstoul(from.c_str(), NULL, 10);
+  return std::wcstoul(from.c_str(), NULL, 10);
 }
 
 template<> float vaca::convert_to(const String& from)
