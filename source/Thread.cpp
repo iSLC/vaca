@@ -100,7 +100,7 @@ static DWORD WINAPI ThreadProxy(LPVOID slot)
     PeekMessage(&msg, NULL, WM_USER, WM_USER, PM_NOREMOVE);
   }
 
-  std::auto_ptr<Slot0<void> > slot_ptr(reinterpret_cast<Slot0<void>*>(slot));
+  std::unique_ptr<Slot0<void> > slot_ptr(reinterpret_cast<Slot0<void>*>(slot));
   (*slot_ptr)();
   return 0;
 }

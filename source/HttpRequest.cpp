@@ -169,7 +169,7 @@ size_t HttpRequest::getContentLength()
 bool HttpRequest::hasHeader(const String& headerName)
 {
   DWORD bufLength = headerName.size()+1;
-  auto_ptr<char> buf(new char[bufLength]);
+  std::unique_ptr<char[]> buf(new char[bufLength]);
   DWORD index = 0;
 
   strcpy(buf.get(), convert_to<std::string>(headerName).c_str());
@@ -194,7 +194,7 @@ bool HttpRequest::hasHeader(const String& headerName)
 String HttpRequest::getHeader(const String& headerName)
 {
   DWORD bufLength = headerName.size()+1;
-  auto_ptr<char> buf(new char[bufLength]);
+  std::unique_ptr<char[]> buf(new char[bufLength]);
   DWORD index = 0;
 
   while (true) {
@@ -209,7 +209,7 @@ String HttpRequest::getHeader(const String& headerName)
     }
     else if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
       // the old value is deleted by auto_ptr::operator=
-      buf = auto_ptr<char>(new char[bufLength]);
+      buf = std::unique_ptr<char[]>(new char[bufLength]);
       continue;
     }
     else

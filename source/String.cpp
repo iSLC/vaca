@@ -23,11 +23,11 @@ using namespace vaca;
 
 String vaca::format_string(const Char* fmt, ...)
 {
-  std::auto_ptr<Char> buf;
+  std::unique_ptr<Char[]> buf;
   int size = 512;
 
   while (true) {
-    buf = std::auto_ptr<Char>(new Char[size <<= 1]);
+    buf = std::unique_ptr<Char[]>(new Char[size <<= 1]);
 
     va_list ap;
     va_start(ap, fmt);
@@ -145,7 +145,7 @@ void vaca::split_string(const String& string, std::vector<String>& parts, const 
 template<> std::string vaca::convert_to(const Char* const& from)
 {
   int len = std::wcslen(from)+1;
-  std::auto_ptr<char> ansiBuf(new char[len]);
+  std::unique_ptr<char[]> ansiBuf(new char[len]);
   int ret = WideCharToMultiByte(CP_ACP, 0, from, len, ansiBuf.get(), len, NULL, NULL);
   if (ret == 0)
     return "";
@@ -156,7 +156,7 @@ template<> std::string vaca::convert_to(const Char* const& from)
 template<> std::string vaca::convert_to(const String& from)
 {
   int len = from.size()+1;
-  std::auto_ptr<char> ansiBuf(new char[len]);
+  std::unique_ptr<char[]> ansiBuf(new char[len]);
   int ret = WideCharToMultiByte(CP_ACP, 0, from.c_str(), len, ansiBuf.get(), len, NULL, NULL);
   if (ret == 0)
     return "";
@@ -197,7 +197,7 @@ template<> double vaca::convert_to(const String& from)
 template<> String vaca::convert_to(const char* const& from)
 {
   int len = strlen(from)+1;
-  std::auto_ptr<Char> wideBuf(new Char[len]);
+  std::unique_ptr<Char[]> wideBuf(new Char[len]);
   int ret = MultiByteToWideChar(CP_ACP, 0, from, len, wideBuf.get(), len);
   if (ret == 0)
     return L"";
@@ -208,7 +208,7 @@ template<> String vaca::convert_to(const char* const& from)
 template<> String vaca::convert_to(const std::string& from)
 {
   int len = from.size()+1;
-  std::auto_ptr<Char> wideBuf(new Char[len]);
+  std::unique_ptr<Char[]> wideBuf(new Char[len]);
   int ret = MultiByteToWideChar(CP_ACP, 0, from.c_str(), len, wideBuf.get(), len);
   if (ret == 0)
     return L"";
@@ -442,11 +442,11 @@ String vaca::url_object(const String& url)
 
 String vaca::encode_url(const String& url)
 {
-  std::auto_ptr<Char> buf;
+  std::unique_ptr<Char[]> buf;
   DWORD size = 1024;
 
   while (true) {
-    buf = std::auto_ptr<Char>(new Char[size]);
+    buf = std::unique_ptr<Char[]>(new Char[size]);
 
     if (::InternetCanonicalizeUrl(url.c_str(), buf.get(), &size, 0))
       break;
@@ -462,11 +462,11 @@ String vaca::encode_url(const String& url)
 
 String vaca::decode_url(const String& url)
 {
-  std::auto_ptr<Char> buf;
+  std::unique_ptr<Char[]> buf;
   DWORD size = 1024;
 
   while (true) {
-    buf = std::auto_ptr<Char>(new Char[size]);
+    buf = std::unique_ptr<Char[]>(new Char[size]);
 
     if (::InternetCanonicalizeUrl(url.c_str(), buf.get(), &size,
 				  ICU_DECODE | ICU_NO_ENCODE))
