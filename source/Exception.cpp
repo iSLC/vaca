@@ -71,7 +71,7 @@ void Exception::initialize()
     FORMAT_MESSAGE_IGNORE_INSERTS;
   LPSTR msgbuf = NULL;
 
-  m_errorCode = GetLastError();
+  m_errorCode = static_cast<int>(GetLastError());
 
   // is it an network-error?
   if (m_errorCode >= NERR_BASE && m_errorCode <= MAX_NERR) {

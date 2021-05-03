@@ -629,7 +629,7 @@ void Graphics::drawBezier(const Pen& pen, const std::vector<Point>& points)
 	 end = points.end(); it != end; ++it, ++pt) {
     *pt = convert_to<POINT>(*it);
   }
-  drawBezier(pen, pts, numPoints);
+  drawBezier(pen, pts, static_cast<int>(numPoints));
   delete[] pts;
 }
 
@@ -831,7 +831,7 @@ void Graphics::drawPolyline(const Pen& pen, const std::vector<Point>& points)
 	 end = points.end(); it != end; ++it, ++pt) {
     *pt = convert_to<POINT>(*it);
   }
-  drawPolyline(pen, pts, numPoints);
+  drawPolyline(pen, pts, static_cast<int>(numPoints));
   delete[] pts;
 }
 
@@ -966,16 +966,16 @@ void Graphics::fillGradientRect(int x, int y, int w, int h,
 
   vert[0].x        = x;
   vert[0].y        = y;
-  vert[0].Red      = startColor.getR() | (startColor.getR() << 8);
-  vert[0].Green    = startColor.getG() | (startColor.getG() << 8);
-  vert[0].Blue     = startColor.getB() | (startColor.getB() << 8);
+  vert[0].Red      = static_cast<COLOR16>(startColor.getR() | (startColor.getR() << 8));
+  vert[0].Green    = static_cast<COLOR16>(startColor.getG() | (startColor.getG() << 8));
+  vert[0].Blue     = static_cast<COLOR16>(startColor.getB() | (startColor.getB() << 8));
   vert[0].Alpha    = 0xff00;
 
   vert[1].x        = x+w;
   vert[1].y        = y+h;
-  vert[1].Red      = endColor.getR() | (endColor.getR() << 8);
-  vert[1].Green    = endColor.getG() | (endColor.getG() << 8);
-  vert[1].Blue     = endColor.getB() | (endColor.getB() << 8);
+  vert[1].Red      = static_cast<COLOR16>(endColor.getR() | (endColor.getR() << 8));
+  vert[1].Green    = static_cast<COLOR16>(endColor.getG() | (endColor.getG() << 8));
+  vert[1].Blue     = static_cast<COLOR16>(endColor.getB() | (endColor.getB() << 8));
   vert[1].Alpha    = 0xff00;
 
   gRect.UpperLeft  = 0;

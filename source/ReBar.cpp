@@ -101,7 +101,7 @@ String ReBarBand::getText() const
   rbbi.cbSize = sizeof(REBARBANDINFO);
   rbbi.fMask  = RBBIM_TEXT;
   rbbi.lpText = &buf[0];
-  rbbi.cch    = buf.capacity();
+  rbbi.cch    = static_cast<UINT>(buf.capacity());
 
   getBand(&rbbi);
 
@@ -113,7 +113,7 @@ void ReBarBand::setText(const String& text)
   REBARBANDINFO rbbi;
   rbbi.cbSize = sizeof(REBARBANDINFO);
   rbbi.fMask  = RBBIM_TEXT;
-  rbbi.cch    = text.length();
+  rbbi.cch    = static_cast<UINT>(text.length());
   rbbi.lpText = (LPTSTR)text.c_str();
 
   setBand(&rbbi);

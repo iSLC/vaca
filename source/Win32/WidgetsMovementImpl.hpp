@@ -21,7 +21,7 @@ public:
 
   WidgetsMovementImpl(const WidgetList& widgets)
   {
-    m_hdwp = BeginDeferWindowPos(widgets.size());
+    m_hdwp = BeginDeferWindowPos(static_cast<int>(widgets.size()));
   }
 
   ~WidgetsMovementImpl()

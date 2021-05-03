@@ -98,9 +98,9 @@ int HttpRequest::send(const String& headers, const char* body)
 {
   if (HttpSendRequest(req.handle,
 		      headers.empty() ? NULL: headers.c_str(),
-		      headers.size(),
+                      static_cast<DWORD>(headers.size()),
 		      reinterpret_cast<LPVOID>(const_cast<char*>(body)),
-		      body ? strlen(body): 0)) {
+                      static_cast<DWORD>(body ? strlen(body) : 0))) {
     return getStatusCode();
   }
   return 0;
@@ -126,7 +126,7 @@ size_t HttpRequest::read(char* buf, size_t length)
   assert(length > 0);
 
   DWORD bytes = 0;
-  if (!InternetReadFile(req.handle, buf, length, &bytes))
+  if (!InternetReadFile(req.handle, buf, static_cast<DWORD>(length), &bytes))
     throw HttpRequestException();
 
   return bytes;
@@ -143,7 +143,7 @@ int HttpRequest::getStatusCode()
 		    &statusCode,
 		    &bufLength,
 		    &index)) {
-    return statusCode;
+    return static_cast<int>(statusCode);
   }
   else
     return 0;
@@ -168,7 +168,7 @@ size_t HttpRequest::getContentLength()
 
 bool HttpRequest::hasHeader(const String& headerName)
 {
-  DWORD bufLength = headerName.size()+1;
+  DWORD bufLength = static_cast<DWORD>(headerName.size() + 1);
   std::unique_ptr<char[]> buf(new char[bufLength]);
   DWORD index = 0;
 
@@ -193,7 +193,7 @@ bool HttpRequest::hasHeader(const String& headerName)
 */
 String HttpRequest::getHeader(const String& headerName)
 {
-  DWORD bufLength = headerName.size()+1;
+  DWORD bufLength = static_cast<DWORD>(headerName.size() + 1);
   std::unique_ptr<char[]> buf(new char[bufLength]);
   DWORD index = 0;
 

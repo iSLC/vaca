@@ -34,7 +34,7 @@ ComboBox::~ComboBox()
 */
 int ComboBox::addItem(const String& text)
 {
-  int index = sendMessage(CB_ADDSTRING, 0, reinterpret_cast<LPARAM>(text.c_str()));
+  int index = static_cast<int>(sendMessage(CB_ADDSTRING, 0, reinterpret_cast<LPARAM>(text.c_str())));
   if (index == LB_ERR)
     return -1;
   else {
@@ -83,7 +83,7 @@ void ComboBox::removeAllItems()
 */
 int ComboBox::getItemCount()
 {
-  return sendMessage(CB_GETCOUNT, 0, 0);
+  return static_cast<int>(sendMessage(CB_GETCOUNT, 0, 0));
 }
 
 /**
@@ -93,7 +93,7 @@ int ComboBox::getItemCount()
 */
 String ComboBox::getItemText(int itemIndex)
 {
-  int len = sendMessage(CB_GETLBTEXTLEN, static_cast<WPARAM>(itemIndex), 0);
+  int len = static_cast<int>(sendMessage(CB_GETLBTEXTLEN, static_cast<WPARAM>(itemIndex), 0));
   if (!len)
     return L"";
   else {
@@ -126,7 +126,7 @@ void ComboBox::setItemText(int itemIndex, const String& text)
 */
 int ComboBox::getSelectedItem()
 {
-  int index = sendMessage(CB_GETCURSEL, 0, 0);
+  int index = static_cast<int>(sendMessage(CB_GETCURSEL, 0, 0));
   if (index != CB_ERR && index >= 0)
     return index;
   else
@@ -175,7 +175,7 @@ Rect ComboBox::getDropDownBounds()
 int ComboBox::getHeightForAllItems()
 {
   // TODO CBS_OWNERDRAWVARIABLE, see the MSDN doc of CB_GETITEMHEIGHT
-  int height = sendMessage(CB_GETITEMHEIGHT, 0, 0);
+  int height = static_cast<int>(sendMessage(CB_GETITEMHEIGHT, 0, 0));
   return height*getItemCount()+2;
 }
 

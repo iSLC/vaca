@@ -133,12 +133,12 @@ void Slider::setTickFreq(int freq)
 
 int Slider::getMinValue()
 {
-  return sendMessage(TBM_GETRANGEMIN, 0, 0);
+  return static_cast<int>(sendMessage(TBM_GETRANGEMIN, 0, 0));
 }
 
 int Slider::getMaxValue()
 {
-  return sendMessage(TBM_GETRANGEMAX, 0, 0);
+  return static_cast<int>(sendMessage(TBM_GETRANGEMAX, 0, 0));
 }
 
 /**
@@ -181,7 +181,7 @@ void Slider::setRange(int minValue, int maxValue)
 */
 int Slider::getValue()
 {
-  return sendMessage(TBM_GETPOS, 0, 0);
+  return static_cast<int>(sendMessage(TBM_GETPOS, 0, 0));
 }
 
 /**
@@ -208,7 +208,7 @@ void Slider::setValue(int value)
 */
 int Slider::getLineSize()
 {
-  return sendMessage(TBM_GETLINESIZE, 0, 0);
+  return static_cast<int>(sendMessage(TBM_GETLINESIZE, 0, 0));
 }
 
 /**
@@ -230,7 +230,7 @@ void Slider::setLineSize(int lineSize)
 */
 int Slider::getPageSize()
 {
-  return sendMessage(TBM_GETPAGESIZE, 0, 0);
+  return static_cast<int>(sendMessage(TBM_GETPAGESIZE, 0, 0));
 }
 
 /**

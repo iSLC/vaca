@@ -237,7 +237,7 @@ void ListView::removeAllColumns()
 */
 int ListView::getColumnCount() const
 {
-  return m_columns.size();
+  return static_cast<int>(m_columns.size());
 }
 
 ListColumn* ListView::getColumn(size_t columnIndex) const
@@ -264,7 +264,7 @@ int ListView::addItem(ListItem* item)
   assert(item != NULL);
 
   item->addToListView(this);
-  item->m_index = m_items.size();
+  item->m_index = static_cast<int>(m_items.size());
 
   m_items.push_back(item);
 
@@ -339,7 +339,7 @@ void ListView::removeAllItems()
 */
 int ListView::getItemCount() const
 {
-  return m_items.size();
+  return static_cast<int>(m_items.size());
 }
 
 /**

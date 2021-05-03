@@ -158,7 +158,7 @@ HWND FindTextDialog::createHandle(LPCTSTR className, Widget* parent, Style style
 
   if (m_replace) {
     m_findReplace.lpstrReplaceWith = m_replace ? new Char[FINDREPLACE_BUFSIZE]: NULL;
-    m_findReplace.wReplaceWithLen = m_replace ? FINDREPLACE_BUFSIZE: 0;
+    m_findReplace.wReplaceWithLen = static_cast<WORD>(m_replace ? FINDREPLACE_BUFSIZE : 0);
 
     ZeroMemory(m_findReplace.lpstrReplaceWith, m_findReplace.wReplaceWithLen);
   }

@@ -94,7 +94,7 @@ bool GraphicsPath::empty() const
 
 unsigned GraphicsPath::size() const
 {
-  return m_nodes.size();
+  return static_cast<unsigned int>(m_nodes.size());
 }
 
 GraphicsPath& GraphicsPath::offset(int dx, int dy)

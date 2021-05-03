@@ -40,7 +40,7 @@ ListBox::~ListBox()
 */
 int ListBox::addItem(const String& text)
 {
-  int index = sendMessage(LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(text.c_str()));
+  int index = static_cast<int>(sendMessage(LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(text.c_str())));
   if (index == LB_ERR)
     return -1;
   else
@@ -66,7 +66,7 @@ void ListBox::removeItem(int itemIndex)
 */
 int ListBox::getItemCount()
 {
-  return sendMessage(LB_GETCOUNT, 0, 0);
+  return static_cast<int>(sendMessage(LB_GETCOUNT, 0, 0));
 }
 
 /**
@@ -86,7 +86,7 @@ Rect ListBox::getItemBounds(int itemIndex)
 */
 String ListBox::getItemText(int itemIndex)
 {
-  int len = sendMessage(LB_GETTEXTLEN, static_cast<WPARAM>(itemIndex), 0);
+  int len = static_cast<int>(sendMessage(LB_GETTEXTLEN, static_cast<WPARAM>(itemIndex), 0));
   if (!len)
     return L"";
   else {
@@ -115,7 +115,7 @@ void ListBox::setItemText(int itemIndex, const String& text)
 */
 int ListBox::getSelectedItem()
 {
-  int index = sendMessage(LB_GETCURSEL, 0, 0);
+  int index = static_cast<int>(sendMessage(LB_GETCURSEL, 0, 0));
   if (index != LB_ERR && index >= 0)
     return index;
   else

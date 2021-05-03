@@ -426,7 +426,7 @@ void Menu::subClass()
 */
 MenuItem* Menu::add(MenuItem* menuItem)
 {
-  insert(m_container.size(), menuItem);
+  insert(static_cast<int>(m_container.size()), menuItem);
   return menuItem;
 }
 
@@ -477,7 +477,7 @@ MenuItem* Menu::insert(int index, MenuItem* menuItem)
       break;
 
   String text(menuItem->getText());
-  int len = text.size();
+  int len = static_cast<int>(text.size());
   Char* buf = new Char[len+1];
 #ifdef UNICODE
   wcscpy(buf, text.c_str());
@@ -658,7 +658,7 @@ int Menu::getMenuItemIndex(MenuItem* menuItem)
 int Menu::getItemCount()
 {
   // TODO
-  return m_container.size();
+  return static_cast<int>(m_container.size());
 }
 
 MenuItemList Menu::getMenuItems()

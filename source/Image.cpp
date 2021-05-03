@@ -61,7 +61,7 @@ Image::Image(const String& fileName)
   : SharedPtr<ImageHandle>(new ImageHandle())
 {
   // file name size
-  int size = fileName.size()+1;
+  int size = static_cast<int>(fileName.size() + 1);
   Char* lpstr = new Char[size];
   copy_string_to(fileName, lpstr, size);
 
@@ -250,7 +250,7 @@ void Image::init(int width, int height, int depth)
   bhdr.biWidth = width;
   bhdr.biHeight = -height;
   bhdr.biPlanes = 1;
-  bhdr.biBitCount = depth;
+  bhdr.biBitCount = static_cast<WORD>(depth);
   bhdr.biCompression = BI_RGB;
   bhdr.biSizeImage = 0;
   bhdr.biXPelsPerMeter = 0;

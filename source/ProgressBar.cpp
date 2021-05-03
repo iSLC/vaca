@@ -55,12 +55,12 @@ void ProgressBar::setBgColor(const Color& color)
 
 int ProgressBar::getMinimum()
 {
-  return sendMessage(PBM_GETRANGE, TRUE, 0);
+  return static_cast<int>(sendMessage(PBM_GETRANGE, TRUE, 0));
 }
 
 int ProgressBar::getMaximum()
 {
-  return sendMessage(PBM_GETRANGE, FALSE, 0);
+  return static_cast<int>(sendMessage(PBM_GETRANGE, FALSE, 0));
 }
 
 /**
@@ -87,7 +87,7 @@ void ProgressBar::setRange(int minValue, int maxValue)
 */
 int ProgressBar::getValue()
 {
-  return sendMessage(PBM_GETPOS, 0, 0);
+  return static_cast<int>(sendMessage(PBM_GETPOS, 0, 0));
 }
 
 /**

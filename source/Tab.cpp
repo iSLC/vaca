@@ -159,7 +159,7 @@ int TabBase::insertPage(int pageIndex, const String& text)
 
   tci.mask = TCIF_TEXT;
   tci.pszText = (Char*)text.c_str();
-  tci.cchTextMax = text.size();
+  tci.cchTextMax = static_cast<int>(text.size());
 
   if (pageIndex < 0)
     pageIndex = getPageCount();

@@ -129,7 +129,7 @@ ToolSet::~ToolSet()
 */
 int ToolSet::getButtonCount() const
 {
-  return const_cast<ToolSet*>(this)->sendMessage(TB_BUTTONCOUNT, 0, 0);
+  return static_cast<int>(const_cast<ToolSet *>(this)->sendMessage(TB_BUTTONCOUNT, 0, 0));
 }
 
 /**
@@ -141,7 +141,7 @@ int ToolSet::getButtonCount() const
 */
 int ToolSet::getRows() const
 {
-  return const_cast<ToolSet*>(this)->sendMessage(TB_GETROWS, 0, 0);
+  return static_cast<int>(const_cast<ToolSet *>(this)->sendMessage(TB_GETROWS, 0, 0));
 }
 
 /**
@@ -204,8 +204,8 @@ void ToolSet::addButton(ToolButton* button)
 
   tbb.iBitmap = button->getImageIndex();
   tbb.idCommand = button->getCommandId();
-  tbb.fsState = button->getTBSTATE();
-  tbb.fsStyle = button->getTBSTYLE();
+  tbb.fsState = static_cast<BYTE>(button->getTBSTATE());
+  tbb.fsStyle = static_cast<BYTE>(button->getTBSTYLE());
   tbb.iString = 0;
   tbb.dwData = reinterpret_cast<DWORD_PTR>(button);
 
@@ -248,8 +248,8 @@ void ToolSet::updateButton(ToolButton* button)
   tbbi.cbSize = sizeof(TBBUTTONINFO);
   tbbi.dwMask = TBIF_COMMAND | TBIF_STATE;
   tbbi.idCommand = button->getCommandId();
-  tbbi.fsState = button->getTBSTATE();
-  tbbi.fsStyle = button->getTBSTYLE();
+  tbbi.fsState = static_cast<BYTE>(button->getTBSTATE());
+  tbbi.fsStyle = static_cast<BYTE>(button->getTBSTYLE());
 
   if (button->getImageIndex() >= 0) {
     tbbi.dwMask = TBIF_IMAGE;
@@ -259,7 +259,7 @@ void ToolSet::updateButton(ToolButton* button)
   if (!text.empty()) {
     tbbi.dwMask = TBIF_TEXT;
     tbbi.pszText = &text[0];
-    tbbi.cchText = text.size();
+    tbbi.cchText = static_cast<int>(text.size());
 
     addStyle(Style(TBSTYLE_LIST, 0));
   }
@@ -318,8 +318,8 @@ int ToolSet::hitTest(const Point& pt) const
 {
   POINT point = convert_to<POINT>(pt);
   return
-    const_cast<ToolSet*>(this)->
-    sendMessage(TB_HITTEST, 0, reinterpret_cast<LPARAM>(&point));
+          static_cast<int>(const_cast<ToolSet *>(this)->
+                  sendMessage(TB_HITTEST, 0, reinterpret_cast<LPARAM>(&point)));
 }
 
 std::vector<Size> ToolSet::getPreferredSizes() const
@@ -359,7 +359,7 @@ void ToolSet::onUpdateIndicators()
 
 	  tbbi.cbSize = sizeof(TBBUTTONINFO);
 	  tbbi.dwMask = TBIF_STATE;
-	  tbbi.fsState = button->getTBSTATE();
+	  tbbi.fsState = static_cast<BYTE>(button->getTBSTATE());
 
 	  sendMessage(TB_SETBUTTONINFO,
 		      button->getCommandId(),

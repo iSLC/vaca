@@ -632,7 +632,7 @@ CommandId Widget::getId() const
 void Widget::setId(CommandId id)
 {
   assert(::IsWindow(m_handle));
-  ::SetWindowLong(m_handle, GWL_ID, id);
+  ::SetWindowLong(m_handle, GWL_ID, static_cast<LONG>(id));
 }
 
 /**
@@ -1366,7 +1366,7 @@ void Widget::setOpacity(int opacity)
     SetWindowLong(m_handle, GWL_EXSTYLE,
   		  GetWindowLong(m_handle, GWL_EXSTYLE) | WS_EX_LAYERED);
 
-    pSLWA(m_handle, 0, opacity, LWA_ALPHA);
+    pSLWA(m_handle, 0, static_cast<BYTE>(opacity), LWA_ALPHA);
   }
 }
 
@@ -2781,7 +2781,7 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
     }
 
     case WM_CHAR: {
-      KeyEvent ev(this, 0, wParam);
+      KeyEvent ev(this, 0, static_cast<Char>(wParam));
       onKeyDown(ev);
       if (ev.isConsumed()) {
 	lResult = false;
@@ -2793,7 +2793,7 @@ bool Widget::wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResul
     case WM_KEYUP: {
       KeyEvent ev(this,
 		  Keys::fromMessageParams(wParam, lParam),
-		  MapVirtualKey(wParam, 2));
+                  static_cast<Char>(MapVirtualKey(static_cast<UINT>(wParam), 2)));
       onKeyUp(ev);
       if (ev.isConsumed()) {
 	lResult = false;

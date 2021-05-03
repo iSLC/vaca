@@ -76,7 +76,7 @@ void FileDialog::addFilter(const String& extensions, const String& description, 
   m_filters.push_back(std::make_pair(extensions, description));
 
   if (defaultFilter)
-    m_defaultFilter = m_filters.size();
+    m_defaultFilter = static_cast<int>(m_filters.size());
 }
 
 String FileDialog::getFileName()

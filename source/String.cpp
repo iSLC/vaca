@@ -70,18 +70,18 @@ std::string vaca::to_utf8(const String& string)
 {
   int required_size =
     WideCharToMultiByte(CP_UTF8, 0,
-			string.c_str(), string.size(),
-			NULL, 0, NULL, NULL);
+                        string.c_str(), static_cast<int>(string.size()),
+                        NULL, 0, NULL, NULL);
 
   if (required_size == 0)
     return std::string();
 
   std::vector<char> buf(static_cast<unsigned long long int>(++required_size));
 
-  WideCharToMultiByte(CP_UTF8, 0, 
-		      string.c_str(), string.size(),
-		      &buf[0], required_size,
-		      NULL, NULL);
+  WideCharToMultiByte(CP_UTF8, 0,
+                      string.c_str(), static_cast<int>(string.size()),
+                      &buf[0], required_size,
+                      NULL, NULL);
 
   return std::string(&buf[0]);
 }
@@ -90,8 +90,8 @@ String vaca::from_utf8(const std::string& string)
 {
   int required_size =
     MultiByteToWideChar(CP_UTF8, 0,
-			string.c_str(), string.size(),
-			NULL, 0);
+                        string.c_str(), static_cast<int>(string.size()),
+                        NULL, 0);
 
   if (required_size == 0)
     return String();
@@ -99,8 +99,8 @@ String vaca::from_utf8(const std::string& string)
   std::vector<wchar_t> buf(static_cast<unsigned long long int>(++required_size));
 
   MultiByteToWideChar(CP_UTF8, 0,
-		      string.c_str(), string.size(),
-		      &buf[0], required_size);
+                      string.c_str(), static_cast<int>(string.size()),
+                      &buf[0], required_size);
 
   return String(&buf[0]);
 }
@@ -144,7 +144,7 @@ void vaca::split_string(const String& string, std::vector<String>& parts, const 
 
 template<> std::string vaca::convert_to(const Char* const& from)
 {
-  int len = std::wcslen(from)+1;
+  int len = static_cast<int>(std::wcslen(from) + 1);
   std::unique_ptr<char[]> ansiBuf(new char[len]);
   int ret = WideCharToMultiByte(CP_ACP, 0, from, len, ansiBuf.get(), len, NULL, NULL);
   if (ret == 0)
@@ -155,7 +155,7 @@ template<> std::string vaca::convert_to(const Char* const& from)
 
 template<> std::string vaca::convert_to(const String& from)
 {
-  int len = from.size()+1;
+  int len = static_cast<int>(from.size() + 1);
   std::unique_ptr<char[]> ansiBuf(new char[len]);
   int ret = WideCharToMultiByte(CP_ACP, 0, from.c_str(), len, ansiBuf.get(), len, NULL, NULL);
   if (ret == 0)
@@ -196,7 +196,7 @@ template<> double vaca::convert_to(const String& from)
 
 template<> String vaca::convert_to(const char* const& from)
 {
-  int len = strlen(from)+1;
+  int len = static_cast<int>(strlen(from) + 1);
   std::unique_ptr<Char[]> wideBuf(new Char[len]);
   int ret = MultiByteToWideChar(CP_ACP, 0, from, len, wideBuf.get(), len);
   if (ret == 0)
@@ -207,7 +207,7 @@ template<> String vaca::convert_to(const char* const& from)
 
 template<> String vaca::convert_to(const std::string& from)
 {
-  int len = from.size()+1;
+  int len = static_cast<int>(from.size() + 1);
   std::unique_ptr<Char[]> wideBuf(new Char[len]);
   int ret = MultiByteToWideChar(CP_ACP, 0, from.c_str(), len, wideBuf.get(), len);
   if (ret == 0)
@@ -415,7 +415,7 @@ String vaca::file_title(const String& fullpath)
 String vaca::url_host(const String& url)
 {
   String host;
-  int len = url.size();
+  int len = static_cast<int>(url.size());
   for (int c=0; c<len; ++c) {
     if (url[c] == L':' && url[c+1] == L'/' && url[c+2] == L'/') {
       for (c+=3; c<len && url[c] != L'/'; ++c)
@@ -428,7 +428,7 @@ String vaca::url_host(const String& url)
 String vaca::url_object(const String& url)
 {
   String object;
-  int len = url.size();
+  int len = static_cast<int>(url.size());
   for (int c=0; c<len; ++c) {
     if (url[c] == ':' && url[c+1] == '/' && url[c+2] == '/') {
       for (c+=3; c<len && url[c] != '/'; ++c)

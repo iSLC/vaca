@@ -88,7 +88,7 @@ public:
     EXTLOGPEN elp;
     assert(getHandle());
     ::GetObject(getHandle(), sizeof(EXTLOGPEN), &elp);
-    return elp.elpWidth;
+    return static_cast<int>(elp.elpWidth);
   }
 
   PenStyle getStyle() const {

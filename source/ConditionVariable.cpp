@@ -113,7 +113,7 @@ void ConditionVariable::notifyOne()
 
   ReleaseMutex(m_mutex);
   if (signals)
-    ReleaseSemaphore(m_queue, signals, 0);
+    ReleaseSemaphore(m_queue, static_cast<LONG>(signals), 0);
 }
 
 void ConditionVariable::notifyAll()
@@ -146,7 +146,7 @@ void ConditionVariable::notifyAll()
 
   ReleaseMutex(m_mutex);
   if (signals)
-    ReleaseSemaphore(m_queue, signals, 0);
+    ReleaseSemaphore(m_queue, static_cast<LONG>(signals), 0);
 }
 
 void ConditionVariable::wait(ScopedLock& lock)

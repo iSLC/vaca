@@ -83,7 +83,7 @@ int SpinButton::getValue()
   BOOL error;
   int res;
 
-  res = sendMessage(UDM_GETPOS32, 0, reinterpret_cast<LPARAM>(&error));
+  res = static_cast<int>(sendMessage(UDM_GETPOS32, 0, reinterpret_cast<LPARAM>(&error)));
 
   return !error ? res: 0;
 }
@@ -98,7 +98,7 @@ void SpinButton::setValue(int posValue)
 */
 int SpinButton::getBase()
 {
-  return sendMessage(UDM_GETBASE, 0, 0);
+  return static_cast<int>(sendMessage(UDM_GETBASE, 0, 0));
 }
 
 /**

@@ -141,8 +141,8 @@ void TextEdit::getSelection(int& start, int& end)
   sendMessage(EM_GETSEL,
 	      reinterpret_cast<WPARAM>(&s),
 	      reinterpret_cast<LPARAM>(&e));
-  start = s;
-  end = e;
+  start = static_cast<int>(s);
+  end = static_cast<int>(e);
 }
 
 void TextEdit::onPreferredSize(PreferredSizeEvent& ev)
@@ -174,7 +174,7 @@ void TextEdit::onPreferredSize(PreferredSizeEvent& ev)
 // 			       ((style.regular & ES_AUTOHSCROLL) != 0) ? 0: DT_WORDBREAK);
 
     Size realSize(g.measureString(getText(), 32767, 0));
-    int lines = sendMessage(EM_GETLINECOUNT, 0, 0);
+    int lines = static_cast<int>(sendMessage(EM_GETLINECOUNT, 0, 0));
 
     textSize.w = realSize.w;
     textSize.h = lines * g.measureString(L"", 32767, 0).h;

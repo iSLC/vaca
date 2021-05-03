@@ -70,7 +70,7 @@ void Clipboard::setString(const String& str)
 
   EmptyClipboard();
 
-  int len = str.size();
+  int len = static_cast<int>(str.size());
   HGLOBAL hglobal = GlobalAlloc(GMEM_MOVEABLE, sizeof(Char)*(len+1));
   LPTSTR lptstr = static_cast<LPTSTR>(GlobalLock(hglobal));
   copy_string_to(str, lptstr, len+1);
