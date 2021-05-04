@@ -15,11 +15,9 @@ namespace vaca {
 /**
    Represents the Win32 class used by DockFrame.
 */
-class DockFrameClass : public WidgetClass
-{
+class DockFrameClass : public WidgetClass {
 public:
-  static WidgetClassName getClassName()
-  { return WidgetClassName(L"Vaca.DockFrame"); }
+    static WidgetClassName getClassName() { return WidgetClassName(L"Vaca.DockFrame"); }
 };
 
 /**
@@ -37,30 +35,30 @@ public:
 
    @internal
 */
-class VACA_DLL DockFrame : public Register<DockFrameClass>, public Frame
-{
-  /**
-     The DockBar that is inside the client area.
-  */
-  DockBar* m_dockBar;
+class VACA_DLL DockFrame : public Register<DockFrameClass>, public Frame {
+    /**
+       The DockBar that is inside the client area.
+    */
+    DockBar *m_dockBar;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  DockFrame(DockBar* dockBar, Widget* parent = nullptr, Style style = Styles::Default);
-  ~DockFrame() override;
+    DockFrame(DockBar *dockBar, Widget *parent = nullptr, Style style = Styles::Default);
+
+    ~DockFrame() override;
 
 protected:
 
-  bool keepSynchronized() override;
+    bool keepSynchronized() override;
 
-  // Events
-  void onResizing(CardinalDirection dir, Rect& rc) override;
+    // Events
+    void onResizing(CardinalDirection dir, Rect &rc) override;
 
-  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
+    bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT &lResult) override;
 };
 
 } // namespace vaca

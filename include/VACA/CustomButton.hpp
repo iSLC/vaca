@@ -39,43 +39,50 @@ namespace vaca {
      to it (see @ref page_tn_009).
    @endwin32
 */
-class VACA_DLL CustomButton : public Button
-{
-  UINT m_itemAction;
-  UINT m_itemState;
+class VACA_DLL CustomButton : public Button {
+    UINT m_itemAction;
+    UINT m_itemState;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  CustomButton(const String& text, Widget* parent, const Style& style = Styles::Default);
-  ~CustomButton() override;
+    CustomButton(const String &text, Widget *parent, const Style &style = Styles::Default);
+
+    ~CustomButton() override;
 
 protected:
 
-  // Reflected notifications
-  bool onReflectedDrawItem(Graphics& g, LPDRAWITEMSTRUCT lpDrawItem) override;
+    // Reflected notifications
+    bool onReflectedDrawItem(Graphics &g, LPDRAWITEMSTRUCT lpDrawItem) override;
 
 public:
 
-  [[nodiscard]] bool isDrawEntire() const;
-  [[nodiscard]] bool isFocusChanged() const;
-  [[nodiscard]] bool isSelectionChanged() const;
+    [[nodiscard]] bool isDrawEntire() const;
 
-  // Visual Aspect
+    [[nodiscard]] bool isFocusChanged() const;
 
-  // bool hasCheckedVisualAspect();
-  [[nodiscard]] bool hasDefaultOptionVisualAspect() const;
-  [[nodiscard]] bool hasDisabledVisualAspect() const;
-  [[nodiscard]] bool hasFocusVisualAspect() const;
-  // bool hasGrayedVisualAspect();
-  // bool hasHotLightVisualAspect();
-  // bool hasInactiveVisualAspect();
-  [[nodiscard]] bool hasNoAccelVisualAspect() const;
-  [[nodiscard]] bool hasNoFocusRectVisualAspect() const;
-  [[nodiscard]] bool hasSelectedVisualAspect() const;
+    [[nodiscard]] bool isSelectionChanged() const;
+
+    // Visual Aspect
+
+    // bool hasCheckedVisualAspect();
+    [[nodiscard]] bool hasDefaultOptionVisualAspect() const;
+
+    [[nodiscard]] bool hasDisabledVisualAspect() const;
+
+    [[nodiscard]] bool hasFocusVisualAspect() const;
+
+    // bool hasGrayedVisualAspect();
+    // bool hasHotLightVisualAspect();
+    // bool hasInactiveVisualAspect();
+    [[nodiscard]] bool hasNoAccelVisualAspect() const;
+
+    [[nodiscard]] bool hasNoFocusRectVisualAspect() const;
+
+    [[nodiscard]] bool hasSelectedVisualAspect() const;
 
 };
 

@@ -25,65 +25,74 @@ namespace vaca {
 
    @see Tab
 */
-class VACA_DLL TabBase : public Widget
-{
-  Font m_userFont;
-  Font m_tabFont;
+class VACA_DLL TabBase : public Widget {
+    Font m_userFont;
+    Font m_tabFont;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  TabBase(Widget* parent, const Style& style = Styles::Default);
-  ~TabBase() override;
+    TabBase(Widget *parent, const Style &style = Styles::Default);
 
-  [[nodiscard]] Font getFont() const override;
-  void setFont(Font font) override;
+    ~TabBase() override;
 
-  Side getSide();
-  void setSide(Side side);
+    [[nodiscard]] Font getFont() const override;
 
-  bool isMultiline();
-  void setMultiline(bool state);
+    void setFont(Font font) override;
 
-  int addPage(const String& text);
-  int insertPage(int pageIndex, const String& text);
-  void removePage(int pageIndex);
+    Side getSide();
 
-  int getPageCount();
-  int getRowCount();
+    void setSide(Side side);
 
-  int getActivePage();
-  void setActivePage(int pageIndex);
+    bool isMultiline();
 
-  String getPageText(int pageIndex);
-  void setPageText(int pageIndex, const String& text);
+    void setMultiline(bool state);
+
+    int addPage(const String &text);
+
+    int insertPage(int pageIndex, const String &text);
+
+    void removePage(int pageIndex);
+
+    int getPageCount();
+
+    int getRowCount();
+
+    int getActivePage();
+
+    void setActivePage(int pageIndex);
+
+    String getPageText(int pageIndex);
+
+    void setPageText(int pageIndex, const String &text);
 
 //   void setPadding(Size padding);
 
-  Size getNonClientSize();
+    Size getNonClientSize();
 
-  // Signals
+    // Signals
 //   Signal1<void, Event&> PageChanging;
-  Signal1<void, Event&> PageChange; ///< @see onPageChange
+    Signal1<void, Event &> PageChange; ///< @see onPageChange
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
-  void onLayout(LayoutEvent& ev) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
 
-  // Reflected notifications
-  bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult) override;
+    void onLayout(LayoutEvent &ev) override;
 
-  // New events
+    // Reflected notifications
+    bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT &lResult) override;
+
+    // New events
 //   virtual void onPageChanging(Event& ev);
-  virtual void onPageChange(Event& ev);
+    virtual void onPageChange(Event &ev);
 
 private:
 
-  void updateFont();
+    void updateFont();
 
 };
 
@@ -96,55 +105,54 @@ private:
    You don't need to setup a layout manager for this widget, because
    it uses the ClientLayout manager to arrange its TabPage(s).
 */
-class VACA_DLL Tab : public TabBase
-{
+class VACA_DLL Tab : public TabBase {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  Tab(Widget* parent, const Style& style = Styles::Default);
-  ~Tab() override;
+    Tab(Widget *parent, const Style &style = Styles::Default);
 
-  TabPage* getPage(int pageIndex);
+    ~Tab() override;
+
+    TabPage *getPage(int pageIndex);
 
 protected:
 
-  void onPageChange(Event& ev) override;
+    void onPageChange(Event &ev) override;
 
 };
 
 /**
    Represents the Win32 class used by TabPage.
 */
-class TabPageClass : public WidgetClass
-{
+class TabPageClass : public WidgetClass {
 public:
-  static WidgetClassName getClassName()
-  { return WidgetClassName(L"Vaca.TabPage"); }
+    static WidgetClassName getClassName() { return WidgetClassName(L"Vaca.TabPage"); }
 };
 
 /**
    A page for an automatic Tab.
 */
-class VACA_DLL TabPage : public Register<TabPageClass>, public Widget
-{
-  int m_index;
+class VACA_DLL TabPage : public Register<TabPageClass>, public Widget {
+    int m_index;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  TabPage(const String& text, Tab* parent, const Style& style = Styles::Default);
-  ~TabPage() override;
+    TabPage(const String &text, Tab *parent, const Style &style = Styles::Default);
 
-  [[nodiscard]] String getText() const override;
-  void setText(const String& str) override;
+    ~TabPage() override;
 
-  [[nodiscard]] int getPageIndex() const;
+    [[nodiscard]] String getText() const override;
+
+    void setText(const String &str) override;
+
+    [[nodiscard]] int getPageIndex() const;
 
 };
 

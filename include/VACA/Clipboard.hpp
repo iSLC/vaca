@@ -13,19 +13,20 @@ namespace vaca {
 /**
    Handles the global clipboard.
 */
-class VACA_DLL Clipboard
-{
-  Widget* m_owner;
+class VACA_DLL Clipboard {
+    Widget *m_owner;
 
 public:
 
-  Clipboard(Widget* owner = nullptr);
-  virtual ~Clipboard();
+    Clipboard(Widget *owner = nullptr);
 
-  [[nodiscard]] static bool isText() ;
+    virtual ~Clipboard();
 
-  [[nodiscard]] String getString() const;
-  void setString(const String& str);
+    [[nodiscard]] static bool isText();
+
+    [[nodiscard]] String getString() const;
+
+    void setString(const String &str);
 
 };
 

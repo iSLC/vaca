@@ -11,16 +11,16 @@
 
 namespace vaca {
 
-class VACA_DLL CommandEvent : public ConsumableEvent
-{
-  CommandId m_commandId;
+class VACA_DLL CommandEvent : public ConsumableEvent {
+    CommandId m_commandId;
 
 public:
 
-  CommandEvent(Component* source, CommandId commandId);
-  ~CommandEvent() override;
+    CommandEvent(Component *source, CommandId commandId);
 
-  [[nodiscard]] CommandId getCommandId() const;
+    ~CommandEvent() override;
+
+    [[nodiscard]] CommandId getCommandId() const;
 
 };
 

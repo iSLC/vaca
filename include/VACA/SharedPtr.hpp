@@ -29,82 +29,84 @@ namespace vaca {
 	     the reference counter.
 */
 template<class T>
-class SharedPtr
-{
-  T* m_ptr;
+class SharedPtr {
+    T *m_ptr;
 
 public:
 
-  SharedPtr() {
-    m_ptr = NULL;
-  }
-
-  /*explicit*/ SharedPtr(T* ptr) {
-    m_ptr = ptr;
-    ref();
-  }
-
-  SharedPtr(const SharedPtr<T>& other) {
-    m_ptr = other.get();
-    ref();
-  }
-
-  template<class T2>
-  SharedPtr(const SharedPtr<T2>& other) {
-    m_ptr = static_cast<T*>(other.get());
-    ref();
-  }
-
-  virtual ~SharedPtr() {
-    unref();
-  }
-
-  void reset(T* ptr = NULL) {
-    if (m_ptr != ptr) {
-      unref();
-      m_ptr = ptr;
-      ref();
+    SharedPtr() {
+        m_ptr = NULL;
     }
-  }
 
-  SharedPtr& operator=(const SharedPtr<T>& other) {
-    if (m_ptr != other.get()) {
-      unref();
-      m_ptr = other.get();
-      ref();
+    /*explicit*/ SharedPtr(T *ptr) {
+        m_ptr = ptr;
+        ref();
     }
-    return *this;
-  }
 
-  template<class T2>
-  SharedPtr& operator=(const SharedPtr<T2>& other) {
-    if (m_ptr != static_cast<T*>(other.get())) {
-      unref();
-      m_ptr = static_cast<T*>(other.get());
-      ref();
+    SharedPtr(const SharedPtr<T> &other) {
+        m_ptr = other.get();
+        ref();
     }
-    return *this;
-  }
 
-  inline T* get() const { return m_ptr; }
-  inline T& operator*() const { return *m_ptr; }
-  inline T* operator->() const { return m_ptr; }
-  inline operator T*() const { return m_ptr; }
+    template<class T2>
+    SharedPtr(const SharedPtr<T2> &other) {
+        m_ptr = static_cast<T *>(other.get());
+        ref();
+    }
+
+    virtual ~SharedPtr() {
+        unref();
+    }
+
+    void reset(T *ptr = NULL) {
+        if (m_ptr != ptr) {
+            unref();
+            m_ptr = ptr;
+            ref();
+        }
+    }
+
+    SharedPtr &operator=(const SharedPtr<T> &other) {
+        if (m_ptr != other.get()) {
+            unref();
+            m_ptr = other.get();
+            ref();
+        }
+        return *this;
+    }
+
+    template<class T2>
+    SharedPtr &operator=(const SharedPtr<T2> &other) {
+        if (m_ptr != static_cast<T *>(other.get())) {
+            unref();
+            m_ptr = static_cast<T *>(other.get());
+            ref();
+        }
+        return *this;
+    }
+
+    inline T *get() const { return m_ptr; }
+
+    inline T &operator*() const { return *m_ptr; }
+
+    inline T *operator->() const { return m_ptr; }
+
+    inline operator T *() const { return m_ptr; }
 
 private:
 
-  void ref() {
-    if (m_ptr)
-      ((Referenceable*)m_ptr)->ref();
-  }
-
-  void unref() {
-    if (m_ptr) {
-      if (((Referenceable*)m_ptr)->unref() == 0)
-	((Referenceable*)m_ptr)->destroy();
-      m_ptr = NULL;
+    void ref() {
+        if (m_ptr)
+            ((Referenceable *) m_ptr)->ref();
     }
-  }
+
+    void unref() {
+        if (m_ptr) {
+            if (((Referenceable *) m_ptr)->unref() == 0)
+                ((Referenceable *) m_ptr)->destroy();
+            m_ptr = NULL;
+        }
+    }
 };
 
 /**
@@ -113,9 +115,8 @@ private:
    @see @ref SharedPtr
 */
 template<class T>
-bool operator==(const SharedPtr<T>& ptr1, const SharedPtr<T>& ptr2)
-{
-  return ptr1.get() == ptr2.get();
+bool operator==(const SharedPtr<T> &ptr1, const SharedPtr<T> &ptr2) {
+    return ptr1.get() == ptr2.get();
 }
 
 /**
@@ -124,9 +125,8 @@ bool operator==(const SharedPtr<T>& ptr1, const SharedPtr<T>& ptr2)
    @see @ref SharedPtr
 */
 template<class T>
-bool operator!=(const SharedPtr<T>& ptr1, const SharedPtr<T>& ptr2)
-{
-  return ptr1.get() != ptr2.get();
+bool operator!=(const SharedPtr<T> &ptr1, const SharedPtr<T> &ptr2) {
+    return ptr1.get() != ptr2.get();
 }
 
 } // namespace vaca

@@ -12,126 +12,144 @@
 
 namespace vaca {
 
-struct ReBarBandStyleEnumSet
-{
-  enum {
-    Break		/*RBBS_BREAK*/		= 0x0001,
-    FixedSize		/*RBBS_FIXEDSIZE*/	= 0x0002,
-    ChildEdge		/*RBBS_CHILDEDGE*/	= 0x0004,
-    Hidden		/*RBBS_HIDDEN*/		= 0x0008,
-    NoVert		/*RBBS_NOVERT*/		= 0x0010,
-    FixedBmp		/*RBBS_FIXEDBMP*/	= 0x0020,
-    VariableHeight	/*RBBS_VARIABLEHEIGHT*/	= 0x0040,
-    GripperAlways	/*RBBS_GRIPPERALWAYS*/	= 0x0080,
-    NoGripper		/*RBBS_NOGRIPPER*/	= 0x0100,
-    UseChevron		/*RBBS_USECHEVRON*/	= 0x0200,
-    HideTitle		/*RBBS_HIDETITLE*/	= 0x0400,
-    TopAlign		/*RBBS_TOPALIGN*/	= 0x0800,
+struct ReBarBandStyleEnumSet {
+    enum {
+        Break        /*RBBS_BREAK*/        = 0x0001,
+        FixedSize        /*RBBS_FIXEDSIZE*/    = 0x0002,
+        ChildEdge        /*RBBS_CHILDEDGE*/    = 0x0004,
+        Hidden        /*RBBS_HIDDEN*/        = 0x0008,
+        NoVert        /*RBBS_NOVERT*/        = 0x0010,
+        FixedBmp        /*RBBS_FIXEDBMP*/    = 0x0020,
+        VariableHeight    /*RBBS_VARIABLEHEIGHT*/    = 0x0040,
+        GripperAlways    /*RBBS_GRIPPERALWAYS*/    = 0x0080,
+        NoGripper        /*RBBS_NOGRIPPER*/    = 0x0100,
+        UseChevron        /*RBBS_USECHEVRON*/    = 0x0200,
+        HideTitle        /*RBBS_HIDETITLE*/    = 0x0400,
+        TopAlign        /*RBBS_TOPALIGN*/    = 0x0800,
 
-    Simple = ChildEdge | GripperAlways
-  };
+        Simple = ChildEdge | GripperAlways
+    };
 };
 
 typedef EnumSet<ReBarBandStyleEnumSet> ReBarBandStyle;
 
-class ReBarException : public Exception
-{
+class ReBarException : public Exception {
 public:
-  ReBarException() : Exception() { }
-  ReBarException(const String& message) : Exception(message) { }
-  ~ReBarException() noexcept override = default;
+    ReBarException() : Exception() {}
+
+    ReBarException(const String &message) : Exception(message) {}
+
+    ~ReBarException() noexcept override = default;
 };
 
 /**
    A band of a ReBar.
 */
-class VACA_DLL ReBarBand
-{
-  ReBar* m_rebar;
-  int m_index;
+class VACA_DLL ReBarBand {
+    ReBar *m_rebar;
+    int m_index;
 
 public:
-  ReBarBand(ReBar* parent, int index);
-  ReBarBand(const ReBarBand& band);
-  virtual ~ReBarBand();
+    ReBarBand(ReBar *parent, int index);
 
-  [[nodiscard]] ReBarBandStyle getStyle() const;
-  void setStyle(ReBarBandStyle style);
+    ReBarBand(const ReBarBand &band);
 
-  void getColors(Color& fg, Color& bg) const;
-  void setColors(const Color& fg, const Color& bg);
+    virtual ~ReBarBand();
 
-  [[nodiscard]] String getText() const;
-  void setText(const String& text);
+    [[nodiscard]] ReBarBandStyle getStyle() const;
 
-  [[nodiscard]] int getImageIndex() const;
-  void setImageIndex(int index);
+    void setStyle(ReBarBandStyle style);
 
-  [[nodiscard]] Widget* getChild() const;
-  void setChild(Widget* widget);
+    void getColors(Color &fg, Color &bg) const;
 
-  inline void operator=(const ReBarBand& rbb) {
-    m_rebar = rbb.m_rebar;
-    m_index = rbb.m_index;
-  }
+    void setColors(const Color &fg, const Color &bg);
+
+    [[nodiscard]] String getText() const;
+
+    void setText(const String &text);
+
+    [[nodiscard]] int getImageIndex() const;
+
+    void setImageIndex(int index);
+
+    [[nodiscard]] Widget *getChild() const;
+
+    void setChild(Widget *widget);
+
+    inline void operator=(const ReBarBand &rbb) {
+        m_rebar = rbb.m_rebar;
+        m_index = rbb.m_index;
+    }
 
 protected:
-  void setBand(REBARBANDINFO* rbbi);
-  void getBand(REBARBANDINFO* rbbi) const;
+    void setBand(REBARBANDINFO *rbbi);
+
+    void getBand(REBARBANDINFO *rbbi) const;
 };
 
 /**
    Wrapper for ReBar Win32
 */
-class VACA_DLL ReBar : public Widget
-{
-  ImageList m_imageList;
+class VACA_DLL ReBar : public Widget {
+    ImageList m_imageList;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  ReBar(Widget* parent, const Style& style = ReBar::Styles::Default);
-  ~ReBar() override;
+    ReBar(Widget *parent, const Style &style = ReBar::Styles::Default);
 
-  [[nodiscard]] bool isLayoutFree() const override;
+    ~ReBar() override;
 
-  void setImageList(const ImageList& imageList);
+    [[nodiscard]] bool isLayoutFree() const override;
 
-  int getBandCount();
-  int getBarHeight();
+    void setImageList(const ImageList &imageList);
 
-  ReBarBand addBand(Widget* item, ReBarBandStyle style = ReBarBandStyle::Simple, int position=-1);
-  ReBarBand getBand(int index);
-  void removeBand(int index);
+    int getBandCount();
 
-  Color getBgColor();
-  Color getFgColor();
+    int getBarHeight();
 
-  void setBgColor(const Color& color) override;
-  void setFgColor(const Color& color) override;
+    ReBarBand addBand(Widget *item, ReBarBandStyle style = ReBarBandStyle::Simple, int position = -1);
 
-  Rect getBandRect(int index);
-  int getRowCount();
-  int getRowHeight(int nRow);
+    ReBarBand getBand(int index);
 
-  void showBand(int index, bool show);
+    void removeBand(int index);
 
-  void maximizeBand(int index, bool ideal = false);
-  void minimizeBand(int index);
+    Color getBgColor();
+
+    Color getFgColor();
+
+    void setBgColor(const Color &color) override;
+
+    void setFgColor(const Color &color) override;
+
+    Rect getBandRect(int index);
+
+    int getRowCount();
+
+    int getRowHeight(int nRow);
+
+    void showBand(int index, bool show);
+
+    void maximizeBand(int index, bool ideal = false);
+
+    void minimizeBand(int index);
 
 public:
-  // Signals
-  Signal1<void, Event&> AutoSize;
+    // Signals
+    Signal1<void, Event &> AutoSize;
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
-  void onLayout(LayoutEvent& ev) override;
-  bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult) override;
-  virtual void onAutoSize(Event& ev);
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
+
+    void onLayout(LayoutEvent &ev) override;
+
+    bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT &lResult) override;
+
+    virtual void onAutoSize(Event &ev);
 
 };
 

@@ -20,17 +20,15 @@ namespace vaca {
 
    @internal
 */
-struct Win32DestroyImageList
-{
-  /**
-     @win32
-     Calls @msdn{ImageList_Destroy}.
-     @endwin32
-  */
-  static void destroy(HIMAGELIST handle)
-  {
-    ::ImageList_Destroy(handle);
-  }
+struct Win32DestroyImageList {
+    /**
+       @win32
+       Calls @msdn{ImageList_Destroy}.
+       @endwin32
+    */
+    static void destroy(HIMAGELIST handle) {
+        ::ImageList_Destroy(handle);
+    }
 };
 
 /**
@@ -46,26 +44,34 @@ struct Win32DestroyImageList
 
    @see ListView#setImageList, TreeView#setImageList
 */
-class VACA_DLL ImageList : public SharedPtr<GdiObject<HIMAGELIST, Win32DestroyImageList> >
-{
+class VACA_DLL ImageList : public SharedPtr<GdiObject<HIMAGELIST, Win32DestroyImageList> > {
 public:
 
-  ImageList();
-  explicit ImageList(const Size& sz);
-  explicit ImageList(HIMAGELIST hImageList);
-  ImageList(ResourceId bitmapId, int widthPerIcon, const Color& maskColor);
-  ImageList(const String& fileName, int widthPerIcon, const Color& maskColor);
-  ~ImageList() override;
+    ImageList();
 
-  [[nodiscard]] int getImageCount() const;
-  [[nodiscard]] Size getImageSize() const;
+    explicit ImageList(const Size &sz);
 
-  int addImage(Image& image) const;
-  int addImage(Image& image, const Color& maskColor) const;
-  void removeImage(int index) const;
-  void removeAllImages() const;
+    explicit ImageList(HIMAGELIST hImageList);
 
-  [[nodiscard]] HIMAGELIST getHandle() const;
+    ImageList(ResourceId bitmapId, int widthPerIcon, const Color &maskColor);
+
+    ImageList(const String &fileName, int widthPerIcon, const Color &maskColor);
+
+    ~ImageList() override;
+
+    [[nodiscard]] int getImageCount() const;
+
+    [[nodiscard]] Size getImageSize() const;
+
+    int addImage(Image &image) const;
+
+    int addImage(Image &image, const Color &maskColor) const;
+
+    void removeImage(int index) const;
+
+    void removeAllImages() const;
+
+    [[nodiscard]] HIMAGELIST getHandle() const;
 
 };
 

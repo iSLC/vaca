@@ -13,34 +13,50 @@ namespace vaca {
 /**
    A 2D coordinate in the screen or client area of a widget.
 */
-class VACA_DLL Point
-{
+class VACA_DLL Point {
 public:
 
-  int x, y;
+    int x, y;
 
-  Point();
-  Point(int x, int y);
-  Point(const Point& point);
-  explicit Point(const Size& size);
+    Point();
 
-  Point& operator=(const Point& pt) = default;
-  const Point& operator+=(const Point& pt);
-  const Point& operator-=(const Point& pt);
-  const Point& operator+=(int value);
-  const Point& operator-=(int value);
-  const Point& operator*=(int value);
-  const Point& operator/=(int value);
-  Point operator+(const Point& pt) const;
-  Point operator-(const Point& pt) const;
-  Point operator+(int value) const;
-  Point operator-(int value) const;
-  Point operator*(int value) const;
-  Point operator/(int value) const;
-  Point operator-() const;
+    Point(int x, int y);
 
-  bool operator==(const Point& pt) const;
-  bool operator!=(const Point& pt) const;
+    Point(const Point &point);
+
+    explicit Point(const Size &size);
+
+    Point &operator=(const Point &pt) = default;
+
+    const Point &operator+=(const Point &pt);
+
+    const Point &operator-=(const Point &pt);
+
+    const Point &operator+=(int value);
+
+    const Point &operator-=(int value);
+
+    const Point &operator*=(int value);
+
+    const Point &operator/=(int value);
+
+    Point operator+(const Point &pt) const;
+
+    Point operator-(const Point &pt) const;
+
+    Point operator+(int value) const;
+
+    Point operator-(int value) const;
+
+    Point operator*(int value) const;
+
+    Point operator/(int value) const;
+
+    Point operator-() const;
+
+    bool operator==(const Point &pt) const;
+
+    bool operator!=(const Point &pt) const;
 
 };
 

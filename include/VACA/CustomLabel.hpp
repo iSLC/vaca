@@ -14,29 +14,30 @@ namespace vaca {
 /**
    Customized static label control.
 */
-class VACA_DLL CustomLabel : public Label
-{
-  // SS_OWNERDRAW has the bit 1, so we can't use the
-  // SS_CENTER/SS_RIGHT to known the text-alignment. We must to hold
-  // on in some place.
-  TextAlign m_textAlign;
+class VACA_DLL CustomLabel : public Label {
+    // SS_OWNERDRAW has the bit 1, so we can't use the
+    // SS_CENTER/SS_RIGHT to known the text-alignment. We must to hold
+    // on in some place.
+    TextAlign m_textAlign;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  CustomLabel(const String& text, Widget* parent, const Style& style = Styles::Default);
-  ~CustomLabel() override;
+    CustomLabel(const String &text, Widget *parent, const Style &style = Styles::Default);
 
-  [[nodiscard]] TextAlign getTextAlign() const override;
-  void setTextAlign(TextAlign align) override;
+    ~CustomLabel() override;
+
+    [[nodiscard]] TextAlign getTextAlign() const override;
+
+    void setTextAlign(TextAlign align) override;
 
 protected:
 
-  // Reflected notifications
-  bool onReflectedDrawItem(Graphics& g, LPDRAWITEMSTRUCT lpDrawItem) override;
+    // Reflected notifications
+    bool onReflectedDrawItem(Graphics &g, LPDRAWITEMSTRUCT lpDrawItem) override;
 
 };
 

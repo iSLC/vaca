@@ -17,57 +17,68 @@ namespace vaca {
    Combo box control. Widget to select an option from a drop down
    list.
 */
-class VACA_DLL ComboBox : public Widget
-{
-  Size m_maxItemSize;
+class VACA_DLL ComboBox : public Widget {
+    Size m_maxItemSize;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-    static const Style Editable;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+        static const Style Editable;
+    };
 
-  ComboBox(Widget* parent, const Style& style = Styles::Default);
-  ~ComboBox() override;
+    ComboBox(Widget *parent, const Style &style = Styles::Default);
 
-  int addItem(const String& text);
-  void insertItem(int itemIndex, const String& text);
-  void removeItem(int itemIndex);
-  void removeAllItems();
+    ~ComboBox() override;
 
-  int getItemCount();
+    int addItem(const String &text);
 
-  String getItemText(int itemIndex);
-  void setItemText(int itemIndex, const String& text);
+    void insertItem(int itemIndex, const String &text);
 
-  int getSelectedItem();
-  void setSelectedItem(int itemIndex);
-  void setSelectedItem(const String& firstText);
+    void removeItem(int itemIndex);
 
-  void setDropDownVisibile(bool visible);
-  bool isDropDownVisible();
-  Rect getDropDownBounds();
+    void removeAllItems();
 
-  // Signals
-  Signal1<void, Event&> SelChange;  ///< @see onSelChange
-  Signal1<void, Event&> EditChange; ///< @see onEditChange
+    int getItemCount();
+
+    String getItemText(int itemIndex);
+
+    void setItemText(int itemIndex, const String &text);
+
+    int getSelectedItem();
+
+    void setSelectedItem(int itemIndex);
+
+    void setSelectedItem(const String &firstText);
+
+    void setDropDownVisibile(bool visible);
+
+    bool isDropDownVisible();
+
+    Rect getDropDownBounds();
+
+    // Signals
+    Signal1<void, Event &> SelChange;  ///< @see onSelChange
+    Signal1<void, Event &> EditChange; ///< @see onEditChange
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
-  void onLayout(LayoutEvent& ev) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
 
-  // New events
-  virtual void onSelChange(Event& ev);
-  virtual void onEditChange(Event& ev);
+    void onLayout(LayoutEvent &ev) override;
 
-  // Reflected notifications
-  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
+    // New events
+    virtual void onSelChange(Event &ev);
+
+    virtual void onEditChange(Event &ev);
+
+    // Reflected notifications
+    bool onReflectedCommand(int id, int code, LRESULT &lResult) override;
 
 private:
-  int getHeightForAllItems();
-  void updateMaxItemSize(const String& text);
+    int getHeightForAllItems();
+
+    void updateMaxItemSize(const String &text);
 
 };
 

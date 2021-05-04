@@ -16,58 +16,63 @@ namespace vaca {
 /**
    List box control. Widget to manage a list of strings.
 */
-class VACA_DLL ListBox : public Widget
-{
+class VACA_DLL ListBox : public Widget {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  ListBox(Widget* parent, const Style& style = Styles::Default);
-  ~ListBox() override;
+    ListBox(Widget *parent, const Style &style = Styles::Default);
 
-  int addItem(const String& text);
-  void insertItem(int itemIndex, const String& text);
-  void removeItem(int itemIndex);
+    ~ListBox() override;
 
-  int getItemCount();
-  Rect getItemBounds(int itemIndex);
+    int addItem(const String &text);
 
-  String getItemText(int itemIndex);
-  void setItemText(int itemIndex, const String& text);
+    void insertItem(int itemIndex, const String &text);
 
-  int getSelectedItem();
-  void setSelectedItem(int itemIndex);
+    void removeItem(int itemIndex);
 
-  std::vector<int> getSelectedItems();
+    int getItemCount();
 
-  // Signals
-  Signal1<void, Event&> ItemDoubleClick; ///< @see onItemDoubleClick
-  Signal1<void, Event&> SelChange; ///< @see onSelChange
+    Rect getItemBounds(int itemIndex);
+
+    String getItemText(int itemIndex);
+
+    void setItemText(int itemIndex, const String &text);
+
+    int getSelectedItem();
+
+    void setSelectedItem(int itemIndex);
+
+    std::vector<int> getSelectedItems();
+
+    // Signals
+    Signal1<void, Event &> ItemDoubleClick; ///< @see onItemDoubleClick
+    Signal1<void, Event &> SelChange; ///< @see onSelChange
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
 
-  // New events
-  virtual void onItemDoubleClick(Event& ev);
-  virtual void onSelChange(Event& ev);
+    // New events
+    virtual void onItemDoubleClick(Event &ev);
 
-  // Reflected notifications
-  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
+    virtual void onSelChange(Event &ev);
+
+    // Reflected notifications
+    bool onReflectedCommand(int id, int code, LRESULT &lResult) override;
 
 };
 
-class VACA_DLL DragListBox : public ListBox
-{
+class VACA_DLL DragListBox : public ListBox {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  DragListBox(Widget* parent, const Style& style = Styles::Default);
+    DragListBox(Widget *parent, const Style &style = Styles::Default);
 
 };
 

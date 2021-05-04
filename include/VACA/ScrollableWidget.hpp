@@ -15,41 +15,48 @@ namespace vaca {
 
 /**
    A wrapper ready-to-use to create scrollable widgets.
-*/   
-class VACA_DLL ScrollableWidget : public Widget
-{
-  /**
-     The full size area that can be viewed (using scrolling).
-  */
-  Size m_fullSize;
+*/
+class VACA_DLL ScrollableWidget : public Widget {
+    /**
+       The full size area that can be viewed (using scrolling).
+    */
+    Size m_fullSize;
 
-  /**
-     This point is used to save the old mouse's position (on
-     successive onMouseMove events).
-  */
-  Point m_oldPoint;
+    /**
+       This point is used to save the old mouse's position (on
+       successive onMouseMove events).
+    */
+    Point m_oldPoint;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
-  
-  ScrollableWidget(Widget* parent, const Style& style = Styles::Default);
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  [[nodiscard]] Size getFullSize() const;
-  void setFullSize(const Size& sz);
+    ScrollableWidget(Widget *parent, const Style &style = Styles::Default);
 
-  // Events
+    [[nodiscard]] Size getFullSize() const;
+
+    void setFullSize(const Size &sz);
+
+    // Events
 protected:
-  void onResize(ResizeEvent& ev) override;
-  void onMouseEnter(MouseEvent& ev) override;
-  void onMouseDown(MouseEvent& ev) override;
-  void onMouseMove(MouseEvent& ev) override;
-  void onMouseUp(MouseEvent& ev) override;
-  void onMouseWheel(MouseEvent& ev) override;
-  void onSetCursor(SetCursorEvent& ev) override;
-  void onScroll(ScrollEvent& ev) override;
+    void onResize(ResizeEvent &ev) override;
+
+    void onMouseEnter(MouseEvent &ev) override;
+
+    void onMouseDown(MouseEvent &ev) override;
+
+    void onMouseMove(MouseEvent &ev) override;
+
+    void onMouseUp(MouseEvent &ev) override;
+
+    void onMouseWheel(MouseEvent &ev) override;
+
+    void onSetCursor(SetCursorEvent &ev) override;
+
+    void onScroll(ScrollEvent &ev) override;
 
 };
 

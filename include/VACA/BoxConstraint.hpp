@@ -20,17 +20,18 @@ namespace vaca {
    If you don't setup an BoxConstraint for a widget controlled by a
    BoxLayout, the widget'll be known as non-expansive.
 */
-class VACA_DLL BoxConstraint : public Constraint
-{
-  bool m_expansive;
+class VACA_DLL BoxConstraint : public Constraint {
+    bool m_expansive;
 
 public:
 
-  BoxConstraint(bool expansive);
-  ~BoxConstraint() override;
+    BoxConstraint(bool expansive);
 
-  [[nodiscard]] bool isExpansive() const;
-  void setExpansive(bool expansive);
+    ~BoxConstraint() override;
+
+    [[nodiscard]] bool isExpansive() const;
+
+    void setExpansive(bool expansive);
 
 };
 

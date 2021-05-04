@@ -16,83 +16,95 @@ namespace vaca {
 
    @see @ref page_tn_008
 */
-class VACA_DLL TextEdit : public Widget
-{
+class VACA_DLL TextEdit : public Widget {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-    static const Style Password;
-    static const Style TextArea;
-    static const Style RightAligned;
-    static const Style ReadOnly;
-    static const Style AutoHorizontalScroll;
-    static const Style AutoVerticalScroll;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+        static const Style Password;
+        static const Style TextArea;
+        static const Style RightAligned;
+        static const Style ReadOnly;
+        static const Style AutoHorizontalScroll;
+        static const Style AutoVerticalScroll;
+    };
 
-  TextEdit(const String& text, Widget* parent, const Style& style = Styles::Default);
-  ~TextEdit() override;
+    TextEdit(const String &text, Widget *parent, const Style &style = Styles::Default);
 
-  // ============================================================
-  // ANY TEXT EDIT
-  // ============================================================
+    ~TextEdit() override;
 
-  [[nodiscard]] int getTextLength() const;
-  [[nodiscard]] int getTextLimit() const;
-  void setTextLimit(int textLimit);
+    // ============================================================
+    // ANY TEXT EDIT
+    // ============================================================
 
-  [[nodiscard]] bool isReadOnly() const;
-  void setReadOnly(bool readOnly);
+    [[nodiscard]] int getTextLength() const;
 
-  [[nodiscard]] bool canUndo() const;
-  void undo();
+    [[nodiscard]] int getTextLimit() const;
 
-  void cut();
-  void copy();
-  void paste();
+    void setTextLimit(int textLimit);
 
-  void selectAll();
-  void selectRange(int start, int end);
-  void deselect();
+    [[nodiscard]] bool isReadOnly() const;
 
-  void getSelection(int& start, int& end);
+    void setReadOnly(bool readOnly);
 
-  // ============================================================
-  // PASSWORD
-  // ============================================================
+    [[nodiscard]] bool canUndo() const;
 
-  Char getPasswordChar();
-  void setPasswordChar(Char passChar);
+    void undo();
 
-  // ============================================================
-  // TEXT AREA
-  // ============================================================
+    void cut();
 
-  bool getWantReturnMode();
-  void setWantReturnMode(bool wantReturn);
+    void copy();
 
-  int getLineCount();
-  String getLine(int lineNo);
-  int getLineLength(int lineNo);
+    void paste();
 
-  void scrollLines(int lines);
+    void selectAll();
 
-  // ============================================================
-  // SIGNALS
-  // ============================================================
+    void selectRange(int start, int end);
 
-  // Signals
-  Signal1<void, Event&> Change; ///< @see onChange
+    void deselect();
+
+    void getSelection(int &start, int &end);
+
+    // ============================================================
+    // PASSWORD
+    // ============================================================
+
+    Char getPasswordChar();
+
+    void setPasswordChar(Char passChar);
+
+    // ============================================================
+    // TEXT AREA
+    // ============================================================
+
+    bool getWantReturnMode();
+
+    void setWantReturnMode(bool wantReturn);
+
+    int getLineCount();
+
+    String getLine(int lineNo);
+
+    int getLineLength(int lineNo);
+
+    void scrollLines(int lines);
+
+    // ============================================================
+    // SIGNALS
+    // ============================================================
+
+    // Signals
+    Signal1<void, Event &> Change; ///< @see onChange
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
 
-  // New events
-  virtual void onChange(Event& ev);
+    // New events
+    virtual void onChange(Event &ev);
 
-  // Reflected notifications
-  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
+    // Reflected notifications
+    bool onReflectedCommand(int id, int code, LRESULT &lResult) override;
 
 };
 

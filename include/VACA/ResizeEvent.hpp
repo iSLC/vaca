@@ -12,16 +12,16 @@
 
 namespace vaca {
 
-class VACA_DLL ResizeEvent : public Event
-{
-  Size m_size;
+class VACA_DLL ResizeEvent : public Event {
+    Size m_size;
 
 public:
 
-  ResizeEvent(Component* source, const Size& size);
-  ~ResizeEvent() override;
+    ResizeEvent(Component *source, const Size &size);
 
-  [[nodiscard]] Size getSize() const;
+    ~ResizeEvent() override;
+
+    [[nodiscard]] Size getSize() const;
 
 };
 

@@ -14,37 +14,43 @@ namespace vaca {
 /**
    Shows progress for a task that is running in background.
 */
-class VACA_DLL ProgressBar : public Widget
-{
+class VACA_DLL ProgressBar : public Widget {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-    static const Style Smooth;
-    static const Style Vertical; // TODO change with set/getOrientation
-    static const Style Marquee;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+        static const Style Smooth;
+        static const Style Vertical; // TODO change with set/getOrientation
+        static const Style Marquee;
+    };
 
-  ProgressBar(Widget* parent, const Style& style = Styles::Default);
-  ProgressBar(int minValue, int maxValue, Widget* parent, const Style& style = Styles::Default);
-  ~ProgressBar() override;
+    ProgressBar(Widget *parent, const Style &style = Styles::Default);
 
-  void setBgColor(const Color& color) override;
+    ProgressBar(int minValue, int maxValue, Widget *parent, const Style &style = Styles::Default);
 
-  int getMinimum();
-  int getMaximum();
-  void getRange(int& minValue, int& maxValue);
-  void setRange(int minValue, int maxValue);
+    ~ProgressBar() override;
 
-  int getValue();
-  void setValue(int value);
-  void addValue(int delta);
+    void setBgColor(const Color &color) override;
 
-  void setMarquee(int msecsInterval);
+    int getMinimum();
+
+    int getMaximum();
+
+    void getRange(int &minValue, int &maxValue);
+
+    void setRange(int minValue, int maxValue);
+
+    int getValue();
+
+    void setValue(int value);
+
+    void addValue(int delta);
+
+    void setMarquee(int msecsInterval);
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
 
 };
 

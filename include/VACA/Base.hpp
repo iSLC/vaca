@@ -7,37 +7,37 @@
 #pragma once
 
 // If there are not a defined target (like VACA_WINDOWS)...
-#if !defined(VACA_WINDOWS) &&			\
+#if !defined(VACA_WINDOWS) && \
     !defined(VACA_ALLEGRO)
-  // ...we define VACA_DEFAULT_PLATFORM to specify that the default
-  // target will be used
-  #define VACA_DEFAULT_TARGET
+// ...we define VACA_DEFAULT_PLATFORM to specify that the default
+// target will be used
+#define VACA_DEFAULT_TARGET
 #endif
 
 // If we are in Windows compiler
 #if defined(_MSC_VER) || \
     defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || \
     defined(WIN64) || defined(_WIN64) || defined(__WIN64__)
-  #ifdef VACA_DEFAULT_TARGET
-    #define VACA_WINDOWS
-  #endif
+#ifdef VACA_DEFAULT_TARGET
+#define VACA_WINDOWS
+#endif
 
-  // We define a macro to know that we can use Windows API
-  #define VACA_ON_WINDOWS
+// We define a macro to know that we can use Windows API
+#define VACA_ON_WINDOWS
 #else
-  #ifdef VACA_DEFAULT_TARGET
-    #define VACA_ALLEGRO
-  #endif
+#ifdef VACA_DEFAULT_TARGET
+#define VACA_ALLEGRO
+#endif
 
-  // We define a macro to know that we are in a Unix-like environment
-  #define VACA_ON_UNIXLIKE
+// We define a macro to know that we are in a Unix-like environment
+#define VACA_ON_UNIXLIKE
 #endif
 
 #ifdef _MSC_VER
-  #pragma warning(disable: 4251)
-  #pragma warning(disable: 4275)
-  #pragma warning(disable: 4355)
-  #pragma warning(disable: 4996)
+#pragma warning(disable: 4251)
+#pragma warning(disable: 4275)
+#pragma warning(disable: 4355)
+#pragma warning(disable: 4996)
 #endif
 
 #include <algorithm>
@@ -45,16 +45,17 @@
 #include <string>
 
 #ifdef VACA_WINDOWS
-  #include <windows.h>
-  #include <commctrl.h>
 
-  #define VACA_MAIN()						\
-      PASCAL WinMain(HINSTANCE hInstance,			\
-		     HINSTANCE hPrevInstance,			\
-		     LPSTR lpCmdLine,				\
-		     int nCmdShow)
+#include <windows.h>
+#include <commctrl.h>
+
+#define VACA_MAIN()                        \
+      PASCAL WinMain(HINSTANCE hInstance,            \
+             HINSTANCE hPrevInstance,            \
+             LPSTR lpCmdLine,                \
+             int nCmdShow)
 #else
-  #define VACA_MAIN()						\
+#define VACA_MAIN()						\
       main(int argc, char* argv[])
 #endif
 
@@ -62,7 +63,7 @@
 
 // memory leaks
 #ifdef MEMORY_LEAK_DETECTOR
-  #include "debug_new.h"
+#include "debug_new.h"
 #endif
 
 namespace vaca {
@@ -80,17 +81,17 @@ namespace vaca {
    @brief Used to export/import symbols to/from the dynamic library.
  */
 #ifdef VACA_WINDOWS
-  #ifdef VACA_STATIC
-    #define VACA_DLL
-  #else
-    #ifdef VACA_SRC
-      #define VACA_DLL __declspec(dllexport)
-    #else
-      #define VACA_DLL __declspec(dllimport)
-    #endif
-  #endif
+#ifdef VACA_STATIC
+#define VACA_DLL
 #else
-  #define VACA_DLL
+#ifdef VACA_SRC
+#define VACA_DLL __declspec(dllexport)
+#else
+#define VACA_DLL __declspec(dllimport)
+#endif
+#endif
+#else
+#define VACA_DLL
 #endif
 
 // ============================================================
@@ -99,7 +100,7 @@ namespace vaca {
 
 // you have to use a specialization
 template<typename To, typename From>
-To convert_to(const From& from) = delete;
+To convert_to(const From &from) = delete;
 
 // ============================================================
 // ALGORITHMS
@@ -114,9 +115,8 @@ To convert_to(const From& from) = delete;
    @see max_value, clamp_value
 */
 template<typename T>
-inline T min_value(T x, T y)
-{
-  return x < y ? x: y;
+inline T min_value(T x, T y) {
+    return x < y ? x : y;
 }
 
 /**
@@ -128,9 +128,8 @@ inline T min_value(T x, T y)
    @see min_value, clamp_value
 */
 template<typename T>
-inline T max_value(T x, T y)
-{
-  return x > y ? x: y;
+inline T max_value(T x, T y) {
+    return x > y ? x : y;
 }
 
 /**
@@ -143,9 +142,8 @@ inline T max_value(T x, T y)
    @see min_value, max_value
 */
 template<typename T>
-inline T clamp_value(T x, T low, T high)
-{
-  return x > high ? high: (x < low ? low: x);
+inline T clamp_value(T x, T low, T high) {
+    return x > high ? high : (x < low ? low : x);
 }
 
 /**
@@ -183,13 +181,12 @@ typedef unsigned int ThreadId;
 
    @see Orientation
 */
-struct OrientationEnum
-{
-  enum enumeration {
-    Horizontal,
-    Vertical
-  };
-  static const enumeration default_value = Horizontal;
+struct OrientationEnum {
+    enum enumeration {
+        Horizontal,
+        Vertical
+    };
+    static const enumeration default_value = Horizontal;
 };
 
 /**
@@ -208,14 +205,13 @@ typedef Enum<OrientationEnum> Orientation;
 
    @see TextAlign
 */
-struct TextAlignEnum
-{
-  enum enumeration {
-    Left,
-    Center,
-    Right
-  };
-  static const enumeration default_value = Left;
+struct TextAlignEnum {
+    enum enumeration {
+        Left,
+        Center,
+        Right
+    };
+    static const enumeration default_value = Left;
 };
 
 /**
@@ -235,14 +231,13 @@ typedef Enum<TextAlignEnum> TextAlign;
 
    @see VerticalAlign
 */
-struct VerticalAlignEnum
-{
-  enum enumeration {
-    Top,
-    Middle,
-    Bottom
-  };
-  static const enumeration default_value = Top;
+struct VerticalAlignEnum {
+    enum enumeration {
+        Top,
+        Middle,
+        Bottom
+    };
+    static const enumeration default_value = Top;
 };
 
 /**
@@ -262,15 +257,14 @@ typedef Enum<VerticalAlignEnum> VerticalAlign;
 
    @see Side
 */
-struct SideEnum
-{
-  enum enumeration {
-    Left,
-    Top,
-    Right,
-    Bottom
-  };
-  static const enumeration default_value = Left;
+struct SideEnum {
+    enum enumeration {
+        Left,
+        Top,
+        Right,
+        Bottom
+    };
+    static const enumeration default_value = Left;
 };
 
 /**
@@ -291,16 +285,15 @@ typedef Enum<SideEnum> Side;
 
    @see Sides
 */
-struct SidesEnumSet
-{
-  enum {
-    None   = 0,
-    Left   = 1,
-    Top    = 2,
-    Right  = 4,
-    Bottom = 8,
-    All    = Left | Top | Right | Bottom
-  };
+struct SidesEnumSet {
+    enum {
+        None = 0,
+        Left = 1,
+        Top = 2,
+        Right = 4,
+        Bottom = 8,
+        All = Left | Top | Right | Bottom
+    };
 };
 
 /**
@@ -321,19 +314,18 @@ typedef EnumSet<SidesEnumSet> Sides;
 
    @see CardinalDirection
 */
-struct CardinalDirectionEnum
-{
-  enum enumeration {
-    North,
-    Northeast,
-    East,
-    Southeast,
-    South,
-    Southwest,
-    West,
-    Northwest
-  };
-  static const enumeration default_value = North;
+struct CardinalDirectionEnum {
+    enum enumeration {
+        North,
+        Northeast,
+        East,
+        Southeast,
+        South,
+        Southwest,
+        West,
+        Northwest
+    };
+    static const enumeration default_value = North;
 };
 
 /**
@@ -365,153 +357,280 @@ typedef Enum<CardinalDirectionEnum> CardinalDirection;
    @param element The element to be removed from the container.
 */
 template<typename ContainerType>
-void remove_from_container(ContainerType& container,
-			   typename ContainerType::const_reference element)
-{
-  for (typename ContainerType::iterator
-	 it = container.begin(),
-	 end = container.end(); it != end; ) {
-    if (*it == element) {
-      it = container.erase(it);
-      end = container.end();
+void remove_from_container(ContainerType &container,
+                           typename ContainerType::const_reference element) {
+    for (typename ContainerType::iterator
+                 it = container.begin(),
+                 end = container.end(); it != end;) {
+        if (*it == element) {
+            it = container.erase(it);
+            end = container.end();
+        } else
+            ++it;
     }
-    else
-      ++it;
-  }
 }
 
 // ======================================================================
 // Forward declarations
 
 class Anchor;
+
 class AnchorLayout;
+
 class Application;
+
 class BandedDockArea;
+
 class BasicDockArea;
+
 class Bix;
+
 class BoxConstraint;
+
 class BoxLayout;
+
 class Brush;
+
 class Button;
+
 class ButtonBase;
+
 class CancelableEvent;
+
 class CheckBox;
+
 class ClientLayout;
+
 class Clipboard;
+
 class CloseEvent;
+
 class Color;
+
 class ColorDialog;
+
 class ComboBox;
+
 class Command;
+
 class CommandEvent;
+
 class CommandsClient;
+
 class CommonDialog;
+
 class Component;
+
 class ConditionVariable;
+
 class Constraint;
+
 class Cursor;
+
 class CustomButton;
+
 class CustomLabel;
+
 class Dialog;
+
 class DockArea;
+
 class DockBar;
+
 class DockFrame;
+
 class DockInfo;
+
 class DragListBox;
+
 class DropFilesEvent;
+
 class Event;
+
 class Exception;
+
 class FileDialog;
+
 class FindTextDialog;
+
 class FocusEvent;
+
 class Font;
+
 class FontDialog;
+
 class FontMetrics;
+
 class Frame;
+
 class Graphics;
+
 class GraphicsPath;
+
 class GroupBox;
+
 class HttpRequest;
+
 class HttpRequestException;
+
 class Icon;
+
 class Image;
+
 class ImageHandle;
+
 class ImageList;
+
 class ImagePixels;
+
 class KeyEvent;
+
 class Label;
+
 class Layout;
+
 class LayoutEvent;
+
 class LinkLabel;
+
 class ListBox;
+
 class ListColumn;
+
 class ListItem;
+
 class ListView;
+
 class ListViewEvent;
+
 class MdiChild;
+
 class MdiClient;
+
 class MdiFrame;
+
 class MdiListMenu;
+
 class Menu;
+
 class MenuBar;
+
 class MenuItem;
+
 class MenuItemEvent;
+
 class MenuSeparator;
+
 class Message;
+
 class MouseEvent;
+
 class MsgBox;
+
 class Mutex;
+
 class Node;
+
 class NonCopyable;
+
 class OpenFileDialog;
+
 class PaintEvent;
+
 class Pen;
+
 class Point;
+
 class PopupMenu;
+
 class PreferredSizeEvent;
+
 class ProgressBar;
+
 class Property;
+
 class RadioButton;
+
 class RadioGroup;
+
 class ReBar;
+
 class ReBarBand;
+
 class Rect;
+
 class Referenceable;
+
 class Region;
+
 class ResizeEvent;
+
 class ResourceId;
+
 class SaveFileDialog;
+
 class SciEdit;
+
 class SciRegister;
+
 class ScopedLock;
+
 class ScreenGraphics;
+
 class ScrollEvent;
+
 class ScrollInfo;
+
 class Separator;
+
 class SetCursorEvent;
+
 class Size;
+
 class Slider;
+
 class SpinButton;
+
 class Spinner;
+
 class SplitBar;
+
 class StatusBar;
+
 class System;
+
 class Tab;
+
 class TabBase;
+
 class TabPage;
+
 class TextEdit;
+
 class Thread;
+
 class TimePoint;
+
 class Timer;
+
 class ToggleButton;
+
 class ToolBar;
+
 class ToolButton;
+
 class ToolSet;
+
 class TreeNode;
+
 class TreeView;
+
 class TreeViewEvent;
+
 class TreeViewIterator;
+
 class Widget;
+
 class WidgetClassName;
 
 template<class T>

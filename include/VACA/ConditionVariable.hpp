@@ -15,51 +15,55 @@ namespace vaca {
 /**
    This exception is thrown when a ConditionVariable couldn't be created.
 */
-class CreateConditionVariableException : public Exception
-{
+class CreateConditionVariableException : public Exception {
 public:
 
-  CreateConditionVariableException() : Exception() { }
-  CreateConditionVariableException(const String& message) : Exception(message) { }
-  ~CreateConditionVariableException() noexcept override = default;
+    CreateConditionVariableException() : Exception() {}
+
+    CreateConditionVariableException(const String &message) : Exception(message) {}
+
+    ~CreateConditionVariableException() noexcept override = default;
 
 };
 
-class VACA_DLL ConditionVariable : private NonCopyable
-{
-  HANDLE m_gate;
-  HANDLE m_queue;
-  HANDLE m_mutex;
-  unsigned m_gone;         // # threads that timed out and never made it to m_queue
-  unsigned long m_blocked; // # threads blocked on the condition
-  unsigned m_waiting;      // # threads no longer waiting for the condition but
-			   // still waiting to be removed from m_queue
+class VACA_DLL ConditionVariable : private NonCopyable {
+    HANDLE m_gate;
+    HANDLE m_queue;
+    HANDLE m_mutex;
+    unsigned m_gone;         // # threads that timed out and never made it to m_queue
+    unsigned long m_blocked; // # threads blocked on the condition
+    unsigned m_waiting;      // # threads no longer waiting for the condition but
+    // still waiting to be removed from m_queue
 public:
 
-  ConditionVariable();
-  ~ConditionVariable();
+    ConditionVariable();
 
-  void notifyOne();
-  void notifyAll();
-  void wait(ScopedLock& lock);
-  bool waitFor(ScopedLock& lock, double seconds);
+    ~ConditionVariable();
 
-  template<typename Predicate>
-  void wait(ScopedLock& lock, Predicate pred) {
-    while (!pred())
-      wait(lock);
-  }
+    void notifyOne();
 
-  template<typename Predicate>
-  bool waitFor(ScopedLock& lock, double seconds, Predicate pred) {
-    while (!pred())
-      if (!waitFor(lock, seconds))
-	    return false;
-    return true;
-  }
+    void notifyAll();
+
+    void wait(ScopedLock &lock);
+
+    bool waitFor(ScopedLock &lock, double seconds);
+
+    template<typename Predicate>
+    void wait(ScopedLock &lock, Predicate pred) {
+        while (!pred())
+            wait(lock);
+    }
+
+    template<typename Predicate>
+    bool waitFor(ScopedLock &lock, double seconds, Predicate pred) {
+        while (!pred())
+            if (!waitFor(lock, seconds))
+                return false;
+        return true;
+    }
 
 private:
-  void enterWait();
+    void enterWait();
 
 };
 

@@ -11,55 +11,66 @@
 
 namespace vaca {
 
-class VACA_DLL Slider : public Widget
-{
+class VACA_DLL Slider : public Widget {
 public:
 
-  static const int MinLimit;
-  static const int MaxLimit;
+    static const int MinLimit;
+    static const int MaxLimit;
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  Slider(Widget* parent, const Style& style = Styles::Default);
-  Slider(int minValue, int maxValue, int value, Widget* parent, const Style& style = Styles::Default);
-  ~Slider() override;
+    Slider(Widget *parent, const Style &style = Styles::Default);
 
-  Orientation getOrientation();
-  void setOrientation(Orientation orientation);
+    Slider(int minValue, int maxValue, int value, Widget *parent, const Style &style = Styles::Default);
 
-  Sides getSides();
-  void setSides(Sides sides);
+    ~Slider() override;
 
-  void setTickVisible(bool state);
-  void setTickFreq(int freq);
+    Orientation getOrientation();
 
-  int getMinValue();
-  int getMaxValue();
-  void getRange(int& minValue, int& maxValue);
-  void setRange(int minValue, int maxValue);
+    void setOrientation(Orientation orientation);
 
-  int getValue();
-  void setValue(int posValue);
+    Sides getSides();
 
-  int getLineSize();
-  void setLineSize(int lineSize);
+    void setSides(Sides sides);
 
-  int getPageSize();
-  void setPageSize(int pageSize);
+    void setTickVisible(bool state);
 
-  // Signals
-  Signal1<void, Event&> Change; ///< @see onChange
+    void setTickFreq(int freq);
+
+    int getMinValue();
+
+    int getMaxValue();
+
+    void getRange(int &minValue, int &maxValue);
+
+    void setRange(int minValue, int maxValue);
+
+    int getValue();
+
+    void setValue(int posValue);
+
+    int getLineSize();
+
+    void setLineSize(int lineSize);
+
+    int getPageSize();
+
+    void setPageSize(int pageSize);
+
+    // Signals
+    Signal1<void, Event &> Change; ///< @see onChange
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
-  void onScroll(ScrollEvent& ev) override;
-  
-  // New events
-  virtual void onChange(Event& ev);
-  
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
+
+    void onScroll(ScrollEvent &ev) override;
+
+    // New events
+    virtual void onChange(Event &ev);
+
 };
 
 } // namespace vaca

@@ -19,17 +19,15 @@ namespace vaca {
 
    @internal
 */
-struct Win32DestroyIcon
-{
-  /**
-     @win32
-     Calls @msdn{DestroyIcon}.
-     @endwin32
-  */
-  static void destroy(HICON handle)
-  {
-    ::DestroyIcon(handle);
-  }
+struct Win32DestroyIcon {
+    /**
+       @win32
+       Calls @msdn{DestroyIcon}.
+       @endwin32
+    */
+    static void destroy(HICON handle) {
+        ::DestroyIcon(handle);
+    }
 };
 
 /**
@@ -50,17 +48,21 @@ struct Win32DestroyIcon
      This is a @msdn{HICON} wrapper.
    @endwin32
 */
-class VACA_DLL Icon : private SharedPtr<GdiObject<HICON, Win32DestroyIcon> >
-{
+class VACA_DLL Icon : private SharedPtr<GdiObject<HICON, Win32DestroyIcon> > {
 public:
-  Icon();
-  Icon(const Icon& icon);
-  explicit Icon(const ResourceId& iconId, const Size& sz = Size(0, 0));
-  explicit Icon(const String& fileName, const Size& sz = Size(0, 0));
-  explicit Icon(HICON handle);
-  ~Icon() override;
+    Icon();
 
-  [[nodiscard]] HICON getHandle() const;
+    Icon(const Icon &icon);
+
+    explicit Icon(const ResourceId &iconId, const Size &sz = Size(0, 0));
+
+    explicit Icon(const String &fileName, const Size &sz = Size(0, 0));
+
+    explicit Icon(HICON handle);
+
+    ~Icon() override;
+
+    [[nodiscard]] HICON getHandle() const;
 };
 
 } // namespace vaca

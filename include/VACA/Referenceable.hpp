@@ -14,27 +14,30 @@ namespace vaca {
 /**
    Class that counts references and can be wrapped by a SharedPtr.
 */
-class VACA_DLL Referenceable : private NonCopyable
-{
-  template<class> friend class SharedPtr;
-  unsigned m_refCount;
+class VACA_DLL Referenceable : private NonCopyable {
+    template<class> friend
+    class SharedPtr;
+
+    unsigned m_refCount;
 
 public:
 
-  Referenceable();
-  virtual ~Referenceable();
+    Referenceable();
 
-  void ref();
-  unsigned unref();
+    virtual ~Referenceable();
 
-  [[nodiscard]] unsigned getRefCount() const;
+    void ref();
+
+    unsigned unref();
+
+    [[nodiscard]] unsigned getRefCount() const;
 
 #ifndef NDEBUG
-  static void showLeaks();
+    static void showLeaks();
 #endif
 
 private:
-  void destroy();
+    void destroy();
 };
 
 } // namespace vaca

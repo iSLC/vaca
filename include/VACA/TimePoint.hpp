@@ -13,18 +13,18 @@ namespace vaca {
 /**
    Class to measure elapsed time, like a chronometer.
 */
-class VACA_DLL TimePoint
-{
-  LARGE_INTEGER m_point{};
-  LARGE_INTEGER m_freq{};
+class VACA_DLL TimePoint {
+    LARGE_INTEGER m_point{};
+    LARGE_INTEGER m_freq{};
 
 public:
-  TimePoint();
-  ~TimePoint();
+    TimePoint();
 
-  void reset();
+    ~TimePoint();
 
-  [[nodiscard]] double elapsed() const;
+    void reset();
+
+    [[nodiscard]] double elapsed() const;
 };
 
 } // namespace vaca

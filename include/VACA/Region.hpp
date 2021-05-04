@@ -16,51 +16,70 @@ namespace vaca {
    A region, it can be simple as a rectangle, complex as any shape,
    but also can be empty.
 */
-class VACA_DLL Region : private SharedPtr<GdiObject<HRGN> >
-{
+class VACA_DLL Region : private SharedPtr<GdiObject<HRGN> > {
 public:
 
-  Region();
-  Region(const Region& rgn);
-  explicit Region(HRGN hrgn);
-  explicit Region(const Rect& rc);
-  ~Region() override;
+    Region();
 
-  [[nodiscard]] bool isEmpty() const;
-  [[nodiscard]] bool isSimple() const;
-  [[nodiscard]] bool isComplex() const;
+    Region(const Region &rgn);
 
-  Region& operator=(const Region& rgn);
-  [[nodiscard]] Region clone() const;
+    explicit Region(HRGN hrgn);
 
-  [[nodiscard]] Rect getBounds() const;
+    explicit Region(const Rect &rc);
 
-  Region& offset(int dx, int dy);
-  Region& offset(const Point& point);
+    ~Region() override;
 
-  [[nodiscard]] bool contains(const Point& pt) const;
-  [[nodiscard]] bool contains(const Rect& rc) const;
+    [[nodiscard]] bool isEmpty() const;
 
-  bool operator==(const Region& rgn) const;
-  bool operator!=(const Region& rgn) const;
+    [[nodiscard]] bool isSimple() const;
 
-  Region operator|(const Region& rgn) const;
-  Region operator+(const Region& rgn) const;
-  Region operator&(const Region& rgn) const;
-  Region operator-(const Region& rgn) const;
-  Region operator^(const Region& rgn) const;
+    [[nodiscard]] bool isComplex() const;
 
-  Region& operator|=(const Region& rgn);
-  Region& operator+=(const Region& rgn);
-  Region& operator&=(const Region& rgn);
-  Region& operator-=(const Region& rgn);
-  Region& operator^=(const Region& rgn);
+    Region &operator=(const Region &rgn);
 
-  static Region fromRect(const Rect& rc);
-  static Region fromEllipse(const Rect& rc);
-  static Region fromRoundRect(const Rect& rc, const Size& ellipseSize);
+    [[nodiscard]] Region clone() const;
 
-  [[nodiscard]] HRGN getHandle() const;
+    [[nodiscard]] Rect getBounds() const;
+
+    Region &offset(int dx, int dy);
+
+    Region &offset(const Point &point);
+
+    [[nodiscard]] bool contains(const Point &pt) const;
+
+    [[nodiscard]] bool contains(const Rect &rc) const;
+
+    bool operator==(const Region &rgn) const;
+
+    bool operator!=(const Region &rgn) const;
+
+    Region operator|(const Region &rgn) const;
+
+    Region operator+(const Region &rgn) const;
+
+    Region operator&(const Region &rgn) const;
+
+    Region operator-(const Region &rgn) const;
+
+    Region operator^(const Region &rgn) const;
+
+    Region &operator|=(const Region &rgn);
+
+    Region &operator+=(const Region &rgn);
+
+    Region &operator&=(const Region &rgn);
+
+    Region &operator-=(const Region &rgn);
+
+    Region &operator^=(const Region &rgn);
+
+    static Region fromRect(const Rect &rc);
+
+    static Region fromEllipse(const Rect &rc);
+
+    static Region fromRoundRect(const Rect &rc, const Size &ellipseSize);
+
+    [[nodiscard]] HRGN getHandle() const;
 
 };
 

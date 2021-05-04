@@ -20,24 +20,26 @@ namespace vaca {
 
    @see NonCopyable, Referenceable, SharedPtr
 */
-class VACA_DLL Component : public Referenceable
-{
+class VACA_DLL Component : public Referenceable {
 public:
-  typedef std::map<String, PropertyPtr> Properties;
+    typedef std::map<String, PropertyPtr> Properties;
 
-  Component();
-  ~Component() override;
+    Component();
 
-  PropertyPtr getProperty(const String& name);
-  void setProperty(const PropertyPtr& property);
+    ~Component() override;
 
-  bool hasProperty(const String& name);
-  void removeProperty(const String& name);
+    PropertyPtr getProperty(const String &name);
 
-  [[nodiscard]] const Properties& getProperties() const;
+    void setProperty(const PropertyPtr &property);
+
+    bool hasProperty(const String &name);
+
+    void removeProperty(const String &name);
+
+    [[nodiscard]] const Properties &getProperties() const;
 
 private:
-  Properties m_properties;
+    Properties m_properties;
 };
 
 } // namespace vaca

@@ -31,22 +31,27 @@ namespace vaca {
      (@msdn{WS_} and @msdn{WS_EX_}).
    @endwin32
 */
-struct VACA_DLL Style
-{
-  int regular{};
-  int extended{};
+struct VACA_DLL Style {
+    int regular{};
+    int extended{};
 
-  Style(int regular, int extended);
-  Style(const Style& style);
+    Style(int regular, int extended);
 
-  Style operator+(const Style& style) const;
-  Style operator|(const Style& style) const;
-  Style operator-(const Style& style) const;
-  Style operator&(const Style& style) const;
-  Style operator~() const;
+    Style(const Style &style);
 
-  bool operator==(const Style& style) const;
-  bool operator!=(const Style& style) const;
+    Style operator+(const Style &style) const;
+
+    Style operator|(const Style &style) const;
+
+    Style operator-(const Style &style) const;
+
+    Style operator&(const Style &style) const;
+
+    Style operator~() const;
+
+    bool operator==(const Style &style) const;
+
+    bool operator!=(const Style &style) const;
 
 };
 

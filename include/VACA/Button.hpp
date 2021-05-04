@@ -16,21 +16,24 @@ namespace vaca {
 
    @image html Button.png
 */
-class VACA_DLL Button : public ButtonBase
-{
+class VACA_DLL Button : public ButtonBase {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  Button(const String& text, Widget* parent, const Style& style = Styles::Default);
-  Button(const String& text, CommandId id, Widget* parent, const Style& style = Styles::Default);
-  explicit Button(HWND handle);
-  ~Button() override;
+    Button(const String &text, Widget *parent, const Style &style = Styles::Default);
 
-  bool isDefault();
-  void setDefault(bool state);
+    Button(const String &text, CommandId id, Widget *parent, const Style &style = Styles::Default);
+
+    explicit Button(HWND handle);
+
+    ~Button() override;
+
+    bool isDefault();
+
+    void setDefault(bool state);
 
 };
 

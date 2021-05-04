@@ -11,21 +11,21 @@
 
 namespace vaca {
 
-class VACA_DLL Separator : public Widget
-{
+class VACA_DLL Separator : public Widget {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  Separator(Widget* parent, const Style& style = Styles::Default);
-  ~Separator() override;
+    Separator(Widget *parent, const Style &style = Styles::Default);
+
+    ~Separator() override;
 
 protected:
 
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
 
 };
 

@@ -16,14 +16,13 @@ namespace vaca {
 
 // ======================================================================
 
-struct ToolButtonStateEnumSet
-{
-  enum enumeration {
-    None    = 0,
-    Enabled = 1,
-    Checked = 2,
-    Hidden  = 4
-  };
+struct ToolButtonStateEnumSet {
+    enum enumeration {
+        None = 0,
+        Enabled = 1,
+        Checked = 2,
+        Hidden = 4
+    };
 };
 
 typedef EnumSet<ToolButtonStateEnumSet> ToolButtonState;
@@ -33,40 +32,52 @@ typedef EnumSet<ToolButtonStateEnumSet> ToolButtonState;
 /**
    A button inside a ToolSet.
 */
-class VACA_DLL ToolButton
-{
-  friend class ToolSet;
+class VACA_DLL ToolButton {
+    friend class ToolSet;
 
-  ToolSet* m_set;
-  int m_buttonIndex;
-  int m_imageIndex;
-  CommandId m_commandId;
-  ToolButtonState m_state;
-  String m_text;
+    ToolSet *m_set;
+    int m_buttonIndex;
+    int m_imageIndex;
+    CommandId m_commandId;
+    ToolButtonState m_state;
+    String m_text;
 
 public:
-  ToolButton(CommandId commandId, int imageIndex, ToolButtonState state = ToolButtonState::Enabled);
-  ToolButton(CommandId commandId, int imageIndex, const String& text, ToolButtonState state = ToolButtonState::Enabled);
-  ToolButton(const ToolButton& button);
-  virtual ~ToolButton();
+    ToolButton(CommandId commandId, int imageIndex, ToolButtonState state = ToolButtonState::Enabled);
 
-  // ToolSet* getSet() const { return m_set; }
-  [[nodiscard]] int getButtonIndex() const { return m_buttonIndex; }
-  [[nodiscard]] int getImageIndex() const { return m_imageIndex; }
-  [[nodiscard]] CommandId getCommandId() const { return m_commandId; }
-  [[nodiscard]] ToolButtonState getState() const { return m_state; }
-  [[nodiscard]] String getText() const { return m_text; }
+    ToolButton(CommandId commandId, int imageIndex, const String &text,
+               ToolButtonState state = ToolButtonState::Enabled);
 
-  // void setSet(ToolSet* set);
-  void setButtonIndex(int buttonIndex) { m_buttonIndex = buttonIndex; }
-  void setImageIndex(int imageIndex) { m_imageIndex = imageIndex; }
-  void setCommandId(CommandId commandId) { m_commandId = commandId; }
-  void setState(ToolButtonState state);
-  void setText(const String& text);
+    ToolButton(const ToolButton &button);
 
-  [[nodiscard]] int getTBSTATE() const;
-  [[nodiscard]] int getTBSTYLE() const;
-  // void setTBSTATE(int tbstate);
+    virtual ~ToolButton();
+
+    // ToolSet* getSet() const { return m_set; }
+    [[nodiscard]] int getButtonIndex() const { return m_buttonIndex; }
+
+    [[nodiscard]] int getImageIndex() const { return m_imageIndex; }
+
+    [[nodiscard]] CommandId getCommandId() const { return m_commandId; }
+
+    [[nodiscard]] ToolButtonState getState() const { return m_state; }
+
+    [[nodiscard]] String getText() const { return m_text; }
+
+    // void setSet(ToolSet* set);
+    void setButtonIndex(int buttonIndex) { m_buttonIndex = buttonIndex; }
+
+    void setImageIndex(int imageIndex) { m_imageIndex = imageIndex; }
+
+    void setCommandId(CommandId commandId) { m_commandId = commandId; }
+
+    void setState(ToolButtonState state);
+
+    void setText(const String &text);
+
+    [[nodiscard]] int getTBSTATE() const;
+
+    [[nodiscard]] int getTBSTYLE() const;
+    // void setTBSTATE(int tbstate);
 
 };
 
@@ -83,47 +94,55 @@ public:
 
    @see ToolButton, ToolBar
 */
-class VACA_DLL ToolSet : public Widget
-{
-  std::vector<Size> m_preferredSizes;
-  ImageList m_imageList;
+class VACA_DLL ToolSet : public Widget {
+    std::vector<Size> m_preferredSizes;
+    ImageList m_imageList;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-    static const Style Flat;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+        static const Style Flat;
+    };
 
-  ToolSet(Widget* parent, const Style& style = Styles::Default);
-  ~ToolSet() override;
+    ToolSet(Widget *parent, const Style &style = Styles::Default);
 
-  [[nodiscard]] int getButtonCount() const;
-  [[nodiscard]] int getRows() const;
-  Rect setRows(int rows, bool expand);
+    ~ToolSet() override;
 
-  void setImageList(const ImageList& imageList);
+    [[nodiscard]] int getButtonCount() const;
 
-  void addButton(ToolButton* button);
-  void addSeparator(int width = 6);
+    [[nodiscard]] int getRows() const;
 
-  void updateButton(ToolButton* button);
+    Rect setRows(int rows, bool expand);
 
-  [[nodiscard]] ToolButton* getButtonById(CommandId id) const;
-  [[nodiscard]] ToolButton* getButtonByIndex(int index) const;
+    void setImageList(const ImageList &imageList);
 
-  [[nodiscard]] int hitTest(const Point& pt) const;
+    void addButton(ToolButton *button);
 
-  [[nodiscard]] std::vector<Size> getPreferredSizes() const;
-  void updatePreferredSizes();
+    void addSeparator(int width = 6);
+
+    void updateButton(ToolButton *button);
+
+    [[nodiscard]] ToolButton *getButtonById(CommandId id) const;
+
+    [[nodiscard]] ToolButton *getButtonByIndex(int index) const;
+
+    [[nodiscard]] int hitTest(const Point &pt) const;
+
+    [[nodiscard]] std::vector<Size> getPreferredSizes() const;
+
+    void updatePreferredSizes();
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
-  void onUpdateIndicators() override;
-  // Reflected notifications
-  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
-  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
+
+    void onUpdateIndicators() override;
+
+    // Reflected notifications
+    bool onReflectedCommand(int id, int code, LRESULT &lResult) override;
+
+    bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT &lResult) override;
 
 };
 
@@ -137,106 +156,111 @@ protected:
      but a ToolSet is static, is just a set of buttons, ToolBar offers you
      a dockable tool bar.
 */
-class VACA_DLL ToolBar : public DockBar
-{
-  ToolSet m_set;
-  int m_rowsWhenFloating;
+class VACA_DLL ToolBar : public DockBar {
+    ToolSet m_set;
+    int m_rowsWhenFloating;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  ToolBar(const String& title, Frame* parent,
-	  Style toolSetStyle = ToolSet::Styles::Default,
-	  Style style = ToolBar::Styles::Default);
-  ~ToolBar() override;
+    ToolBar(const String &title, Frame *parent,
+            Style toolSetStyle = ToolSet::Styles::Default,
+            Style style = ToolBar::Styles::Default);
 
-  [[nodiscard]] Size getDockedSize(Side side) const override;
-  [[nodiscard]] Size getFloatingSize() const override;
+    ~ToolBar() override;
+
+    [[nodiscard]] Size getDockedSize(Side side) const override;
+
+    [[nodiscard]] Size getFloatingSize() const override;
 
 protected:
-  // Events
-  void onCommand(CommandEvent& ev) override;
-  void onUpdateIndicators() override;
-  void onDocking() override;
-  void onFloating() override;
-  void onResizingFrame(DockFrame* frame, CardinalDirection dir, Rect& rc) override;
+    // Events
+    void onCommand(CommandEvent &ev) override;
+
+    void onUpdateIndicators() override;
+
+    void onDocking() override;
+
+    void onFloating() override;
+
+    void onResizingFrame(DockFrame *frame, CardinalDirection dir, Rect &rc) override;
 
 public:
-  // ======================================================================
-  // Wrapper for the ToolSet
+    // ======================================================================
+    // Wrapper for the ToolSet
 
-  /**
-     @see ToolSet#getButtonCount
-  */
-  int getButtonCount() {
-    return m_set.getButtonCount();
-  }
+    /**
+       @see ToolSet#getButtonCount
+    */
+    int getButtonCount() {
+        return m_set.getButtonCount();
+    }
 
-  /**
-     @see ToolSet#getRows
-  */
-  int getRows() {
-    return m_set.getRows();
-  }
+    /**
+       @see ToolSet#getRows
+    */
+    int getRows() {
+        return m_set.getRows();
+    }
 
-  /**
-     @see ToolSet#setRows
-  */
-  Rect setRows(int rows, bool expand) {
-    return m_set.setRows(rows, expand);
-  }
+    /**
+       @see ToolSet#setRows
+    */
+    Rect setRows(int rows, bool expand) {
+        return m_set.setRows(rows, expand);
+    }
 
-  /**
-     @see ToolSet#setImageList
-  */
-  void setImageList(const ImageList& imageList) {
-    return m_set.setImageList(imageList);
-  }
+    /**
+       @see ToolSet#setImageList
+    */
+    void setImageList(const ImageList &imageList) {
+        return m_set.setImageList(imageList);
+    }
 
-  /**
-     @see ToolSet#addButton
-  */
-  void addButton(ToolButton* button) {
-    m_set.addButton(button);
-  }
+    /**
+       @see ToolSet#addButton
+    */
+    void addButton(ToolButton *button) {
+        m_set.addButton(button);
+    }
 
-  /**
-     @see ToolSet#addSeparator
-  */
-  void addSeparator(int width = 6) {
-    m_set.addSeparator(width);
-  }
+    /**
+       @see ToolSet#addSeparator
+    */
+    void addSeparator(int width = 6) {
+        m_set.addSeparator(width);
+    }
 
-  /**
-     @see ToolSet#updateButton
-  */
-  void updateButton(ToolButton* button) {
-    m_set.updateButton(button);
-  }
+    /**
+       @see ToolSet#updateButton
+    */
+    void updateButton(ToolButton *button) {
+        m_set.updateButton(button);
+    }
 
-  /**
-     @see ToolSet#getButtonById
-  */
-  ToolButton* getButtonById(CommandId id) {
-    return m_set.getButtonById(id);
-  }
+    /**
+       @see ToolSet#getButtonById
+    */
+    ToolButton *getButtonById(CommandId id) {
+        return m_set.getButtonById(id);
+    }
 
-  /**
-     @see ToolSet#getButtonByIndex
-  */
-  ToolButton* getButtonByIndex(int index) {
-    return m_set.getButtonByIndex(index);
-  }
+    /**
+       @see ToolSet#getButtonByIndex
+    */
+    ToolButton *getButtonByIndex(int index) {
+        return m_set.getButtonByIndex(index);
+    }
 
-  /**
-     @see ToolSet#hitTest
-  */
-  int hitTest(const Point& pt) {
-    return m_set.hitTest(pt);
-  }
+    /**
+       @see ToolSet#hitTest
+    */
+    int hitTest(const Point &pt) {
+        return m_set.hitTest(pt);
+    }
 
 };
 

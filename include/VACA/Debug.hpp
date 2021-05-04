@@ -28,7 +28,8 @@ namespace vaca {
 
 namespace details {
 
-void VACA_DLL trace(const char* filename, size_t line, const char* msg, ...);
+void VACA_DLL trace(const char *filename, size_t line, const char *msg, ...);
+
 void VACA_DLL closeLogFile();
 
 #ifndef __GNUC__

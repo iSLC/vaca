@@ -11,15 +11,15 @@
 
 namespace vaca {
 
-class VACA_DLL Property : public Referenceable
-{
-  String m_name;
+class VACA_DLL Property : public Referenceable {
+    String m_name;
 
 public:
-  Property(const String& name);
-  ~Property() override;
+    Property(const String &name);
 
-  [[nodiscard]] String getName() const;
+    ~Property() override;
+
+    [[nodiscard]] String getName() const;
 };
 
 } // namespace vaca

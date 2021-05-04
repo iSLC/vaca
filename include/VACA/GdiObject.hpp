@@ -18,15 +18,13 @@ namespace vaca {
 
    @internal
 */
-struct Win32DestroyGdiObject
-{
-  /**
-     Destroys the GDI handle calling the Win32's DeleteObject function.
-  */
-  static void destroy(HGDIOBJ handle)
-  {
-    ::DeleteObject(handle);
-  }
+struct Win32DestroyGdiObject {
+    /**
+       Destroys the GDI handle calling the Win32's DeleteObject function.
+    */
+    static void destroy(HGDIOBJ handle) {
+        ::DeleteObject(handle);
+    }
 };
 
 /**
@@ -42,63 +40,62 @@ struct Win32DestroyGdiObject
      in the destructor of GdiObject (to free the @a T handle).
 */
 template<typename T, class Destroyer = Win32DestroyGdiObject>
-class GdiObject : public Referenceable
-{
-  T m_handle;
+class GdiObject : public Referenceable {
+    T m_handle;
 
 public:
 
-  /**
-     Creates a new GdiObject with the handle pointing to NULL.
-  */
-  GdiObject() : m_handle(NULL) { }
+    /**
+       Creates a new GdiObject with the handle pointing to NULL.
+    */
+    GdiObject() : m_handle(NULL) {}
 
-  /**
-     Creates a wrapper for the specified @a handle.
+    /**
+       Creates a wrapper for the specified @a handle.
 
-     @param handle
-       Handle to be wrapped. It will be delete in the
-       GdiObject destructor.
-  */
-  GdiObject(T handle) : m_handle(handle) { }
+       @param handle
+         Handle to be wrapped. It will be delete in the
+         GdiObject destructor.
+    */
+    GdiObject(T handle) : m_handle(handle) {}
 
-  /**
-     Destroys the handle using the @a Destroyer template-parameter.
-  */
-  ~GdiObject() override {
-    if (isValid())
-      Destroyer::destroy(m_handle);
-  }
+    /**
+       Destroys the handle using the @a Destroyer template-parameter.
+    */
+    ~GdiObject() override {
+        if (isValid())
+            Destroyer::destroy(m_handle);
+    }
 
-  /**
-     Returns true if the handle is valid (not NULL).
-  */
-  [[nodiscard]] bool isValid() const {
-    return m_handle != NULL;
-  }
+    /**
+       Returns true if the handle is valid (not NULL).
+    */
+    [[nodiscard]] bool isValid() const {
+        return m_handle != NULL;
+    }
 
-  /**
-     Returns the handle.
-  */
-  T getHandle() const {
-    return m_handle;
-  }
+    /**
+       Returns the handle.
+    */
+    T getHandle() const {
+        return m_handle;
+    }
 
-  /**
-     Sets the handle.
+    /**
+       Sets the handle.
 
-     @warning
-       The current handle (#getHandle) must be NULL. This means
-       that you can use this member function just one time.
+       @warning
+         The current handle (#getHandle) must be NULL. This means
+         that you can use this member function just one time.
 
-     @param handle
-       The handle to be wrapped. It will be delete in the
-       GdiObject destructor.
-  */
-  void setHandle(T handle) {
-    assert(!m_handle);
-    m_handle = handle;
-  }
+       @param handle
+         The handle to be wrapped. It will be delete in the
+         GdiObject destructor.
+    */
+    void setHandle(T handle) {
+        assert(!m_handle);
+        m_handle = handle;
+    }
 
 };
 

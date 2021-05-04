@@ -13,16 +13,16 @@ namespace vaca {
 /**
    Handles a pusheable button (with BS_AUTOCHECKBOX | BS_PUSHLIKE styles).
 */
-class VACA_DLL ToggleButton : public ButtonBase
-{
+class VACA_DLL ToggleButton : public ButtonBase {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  ToggleButton(const String& text, Widget* parent, const Style& style = Styles::Default);
-  ~ToggleButton() override;
+    ToggleButton(const String &text, Widget *parent, const Style &style = Styles::Default);
+
+    ~ToggleButton() override;
 
 };
 

@@ -20,15 +20,17 @@ namespace vaca {
 
    @internal
 */
-class VACA_DLL ImageHandle : public GdiObject<HBITMAP>
-{
-  friend class Image;
-  HDC m_hdc;
-  Graphics* m_graphics;
+class VACA_DLL ImageHandle : public GdiObject<HBITMAP> {
+    friend class Image;
+
+    HDC m_hdc;
+    Graphics *m_graphics;
 public:
-  ImageHandle();
-  ImageHandle(HBITMAP handle);
-  ~ImageHandle() override;
+    ImageHandle();
+
+    ImageHandle(HBITMAP handle);
+
+    ~ImageHandle() override;
 };
 
 /**
@@ -51,46 +53,61 @@ public:
      This is a @msdn{HBITMAP} wrapper.
    @endwin32
 */
-class VACA_DLL Image : private SharedPtr<ImageHandle>
-{
+class VACA_DLL Image : private SharedPtr<ImageHandle> {
 public:
-  Image();
-  explicit Image(ResourceId imageId);
-  explicit Image(const String& fileName);
-  explicit Image(const Size& sz);
-  Image(int width, int height);
-  Image(int width, int height, int depth);
-  Image(const Size& sz, int depth);
-  Image(const Size& sz, Graphics& g);
-  Image(const Image& image);
-  ~Image() override;
+    Image();
 
-  [[nodiscard]] bool isValid() const { return get()->isValid(); }
+    explicit Image(ResourceId imageId);
 
-  [[nodiscard]] int getWidth() const;
-  [[nodiscard]] int getHeight() const;
-  [[nodiscard]] Size getSize() const;
-  [[nodiscard]] int getDepth() const;
+    explicit Image(const String &fileName);
 
-  Graphics& getGraphics();
+    explicit Image(const Size &sz);
 
-  [[nodiscard]] ImagePixels getPixels() const;
-  void setPixels(const ImagePixels& imagePixels);
+    Image(int width, int height);
 
-  [[nodiscard]] HBITMAP getHandle() const;
+    Image(int width, int height, int depth);
 
-  Image& operator=(const Image& image);
+    Image(const Size &sz, int depth);
 
-  [[nodiscard]] Image clone() const;
+    Image(const Size &sz, Graphics &g);
 
-  bool operator==(const Image& image) const { return get() == image.get(); }
-  bool operator!=(const Image& image) const { return get() != image.get(); }
+    Image(const Image &image);
+
+    ~Image() override;
+
+    [[nodiscard]] bool isValid() const { return get()->isValid(); }
+
+    [[nodiscard]] int getWidth() const;
+
+    [[nodiscard]] int getHeight() const;
+
+    [[nodiscard]] Size getSize() const;
+
+    [[nodiscard]] int getDepth() const;
+
+    Graphics &getGraphics();
+
+    [[nodiscard]] ImagePixels getPixels() const;
+
+    void setPixels(const ImagePixels &imagePixels);
+
+    [[nodiscard]] HBITMAP getHandle() const;
+
+    Image &operator=(const Image &image);
+
+    [[nodiscard]] Image clone() const;
+
+    bool operator==(const Image &image) const { return get() == image.get(); }
+
+    bool operator!=(const Image &image) const { return get() != image.get(); }
 
 private:
 
-  void init(int width, int height);
-  void init(int width, int height, int depth);
-  void copyTo(Image& image) const;
+    void init(int width, int height);
+
+    void init(int width, int height, int depth);
+
+    void copyTo(Image &image) const;
 
 };
 

@@ -14,27 +14,30 @@ namespace vaca {
 /**
    The most basic dock area management.
 */
-class VACA_DLL BasicDockArea : public DockArea
-{
+class VACA_DLL BasicDockArea : public DockArea {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  BasicDockArea(Side side, Widget* parent, Style style = Styles::Default);
-  virtual ~BasicDockArea();
+    BasicDockArea(Side side, Widget *parent, Style style = Styles::Default);
 
-  virtual bool hitTest(DockBar* bar, const Point& cursor, const Point& anchor, bool fromInside);
-  virtual DockInfo* createDefaultDockInfo(DockBar* bar);
-  virtual DockInfo* createDockInfo(DockBar* bar, const Point& cursor, const Point& anchor);
-  virtual void drawXorTracker(Graphics& g, DockInfo* dockInfo);
+    virtual ~BasicDockArea();
 
-  virtual void layout();
+    virtual bool hitTest(DockBar *bar, const Point &cursor, const Point &anchor, bool fromInside);
+
+    virtual DockInfo *createDefaultDockInfo(DockBar *bar);
+
+    virtual DockInfo *createDockInfo(DockBar *bar, const Point &cursor, const Point &anchor);
+
+    virtual void drawXorTracker(Graphics &g, DockInfo *dockInfo);
+
+    virtual void layout();
 
 protected:
-  // Events
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
+    // Events
+    virtual void onPreferredSize(PreferredSizeEvent &ev);
 
 };
 

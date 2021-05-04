@@ -13,37 +13,54 @@ namespace vaca {
 /**
    A 2D size.
 */
-class VACA_DLL Size
-{
+class VACA_DLL Size {
 public:
 
-  int w, h;
+    int w, h;
 
-  Size();
-  Size(int w, int h);
-  Size(const Size& size);
-  explicit Size(const Point& point);
+    Size();
 
-  [[nodiscard]] Size createUnion(const Size& sz) const;
-  [[nodiscard]] Size createIntersect(const Size& sz) const;
+    Size(int w, int h);
 
-  Size& operator=(const Size& sz);
-  const Size& operator+=(const Size& sz);
-  const Size& operator-=(const Size& sz);
-  const Size& operator+=(int value);
-  const Size& operator-=(int value);
-  const Size& operator*=(int value);
-  const Size& operator/=(int value);
-  Size operator+(const Size& sz) const;
-  Size operator-(const Size& sz) const;
-  Size operator+(int value) const;
-  Size operator-(int value) const;
-  Size operator*(int value) const;
-  Size operator/(int value) const;
-  Size operator-() const;
+    Size(const Size &size);
 
-  bool operator==(const Size& sz) const;
-  bool operator!=(const Size& sz) const;
+    explicit Size(const Point &point);
+
+    [[nodiscard]] Size createUnion(const Size &sz) const;
+
+    [[nodiscard]] Size createIntersect(const Size &sz) const;
+
+    Size &operator=(const Size &sz);
+
+    const Size &operator+=(const Size &sz);
+
+    const Size &operator-=(const Size &sz);
+
+    const Size &operator+=(int value);
+
+    const Size &operator-=(int value);
+
+    const Size &operator*=(int value);
+
+    const Size &operator/=(int value);
+
+    Size operator+(const Size &sz) const;
+
+    Size operator-(const Size &sz) const;
+
+    Size operator+(int value) const;
+
+    Size operator-(int value) const;
+
+    Size operator*(int value) const;
+
+    Size operator/(int value) const;
+
+    Size operator-() const;
+
+    bool operator==(const Size &sz) const;
+
+    bool operator!=(const Size &sz) const;
 
 };
 

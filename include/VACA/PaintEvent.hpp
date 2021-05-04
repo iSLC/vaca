@@ -14,19 +14,19 @@ namespace vaca {
 /**
    Event to paint a widget.
 */
-class VACA_DLL PaintEvent : public Event
-{
-  Graphics& m_graphics;
-  bool m_painted;
+class VACA_DLL PaintEvent : public Event {
+    Graphics &m_graphics;
+    bool m_painted;
 
 public:
 
-  PaintEvent(Widget* source, Graphics& graphics);
-  ~PaintEvent() override;
+    PaintEvent(Widget *source, Graphics &graphics);
 
-  Graphics& getGraphics();
+    ~PaintEvent() override;
 
-  [[nodiscard]] bool isPainted() const;
+    Graphics &getGraphics();
+
+    [[nodiscard]] bool isPainted() const;
 };
 
 } // namespace vaca

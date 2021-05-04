@@ -17,20 +17,22 @@ namespace vaca {
      Look for @msdn{About Resource Files}.
    @endwin32
 */
-class VACA_DLL ResourceId
-{
-  int m_id;
+class VACA_DLL ResourceId {
+    int m_id;
 
 public:
 
-  explicit ResourceId(int id);
-  ResourceId(const ResourceId& rc);
-  virtual ~ResourceId();
+    explicit ResourceId(int id);
 
-  [[nodiscard]] int getId() const;
+    ResourceId(const ResourceId &rc);
 
-  [[nodiscard]] String toString() const;
-  LPTSTR toLPTSTR();
+    virtual ~ResourceId();
+
+    [[nodiscard]] int getId() const;
+
+    [[nodiscard]] String toString() const;
+
+    LPTSTR toLPTSTR();
 
 };
 

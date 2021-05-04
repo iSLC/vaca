@@ -11,23 +11,24 @@
 
 namespace vaca {
 
-class VACA_DLL StatusBar : public Widget
-{
+class VACA_DLL StatusBar : public Widget {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  StatusBar(Widget* parent, const Style& style = Styles::Default);
-  ~StatusBar() override;
+    StatusBar(Widget *parent, const Style &style = Styles::Default);
 
-  [[nodiscard]] bool isLayoutFree() const override;
+    ~StatusBar() override;
+
+    [[nodiscard]] bool isLayoutFree() const override;
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
-  void onLayout(LayoutEvent& ev) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
+
+    void onLayout(LayoutEvent &ev) override;
 };
 
 } // namespace vaca

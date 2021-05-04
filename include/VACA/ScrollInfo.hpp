@@ -18,24 +18,29 @@ namespace vaca {
 
    @see Widget#getScrollInfo, Widget#getScrollPos
 */
-class VACA_DLL ScrollInfo
-{
-  int m_minPos;
-  int m_maxPos;
-  int m_pageSize;
+class VACA_DLL ScrollInfo {
+    int m_minPos;
+    int m_maxPos;
+    int m_pageSize;
 
 public:
-  ScrollInfo();
-  ScrollInfo(int minPos, int maxPos, int pageSize);
-  virtual ~ScrollInfo();
+    ScrollInfo();
 
-  [[nodiscard]] int getMinPos() const;
-  [[nodiscard]] int getMaxPos() const;
-  [[nodiscard]] int getPageSize() const;
+    ScrollInfo(int minPos, int maxPos, int pageSize);
 
-  void setMinPos(int minPos);
-  void setMaxPos(int maxPos);
-  void setPageSize(int pageSize);
+    virtual ~ScrollInfo();
+
+    [[nodiscard]] int getMinPos() const;
+
+    [[nodiscard]] int getMaxPos() const;
+
+    [[nodiscard]] int getPageSize() const;
+
+    void setMinPos(int minPos);
+
+    void setMaxPos(int maxPos);
+
+    void setPageSize(int pageSize);
 
 };
 

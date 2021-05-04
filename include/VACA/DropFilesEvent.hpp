@@ -13,16 +13,16 @@
 
 namespace vaca {
 
-class VACA_DLL DropFilesEvent : public Event
-{
-  std::vector<String>& m_files;
+class VACA_DLL DropFilesEvent : public Event {
+    std::vector<String> &m_files;
 
 public:
 
-  DropFilesEvent(Widget* source, std::vector<String>& files);
-  ~DropFilesEvent() override;
+    DropFilesEvent(Widget *source, std::vector<String> &files);
 
-  std::vector<String> getFiles();
+    ~DropFilesEvent() override;
+
+    std::vector<String> getFiles();
 
 };
 

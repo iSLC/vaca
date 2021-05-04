@@ -21,20 +21,19 @@ namespace vaca {
 
    @see AnchorLayout#AnchorLayout, Anchor
 */
-class VACA_DLL AnchorLayout : public Layout
-{
-  /**
-     The size of the imaginary rectangle @c Rect(Point(0,0),refSize).
+class VACA_DLL AnchorLayout : public Layout {
+    /**
+       The size of the imaginary rectangle @c Rect(Point(0,0),refSize).
 
-     @see AnchorLayout#AnchorLayout
-   */
-  Size m_refSize;
+       @see AnchorLayout#AnchorLayout
+     */
+    Size m_refSize;
 
 public:
 
-  AnchorLayout(const Size& refSize);
+    AnchorLayout(const Size &refSize);
 
-  void layout(Widget* parent, WidgetList& widgets, const Rect& rc) override;
+    void layout(Widget *parent, WidgetList &widgets, const Rect &rc) override;
 
 };
 

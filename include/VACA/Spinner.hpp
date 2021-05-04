@@ -18,11 +18,9 @@ namespace vaca {
 /**
    Represents the Win32 class used by Spinner.
 */
-class SpinnerClass : public WidgetClass
-{
+class SpinnerClass : public WidgetClass {
 public:
-  static WidgetClassName getClassName()
-  { return WidgetClassName(L"Vaca.Spinner"); }
+    static WidgetClassName getClassName() { return WidgetClassName(L"Vaca.Spinner"); }
 };
 
 /**
@@ -31,45 +29,53 @@ public:
 
    The default range is from 0 to 100. The default position is 0.
 */
-class VACA_DLL Spinner : public Register<SpinnerClass>, public Widget
-{
-  TextEdit m_edit;
-  SpinButton m_spin;
+class VACA_DLL Spinner : public Register<SpinnerClass>, public Widget {
+    TextEdit m_edit;
+    SpinButton m_spin;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  Spinner(Widget* parent,
-	  const Style& spinStyle = SpinButton::Styles::Default,
-	  const Style& style = Spinner::Styles::Default);
-  Spinner(int minValue, int maxValue, int value,
-	  Widget* parent,
-	  const Style& spinStyle = SpinButton::Styles::Default,
-	  const Style& style = Spinner::Styles::Default);
-  ~Spinner() override;
+    Spinner(Widget *parent,
+            const Style &spinStyle = SpinButton::Styles::Default,
+            const Style &style = Spinner::Styles::Default);
 
-  TextEdit& getTextEdit();
-  SpinButton& getSpinButton();
+    Spinner(int minValue, int maxValue, int value,
+            Widget *parent,
+            const Style &spinStyle = SpinButton::Styles::Default,
+            const Style &style = Spinner::Styles::Default);
 
-  int getMinimum();
-  int getMaximum();
-  void getRange(int& minValue, int& maxValue);
-  void setRange(int minValue, int maxValue);
+    ~Spinner() override;
 
-  int getValue();
-  void setValue(int value);
+    TextEdit &getTextEdit();
 
-  int getBase();
-  void setBase(int base);
+    SpinButton &getSpinButton();
+
+    int getMinimum();
+
+    int getMaximum();
+
+    void getRange(int &minValue, int &maxValue);
+
+    void setRange(int minValue, int maxValue);
+
+    int getValue();
+
+    void setValue(int value);
+
+    int getBase();
+
+    void setBase(int base);
 
 protected:
 
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
-  void onLayout(LayoutEvent& ev) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
+
+    void onLayout(LayoutEvent &ev) override;
 
 };
 

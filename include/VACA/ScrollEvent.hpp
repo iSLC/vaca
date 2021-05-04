@@ -18,21 +18,20 @@ namespace vaca {
 
    @see ScrollRequest
 */
-struct ScrollRequestEnum
-{
-  enum enumeration {
-    FullBackward,
-    FullForward,
-    PageBackward,
-    PageForward,
-    LineBackward,
-    LineForward,
-    BoxPosition,
-    BoxTracking,
-    EndScroll,
-  };
+struct ScrollRequestEnum {
+    enum enumeration {
+        FullBackward,
+        FullForward,
+        PageBackward,
+        PageForward,
+        LineBackward,
+        LineForward,
+        BoxPosition,
+        BoxTracking,
+        EndScroll,
+    };
 
-  static const enumeration default_value = FullBackward;
+    static const enumeration default_value = FullBackward;
 };
 
 /**
@@ -51,20 +50,22 @@ struct ScrollRequestEnum
 */
 typedef Enum<ScrollRequestEnum> ScrollRequest;
 
-class VACA_DLL ScrollEvent : public Event
-{
-  Orientation m_orientation;
-  ScrollRequest m_request;
-  int m_position;
+class VACA_DLL ScrollEvent : public Event {
+    Orientation m_orientation;
+    ScrollRequest m_request;
+    int m_position;
 
 public:
 
-  ScrollEvent(Widget* source, Orientation orien, ScrollRequest req, int pos);
-  ~ScrollEvent() override;
+    ScrollEvent(Widget *source, Orientation orien, ScrollRequest req, int pos);
 
-  [[nodiscard]] Orientation getOrientation() const;
-  [[nodiscard]] ScrollRequest getRequest() const;
-  [[nodiscard]] int getPosition() const;
+    ~ScrollEvent() override;
+
+    [[nodiscard]] Orientation getOrientation() const;
+
+    [[nodiscard]] ScrollRequest getRequest() const;
+
+    [[nodiscard]] int getPosition() const;
 
 };
 

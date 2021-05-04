@@ -22,32 +22,36 @@ namespace vaca {
      can overlap the @c SS_CENTER or @c SS_RIGHT, so you should override
      #getTextAlign and #getTextAlign member functions (like CustomLabel does).
 */
-class VACA_DLL Label : public Widget
-{
+class VACA_DLL Label : public Widget {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-    static const Style WordEllipsis;
-    static const Style EndEllipsis;
-    static const Style PathEllipsis;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+        static const Style WordEllipsis;
+        static const Style EndEllipsis;
+        static const Style PathEllipsis;
+    };
 
-  Label(const String& text, Widget* parent, const Style& style = Styles::Default);
-  explicit Label(HWND handle);
-  ~Label() override;
+    Label(const String &text, Widget *parent, const Style &style = Styles::Default);
 
-  [[nodiscard]] virtual TextAlign getTextAlign() const;
-  virtual void setTextAlign(TextAlign align);
+    explicit Label(HWND handle);
+
+    ~Label() override;
+
+    [[nodiscard]] virtual TextAlign getTextAlign() const;
+
+    virtual void setTextAlign(TextAlign align);
 
 protected:
 
-  bool useWordWrap();
-  int getFlagsForDrawString();
+    bool useWordWrap();
 
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
-  void onResize(ResizeEvent& ev) override;
+    int getFlagsForDrawString();
+
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
+
+    void onResize(ResizeEvent &ev) override;
 
 };
 

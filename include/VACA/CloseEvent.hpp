@@ -18,12 +18,12 @@ namespace vaca {
    to save your changes before close?" before the Frame is finally
    closed).
 */
-class VACA_DLL CloseEvent : public CancelableEvent
-{
+class VACA_DLL CloseEvent : public CancelableEvent {
 public:
 
-  CloseEvent(Frame* source);
-  ~CloseEvent() override;
+    CloseEvent(Frame *source);
+
+    ~CloseEvent() override;
 
 };
 

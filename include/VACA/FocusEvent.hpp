@@ -11,18 +11,19 @@
 
 namespace vaca {
 
-class VACA_DLL FocusEvent : public Event
-{
-  Widget* m_oldFocus;
-  Widget* m_newFocus;
+class VACA_DLL FocusEvent : public Event {
+    Widget *m_oldFocus;
+    Widget *m_newFocus;
 
 public:
 
-  FocusEvent(Widget* source, Widget* oldFocus, Widget* newFocus);
-  ~FocusEvent() override;
+    FocusEvent(Widget *source, Widget *oldFocus, Widget *newFocus);
 
-  [[nodiscard]] Widget* getOldFocus() const;
-  [[nodiscard]] Widget* getNewFocus() const;
+    ~FocusEvent() override;
+
+    [[nodiscard]] Widget *getOldFocus() const;
+
+    [[nodiscard]] Widget *getNewFocus() const;
 
 };
 

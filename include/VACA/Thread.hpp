@@ -21,18 +21,17 @@ namespace vaca {
 
    @see ThreadPriority
 */
-struct ThreadPriorityEnum
-{
-  enum enumeration {
-    Idle,
-    Lowest,
-    Low,
-    Normal,
-    High,
-    Highest,
-    TimeCritical,
-  };
-  static const enumeration default_value = Normal;
+struct ThreadPriorityEnum {
+    enum enumeration {
+        Idle,
+        Lowest,
+        Low,
+        Normal,
+        High,
+        Highest,
+        TimeCritical,
+    };
+    static const enumeration default_value = Normal;
 };
 
 /**
@@ -54,13 +53,14 @@ typedef Enum<ThreadPriorityEnum> ThreadPriority;
 /**
    This exception is thrown when a new Thread couldn't be created.
 */
-class CreateThreadException : public Exception
-{
+class CreateThreadException : public Exception {
 public:
 
-  CreateThreadException() : Exception() { }
-  CreateThreadException(const String& message) : Exception(message) { }
-  ~CreateThreadException() noexcept override = default;
+    CreateThreadException() : Exception() {}
+
+    CreateThreadException(const String &message) : Exception(message) {}
+
+    ~CreateThreadException() noexcept override = default;
 
 };
 
@@ -75,81 +75,89 @@ public:
 
    @see doMessageLoop
 */
-class VACA_DLL Thread : public NonCopyable
-{
-  friend class Frame;
+class VACA_DLL Thread : public NonCopyable {
+    friend class Frame;
 
 private:
 
-  HANDLE m_handle;
-  ThreadId m_id;
+    HANDLE m_handle;
+    ThreadId m_id;
 
 public:
 
-  Thread();
-  ~Thread();
+    Thread();
 
-  /**
-     Creates a new thread running the specified function or functor @a f.
+    ~Thread();
 
-     @throw CreateThreadException
-       If the thread couldn't be created by Win32's @c CreateThread.
-  */
-  template<typename F>
-  explicit Thread(F f) {
-      Thread_(Slot0_fun<void, F>(f));
-  }
+    /**
+       Creates a new thread running the specified function or functor @a f.
 
-  [[nodiscard]] ThreadId getId() const;
+       @throw CreateThreadException
+         If the thread couldn't be created by Win32's @c CreateThread.
+    */
+    template<typename F>
+    explicit Thread(F f) {
+        Thread_(Slot0_fun<void, F>(f));
+    }
 
-  void join();
-  [[nodiscard]] bool isJoinable() const;
+    [[nodiscard]] ThreadId getId() const;
 
-  void setThreadPriority(ThreadPriority priority);
+    void join();
 
-  // ===============================================================
-  // MESSAGES
-  // ===============================================================
+    [[nodiscard]] bool isJoinable() const;
 
-  void enqueueMessage(const Message& message) const;
+    void setThreadPriority(ThreadPriority priority);
+
+    // ===============================================================
+    // MESSAGES
+    // ===============================================================
+
+    void enqueueMessage(const Message &message) const;
 
 private:
-  void Thread_(const Slot0<void>& slot);
+    void Thread_(const Slot0<void> &slot);
 
 };
 
-namespace CurrentThread
-{
-  VACA_DLL ThreadId getId();
+namespace CurrentThread {
+VACA_DLL ThreadId getId();
 
-  VACA_DLL void enqueueMessage(const Message& message);
+VACA_DLL void enqueueMessage(const Message &message);
 
-  VACA_DLL void doMessageLoop();
-  VACA_DLL void doMessageLoopFor(Widget* widget);
-  VACA_DLL void pumpMessageQueue();
-  VACA_DLL void breakMessageLoop();
+VACA_DLL void doMessageLoop();
 
-  VACA_DLL void yield();
-  VACA_DLL void sleep(int msecs);
+VACA_DLL void doMessageLoopFor(Widget *widget);
 
-  VACA_DLL bool getMessage(Message& msg);
-  VACA_DLL bool peekMessage(Message& msg);
-  VACA_DLL void processMessage(Message& msg);
+VACA_DLL void pumpMessageQueue();
 
-  namespace details {
-    VACA_DLL bool preTranslateMessage(Message& message);
+VACA_DLL void breakMessageLoop();
 
-    VACA_DLL Widget* getOutsideWidget();
-    VACA_DLL void setOutsideWidget(Widget* widget);
+VACA_DLL void yield();
 
-    VACA_DLL void addFrame(Frame* frame);
-    VACA_DLL void removeFrame(Frame* frame);
-  }
+VACA_DLL void sleep(int msecs);
+
+VACA_DLL bool getMessage(Message &msg);
+
+VACA_DLL bool peekMessage(Message &msg);
+
+VACA_DLL void processMessage(Message &msg);
+
+namespace details {
+VACA_DLL bool preTranslateMessage(Message &message);
+
+VACA_DLL Widget *getOutsideWidget();
+
+VACA_DLL void setOutsideWidget(Widget *widget);
+
+VACA_DLL void addFrame(Frame *frame);
+
+VACA_DLL void removeFrame(Frame *frame);
+}
 
 }
 
 namespace details {
-  VACA_DLL void removeAllThreadData();
+VACA_DLL void removeAllThreadData();
 }
 
 } // namespace vaca

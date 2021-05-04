@@ -15,13 +15,14 @@ namespace vaca {
 /**
    Thrown when a Message cannot be registered/created.
 */
-class MessageException : public Exception
-{
+class MessageException : public Exception {
 public:
 
-  MessageException() = default;
-  MessageException(const String& message) : Exception(message) { }
-  ~MessageException() noexcept override = default;
+    MessageException() = default;
+
+    MessageException(const String &message) : Exception(message) {}
+
+    ~MessageException() noexcept override = default;
 
 };
 
@@ -32,28 +33,32 @@ public:
      This is a wrapper for a @msdn{MSG}.
    @endwin32
 */
-class VACA_DLL Message
-{
-  friend class Thread;
-  friend class Widget;
+class VACA_DLL Message {
+    friend class Thread;
 
-  MSG m_msg{};
+    friend class Widget;
+
+    MSG m_msg{};
 
 public:
 
-  Message();
-  Message(const String& name);
-  Message(const Message& msg, void* payload);
-  virtual ~Message();
+    Message();
 
-  [[nodiscard]] void* getPayload() const;
+    Message(const String &name);
 
-  inline bool operator==(const Message& message) const {
-    return m_msg.message == message.m_msg.message;
-  }
+    Message(const Message &msg, void *payload);
 
-  inline operator MSG*() { return &m_msg; }
-  inline operator MSG const *() const { return &m_msg; }
+    virtual ~Message();
+
+    [[nodiscard]] void *getPayload() const;
+
+    inline bool operator==(const Message &message) const {
+        return m_msg.message == message.m_msg.message;
+    }
+
+    inline operator MSG *() { return &m_msg; }
+
+    inline operator MSG const *() const { return &m_msg; }
 
 };
 

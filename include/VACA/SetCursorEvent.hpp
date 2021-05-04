@@ -12,18 +12,18 @@
 
 namespace vaca {
 
-class VACA_DLL SetCursorEvent : public MouseEvent
-{
-  WidgetHit m_hit;
+class VACA_DLL SetCursorEvent : public MouseEvent {
+    WidgetHit m_hit;
 
 public:
 
-  SetCursorEvent(Widget* source, const Point& point, WidgetHit hit);
-  ~SetCursorEvent() override;
+    SetCursorEvent(Widget *source, const Point &point, WidgetHit hit);
 
-  void setCursor(const Cursor& cursor);
+    ~SetCursorEvent() override;
 
-  [[nodiscard]] WidgetHit getWidgetHit() const;
+    void setCursor(const Cursor &cursor);
+
+    [[nodiscard]] WidgetHit getWidgetHit() const;
 
 };
 

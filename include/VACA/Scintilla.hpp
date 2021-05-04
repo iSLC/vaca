@@ -17,64 +17,78 @@ namespace vaca {
    First it tries to load @c SciLexer.dll and then if it fails, it
    will try to load @c Scintilla.dll
 */
-class VACA_DLL SciRegister
-{
-  static HINSTANCE hmod;
+class VACA_DLL SciRegister {
+    static HINSTANCE hmod;
 
 public:
-  SciRegister();
+    SciRegister();
 };
 
 /**
    Controls a Scintilla text editor.
 */
-class VACA_DLL SciEdit : public SciRegister, public Widget
-{
+class VACA_DLL SciEdit : public SciRegister, public Widget {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  SciEdit(Widget* parent, Style style = Styles::Default);
-  ~SciEdit() override;
+    SciEdit(Widget *parent, Style style = Styles::Default);
 
-  void setFont(Font font) override;
+    ~SciEdit() override;
 
-  // ======================================================================
-  // Text retrieval and modification
-  [[nodiscard]] String getText() const override;
-  void setText(const String& str) override;
-  void setSavePoint();
-  [[nodiscard]] String getLine(int line) const;
-  void replaceSel(const String& str);
-  void setReadOnly(bool readOnly);
-  [[nodiscard]] bool getReadOnly() const;
+    void setFont(Font font) override;
+
+    // ======================================================================
+    // Text retrieval and modification
+    [[nodiscard]] String getText() const override;
+
+    void setText(const String &str) override;
+
+    void setSavePoint();
+
+    [[nodiscard]] String getLine(int line) const;
+
+    void replaceSel(const String &str);
+
+    void setReadOnly(bool readOnly);
+
+    [[nodiscard]] bool getReadOnly() const;
+
 // SCI_GETTEXTRANGE(<unused>, TextRange* tr)
 // SCI_GETSTYLEDTEXT(<unused>, TextRange* tr)
 // SCI_ALLOCATE(int bytes, <unused>)
-  void addText(const char* str, int length);
-  void addText(const String& str);
+    void addText(const char *str, int length);
+
+    void addText(const String &str);
+
 // SCI_ADDSTYLEDTEXT(int length, cell* s)
-  void appendText(const char* str, int length);
-  void appendText(const String& str);
-  void insertText(int pos, const String& str);
-  void clearAll();
+    void appendText(const char *str, int length);
+
+    void appendText(const String &str);
+
+    void insertText(int pos, const String &str);
+
+    void clearAll();
+
 // SCI_CLEARDOCUMENTSTYLE
-  [[nodiscard]] char getCharAt(int pos) const;
+    [[nodiscard]] char getCharAt(int pos) const;
 // SCI_GETSTYLEAT(int pos)
 // SCI_SETSTYLEBITS(int bits)
 // SCI_GETSTYLEBITS
 
-  // ======================================================================
-  // Searching
+    // ======================================================================
+    // Searching
 // SCI_FINDTEXT(int flags, TextToFind* ttf)
-  void searchAnchor();
-  bool searchNext(int flags, String& str);
-  bool searchPrev(int flags, String& str);
+    void searchAnchor();
 
-  // ======================================================================
-  // Searching and replace using target
+    bool searchNext(int flags, String &str);
+
+    bool searchPrev(int flags, String &str);
+
+    // ======================================================================
+    // Searching and replace using target
 // SCI_SETTARGETSTART(int pos)
 // SCI_GETTARGETSTART
 // SCI_SETTARGETEND(int pos)
@@ -86,64 +100,88 @@ public:
 // SCI_REPLACETARGET(int length, const char* text)
 // SCI_REPLACETARGETRE(int length, const char* text)
 
-  // ======================================================================
-  // Overtype (overwrite-mode)
-  void setOverwriteMode(bool state);
-  [[nodiscard]] bool getOverwriteMode() const;
+    // ======================================================================
+    // Overtype (overwrite-mode)
+    void setOverwriteMode(bool state);
 
-  // ======================================================================
-  // Cut, copy and paste
-  void cutTextToClipboard();
-  void copyTextToClipboard();
-  void pasteTextFromClipboard();
-  void clearText();
+    [[nodiscard]] bool getOverwriteMode() const;
+
+    // ======================================================================
+    // Cut, copy and paste
+    void cutTextToClipboard();
+
+    void copyTextToClipboard();
+
+    void pasteTextFromClipboard();
+
+    void clearText();
 // SCI_CANPASTE
 // SCI_COPYRANGE(int start, int end)
 // SCI_COPYTEXT(int length, const char* text)
 // SCI_SETPASTECONVERTENDINGS(bool convert)
 // SCI_GETPASTECONVERTENDINGS
 
-  // ======================================================================
-  // Error handling
+    // ======================================================================
+    // Error handling
 // SCI_SETSTATUS(int status)
 // SCI_GETSTATUS
 
-  // ======================================================================
-  // Undo and Redo
-  void undo();
-  [[nodiscard]] bool canUndo() const;
-  void redo();
-  [[nodiscard]] bool canRedo() const;
-  void emptyUndoBuffer();
+    // ======================================================================
+    // Undo and Redo
+    void undo();
+
+    [[nodiscard]] bool canUndo() const;
+
+    void redo();
+
+    [[nodiscard]] bool canRedo() const;
+
+    void emptyUndoBuffer();
+
 // SCI_SETUNDOCOLLECTION(bool collectUndo)
 // SCI_GETUNDOCOLLECTION
-  void beginUndoAction();
-  void endUndoAction();
+    void beginUndoAction();
 
-  // ======================================================================
-  // Selection and information
-  [[nodiscard]] int getTextLength() const;
-  [[nodiscard]] int getLineCount() const;
-  [[nodiscard]] int getFirstVisibleLine() const;
-  [[nodiscard]] int getLinesOnScreen() const;
-  [[nodiscard]] bool isModified() const;
+    void endUndoAction();
+
+    // ======================================================================
+    // Selection and information
+    [[nodiscard]] int getTextLength() const;
+
+    [[nodiscard]] int getLineCount() const;
+
+    [[nodiscard]] int getFirstVisibleLine() const;
+
+    [[nodiscard]] int getLinesOnScreen() const;
+
+    [[nodiscard]] bool isModified() const;
+
 // SCI_SETSEL(int anchorPos, int currentPos)
-  void goToPos(int pos);
-  void goToLine(int line);
-  void setCurrentPos(int pos);
-  [[nodiscard]] int getCurrentPos() const;
-  void setAnchor(int pos);
-  [[nodiscard]] int getAnchor() const;
+    void goToPos(int pos);
+
+    void goToLine(int line);
+
+    void setCurrentPos(int pos);
+
+    [[nodiscard]] int getCurrentPos() const;
+
+    void setAnchor(int pos);
+
+    [[nodiscard]] int getAnchor() const;
+
 // SCI_SETSELECTIONSTART(int position)
 // SCI_SETSELECTIONEND(int position)
-  [[nodiscard]] int getSelectionStart() const;
-  [[nodiscard]] int getSelectionEnd() const;
+    [[nodiscard]] int getSelectionStart() const;
+
+    [[nodiscard]] int getSelectionEnd() const;
+
 // SCI_SELECTALL
 // SCI_LINEFROMPOSITION(int position)
 // SCI_POSITIONFROMLINE(int line)
 // SCI_GETLINEENDPOSITION(int line)
-  [[nodiscard]] int getLineLength(int line) const;
-  [[nodiscard]] String getSelText() const;
+    [[nodiscard]] int getLineLength(int line) const;
+
+    [[nodiscard]] String getSelText() const;
 // SCI_GETCURLINE(int textLen, char* text)
 // SCI_SELECTIONISRECTANGLE
 // SCI_SETSELECTIONMODE(int mode)
@@ -166,8 +204,8 @@ public:
 // SCI_HIDESELECTION(bool hide)
 // SCI_CHOOSECARETX
 
-  // ======================================================================
-  // Scrolling and automatic scrolling
+    // ======================================================================
+    // Scrolling and automatic scrolling
 // SCI_LINESCROLL(int column, int line)
 // SCI_SCROLLCARET
 // SCI_SETXCARETPOLICY(int caretPolicy, int caretSlop)
@@ -184,33 +222,37 @@ public:
 // SCI_SETENDATLASTLINE(bool endAtLastLine)
 // SCI_GETENDATLASTLINE
 
-  // ======================================================================
-  // White space
+    // ======================================================================
+    // White space
 // SCI_SETVIEWWS(int wsMode)
 // SCI_GETVIEWWS
 // SCI_SETWHITESPACEFORE(bool useWhitespaceForeColour, int colour)
 // SCI_SETWHITESPACEBACK(bool useWhitespaceBackColour, int colour)
 
-  // ======================================================================
-  // Cursor
+    // ======================================================================
+    // Cursor
 // SCI_SETCURSOR(int curType)
 // SCI_GETCURSOR
 
-  // ======================================================================
-  // Mouse capture
+    // ======================================================================
+    // Mouse capture
 // SCI_SETMOUSEDOWNCAPTURES(bool captures)
 // SCI_GETMOUSEDOWNCAPTURES
 
-  // ======================================================================
-  // Line endings
-  void setEolMode(int eolMode);
-  [[nodiscard]] int getEolMode() const;
-  void convertEols(int eolMode);
-  void setViewEol(bool visible);
-  [[nodiscard]] bool getViewEol() const;
+    // ======================================================================
+    // Line endings
+    void setEolMode(int eolMode);
 
-  // ======================================================================
-  // Styling
+    [[nodiscard]] int getEolMode() const;
+
+    void convertEols(int eolMode);
+
+    void setViewEol(bool visible);
+
+    [[nodiscard]] bool getViewEol() const;
+
+    // ======================================================================
+    // Styling
 // SCI_GETENDSTYLED
 // SCI_STARTSTYLING(int position, int mask)
 // SCI_SETSTYLING(int length, int style)
@@ -219,8 +261,8 @@ public:
 // SCI_GETLINESTATE(int line)
 // SCI_GETMAXLINESTATE
 
-  // ======================================================================
-  // Style definition
+    // ======================================================================
+    // Style definition
 // SCI_STYLERESETDEFAULT
 // SCI_STYLECLEARALL
 // SCI_STYLESETFONT(int styleNumber, char* fontName)
@@ -237,8 +279,8 @@ public:
 // SCI_STYLESETCHANGEABLE(int styleNumber, bool changeable)
 // SCI_STYLESETHOTSPOT(int styleNumber, bool hotspot)
 
-  // ======================================================================
-  // Caret, selection, and hotspot styles
+    // ======================================================================
+    // Caret, selection, and hotspot styles
 // SCI_SETSELFORE(bool useSelectionForeColour, int colour)
 // SCI_SETSELBACK(bool useSelectionBackColour, int colour)
 // SCI_SETCARETFORE(int colour)
@@ -261,8 +303,8 @@ public:
 // SCI_GETCARETSTICKY
 // SCI_TOGGLECARETSTICKY
 
-  // ======================================================================
-  // Margins
+    // ======================================================================
+    // Margins
 // SCI_SETMARGINTYPEN(int margin, int type)
 // SCI_GETMARGINTYPEN(int margin)
 // SCI_SETMARGINWIDTHN(int margin, int pixelWidth)
@@ -278,8 +320,8 @@ public:
 // SCI_SETFOLDMARGINCOLOUR(bool useSetting, int colour)
 // SCI_SETFOLDMARGINHICOLOUR(bool useSetting, int colour)
 
-  // ======================================================================
-  // Other settings
+    // ======================================================================
+    // Other settings
 // SCI_SETUSEPALETTE(bool allowPaletteUse)
 // SCI_GETUSEPALETTE
 // SCI_SETBUFFEREDDRAW(bool isBuffered)
@@ -295,14 +337,14 @@ public:
 // SCI_SETFOCUS(bool focus)
 // SCI_GETFOCUS
 
-  // ======================================================================
-  // Brace highlighting
+    // ======================================================================
+    // Brace highlighting
 // SCI_BRACEHIGHLIGHT(int pos1, int pos2)
 // SCI_BRACEBADLIGHT(int pos1)
 // SCI_BRACEMATCH(int position, int maxReStyle)
 
-  // ======================================================================
-  // Tabs and Indentation Guides
+    // ======================================================================
+    // Tabs and Indentation Guides
 // SCI_SETTABWIDTH(int widthInChars)
 // SCI_GETTABWIDTH
 // SCI_SETUSETABS(bool useTabs)
@@ -321,8 +363,8 @@ public:
 // SCI_SETHIGHLIGHTGUIDE(int column)
 // SCI_GETHIGHLIGHTGUIDE
 
-  // ======================================================================
-  // Markers
+    // ======================================================================
+    // Markers
 // SCI_MARKERDEFINE(int markerNumber, int markerSymbols)
 // SCI_MARKERDEFINEPIXMAP(int markerNumber, const char* xpm)
 // SCI_MARKERSETFORE(int markerNumber, int colour)
@@ -337,15 +379,15 @@ public:
 // SCI_MARKERLINEFROMHANDLE(int handle)
 // SCI_MARKERDELETEHANDLE(int handle)
 
-  // ======================================================================
-  // Indicators
+    // ======================================================================
+    // Indicators
 // SCI_INDICSETSTYLE(int indicatorNumber, int indicatorStyle)
 // SCI_INDICGETSTYLE(int indicatorNumber)
 // SCI_INDICSETFORE(int indicatorNumber, int colour)
 // SCI_INDICGETFORE(int indicatorNumber)
 
-  // ======================================================================
-  // Autocompletion
+    // ======================================================================
+    // Autocompletion
 // SCI_AUTOCSHOW(int lenEntered, const char* list)
 // SCI_AUTOCCANCEL
 // SCI_AUTOCACTIVE
@@ -376,12 +418,12 @@ public:
 // SCI_AUTOCSETMAXWIDTH(int characterCount)
 // SCI_AUTOCGETMAXWIDTH
 
-  // ======================================================================
-  // User lists
+    // ======================================================================
+    // User lists
 // SCI_USERLISTSHOW(int listType, const char* list)
 
-  // ======================================================================
-  // Call tips
+    // ======================================================================
+    // Call tips
 // SCI_CALLTIPSHOW(int posStart, const char* definition)
 // SCI_CALLTIPCANCEL
 // SCI_CALLTIPACTIVE
@@ -391,8 +433,8 @@ public:
 // SCI_CALLTIPSETFORE(int colour)
 // SCI_CALLTIPSETFOREHLT(int colour)
 
-  // ======================================================================
-  // Keyboard commands
+    // ======================================================================
+    // Keyboard commands
 // SCI_LINEDOWN
 // SCI_LINEDOWNEXTEND
 // SCI_LINEDOWNRECTEXTEND
@@ -476,24 +518,24 @@ public:
 // SCI_TAB
 // SCI_BACKTAB
 
-  // ======================================================================
-  // Key bindings
+    // ======================================================================
+    // Key bindings
 // SCI_ASSIGNCMDKEY(int keyDefinition, int sciCommand)
 // SCI_CLEARCMDKEY(int keyDefinition)
 // SCI_CLEARALLCMDKEYS
 // SCI_NULL
 
-  // ======================================================================
-  // Popup edit menu
+    // ======================================================================
+    // Popup edit menu
 // SCI_USEPOPUP(bool bEnablePopup)
 
-  // ======================================================================
-  // Macro recording
+    // ======================================================================
+    // Macro recording
 // SCI_STARTRECORD
 // SCI_STOPRECORD
 
-  // ======================================================================
-  // Printing
+    // ======================================================================
+    // Printing
 // SCI_FORMATRANGE(bool bDraw, RangeToFormat* pfr)
 // SCI_SETPRINTMAGNIFICATION(int magnification)
 // SCI_GETPRINTMAGNIFICATION
@@ -502,21 +544,22 @@ public:
 // SCI_SETPRINTWRAPMODE
 // SCI_GETPRINTWRAPMODE
 
-  // ======================================================================
-  // Direct access (dacap: don't provide this)
+    // ======================================================================
+    // Direct access (dacap: don't provide this)
 // SCI_GETDIRECTFUNCTION
 // SCI_GETDIRECTPOINTER
 
-  // ======================================================================
-  // Multiple views
-  void* getDocPointer();
-  void setDocPointer(void* doc);
+    // ======================================================================
+    // Multiple views
+    void *getDocPointer();
+
+    void setDocPointer(void *doc);
 // SCI_CREATEDOCUMENT
 // SCI_ADDREFDOCUMENT(<unused>, document* pDoc)
 // SCI_RELEASEDOCUMENT(<unused>, document* pDoc)
 
-  // ======================================================================
-  // Folding
+    // ======================================================================
+    // Folding
 // SCI_VISIBLEFROMDOCLINE(int docLine)
 // SCI_DOCLINEFROMVISIBLE(int displayLine)
 // SCI_SHOWLINES(int lineStart, int lineEnd)
@@ -533,8 +576,8 @@ public:
 // SCI_ENSUREVISIBLE(int line)
 // SCI_ENSUREVISIBLEENFORCEPOLICY(int line)
 
-  // ======================================================================
-  // Line wrapping
+    // ======================================================================
+    // Line wrapping
 // SCI_SETWRAPMODE(int wrapMode)
 // SCI_GETWRAPMODE
 // SCI_SETWRAPVISUALFLAGS(int wrapVisualFlags)
@@ -547,15 +590,18 @@ public:
 // SCI_LINESJOIN
 // SCI_WRAPCOUNT(int docLine)
 
-  // ======================================================================
-  // Zooming
-  void zoomIn();
-  void zoomOut();
-  void setZoom(int zoomInPoints);
-  int getZoom();
+    // ======================================================================
+    // Zooming
+    void zoomIn();
 
-  // ======================================================================
-  // Long lines
+    void zoomOut();
+
+    void setZoom(int zoomInPoints);
+
+    int getZoom();
+
+    // ======================================================================
+    // Long lines
 // SCI_SETEDGEMODE(int mode)
 // SCI_GETEDGEMODE
 // SCI_SETEDGECOLUMN(int column)
@@ -563,8 +609,8 @@ public:
 // SCI_SETEDGECOLOUR(int colour)
 // SCI_GETEDGECOLOUR
 
-  // ======================================================================
-  // Lexer
+    // ======================================================================
+    // Lexer
 // SCI_SETLEXER(int lexer)
 // SCI_GETLEXER
 // SCI_SETLEXERLANGUAGE(<unused>, char* name)
@@ -577,17 +623,17 @@ public:
 // SCI_SETKEYWORDS(int keyWordSet, const char* keyWordList)
 // SCI_GETSTYLEBITSNEEDED
 
-  // ======================================================================
-  // Notifications
+    // ======================================================================
+    // Notifications
 
-  // Signals
-  Signal0<void> UpdateUI; ///< @see onUpdateUI
+    // Signals
+    Signal0<void> UpdateUI; ///< @see onUpdateUI
 
 protected:
-  // Reflected notifications
-  bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult) override;
+    // Reflected notifications
+    bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT &lResult) override;
 
-  // New events
+    // New events
 // SCN_STYLENEEDED
 // SCN_CHARADDED
 // SCN_SAVEPOINTREACHED
@@ -595,7 +641,7 @@ protected:
 // SCN_MODIFYATTEMPTRO
 // SCN_KEY
 // SCN_DOUBLECLICK
-  virtual void onUpdateUI();
+    virtual void onUpdateUI();
 // SCN_MODIFIED
 // SCN_MACRORECORD
 // SCN_MARGINCLICK

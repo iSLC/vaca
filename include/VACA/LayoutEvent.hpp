@@ -12,17 +12,18 @@
 
 namespace vaca {
 
-class VACA_DLL LayoutEvent : public Event
-{
-  Rect m_bounds;
+class VACA_DLL LayoutEvent : public Event {
+    Rect m_bounds;
 
 public:
 
-  LayoutEvent(Widget* source, const Rect& bounds);
-  ~LayoutEvent() override;
+    LayoutEvent(Widget *source, const Rect &bounds);
 
-  [[nodiscard]] Rect getBounds() const;
-  void setBounds(const Rect& rc);
+    ~LayoutEvent() override;
+
+    [[nodiscard]] Rect getBounds() const;
+
+    void setBounds(const Rect &rc);
 
 };
 

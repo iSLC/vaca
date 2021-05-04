@@ -18,11 +18,9 @@ namespace vaca {
 /**
    Represents the Win32 class used by DockBar.
 */
-class DockBarClass : public WidgetClass
-{
+class DockBarClass : public WidgetClass {
 public:
-  static WidgetClassName getClassName()
-  { return WidgetClassName(L"Vaca.DockBar"); }
+    static WidgetClassName getClassName() { return WidgetClassName(L"Vaca.DockBar"); }
 };
 
 /**
@@ -32,119 +30,152 @@ public:
 
    @see ToolBar
 */
-class VACA_DLL DockBar : public Register<DockBarClass>, public Widget
-{
-  // TODO less friendship here
-  friend class DockArea;
-  friend class DockFrame;
+class VACA_DLL DockBar : public Register<DockBarClass>, public Widget {
+    // TODO less friendship here
+    friend class DockArea;
 
-  struct DragInfo;
+    friend class DockFrame;
 
-  /**
-     In what DockArea is the DockBar docked? It's != NULL only if the
-     DockBar is docked.
-  */
-  DockArea* m_dockArea;
+    struct DragInfo;
 
-  /**
-     The DockFrame that contains the DockBar when it's floating. It's
-     != NULL only if the DockBar is floating.
-  */
-  DockFrame* m_dockFrame;
+    /**
+       In what DockArea is the DockBar docked? It's != NULL only if the
+       DockBar is docked.
+    */
+    DockArea *m_dockArea;
 
-  /**
-     Drag stuff. Not NULL means that the user is dragging the DockBar.
-  */
-  DragInfo* m_drag;
+    /**
+       The DockFrame that contains the DockBar when it's floating. It's
+       != NULL only if the DockBar is floating.
+    */
+    DockFrame *m_dockFrame;
 
-  /**
-     The Frame that own the DockBar. This owner generally should have
-     some DockArea to dock the DockBar, but isn't obligatory.
-  */
-  Frame* m_owner;
+    /**
+       Drag stuff. Not NULL means that the user is dragging the DockBar.
+    */
+    DragInfo *m_drag;
 
-  /**
-     Information of the DockBar when it's docked (or the information
-     about the last docked position). This can be a derived class of
-     DockInfo, used by your own DockArea (like BandedDockArea does).
-  */
-  DockInfo* m_dockInfo;
+    /**
+       The Frame that own the DockBar. This owner generally should have
+       some DockArea to dock the DockBar, but isn't obligatory.
+    */
+    Frame *m_owner;
 
-  bool m_fullDrag;
-  bool m_floatingGripper;
+    /**
+       Information of the DockBar when it's docked (or the information
+       about the last docked position). This can be a derived class of
+       DockInfo, used by your own DockArea (like BandedDockArea does).
+    */
+    DockInfo *m_dockInfo;
+
+    bool m_fullDrag;
+    bool m_floatingGripper;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  DockBar(const String& title, Frame* parent, Style style = Styles::Default);
-  ~DockBar() override;
+    DockBar(const String &title, Frame *parent, Style style = Styles::Default);
 
-  void setVisible(bool visible) override;
+    ~DockBar() override;
 
-  void setFullDrag(bool state);
-  [[nodiscard]] bool isFullDrag() const;
+    void setVisible(bool visible) override;
 
-  void setFloatingGripper(bool state);
-  [[nodiscard]] bool isFloatingGripper() const;
+    void setFullDrag(bool state);
 
-  [[nodiscard]] bool isDocked() const;
-  [[nodiscard]] bool isFloating() const;
+    [[nodiscard]] bool isFullDrag() const;
 
-  void dockIn(DockArea* dockArea);
-  void floatOut();
+    void setFloatingGripper(bool state);
 
-  Frame* getOwnerFrame();
-  DockArea* getDockArea();
-  DockFrame* getDockFrame();
-  DockInfo* getDockInfo();
+    [[nodiscard]] bool isFloatingGripper() const;
 
-  [[nodiscard]] virtual Size getDockedSize(Side side) const;
-  [[nodiscard]] virtual Size getFloatingSize() const;
+    [[nodiscard]] bool isDocked() const;
+
+    [[nodiscard]] bool isFloating() const;
+
+    void dockIn(DockArea *dockArea);
+
+    void floatOut();
+
+    Frame *getOwnerFrame();
+
+    DockArea *getDockArea();
+
+    DockFrame *getDockFrame();
+
+    DockInfo *getDockInfo();
+
+    [[nodiscard]] virtual Size getDockedSize(Side side) const;
+
+    [[nodiscard]] virtual Size getFloatingSize() const;
 
 protected:
 
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
-  virtual void onDockFrameClose(CloseEvent& ev);
-  void onPaint(PaintEvent& ev) override;
-  void onLayout(LayoutEvent& ev) override;
-  void onResize(ResizeEvent& ev) override;
-  void onMouseDown(MouseEvent& ev) override;
-  void onMouseMove(MouseEvent& ev) override;
-  void onMouseUp(MouseEvent& ev) override;
-  void onDoubleClick(MouseEvent& ev) override;
-  // New events
-  virtual void onDocking();
-  virtual void onFloating();
-  virtual void onResizingFrame(DockFrame* frame, CardinalDirection dir, Rect& rc);
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
 
-  virtual void paintGripper(Graphics& g);
-  [[nodiscard]] virtual Size measureGripper(bool docked, Side dockSide) const;
-  [[nodiscard]] virtual Side getGripperSide(bool docked, Side dockSide) const;
-  [[nodiscard]] virtual bool isGripperVisible(bool docked, Side dockSide) const;
+    virtual void onDockFrameClose(CloseEvent &ev);
 
-  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
+    void onPaint(PaintEvent &ev) override;
+
+    void onLayout(LayoutEvent &ev) override;
+
+    void onResize(ResizeEvent &ev) override;
+
+    void onMouseDown(MouseEvent &ev) override;
+
+    void onMouseMove(MouseEvent &ev) override;
+
+    void onMouseUp(MouseEvent &ev) override;
+
+    void onDoubleClick(MouseEvent &ev) override;
+
+    // New events
+    virtual void onDocking();
+
+    virtual void onFloating();
+
+    virtual void onResizingFrame(DockFrame *frame, CardinalDirection dir, Rect &rc);
+
+    virtual void paintGripper(Graphics &g);
+
+    [[nodiscard]] virtual Size measureGripper(bool docked, Side dockSide) const;
+
+    [[nodiscard]] virtual Side getGripperSide(bool docked, Side dockSide) const;
+
+    [[nodiscard]] virtual bool isGripperVisible(bool docked, Side dockSide) const;
+
+    bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT &lResult) override;
 
 private:
 
-  void makeDock(DockArea* dockArea, DockInfo* dockInfo);
-  void makeFloat(const Rect* rect = nullptr);
+    void makeDock(DockArea *dockArea, DockInfo *dockInfo);
 
-  void beginDrag();
-  void dragBar();
-  void endDrag();
+    void makeFloat(const Rect *rect = nullptr);
 
-  void cleanUp();
-  void cleanFrame();
-  void focusOwner();
-  DockInfo* calcDestination(Rect& rc);
-  void drawTracker(Graphics& g);
-  void cleanTracker(Graphics& g);
-  DockArea* xorTracker(Graphics& g);
-  static Size getNonClientSizeForADockFrame();
+    void beginDrag();
+
+    void dragBar();
+
+    void endDrag();
+
+    void cleanUp();
+
+    void cleanFrame();
+
+    void focusOwner();
+
+    DockInfo *calcDestination(Rect &rc);
+
+    void drawTracker(Graphics &g);
+
+    void cleanTracker(Graphics &g);
+
+    DockArea *xorTracker(Graphics &g);
+
+    static Size getNonClientSizeForADockFrame();
 
 };
 

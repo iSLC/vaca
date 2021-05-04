@@ -17,20 +17,21 @@ namespace vaca {
 
    @see Font
 */
-class VACA_DLL FontDialog : public CommonDialog
-{
-  Font m_font;
-  LOGFONT m_logFont{};
+class VACA_DLL FontDialog : public CommonDialog {
+    Font m_font;
+    LOGFONT m_logFont{};
 
 public:
 
-  FontDialog(const Font& font, Widget* parent);
-  ~FontDialog() override;
+    FontDialog(const Font &font, Widget *parent);
 
-  bool doModal() override;
+    ~FontDialog() override;
 
-  [[nodiscard]] Font getFont() const;
-  bool getLogFont(LPLOGFONT lplf) const;
+    bool doModal() override;
+
+    [[nodiscard]] Font getFont() const;
+
+    bool getLogFont(LPLOGFONT lplf) const;
 
 };
 

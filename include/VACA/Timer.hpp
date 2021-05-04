@@ -25,47 +25,53 @@ namespace vaca {
      are controlled in a separated thread for this specific purpose.
    @endwin32
 */
-class VACA_DLL Timer : private NonCopyable
-{
-  friend class Application;
+class VACA_DLL Timer : private NonCopyable {
+    friend class Application;
 
-  ThreadId m_threadOwnerId;
-  bool m_running : 1;
-  bool m_firstTick : 1;
-  int m_interval;
-  int m_timeCounter;
-  int m_tickCounter;
+    ThreadId m_threadOwnerId;
+    bool m_running: 1;
+    bool m_firstTick: 1;
+    int m_interval;
+    int m_timeCounter;
+    int m_tickCounter;
 
 public:
 
-  Timer(int interval);
-  virtual ~Timer();
+    Timer(int interval);
 
-  [[nodiscard]] int getInterval() const;
-  void setInterval(int interval);
+    virtual ~Timer();
 
-  [[nodiscard]] bool isRunning() const;
+    [[nodiscard]] int getInterval() const;
 
-  void start();
-  void stop();
+    void setInterval(int interval);
 
-  static void pollTimers();
+    [[nodiscard]] bool isRunning() const;
 
-  // Signals
-  Signal0<void> Tick;   ///< @see onTick
+    void start();
+
+    void stop();
+
+    static void pollTimers();
+
+    // Signals
+    Signal0<void> Tick;   ///< @see onTick
 
 protected:
 
-  // Events
-  virtual void onTick();
+    // Events
+    virtual void onTick();
 
 private:
 
-  static void run_timer_thread();
-  static void start_timer_thread();
-  static void stop_timer_thread();
-  static void remove_timer(Timer* t);
-  static void fire_timers_for_thread();
+    static void run_timer_thread();
+
+    static void start_timer_thread();
+
+    static void stop_timer_thread();
+
+    static void remove_timer(Timer *t);
+
+    static void fire_timers_for_thread();
 
 };
 

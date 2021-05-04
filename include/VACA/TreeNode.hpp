@@ -14,77 +14,97 @@
 
 namespace vaca {
 
-typedef std::vector<TreeNode*> TreeNodeList;
+typedef std::vector<TreeNode *> TreeNodeList;
 
 /**
    A TreeView node.  It has a text label, an image, a selected image
    asociated, and a state (collapsed/expanded). A node can be parent
    of sub-TreeNodes.
 */
-class VACA_DLL TreeNode : public Component
-{
-  friend class TreeView;
-  friend class TreeViewIterator;
+class VACA_DLL TreeNode : public Component {
+    friend class TreeView;
 
-  String       m_text;
-  int          m_image;
-  int          m_selectedImage;
-  TreeNode*    m_parent;
-  TreeNodeList m_children;
-  HTREEITEM    m_handle;
-  TreeView*    m_owner;
-  bool         m_deleted;
+    friend class TreeViewIterator;
+
+    String m_text;
+    int m_image;
+    int m_selectedImage;
+    TreeNode *m_parent;
+    TreeNodeList m_children;
+    HTREEITEM m_handle;
+    TreeView *m_owner;
+    bool m_deleted;
 
 public:
 
-  TreeNode(const String& text = L"", int imageIndex = -1, int selectedImageIndex = -1);
-  ~TreeNode() override;
+    TreeNode(const String &text = L"", int imageIndex = -1, int selectedImageIndex = -1);
 
-  TreeNode* getParent();
-  TreeNodeList getChildren();
-  TreeView* getTreeView();
+    ~TreeNode() override;
 
-  void addNode(TreeNode* node);
-  void removeNode(TreeNode* node);
+    TreeNode *getParent();
 
-  bool isAncestorOf(TreeNode* child) const;
+    TreeNodeList getChildren();
 
-  virtual bool hasChildren();
-  virtual String getText();
-  virtual int getImage();
-  virtual int getSelectedImage();
+    TreeView *getTreeView();
 
-  void setText(const String& text);
-  void setImage(int imageIndex);
-  void setSelectedImage(int selectedImageIndex);
+    void addNode(TreeNode *node);
 
-  bool isExpanded();
-  void setExpanded(bool state);
+    void removeNode(TreeNode *node);
 
-  [[nodiscard]] Rect getBounds() const;
-  [[nodiscard]] Rect getRowBounds() const;
-  void ensureVisible();
+    bool isAncestorOf(TreeNode *child) const;
 
-  HTREEITEM getHandle();
+    virtual bool hasChildren();
 
-  static TreeNode* fromHandle(HWND hwnd, HTREEITEM htreeitem);
+    virtual String getText();
+
+    virtual int getImage();
+
+    virtual int getSelectedImage();
+
+    void setText(const String &text);
+
+    void setImage(int imageIndex);
+
+    void setSelectedImage(int selectedImageIndex);
+
+    bool isExpanded();
+
+    void setExpanded(bool state);
+
+    [[nodiscard]] Rect getBounds() const;
+
+    [[nodiscard]] Rect getRowBounds() const;
+
+    void ensureVisible();
+
+    HTREEITEM getHandle();
+
+    static TreeNode *fromHandle(HWND hwnd, HTREEITEM htreeitem);
 
 protected:
 
-  // New events
-  virtual void onBeforeExpand(TreeViewEvent& ev);
-  virtual void onBeforeCollapse(TreeViewEvent& ev);
-  virtual void onBeforeSelect(TreeViewEvent& ev);
-  virtual void onBeforeLabelEdit(TreeViewEvent& ev);
-  virtual void onAfterExpand(TreeViewEvent& ev);
-  virtual void onAfterCollapse(TreeViewEvent& ev);
-  virtual void onAfterSelect(TreeViewEvent& ev);
-  virtual void onAfterLabelEdit(TreeViewEvent& ev);
+    // New events
+    virtual void onBeforeExpand(TreeViewEvent &ev);
+
+    virtual void onBeforeCollapse(TreeViewEvent &ev);
+
+    virtual void onBeforeSelect(TreeViewEvent &ev);
+
+    virtual void onBeforeLabelEdit(TreeViewEvent &ev);
+
+    virtual void onAfterExpand(TreeViewEvent &ev);
+
+    virtual void onAfterCollapse(TreeViewEvent &ev);
+
+    virtual void onAfterSelect(TreeViewEvent &ev);
+
+    virtual void onAfterLabelEdit(TreeViewEvent &ev);
 
 private:
 
-  void addToTreeView(TreeView* treeView);
-  void removeFromTreeView();
+    void addToTreeView(TreeView *treeView);
+
+    void removeFromTreeView();
 
 };
 

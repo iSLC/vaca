@@ -18,13 +18,14 @@ namespace vaca {
 /**
    Thrown when Register can't registers the WidgetClass.
 */
-class RegisterException : public Exception
-{
+class RegisterException : public Exception {
 public:
 
-  RegisterException() = default;
-  RegisterException(const String& message) : Exception(message) { }
-  ~RegisterException() noexcept override = default;
+    RegisterException() = default;
+
+    RegisterException(const String &message) : Exception(message) {}
+
+    ~RegisterException() noexcept override = default;
 
 };
 
@@ -42,39 +43,37 @@ public:
    @see @ref page_tn_001
 */
 template<class T>
-class Register
-{
+class Register {
 public:
 
-  /**
-     Calls @msdn{RegisterClassEx} filling a @msdn{WNDCLASSEX} structure
-     with the values returned by the T class (T must be derived from
-     WidgetClass).
-  */
-  Register()
-  {
-    WidgetClassName class_name = T::getClassName();
-    WNDCLASSEX wcex;
+    /**
+       Calls @msdn{RegisterClassEx} filling a @msdn{WNDCLASSEX} structure
+       with the values returned by the T class (T must be derived from
+       WidgetClass).
+    */
+    Register() {
+        WidgetClassName class_name = T::getClassName();
+        WNDCLASSEX wcex;
 
-    if (!GetClassInfoEx(Application::getHandle(), class_name.c_str(), &wcex)) {
-      wcex.cbSize        = sizeof(WNDCLASSEX);
-      wcex.style         = T::getStyle();
-      wcex.lpfnWndProc   = T::getWndProc();
-      wcex.cbClsExtra    = 0;
-      wcex.cbWndExtra    = T::getWndExtra();
-      wcex.hInstance     = Application::getHandle();
-      wcex.hIcon         = (HICON)NULL;//LoadIcon(hInstance, IDI_GFC);
-      wcex.hCursor       = (HCURSOR)NULL;//LoadCursor(NULL, IDC_ARROW);
-      wcex.hbrBackground = reinterpret_cast<HBRUSH>(T::getColor()+1);
-      wcex.lpszMenuName  = (LPCTSTR)NULL;
-      wcex.lpszClassName = class_name.c_str();
-      wcex.hIconSm       = NULL;//LoadIcon(wcex.hInstance, (LPCTSTR)IDI_SMALL);
+        if (!GetClassInfoEx(Application::getHandle(), class_name.c_str(), &wcex)) {
+            wcex.cbSize = sizeof(WNDCLASSEX);
+            wcex.style = T::getStyle();
+            wcex.lpfnWndProc = T::getWndProc();
+            wcex.cbClsExtra = 0;
+            wcex.cbWndExtra = T::getWndExtra();
+            wcex.hInstance = Application::getHandle();
+            wcex.hIcon = (HICON) NULL;//LoadIcon(hInstance, IDI_GFC);
+            wcex.hCursor = (HCURSOR) NULL;//LoadCursor(NULL, IDC_ARROW);
+            wcex.hbrBackground = reinterpret_cast<HBRUSH>(T::getColor() + 1);
+            wcex.lpszMenuName = (LPCTSTR) NULL;
+            wcex.lpszClassName = class_name.c_str();
+            wcex.hIconSm = NULL;//LoadIcon(wcex.hInstance, (LPCTSTR)IDI_SMALL);
 
-      if (RegisterClassEx(&wcex) == 0)
-	throw RegisterException(format_string(L"Error registering class \"%s\"",
-					      class_name.c_str()));
+            if (RegisterClassEx(&wcex) == 0)
+                throw RegisterException(format_string(L"Error registering class \"%s\"",
+                                                      class_name.c_str()));
+        }
     }
-  }
 
 };
 

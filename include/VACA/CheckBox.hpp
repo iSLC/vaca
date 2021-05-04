@@ -15,16 +15,16 @@ namespace vaca {
 
    @image html CheckBox.png
 */
-class VACA_DLL CheckBox : public ButtonBase
-{
+class VACA_DLL CheckBox : public ButtonBase {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  CheckBox(const String& text, Widget* parent, const Style& style = Styles::Default);
-  ~CheckBox() override;
+    CheckBox(const String &text, Widget *parent, const Style &style = Styles::Default);
+
+    ~CheckBox() override;
 
 };
 

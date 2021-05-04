@@ -15,12 +15,11 @@ namespace vaca {
 /**
    Represents the Win32 class used by Dialog.
 */
-class DialogClass : public WidgetClass
-{
+class DialogClass : public WidgetClass {
 public:
-  static WidgetClassName getClassName()
-  { return WidgetClassName(L"Vaca.Dialog"); }
-  static int getWndExtra() { return DLGWINDOWEXTRA; }
+    static WidgetClassName getClassName() { return WidgetClassName(L"Vaca.Dialog"); }
+
+    static int getWndExtra() { return DLGWINDOWEXTRA; }
 };
 
 /**
@@ -61,69 +60,77 @@ public:
    Dialog, because the #preTranslateMessage "eat" all
    Alt+Letter keyboard messages (used as mnemonics for MenuItems).
 */
-class VACA_DLL Dialog : public Register<DialogClass>, public Frame
-{
-  bool m_state;
+class VACA_DLL Dialog : public Register<DialogClass>, public Frame {
+    bool m_state;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-    static const Style Modal;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+        static const Style Modal;
+    };
 
-  struct VACA_DLL Id {		// it Id "namespace"
+    struct VACA_DLL Id {        // it Id "namespace"
 
-    /**
-       It is a CommandId that represents the OK buttons.
+        /**
+           It is a CommandId that represents the OK buttons.
 
-       A Dialog has as default behavior for Ok command: closes the
-       window and doModal returns true.
+           A Dialog has as default behavior for Ok command: closes the
+           window and doModal returns true.
 
-       @win32
-	 It is equal to IDOK.
-       @endwin32
-    */
-    static const CommandId Ok = 1;
+           @win32
+         It is equal to IDOK.
+           @endwin32
+        */
+        static const CommandId Ok = 1;
 
-    /**
-       It is a CommandId that represents the Cancel buttons.
+        /**
+           It is a CommandId that represents the Cancel buttons.
 
-       A Dialog has as default behavior for Cancel command: closes
-       the window and doModal returns false.
+           A Dialog has as default behavior for Cancel command: closes
+           the window and doModal returns false.
 
-       @win32
-         It is equal to IDCANCEL.
-       @endwin32
-    */
-    static const CommandId Cancel = 2;
+           @win32
+             It is equal to IDCANCEL.
+           @endwin32
+        */
+        static const CommandId Cancel = 2;
 
-  };
+    };
 
-  Dialog(const String& title, Widget* parent = nullptr, const Style& style = Styles::Default);
-  Dialog(const WidgetClassName& className, const String& title, Widget* parent = nullptr, const Style& style = Styles::Default);
-  explicit Dialog(ResourceId dialogId, Widget* parent = nullptr);
-  explicit Dialog(HWND handle);
-  ~Dialog() override;
+    Dialog(const String &title, Widget *parent = nullptr, const Style &style = Styles::Default);
 
-  void setReturnState(bool state);
+    Dialog(const WidgetClassName &className, const String &title, Widget *parent = nullptr,
+           const Style &style = Styles::Default);
 
-  virtual bool doModal();
-  bool preTranslateMessage(Message& message) override;
+    explicit Dialog(ResourceId dialogId, Widget *parent = nullptr);
 
-  Widget* getNextFocusableWidget(Widget* widget);
-  Widget* getPreviousFocusableWidget(Widget* widget);
+    explicit Dialog(HWND handle);
 
-  Signal0<void> Ok;       ///< @see onOk
-  Signal0<void> Cancel;   ///< @see onCancel
+    ~Dialog() override;
+
+    void setReturnState(bool state);
+
+    virtual bool doModal();
+
+    bool preTranslateMessage(Message &message) override;
+
+    Widget *getNextFocusableWidget(Widget *widget);
+
+    Widget *getPreviousFocusableWidget(Widget *widget);
+
+    Signal0<void> Ok;       ///< @see onOk
+    Signal0<void> Cancel;   ///< @see onCancel
 
 protected:
-  virtual void onOk();
-  virtual void onCancel();
-  void onCommand(CommandEvent& ev) override;
+    virtual void onOk();
+
+    virtual void onCancel();
+
+    void onCommand(CommandEvent &ev) override;
 
 private:
-  static INT_PTR CALLBACK globalDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+    static INT_PTR CALLBACK globalDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 };
 

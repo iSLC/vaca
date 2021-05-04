@@ -14,36 +14,38 @@ namespace vaca {
 // ======================================================================
 // BoxLayout
 
-class VACA_DLL BoxLayout : public Layout
-{
-  Orientation m_orientation;
-  bool m_homogeneous;
-  int m_border;
-  int m_childSpacing;
+class VACA_DLL BoxLayout : public Layout {
+    Orientation m_orientation;
+    bool m_homogeneous;
+    int m_border;
+    int m_childSpacing;
 
 public:
 
-  BoxLayout(Orientation orientation,
-	    bool homogeneous,
-	    int borderSize = 4,
-	    int childSpacing = 4);
+    BoxLayout(Orientation orientation,
+              bool homogeneous,
+              int borderSize = 4,
+              int childSpacing = 4);
 
-  bool isHorizontal();
-  bool isVertical();
+    bool isHorizontal();
 
-  [[nodiscard]] bool isHomogeneous() const;
+    bool isVertical();
 
-  [[nodiscard]] int getBorder() const;
-  void setBorder(int border);
+    [[nodiscard]] bool isHomogeneous() const;
 
-  [[nodiscard]] int getChildSpacing() const;
-  void setChildSpacing(int childSpacing);
+    [[nodiscard]] int getBorder() const;
 
-  Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn) override;
+    void setBorder(int border);
+
+    [[nodiscard]] int getChildSpacing() const;
+
+    void setChildSpacing(int childSpacing);
+
+    Size getPreferredSize(Widget *parent, WidgetList &widgets, const Size &fitIn) override;
 
 protected:
 
-  void layout(Widget* parent, WidgetList& widgets, const Rect& rc) override;
+    void layout(Widget *parent, WidgetList &widgets, const Rect &rc) override;
 
 };
 

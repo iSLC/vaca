@@ -15,34 +15,38 @@ namespace vaca {
 /**
    Data for an event that comes from the keyboard.
 */
-class VACA_DLL KeyEvent : public ConsumableEvent
-{
-  /**
-     Virtual-key code.
+class VACA_DLL KeyEvent : public ConsumableEvent {
+    /**
+       Virtual-key code.
 
-     @see #getKeyCode, Keys
-  */
-  int m_keys;
+       @see #getKeyCode, Keys
+    */
+    int m_keys;
 
-  /**
-     Character-key code.
+    /**
+       Character-key code.
 
-     @see #getCharCode
-  */
-  Char m_charCode;
+       @see #getCharCode
+    */
+    Char m_charCode;
 
 public:
 
-  KeyEvent(Widget* source, Keys::Type keys, Char charCode);
-  ~KeyEvent() override;
+    KeyEvent(Widget *source, Keys::Type keys, Char charCode);
 
-  [[nodiscard]] Keys::Type getKeyCode() const;
-  [[nodiscard]] Keys::Type getModifiers() const;
-  [[nodiscard]] Char getCharCode() const;
+    ~KeyEvent() override;
 
-  [[nodiscard]] bool isShift() const;
-  [[nodiscard]] bool isControl() const;
-  [[nodiscard]] bool isAlt() const;
+    [[nodiscard]] Keys::Type getKeyCode() const;
+
+    [[nodiscard]] Keys::Type getModifiers() const;
+
+    [[nodiscard]] Char getCharCode() const;
+
+    [[nodiscard]] bool isShift() const;
+
+    [[nodiscard]] bool isControl() const;
+
+    [[nodiscard]] bool isAlt() const;
 
 };
 

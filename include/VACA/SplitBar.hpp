@@ -16,74 +16,88 @@ namespace vaca {
 /**
    Represents the Win32 class used by SplitBar.
 */
-class SplitBarClass : public WidgetClass
-{
+class SplitBarClass : public WidgetClass {
 public:
-  static WidgetClassName getClassName()
-  { return WidgetClassName(L"Vaca.SplitBar"); }
+    static WidgetClassName getClassName() { return WidgetClassName(L"Vaca.SplitBar"); }
 };
 
-class VACA_DLL SplitBar : public Register<SplitBarClass>
-			, public Widget
-{
-  Orientation m_orientation;
-  Widget* m_pane1;
-  Widget* m_pane2;
-  int m_barSize;
-  double m_barPos;
-  double m_oldBarPos{};
-  Point	m_oldPoint;
-  bool m_fullDrag;
-  bool m_trackerIsVisible;
-  bool m_gripperVisible;
+class VACA_DLL SplitBar : public Register<SplitBarClass>, public Widget {
+    Orientation m_orientation;
+    Widget *m_pane1;
+    Widget *m_pane2;
+    int m_barSize;
+    double m_barPos;
+    double m_oldBarPos{};
+    Point m_oldPoint;
+    bool m_fullDrag;
+    bool m_trackerIsVisible;
+    bool m_gripperVisible;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-    static const Style ByPixels;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+        static const Style ByPixels;
+    };
 
-  SplitBar(Orientation orientation, Widget* parent, const Style& style = Styles::Default);
-  ~SplitBar() override;
+    SplitBar(Orientation orientation, Widget *parent, const Style &style = Styles::Default);
 
-  void setPane1(Widget* widget);
-  void setPane2(Widget* widget);
+    ~SplitBar() override;
 
-  [[nodiscard]] Widget* getPane1() const;
-  [[nodiscard]] Widget* getPane2() const;
+    void setPane1(Widget *widget);
 
-  [[nodiscard]] int getBarSize() const;
-  void setBarSize(int size);
+    void setPane2(Widget *widget);
 
-  [[nodiscard]] double getBarPosition() const;
-  void setBarPosition(double pos);
+    [[nodiscard]] Widget *getPane1() const;
 
-  [[nodiscard]] Orientation getOrientation() const;
-  void setOrientation(Orientation orientation);
+    [[nodiscard]] Widget *getPane2() const;
 
-  void setFullDrag(bool state);
-  [[nodiscard]] bool isFullDrag() const;
+    [[nodiscard]] int getBarSize() const;
 
-  void setGripperVisible(bool state);
-  [[nodiscard]] bool isGripperVisible() const;
+    void setBarSize(int size);
+
+    [[nodiscard]] double getBarPosition() const;
+
+    void setBarPosition(double pos);
+
+    [[nodiscard]] Orientation getOrientation() const;
+
+    void setOrientation(Orientation orientation);
+
+    void setFullDrag(bool state);
+
+    [[nodiscard]] bool isFullDrag() const;
+
+    void setGripperVisible(bool state);
+
+    [[nodiscard]] bool isGripperVisible() const;
 
 protected:
-  // Events
-  void onLayout(LayoutEvent& ev) override;
-  void onResize(ResizeEvent& ev) override;
-  void onPaint(PaintEvent& ev) override;
-  void onMouseMove(MouseEvent& ev) override;
-  void onMouseDown(MouseEvent& ev) override;
-  void onMouseUp(MouseEvent& ev) override;
-  void onSetCursor(SetCursorEvent& ev) override;
+    // Events
+    void onLayout(LayoutEvent &ev) override;
+
+    void onResize(ResizeEvent &ev) override;
+
+    void onPaint(PaintEvent &ev) override;
+
+    void onMouseMove(MouseEvent &ev) override;
+
+    void onMouseDown(MouseEvent &ev) override;
+
+    void onMouseUp(MouseEvent &ev) override;
+
+    void onSetCursor(SetCursorEvent &ev) override;
 
 private:
-  void updateChildrenVisibility();
-  [[nodiscard]] Rect getBarRect() const;
-  void getRects(Rect& rcFirst, Rect& rcSecond) const;
-  void drawTracker(Graphics& g);
-  void cleanTracker(Graphics& g);
+    void updateChildrenVisibility();
+
+    [[nodiscard]] Rect getBarRect() const;
+
+    void getRects(Rect &rcFirst, Rect &rcSecond) const;
+
+    void drawTracker(Graphics &g);
+
+    void cleanTracker(Graphics &g);
 };
 
 } // namespace vaca

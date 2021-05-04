@@ -19,18 +19,17 @@ namespace vaca {
 
    @see PenStyle
 */
-struct PenStyleEnum
-{
-  enum enumeration {
-    Solid,
-    Dash,
-    Dot,
-    DashDot,
-    DashDotDot,
-    Null,
-    InsideFrame
-  };
-  static const enumeration default_value = Solid;
+struct PenStyleEnum {
+    enum enumeration {
+        Solid,
+        Dash,
+        Dot,
+        DashDot,
+        DashDotDot,
+        Null,
+        InsideFrame
+    };
+    static const enumeration default_value = Solid;
 };
 
 /**
@@ -53,14 +52,13 @@ typedef Enum<PenStyleEnum> PenStyle;
 
    @see PenEndCap
 */
-struct PenEndCapEnum
-{
-  enum enumeration {
-    Round,
-    Square,
-    Flat
-  };
-  static const enumeration default_value = Round;
+struct PenEndCapEnum {
+    enum enumeration {
+        Round,
+        Square,
+        Flat
+    };
+    static const enumeration default_value = Round;
 };
 
 /**
@@ -80,14 +78,13 @@ typedef Enum<PenEndCapEnum> PenEndCap;
 
    @see PenJoin
 */
-struct PenJoinEnum
-{
-  enum enumeration {
-    Round,
-    Bevel,
-    Miter
-  };
-  static const enumeration default_value = Round;
+struct PenJoinEnum {
+    enum enumeration {
+        Round,
+        Bevel,
+        Miter
+    };
+    static const enumeration default_value = Round;
 };
 
 /**
@@ -115,32 +112,40 @@ typedef Enum<PenJoinEnum> PenJoin;
 
    @see Graphics, Graphics#drawLine, Graphics#drawRect, Graphics#strokePath
 */
-class VACA_DLL Pen
-{
-  template<typename To, typename From>
-  friend To convert_to(const From& from);
+class VACA_DLL Pen {
+    template<typename To, typename From>
+    friend To convert_to(const From &from);
 
 public:
-  Pen();
-  Pen(const Pen& pen);
-  explicit Pen(const Color& color, int width = 1);
-  Pen(const Color& color, int width,
-      PenStyle style, // = PenStyle::Solid,
-      PenEndCap endCap = PenEndCap::Round,
-      PenJoin join = PenJoin::Round);
-  virtual ~Pen();
+    Pen();
 
-  Pen& operator=(const Pen& pen);
+    Pen(const Pen &pen);
 
-  [[nodiscard]] Color getColor() const;
-  [[nodiscard]] int getWidth() const;
-  [[nodiscard]] PenStyle getStyle() const;
-  [[nodiscard]] PenEndCap getEndCap() const;
-  [[nodiscard]] PenJoin getJoin() const;
+    explicit Pen(const Color &color, int width = 1);
+
+    Pen(const Color &color, int width,
+        PenStyle style, // = PenStyle::Solid,
+        PenEndCap endCap = PenEndCap::Round,
+        PenJoin join = PenJoin::Round);
+
+    virtual ~Pen();
+
+    Pen &operator=(const Pen &pen);
+
+    [[nodiscard]] Color getColor() const;
+
+    [[nodiscard]] int getWidth() const;
+
+    [[nodiscard]] PenStyle getStyle() const;
+
+    [[nodiscard]] PenEndCap getEndCap() const;
+
+    [[nodiscard]] PenJoin getJoin() const;
 
 private:
-  class PenImpl;
-  SharedPtr<PenImpl> m_impl;
+    class PenImpl;
+
+    SharedPtr<PenImpl> m_impl;
 };
 
 } // namespace vaca

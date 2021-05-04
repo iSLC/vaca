@@ -24,60 +24,56 @@ namespace vaca {
 /**
    Class to show a message box.
 */
-class VACA_DLL MsgBox
-{
+class VACA_DLL MsgBox {
 public:
 
-  struct TypeEnum
-  {
-    enum enumeration {
-      Ok,
-      OkCancel,
-      YesNo,
-      YesNoCancel,
-      RetryCancel,
-      CancelRetryContinue,
+    struct TypeEnum {
+        enum enumeration {
+            Ok,
+            OkCancel,
+            YesNo,
+            YesNoCancel,
+            RetryCancel,
+            CancelRetryContinue,
+        };
+        static const enumeration default_value = Ok;
     };
-    static const enumeration default_value = Ok;
-  };
 
-  struct IconEnum
-  {
-    enum enumeration {
-      None,
-      Error,
-      Warning,
-      Question,
-      Information,
+    struct IconEnum {
+        enum enumeration {
+            None,
+            Error,
+            Warning,
+            Question,
+            Information,
+        };
+        static const enumeration default_value = None;
     };
-    static const enumeration default_value = None;
-  };
 
-  struct ResultEnum
-  {
-    enum enumeration {
-      Ok, Cancel,
-      Yes, No,
-      Retry, Continue,
+    struct ResultEnum {
+        enum enumeration {
+            Ok, Cancel,
+            Yes, No,
+            Retry, Continue,
+        };
+        static const enumeration default_value = Ok;
     };
-    static const enumeration default_value = Ok;
-  };
 
-  typedef Enum<TypeEnum> Type;
-  typedef Enum<IconEnum> Icon;
-  typedef Enum<ResultEnum> Result;
+    typedef Enum<TypeEnum> Type;
+    typedef Enum<IconEnum> Icon;
+    typedef Enum<ResultEnum> Result;
 
 public:
 
-  static Result show(Widget* parent,
-		     const String& title,
-		     const String& text,
-		     Type type = Type::Ok,
-		     Icon icon = Icon::None,
-		     int default_button = -1);
+    static Result show(Widget *parent,
+                       const String &title,
+                       const String &text,
+                       Type type = Type::Ok,
+                       Icon icon = Icon::None,
+                       int default_button = -1);
 
-  static void showException(Widget* parent,
-			    const Exception& exception);
+    static void showException(Widget *parent,
+                              const Exception &exception);
 
 };
 

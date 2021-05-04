@@ -14,61 +14,74 @@ namespace vaca {
 /**
    Loads the RichEdit DLL.
 */
-class VACA_DLL RichEditRegister
-{
-  static HINSTANCE hmod;
+class VACA_DLL RichEditRegister {
+    static HINSTANCE hmod;
 
 public:
-  RichEditRegister();
+    RichEditRegister();
 };
 
 /**
    Widget to edit rich-text.
 */
-class VACA_DLL RichEdit : public RichEditRegister, public Widget
-{
+class VACA_DLL RichEdit : public RichEditRegister, public Widget {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-    static const Style RightAligned;
-    static const Style ReadOnly;
-    static const Style AutoHorizontalScroll;
-    static const Style AutoVerticalScroll;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+        static const Style RightAligned;
+        static const Style ReadOnly;
+        static const Style AutoHorizontalScroll;
+        static const Style AutoVerticalScroll;
+    };
 
-  RichEdit(const String& text, Widget* parent, const Style& style = Styles::Default);
-  ~RichEdit() override;
+    RichEdit(const String &text, Widget *parent, const Style &style = Styles::Default);
 
-  void setBgColor(const Color& color) override;
+    ~RichEdit() override;
 
-  [[nodiscard]] size_t getTextLength() const;
-  [[nodiscard]] size_t getTextLimit() const;
-  void setTextLimit(size_t textLimit);
+    void setBgColor(const Color &color) override;
 
-  [[nodiscard]] bool canPaste() const;
-  [[nodiscard]] bool canUndo() const;
-  [[nodiscard]] bool canRedo() const;
-  void undo();
-  void redo();
-  void setUndoLimit(int maximumActions);
+    [[nodiscard]] size_t getTextLength() const;
 
-  float getZoomFactor();
-  void setZoomFactor(float f);
+    [[nodiscard]] size_t getTextLimit() const;
 
-  void setDetectUrls(bool state);
-  bool isDetectUrls();
+    void setTextLimit(size_t textLimit);
 
-  void cut();
-  void copy();
-  void paste();
+    [[nodiscard]] bool canPaste() const;
 
-  void selectAll();
-  void selectRange(int start, int end);
-  void deselect();
+    [[nodiscard]] bool canUndo() const;
 
-  void getSelection(int& start, int& end);
-  [[nodiscard]] String getSelectedText() const;
+    [[nodiscard]] bool canRedo() const;
+
+    void undo();
+
+    void redo();
+
+    void setUndoLimit(int maximumActions);
+
+    float getZoomFactor();
+
+    void setZoomFactor(float f);
+
+    void setDetectUrls(bool state);
+
+    bool isDetectUrls();
+
+    void cut();
+
+    void copy();
+
+    void paste();
+
+    void selectAll();
+
+    void selectRange(int start, int end);
+
+    void deselect();
+
+    void getSelection(int &start, int &end);
+
+    [[nodiscard]] String getSelectedText() const;
 
 };
 

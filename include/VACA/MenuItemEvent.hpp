@@ -11,15 +11,15 @@
 
 namespace vaca {
 
-class VACA_DLL MenuItemEvent : public Event
-{
+class VACA_DLL MenuItemEvent : public Event {
 
 public:
 
-  MenuItemEvent(MenuItem* source);
-  ~MenuItemEvent() override;
+    MenuItemEvent(MenuItem *source);
 
-  MenuItem* getMenuItem();
+    ~MenuItemEvent() override;
+
+    MenuItem *getMenuItem();
 
 };
 

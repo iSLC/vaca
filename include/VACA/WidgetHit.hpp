@@ -13,112 +13,111 @@ namespace vaca {
 /**
    @see WidgetHit
 */
-struct WidgetHitEnum
-{
-  enum enumeration {
-    Error,
-    Transparent,
+struct WidgetHitEnum {
+    enum enumeration {
+        Error,
+        Transparent,
 
-    /**
-       When the mouse is in the background of a Widget.
-    */
-    Nowhere,
+        /**
+           When the mouse is in the background of a Widget.
+        */
+        Nowhere,
 
-    /**
-       When the mouse is in the client area of a Widget.
-    */
-    Client,
+        /**
+           When the mouse is in the client area of a Widget.
+        */
+        Client,
 
-    /**
-       When the mouse is in the title bar of a Frame.
-    */
-    Caption,
+        /**
+           When the mouse is in the title bar of a Frame.
+        */
+        Caption,
 
-    /**
-       @todo
-    */
-    SystemMenu,
+        /**
+           @todo
+        */
+        SystemMenu,
 
-    /**
-       @todo
-    */
-    Size,
+        /**
+           @todo
+        */
+        Size,
 
-    /**
-       When the mouse is in a menu of a Frame.
-    */
-    Menu,
+        /**
+           When the mouse is in a menu of a Frame.
+        */
+        Menu,
 
-    /**
-       When the mouse is in a horizontal scroll bar.
-    */
-    HorizontalScroll,
+        /**
+           When the mouse is in a horizontal scroll bar.
+        */
+        HorizontalScroll,
 
-    /**
-       When the mouse is in a vertical scroll bar.
-    */
-    VerticalScroll,
+        /**
+           When the mouse is in a vertical scroll bar.
+        */
+        VerticalScroll,
 
-    /**
-       When the mouse is in the minimize button.
-    */
-    MinimizeButton,
+        /**
+           When the mouse is in the minimize button.
+        */
+        MinimizeButton,
 
-    /**
-       When the mouse is in the maximize button.
-    */
-    MaximizeButton,
+        /**
+           When the mouse is in the maximize button.
+        */
+        MaximizeButton,
 
-    /**
-       When the mouse is in the left side to resize a Frame.
-    */
-    Left,
+        /**
+           When the mouse is in the left side to resize a Frame.
+        */
+        Left,
 
-    /**
-       When the mouse is in the right side to resize a Frame.
-    */
-    Right,
+        /**
+           When the mouse is in the right side to resize a Frame.
+        */
+        Right,
 
-    /**
-       When the mouse is in the top side to resize a Frame.
-    */
-    Top,
+        /**
+           When the mouse is in the top side to resize a Frame.
+        */
+        Top,
 
-    /**
-       When the mouse is in the top-left corner to resize a Frame.
-    */
-    TopLeft,
+        /**
+           When the mouse is in the top-left corner to resize a Frame.
+        */
+        TopLeft,
 
-    /**
-       When the mouse is in the top-right corner to resize a Frame.
-    */
-    TopRight,
+        /**
+           When the mouse is in the top-right corner to resize a Frame.
+        */
+        TopRight,
 
-    /**
-       When the mouse is in the bottom side to resize a Frame.
-    */
-    Bottom,
+        /**
+           When the mouse is in the bottom side to resize a Frame.
+        */
+        Bottom,
 
-    /**
-       When the mouse is in the bottom-left corner to resize a Frame.
-    */
-    BottomLeft,
+        /**
+           When the mouse is in the bottom-left corner to resize a Frame.
+        */
+        BottomLeft,
 
-    /**
-       When the mouse is in the bottom-right corner to resize a Frame.
-    */
-    BottomRight,
+        /**
+           When the mouse is in the bottom-right corner to resize a Frame.
+        */
+        BottomRight,
 
-    /**
-       The cursor is in a border of the widget that doesn't support.
-    */
-    Border,
+        /**
+           The cursor is in a border of the widget that doesn't support.
+        */
+        Border,
 
-    Object,
-    Close,
-    Help
-  };
-  static const enumeration default_value = Nowhere;
+        Object,
+        Close,
+        Help
+    };
+    static const enumeration default_value = Nowhere;
 };
 
 /**
@@ -151,6 +150,6 @@ struct WidgetHitEnum
    @li WidgetHit::Close
    @li WidgetHit::Help
 */
-typedef Enum<WidgetHitEnum> WidgetHit;
+typedef Enum <WidgetHitEnum> WidgetHit;
 
 } // namespace vaca

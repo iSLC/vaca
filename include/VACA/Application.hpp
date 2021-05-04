@@ -12,8 +12,8 @@
 
 namespace vaca {
 
-  // Forward declarations
-  namespace details { class MainArgs; }
+// Forward declarations
+namespace details { class MainArgs; }
 
 // ======================================================================
 
@@ -22,15 +22,14 @@ namespace vaca {
 
    @see ProcessPriority
 */
-struct ProcessPriorityEnum
-{
-  enum enumeration {
-    Idle,
-    Normal,
-    High,
-    RealTime,
-  };
-  static const enumeration default_value = Normal;
+struct ProcessPriorityEnum {
+    enum enumeration {
+        Idle,
+        Normal,
+        High,
+        RealTime,
+    };
+    static const enumeration default_value = Normal;
 };
 
 /**
@@ -53,49 +52,53 @@ typedef Enum<ProcessPriorityEnum> ProcessPriority;
    A program that uses Vaca library must to create one instance of
    this class, or an instance of a derived class.
 */
-class VACA_DLL Application : public Thread
-{
+class VACA_DLL Application : public Thread {
 public:
 
-  Application();
-  virtual ~Application();
+    Application();
 
-  static size_t getArgc();
-  static const String& getArgv(size_t i);
-  static const std::vector<String>& getArgs();
+    virtual ~Application();
 
-  static Application* getInstance();
-  static HINSTANCE getHandle();
-  static void setProcessPriority(ProcessPriority priority);
+    static size_t getArgc();
 
-  virtual void run();
+    static const String &getArgv(size_t i);
+
+    static const std::vector<String> &getArgs();
+
+    static Application *getInstance();
+
+    static HINSTANCE getHandle();
+
+    static void setProcessPriority(ProcessPriority priority);
+
+    virtual void run();
 
 protected:
 
-  virtual void main();
+    virtual void main();
 
 private:
 
-  friend class details::MainArgs;
+    friend class details::MainArgs;
 
-  /**
-     @internal
+    /**
+       @internal
 
-     @win32
-       Program @msdn{HINSTANCE}.
-     @endwin32
-   */
-  static HINSTANCE m_HINSTANCE;
+       @win32
+         Program @msdn{HINSTANCE}.
+       @endwin32
+     */
+    static HINSTANCE m_HINSTANCE;
 
-  /**
-     The singleton, the only instance of Application (or a class
-     derived from Application) that a program can contain.
-   */
-  static Application* m_instance;
+    /**
+       The singleton, the only instance of Application (or a class
+       derived from Application) that a program can contain.
+     */
+    static Application *m_instance;
 
-  static std::vector<String> m_args;
+    static std::vector<String> m_args;
 
-  static void setArgs(const std::vector<String>& args);
+    static void setArgs(const std::vector<String> &args);
 
 };
 

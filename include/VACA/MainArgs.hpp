@@ -10,12 +10,11 @@
 
 namespace vaca {
 
-  namespace details {
-    class VACA_DLL MainArgs
-    {
-    public:
-      static void setArgs(int, char**);
-    };
-  }
+namespace details {
+class VACA_DLL MainArgs {
+public:
+    static void setArgs(int, char **);
+};
+}
 
 } // namespace vaca

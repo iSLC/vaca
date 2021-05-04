@@ -16,19 +16,20 @@ namespace vaca {
 /**
    Base class for common dialogs.
 */
-class VACA_DLL CommonDialog : public Component
-{
-  Widget* m_parent;
+class VACA_DLL CommonDialog : public Component {
+    Widget *m_parent;
 
 public:
 
-  CommonDialog(Widget* parent);
-  ~CommonDialog() override;
+    CommonDialog(Widget *parent);
 
-  Widget* getParent();
-  HWND getParentHandle();
+    ~CommonDialog() override;
 
-  virtual bool doModal() = 0;
+    Widget *getParent();
+
+    HWND getParentHandle();
+
+    virtual bool doModal() = 0;
 
 };
 

@@ -16,18 +16,20 @@ namespace vaca {
    full client area. It's useful only if you have one child in the
    parent widget.
 */
-class VACA_DLL ClientLayout : public Layout
-{
-  int m_border;
+class VACA_DLL ClientLayout : public Layout {
+    int m_border;
 
 public:
 
-  ClientLayout();
-  ClientLayout(int border);
-  ~ClientLayout() override;
+    ClientLayout();
 
-  Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn) override;
-  void layout(Widget* parent, WidgetList& widgets, const Rect& rc) override;
+    ClientLayout(int border);
+
+    ~ClientLayout() override;
+
+    Size getPreferredSize(Widget *parent, WidgetList &widgets, const Size &fitIn) override;
+
+    void layout(Widget *parent, WidgetList &widgets, const Rect &rc) override;
 
 };
 

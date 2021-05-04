@@ -13,20 +13,21 @@ namespace vaca {
 /**
    Event that can be consumed.
 */
-class VACA_DLL ConsumableEvent : public Event
-{
-  /**
-     The event was consumed.
-  */
-  bool m_consumed;
+class VACA_DLL ConsumableEvent : public Event {
+    /**
+       The event was consumed.
+    */
+    bool m_consumed;
 
 public:
 
-  ConsumableEvent(Component* source);
-  ~ConsumableEvent() override;
+    ConsumableEvent(Component *source);
 
-  void consume();
-  [[nodiscard]] bool isConsumed() const;
+    ~ConsumableEvent() override;
+
+    void consume();
+
+    [[nodiscard]] bool isConsumed() const;
 
 };
 

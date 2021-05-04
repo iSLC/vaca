@@ -18,30 +18,33 @@ namespace vaca {
      in the registration process (Register).
    @endwin32
 */
-class VACA_DLL WidgetClassName
-{
+class VACA_DLL WidgetClassName {
 public:
-  /**
-     Represents the no-name class, which means that you don't want
-     to register a WidgetClass at the moment.
-  */
-  static const WidgetClassName None;
+    /**
+       Represents the no-name class, which means that you don't want
+       to register a WidgetClass at the moment.
+    */
+    static const WidgetClassName None;
 
 private:
-  String m_className;
+    String m_className;
 
-  WidgetClassName();		// None constructor
+    WidgetClassName();        // None constructor
 
 public:
-  explicit WidgetClassName(const String& className);
-  WidgetClassName(const WidgetClassName& className);
-  virtual ~WidgetClassName();
+    explicit WidgetClassName(const String &className);
 
-  WidgetClassName& operator=(const WidgetClassName& className);
-  bool operator==(const WidgetClassName& className) const;
-  bool operator!=(const WidgetClassName& className) const;
+    WidgetClassName(const WidgetClassName &className);
 
-  [[nodiscard]] inline const Char* c_str() const { return m_className.c_str(); }
+    virtual ~WidgetClassName();
+
+    WidgetClassName &operator=(const WidgetClassName &className);
+
+    bool operator==(const WidgetClassName &className) const;
+
+    bool operator!=(const WidgetClassName &className) const;
+
+    [[nodiscard]] inline const Char *c_str() const { return m_className.c_str(); }
 };
 
 /**
@@ -85,15 +88,18 @@ public:
 
    @see @ref page_tn_001
 */
-class VACA_DLL WidgetClass
-{
+class VACA_DLL WidgetClass {
 public:
 
-  static WidgetClassName getClassName();
-  static int getStyle();
-  static int getColor();
-  static int getWndExtra();
-  static WNDPROC getWndProc();
+    static WidgetClassName getClassName();
+
+    static int getStyle();
+
+    static int getColor();
+
+    static int getWndExtra();
+
+    static WNDPROC getWndProc();
 
 };
 

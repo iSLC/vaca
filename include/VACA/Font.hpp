@@ -17,15 +17,14 @@ namespace vaca {
 /**
    @see FontStyle
 */
-struct FontStyleEnumSet
-{
-  enum enumeration {
-    Regular   = 0,
-    Bold      = 1,
-    Italic    = 2,
-    Underline = 4,
-    Strikeout = 8,
-  };
+struct FontStyleEnumSet {
+    enum enumeration {
+        Regular = 0,
+        Bold = 1,
+        Italic = 2,
+        Underline = 4,
+        Strikeout = 8,
+    };
 };
 
 /**
@@ -45,21 +44,27 @@ typedef EnumSet<FontStyleEnumSet> FontStyle;
 
    @see Graphics#getFontMetrics
 */
-class VACA_DLL FontMetrics
-{
-  friend class Graphics;
+class VACA_DLL FontMetrics {
+    friend class Graphics;
 
-  TEXTMETRIC m_textMetric{};
+    TEXTMETRIC m_textMetric{};
 
 public:
-  FontMetrics() = default;
-  FontMetrics(const FontMetrics& fm) = default;
-  [[nodiscard]] int getHeight() const { return m_textMetric.tmHeight; }
-  [[nodiscard]] int getAscent() const { return m_textMetric.tmAscent; }
-  [[nodiscard]] int getDescent() const { return m_textMetric.tmDescent; }
-  [[nodiscard]] int getAverageCharWidth() const { return m_textMetric.tmAveCharWidth; }
-  [[nodiscard]] int getMaximumCharWidth() const { return m_textMetric.tmMaxCharWidth; }
-  [[nodiscard]] int getLeading() const { return m_textMetric.tmInternalLeading; }
+    FontMetrics() = default;
+
+    FontMetrics(const FontMetrics &fm) = default;
+
+    [[nodiscard]] int getHeight() const { return m_textMetric.tmHeight; }
+
+    [[nodiscard]] int getAscent() const { return m_textMetric.tmAscent; }
+
+    [[nodiscard]] int getDescent() const { return m_textMetric.tmDescent; }
+
+    [[nodiscard]] int getAverageCharWidth() const { return m_textMetric.tmAveCharWidth; }
+
+    [[nodiscard]] int getMaximumCharWidth() const { return m_textMetric.tmMaxCharWidth; }
+
+    [[nodiscard]] int getLeading() const { return m_textMetric.tmInternalLeading; }
 };
 
 /**
@@ -76,30 +81,37 @@ public:
 
    @see Graphics#setFont, Graphics#drawString
 */
-class VACA_DLL Font : private SharedPtr<GdiObject<HFONT> >
-{
-  friend class Application;
+class VACA_DLL Font : private SharedPtr<GdiObject<HFONT> > {
+    friend class Application;
 
 public:
 
-  Font();
-  Font(const Font& font);
-  Font(const Font& font, FontStyle style);
-  Font(const String& familyName, int size, FontStyle style = FontStyle::Regular);
-  explicit Font(HFONT hfont);
-  Font(LPLOGFONT lplf);
-  ~Font() override;
+    Font();
 
-  [[nodiscard]] int getPointSize() const;
-  [[nodiscard]] FontStyle getStyle() const;
+    Font(const Font &font);
 
-  Font& operator=(const Font& font);
+    Font(const Font &font, FontStyle style);
 
-  [[nodiscard]] HFONT getHandle() const;
-  bool getLogFont(LPLOGFONT lplf) const;
+    Font(const String &familyName, int size, FontStyle style = FontStyle::Regular);
+
+    explicit Font(HFONT hfont);
+
+    Font(LPLOGFONT lplf);
+
+    ~Font() override;
+
+    [[nodiscard]] int getPointSize() const;
+
+    [[nodiscard]] FontStyle getStyle() const;
+
+    Font &operator=(const Font &font);
+
+    [[nodiscard]] HFONT getHandle() const;
+
+    bool getLogFont(LPLOGFONT lplf) const;
 
 private:
-  void assign(LPLOGFONT lplf);
+    void assign(LPLOGFONT lplf);
 };
 
 } // namespace vaca

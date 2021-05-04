@@ -16,20 +16,21 @@ namespace vaca {
    For example, a CloseEvent can be canceled if you don't want to
    close the Frame (or the user cancel the event answering a MsgBox).
 */
-class VACA_DLL CancelableEvent : public Event
-{
-  /**
-     The event was canceled.
-  */
-  bool m_canceled;
+class VACA_DLL CancelableEvent : public Event {
+    /**
+       The event was canceled.
+    */
+    bool m_canceled;
 
 public:
 
-  explicit CancelableEvent(Component* source);
-  ~CancelableEvent() override;
+    explicit CancelableEvent(Component *source);
 
-  void cancel();
-  [[nodiscard]] bool isCanceled() const;
+    ~CancelableEvent() override;
+
+    void cancel();
+
+    [[nodiscard]] bool isCanceled() const;
 
 };
 

@@ -10,48 +10,50 @@
 
 namespace vaca {
 
-typedef std::vector<RadioButton*> RadioButtonList;
+typedef std::vector<RadioButton *> RadioButtonList;
 
 /**
    Groups a set of @link vaca::RadioButton RadioButtons@endlink. It's used to known
    which RadioButton should be desactived when the user select a
    RadioButton of its same group.
 */
-class VACA_DLL RadioGroup : public NonCopyable
-{
-  friend class RadioButton;
+class VACA_DLL RadioGroup : public NonCopyable {
+    friend class RadioButton;
 
-  /**
-     Unique ID of the group.
+    /**
+       Unique ID of the group.
 
-     @internal You never use (get or set) this value.
-  */
-  unsigned int m_groupId;
+       @internal You never use (get or set) this value.
+    */
+    unsigned int m_groupId;
 
-  /**
-     Members in the group.
-  */
-  RadioButtonList m_members;
+    /**
+       Members in the group.
+    */
+    RadioButtonList m_members;
 
 public:
-  RadioGroup();
-  virtual ~RadioGroup();
+    RadioGroup();
 
-  [[nodiscard]] int getSelectedIndex() const;
-  void setSelectedIndex(int index);
+    virtual ~RadioGroup();
 
-  bool operator==(const RadioGroup& other) const;
+    [[nodiscard]] int getSelectedIndex() const;
 
-  // Signals
-  Signal1<void, Event&> Change; ///< @see onChange
+    void setSelectedIndex(int index);
+
+    bool operator==(const RadioGroup &other) const;
+
+    // Signals
+    Signal1<void, Event &> Change; ///< @see onChange
 
 protected:
-  // New events
-  virtual void onChange(Event& ev);
+    // New events
+    virtual void onChange(Event &ev);
 
 private:
-  void addMember(RadioButton* newMember);
-  void removeMember(RadioButton* currentMember);
+    void addMember(RadioButton *newMember);
+
+    void removeMember(RadioButton *currentMember);
 };
 
 /**
@@ -63,28 +65,28 @@ private:
      Win32: It is not a BS_AUTORADIOBUTTON, it's only an
      BS_RADIOBUTTON (so you can't get @msdn{Q261192} bug).
 */
-class VACA_DLL RadioButton : public ButtonBase
-{
-  RadioGroup& m_radioGroup;
+class VACA_DLL RadioButton : public ButtonBase {
+    RadioGroup &m_radioGroup;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  RadioButton(const String& text, RadioGroup& group, Widget* parent,
-	      const Style& style = Styles::Default);
-  ~RadioButton() override;
+    RadioButton(const String &text, RadioGroup &group, Widget *parent,
+                const Style &style = Styles::Default);
 
-  [[nodiscard]] const RadioGroup& getRadioGroup() const;
+    ~RadioButton() override;
+
+    [[nodiscard]] const RadioGroup &getRadioGroup() const;
 
 protected:
-  // Events
-  void onClick(Event& ev) override;
+    // Events
+    void onClick(Event &ev) override;
 
-  // Reflected notifications
-  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
+    // Reflected notifications
+    bool onReflectedCommand(int id, int code, LRESULT &lResult) override;
 };
 
 } // namespace vaca

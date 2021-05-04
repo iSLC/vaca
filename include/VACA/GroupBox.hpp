@@ -14,26 +14,27 @@ namespace vaca {
    An edge (with a label optionally) that can be used to group
    sub-widgets.
 */
-class VACA_DLL GroupBox : public Widget
-{
+class VACA_DLL GroupBox : public Widget {
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  GroupBox(const String& text, Widget* parent, const Style& style = Styles::Default);
-  ~GroupBox() override;
+    GroupBox(const String &text, Widget *parent, const Style &style = Styles::Default);
 
-  Size getNonClientSize();
+    ~GroupBox() override;
+
+    Size getNonClientSize();
 
 protected:
 
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
-  void onLayout(LayoutEvent& ev) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
 
-  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult) override;
+    void onLayout(LayoutEvent &ev) override;
+
+    bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT &lResult) override;
 
 };
 

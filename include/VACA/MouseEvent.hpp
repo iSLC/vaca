@@ -16,22 +16,21 @@ namespace vaca {
 /**
    Namespace for MouseButton enumeration.
 */
-struct MouseButtonEnum
-{
-  /**
-     Enumeration to know which mouse's button triggers the MouseEvent.
-  */
-  enum enumeration {
-    None,
-    Left,
-    Right,
-    Middle,
-  };
+struct MouseButtonEnum {
+    /**
+       Enumeration to know which mouse's button triggers the MouseEvent.
+    */
+    enum enumeration {
+        None,
+        Left,
+        Right,
+        Middle,
+    };
 
-  /**
-     Default value for a MouseButton instance.
-  */
-  static const enumeration default_value = None;
+    /**
+       Default value for a MouseButton instance.
+    */
+    static const enumeration default_value = None;
 };
 
 /**
@@ -58,34 +57,42 @@ typedef Enum<MouseButtonEnum> MouseButton;
    #getButton returns MouseButton::None if the event was produced by
    mouse movement (no button was pressed to trigger the event).
 */
-class VACA_DLL MouseEvent : public ConsumableEvent
-{
-  Point m_point;
-  int m_clicks;
-  int m_flags;
-  MouseButton m_trigger;
-  int m_delta;
+class VACA_DLL MouseEvent : public ConsumableEvent {
+    Point m_point;
+    int m_clicks;
+    int m_flags;
+    MouseButton m_trigger;
+    int m_delta;
 
 public:
 
-  MouseEvent(Widget* source, const Point& point, int clicks, int flags, MouseButton trigger, int delta = 0);
-  ~MouseEvent() override;
+    MouseEvent(Widget *source, const Point &point, int clicks, int flags, MouseButton trigger, int delta = 0);
 
-  [[nodiscard]] int getX() const;
-  [[nodiscard]] int getY() const;
-  [[nodiscard]] Point getPoint() const;
+    ~MouseEvent() override;
 
-  [[nodiscard]] int getClicks() const;
-  [[nodiscard]] MouseButton getButton() const;
+    [[nodiscard]] int getX() const;
 
-  [[nodiscard]] bool isLeftButtonPressed() const;
-  [[nodiscard]] bool isRightButtonPressed() const;
-  [[nodiscard]] bool isMiddleButtonPressed() const;
-  [[nodiscard]] bool isShiftKeyPressed() const;
-  [[nodiscard]] bool isControlKeyPressed() const;
-  [[nodiscard]] bool isAltKeyPressed() const;
+    [[nodiscard]] int getY() const;
 
-  [[nodiscard]] int getDelta() const;
+    [[nodiscard]] Point getPoint() const;
+
+    [[nodiscard]] int getClicks() const;
+
+    [[nodiscard]] MouseButton getButton() const;
+
+    [[nodiscard]] bool isLeftButtonPressed() const;
+
+    [[nodiscard]] bool isRightButtonPressed() const;
+
+    [[nodiscard]] bool isMiddleButtonPressed() const;
+
+    [[nodiscard]] bool isShiftKeyPressed() const;
+
+    [[nodiscard]] bool isControlKeyPressed() const;
+
+    [[nodiscard]] bool isAltKeyPressed() const;
+
+    [[nodiscard]] int getDelta() const;
 
 };
 

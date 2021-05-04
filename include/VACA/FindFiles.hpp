@@ -11,23 +11,26 @@
 
 namespace vaca {
 
-class VACA_DLL FindFiles : public NonCopyable
-{
-  String m_pattern;
-  HANDLE m_handle;
-  WIN32_FIND_DATA m_data{};
+class VACA_DLL FindFiles : public NonCopyable {
+    String m_pattern;
+    HANDLE m_handle;
+    WIN32_FIND_DATA m_data{};
 
 public:
 
-  FindFiles(const String& pattern);
-  ~FindFiles();
+    FindFiles(const String &pattern);
 
-  bool next();
+    ~FindFiles();
 
-  [[nodiscard]] String getFileName() const;
-  [[nodiscard]] String getFullFileName() const;
-  [[nodiscard]] bool isFile() const;
-  [[nodiscard]] bool isDirectory() const;
+    bool next();
+
+    [[nodiscard]] String getFileName() const;
+
+    [[nodiscard]] String getFullFileName() const;
+
+    [[nodiscard]] bool isFile() const;
+
+    [[nodiscard]] bool isDirectory() const;
 
 };
 

@@ -34,42 +34,38 @@ namespace vaca {
 
    @see Mutex, ConditionVariable
 */
-class ScopedLock : private NonCopyable
-{
-  Mutex& m_mutex;
+class ScopedLock : private NonCopyable {
+    Mutex &m_mutex;
 
-  // not defined
-  ScopedLock() = delete;
+    // not defined
+    ScopedLock() = delete;
 
 public:
 
-  /**
-     Creates the ScopedLock locking the specified mutex.
+    /**
+       Creates the ScopedLock locking the specified mutex.
 
-     @param mutex
-       Mutex to be hold by the ScopedLock's life-time.
-  */
-  ScopedLock(Mutex& mutex)
-    : m_mutex(mutex)
-  {
-    m_mutex.lock();
-  }
+       @param mutex
+         Mutex to be hold by the ScopedLock's life-time.
+    */
+    ScopedLock(Mutex &mutex)
+            : m_mutex(mutex) {
+        m_mutex.lock();
+    }
 
-  /**
-     Destroys the ScopedLock unlocking the held mutex.
-  */
-  ~ScopedLock()
-  {
-    m_mutex.unlock();
-  }
+    /**
+       Destroys the ScopedLock unlocking the held mutex.
+    */
+    ~ScopedLock() {
+        m_mutex.unlock();
+    }
 
-  /**
-     Returns which mutex is being held.
-  */
-  [[nodiscard]] Mutex& getMutex() const
-  {
-    return m_mutex;
-  }
+    /**
+       Returns which mutex is being held.
+    */
+    [[nodiscard]] Mutex &getMutex() const {
+        return m_mutex;
+    }
 
 };
 

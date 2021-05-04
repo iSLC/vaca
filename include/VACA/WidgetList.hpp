@@ -17,6 +17,6 @@ namespace vaca {
 
    Used to handle the list of children of each widget.
 */
-typedef std::vector<Widget*> WidgetList;
+typedef std::vector<Widget *> WidgetList;
 
 } // namespace vaca

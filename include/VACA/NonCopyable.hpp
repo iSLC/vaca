@@ -33,14 +33,16 @@ namespace vaca {
    }
    @endcode
 */
-class VACA_DLL NonCopyable
-{
+class VACA_DLL NonCopyable {
 public:
-  NonCopyable() = default;
-  ~NonCopyable() = default;
+    NonCopyable() = default;
+
+    ~NonCopyable() = default;
+
 private:
-  NonCopyable(const NonCopyable&) = delete;
-  NonCopyable& operator=(const NonCopyable&) = delete;
+    NonCopyable(const NonCopyable &) = delete;
+
+    NonCopyable &operator=(const NonCopyable &) = delete;
 };
 
 } // namespace vaca

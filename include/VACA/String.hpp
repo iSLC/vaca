@@ -16,73 +16,113 @@ namespace vaca {
    @{
 */
 
-  // ============================================================
-  // UTILITARY
-  // ============================================================
+// ============================================================
+// UTILITARY
+// ============================================================
 
-  VACA_DLL String format_string(const Char* fmt, ...);
+VACA_DLL String format_string(const Char *fmt, ...);
 
-  VACA_DLL String trim_string(const String& str);
-  VACA_DLL String trim_string(const Char* str);
+VACA_DLL String trim_string(const String &str);
 
-  VACA_DLL std::string to_utf8(const String& string);
-  VACA_DLL String from_utf8(const std::string& string);
+VACA_DLL String trim_string(const Char *str);
 
-  // Split a string in parts
-  VACA_DLL void split_string(const String& string, std::vector<String>& parts, const String& separators);
+VACA_DLL std::string to_utf8(const String &string);
 
-  // ============================================================
-  // CONVERSION
-  // ============================================================
+VACA_DLL String from_utf8(const std::string &string);
 
-  // convert from String
-  template<> VACA_DLL std::string   convert_to(const String& from);
-  template<> VACA_DLL int           convert_to(const String& from);
-  template<> VACA_DLL long          convert_to(const String& from);
-  template<> VACA_DLL unsigned int  convert_to(const String& from);
-  template<> VACA_DLL unsigned long convert_to(const String& from);
-  template<> VACA_DLL float         convert_to(const String& from);
-  template<> VACA_DLL double        convert_to(const String& from);
-  template<> VACA_DLL std::string   convert_to(const Char* const& from);
+// Split a string in parts
+VACA_DLL void split_string(const String &string, std::vector<String> &parts, const String &separators);
 
-  template<> inline std::string convert_to(Char* const& from) {
-    return convert_to<std::string, const Char*>(from);
-  }
+// ============================================================
+// CONVERSION
+// ============================================================
 
-  // Convert to String
-  template<> VACA_DLL String convert_to(const std::string& from);
-  template<> VACA_DLL String convert_to(const int& from);
-  template<> VACA_DLL String convert_to(const long& from);
-  template<> VACA_DLL String convert_to(const unsigned int& from);
-  template<> VACA_DLL String convert_to(const unsigned long& from);
-  template<> VACA_DLL String convert_to(const float& from);
-  template<> VACA_DLL String convert_to(const double& from);
-  template<> VACA_DLL String convert_to(const char* const& from);
+// convert from String
+template<>
+VACA_DLL std::string convert_to(const String &from);
 
-  template<> inline String convert_to(char* const& from) {
-    return convert_to<String, const char*>(from);
-  }
+template<>
+VACA_DLL int convert_to(const String &from);
 
-  // Copy to a raw string
-  VACA_DLL void copy_string_to(const String& src, Char* dest, int size);
+template<>
+VACA_DLL long convert_to(const String &from);
 
-  // ============================================================
-  // FILE NAMES, PATHS AND URLS
-  // ============================================================
+template<>
+VACA_DLL unsigned int convert_to(const String &from);
 
-  VACA_DLL String operator/(const String& path, const String& comp);
-  VACA_DLL String& operator/=(String& path, const String& comp);
+template<>
+VACA_DLL unsigned long convert_to(const String &from);
 
-  VACA_DLL String file_path(const String& fullpath);
-  VACA_DLL String file_name(const String& fullpath);
-  VACA_DLL String file_extension(const String& fullpath);
-  VACA_DLL String file_title(const String& fullpath);
+template<>
+VACA_DLL float convert_to(const String &from);
 
-  VACA_DLL String url_host(const String& url);
-  VACA_DLL String url_object(const String& url);
+template<>
+VACA_DLL double convert_to(const String &from);
 
-  VACA_DLL String encode_url(const String& url);
-  VACA_DLL String decode_url(const String& url);
+template<>
+VACA_DLL std::string convert_to(const Char *const &from);
+
+template<>
+inline std::string convert_to(Char *const &from) {
+    return convert_to<std::string, const Char *>(from);
+}
+
+// Convert to String
+template<>
+VACA_DLL String convert_to(const std::string &from);
+
+template<>
+VACA_DLL String convert_to(const int &from);
+
+template<>
+VACA_DLL String convert_to(const long &from);
+
+template<>
+VACA_DLL String convert_to(const unsigned int &from);
+
+template<>
+VACA_DLL String convert_to(const unsigned long &from);
+
+template<>
+VACA_DLL String convert_to(const float &from);
+
+template<>
+VACA_DLL String convert_to(const double &from);
+
+template<>
+VACA_DLL String convert_to(const char *const &from);
+
+template<>
+inline String convert_to(char *const &from) {
+    return convert_to<String, const char *>(from);
+}
+
+// Copy to a raw string
+VACA_DLL void copy_string_to(const String &src, Char *dest, int size);
+
+// ============================================================
+// FILE NAMES, PATHS AND URLS
+// ============================================================
+
+VACA_DLL String operator/(const String &path, const String &comp);
+
+VACA_DLL String &operator/=(String &path, const String &comp);
+
+VACA_DLL String file_path(const String &fullpath);
+
+VACA_DLL String file_name(const String &fullpath);
+
+VACA_DLL String file_extension(const String &fullpath);
+
+VACA_DLL String file_title(const String &fullpath);
+
+VACA_DLL String url_host(const String &url);
+
+VACA_DLL String url_object(const String &url);
+
+VACA_DLL String encode_url(const String &url);
+
+VACA_DLL String decode_url(const String &url);
 
 /** @} */
 

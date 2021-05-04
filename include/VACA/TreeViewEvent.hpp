@@ -14,20 +14,21 @@ namespace vaca {
 /**
    Event where interact a TreeView and TreeNode.
 */
-class VACA_DLL TreeViewEvent : public CancelableEvent
-{
-  TreeNode* m_treeNode;
-  String    m_label;
+class VACA_DLL TreeViewEvent : public CancelableEvent {
+    TreeNode *m_treeNode;
+    String m_label;
 
 public:
 
-  TreeViewEvent(TreeView* treeView, TreeNode* treeNode, String label = L"");
-  ~TreeViewEvent() override;
+    TreeViewEvent(TreeView *treeView, TreeNode *treeNode, String label = L"");
 
-  TreeView* getTreeView();
-  TreeNode* getTreeNode();
+    ~TreeViewEvent() override;
 
-  String getLabel();
+    TreeView *getTreeView();
+
+    TreeNode *getTreeNode();
+
+    String getLabel();
 
 };
 

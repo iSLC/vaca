@@ -17,29 +17,31 @@ namespace vaca {
      It's a wrapper for the @msdn{BUTTON} class.
    @endwin32
 */
-class VACA_DLL ButtonBase : public Widget
-{
+class VACA_DLL ButtonBase : public Widget {
 public:
 
-  ButtonBase(Widget* parent, const Style& style);
-  explicit ButtonBase(HWND handle);
-  ~ButtonBase() override;
+    ButtonBase(Widget *parent, const Style &style);
 
-  bool isSelected();
-  void setSelected(bool state);
+    explicit ButtonBase(HWND handle);
 
-  // Signals
-  Signal1<void, Event&> Click; ///< @see onClick
+    ~ButtonBase() override;
+
+    bool isSelected();
+
+    void setSelected(bool state);
+
+    // Signals
+    Signal1<void, Event &> Click; ///< @see onClick
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override;
 
-  // New events
-  virtual void onClick(Event& ev);
+    // New events
+    virtual void onClick(Event &ev);
 
-  // Reflected notifications
-  bool onReflectedCommand(int id, int code, LRESULT& lResult) override;
+    // Reflected notifications
+    bool onReflectedCommand(int id, int code, LRESULT &lResult) override;
 };
 
 } // namespace vaca

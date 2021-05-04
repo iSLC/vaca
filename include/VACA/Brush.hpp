@@ -24,24 +24,27 @@ namespace vaca {
 
    @see Graphics, Graphics#fillRect, Graphics#fillPath
 */
-class VACA_DLL Brush
-{
-  template<typename To, typename From>
-  friend To convert_to(const From& from);
+class VACA_DLL Brush {
+    template<typename To, typename From>
+    friend To convert_to(const From &from);
 
 public:
-  Brush();
-  Brush(const Brush& brush);
-  explicit Brush(const Color& color);
-  virtual ~Brush();
+    Brush();
 
-  Brush& operator=(const Brush& brush);
+    Brush(const Brush &brush);
 
-  [[nodiscard]] Color getColor() const;
+    explicit Brush(const Color &color);
+
+    virtual ~Brush();
+
+    Brush &operator=(const Brush &brush);
+
+    [[nodiscard]] Color getColor() const;
 
 private:
-  class BrushImpl;
-  SharedPtr<BrushImpl> m_impl;
+    class BrushImpl;
+
+    SharedPtr<BrushImpl> m_impl;
 };
 
 } // namespace vaca

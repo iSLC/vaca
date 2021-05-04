@@ -13,13 +13,14 @@ namespace vaca {
 /**
    A resource (from exe or from an external file) can't be loaded.
 */
-class ResourceException : public Exception
-{
+class ResourceException : public Exception {
 public:
 
-  ResourceException() : Exception() { }
-  ResourceException(const String& message) : Exception(message) { }
-  ~ResourceException() noexcept override = default;
+    ResourceException() : Exception() {}
+
+    ResourceException(const String &message) : Exception(message) {}
+
+    ~ResourceException() noexcept override = default;
 
 };
 

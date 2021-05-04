@@ -33,12 +33,13 @@ namespace vaca {
      generally because of @msdn{CreateWindowEx} that returns NULL.
    @endwin32
 */
-class CreateWidgetException : public Exception
-{
+class CreateWidgetException : public Exception {
 public:
-  CreateWidgetException() : Exception() { }
-  CreateWidgetException(const String& message) : Exception(message) { }
-  ~CreateWidgetException() noexcept override = default;
+    CreateWidgetException() : Exception() {}
+
+    CreateWidgetException(const String &message) : Exception(message) {}
+
+    ~CreateWidgetException() noexcept override = default;
 };
 
 /**
@@ -55,396 +56,481 @@ public:
      converts the messages (@c "WM_*") to events.
    @endwin32
 */
-class VACA_DLL Widget : public Register<WidgetClass>, public Component
-{
-  friend class MakeWidgetRef;
-  friend VACA_DLL void delete_widget(Widget* widget);
+class VACA_DLL Widget : public Register<WidgetClass>, public Component {
+    friend class MakeWidgetRef;
+
+    friend VACA_DLL void delete_widget(Widget *widget);
 
 public:
 
-  // ============================================================
-  // STYLES
-  // ============================================================
+    // ============================================================
+    // STYLES
+    // ============================================================
 
-  struct VACA_DLL Styles {
-    static const Style None;
-    static const Style Visible;
-    static const Style Focusable;
-    static const Style Scroll;
-    static const Style HorizontalScroll;
-    static const Style VerticalScroll;
-    static const Style ClientEdge;
-    static const Style Container;
-    static const Style AcceptFiles;
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style None;
+        static const Style Visible;
+        static const Style Focusable;
+        static const Style Scroll;
+        static const Style HorizontalScroll;
+        static const Style VerticalScroll;
+        static const Style ClientEdge;
+        static const Style Container;
+        static const Style AcceptFiles;
+        static const Style Default;
+    };
 
 private:
 
-  // ============================================================
-  // PRIVATE MEMBERS
-  // ============================================================
+    // ============================================================
+    // PRIVATE MEMBERS
+    // ============================================================
 
-  /**
-     The window handler to use with the Windows API.
-  */
-  HWND m_handle{};
+    /**
+       The window handler to use with the Windows API.
+    */
+    HWND m_handle{};
 
-  /**
-     Sorted collection of children.
-  */
-  WidgetList m_children;
+    /**
+       Sorted collection of children.
+    */
+    WidgetList m_children;
 
-  /**
-     The parent widget. This could be NULL if the Widget is a Frame or
-     something like that.
-  */
-  Widget* m_parent{};
+    /**
+       The parent widget. This could be NULL if the Widget is a Frame or
+       something like that.
+    */
+    Widget *m_parent{};
 
-  /**
-     Foreground color, generally borders and text color.
-  */
-  Color m_fgColor;
+    /**
+       Foreground color, generally borders and text color.
+    */
+    Color m_fgColor;
 
-  /**
-     Background color of the widget.
-  */
-  Color m_bgColor;
+    /**
+       Background color of the widget.
+    */
+    Color m_bgColor;
 
-  /**
-     Constraint used by the layout manager that own the parent widget.
-  */
-  ConstraintPtr m_constraint;
+    /**
+       Constraint used by the layout manager that own the parent widget.
+    */
+    ConstraintPtr m_constraint;
 
-  /**
-     Layout manager of this widget used to arrange its children.
-  */
-  LayoutPtr m_layout;
+    /**
+       Layout manager of this widget used to arrange its children.
+    */
+    LayoutPtr m_layout;
 
-  /**
-     Flag to indicate if this widget has the mouse.
-  */
-  bool m_hasMouse : 1;
+    /**
+       Flag to indicate if this widget has the mouse.
+    */
+    bool m_hasMouse: 1;
 
-  /**
-     Flag to indicate if we must delete the widget after the current
-     event/message is processed.
-  */
-  bool m_deleteAfterEvent : 1;
+    /**
+       Flag to indicate if we must delete the widget after the current
+       event/message is processed.
+    */
+    bool m_deleteAfterEvent: 1;
 
-  /**
-     Use an automatic double-buffering technique to call the #onPaint event.
+    /**
+       Use an automatic double-buffering technique to call the #onPaint event.
 
-     @see #setDoubleBuffered, #doPaint
-  */
-  bool m_doubleBuffered : 1;
+       @see #setDoubleBuffered, #doPaint
+    */
+    bool m_doubleBuffered: 1;
 
-  /**
-     Current font of the Widget (used mainly to draw the text of the widget).
+    /**
+       Current font of the Widget (used mainly to draw the text of the widget).
 
-     @see #setText, #setFont
-  */
-  Font m_font;
+       @see #setText, #setFont
+    */
+    Font m_font;
 
-  /**
-     Manually set preferred size. If it's equal to NULL (by default it
-     is) the preferred size is automatically calculated, if not this size
-     is returned by #getPreferredSize.
+    /**
+       Manually set preferred size. If it's equal to NULL (by default it
+       is) the preferred size is automatically calculated, if not this size
+       is returned by #getPreferredSize.
 
-     @see #setPreferredSize
-  */
-  Size* m_preferredSize{};
+       @see #setPreferredSize
+    */
+    Size *m_preferredSize{};
 
-  /**
-     @todo Try to remove this field (it's only needed for WM_CTLCOLOR* events)
-  */
-  HBRUSH m_hbrush{};
+    /**
+       @todo Try to remove this field (it's only needed for WM_CTLCOLOR* events)
+    */
+    HBRUSH m_hbrush{};
 
-  // ============================================================
-  // Special hooks...
-  // ============================================================
+    // ============================================================
+    // Special hooks...
+    // ============================================================
 
-  /**
-     Procedure of the original Win32's control (like @msdn{BUTTON} or @msdn{EDIT}).
+    /**
+       Procedure of the original Win32's control (like @msdn{BUTTON} or @msdn{EDIT}).
 
-     It's set in #subClass member function.
-  */
-  WNDPROC m_baseWndProc{};
+       It's set in #subClass member function.
+    */
+    WNDPROC m_baseWndProc{};
 
-  /**
-     The default Win32's window procedure to be called if a
-     @link Message message@endlink isn't used.
+    /**
+       The default Win32's window procedure to be called if a
+       @link Message message@endlink isn't used.
 
-     By default it is Win32's @msdn{DefWindowProc}, but you can change it
-     using #setDefWndProc to replace it with other procedure like
-     Win32's @msdn{DefFrameProc}.
+       By default it is Win32's @msdn{DefWindowProc}, but you can change it
+       using #setDefWndProc to replace it with other procedure like
+       Win32's @msdn{DefFrameProc}.
 
-     @see #setDefWndProc, #defWndProc
-  */
-  WNDPROC m_defWndProc{};
+       @see #setDefWndProc, #defWndProc
+    */
+    WNDPROC m_defWndProc{};
 
-  /**
-     Used by MdiChild to send a WM_MDIDESTROY instead of calling
-     Win32's DestroyWindow function.
-  */
-  void (*m_destroyHandleProc)(HWND hwnd){};
+    /**
+       Used by MdiChild to send a WM_MDIDESTROY instead of calling
+       Win32's DestroyWindow function.
+    */
+    void (*m_destroyHandleProc)(HWND hwnd){};
 
 public:
 
-  // ============================================================
-  // CTOR & DTOR
-  // ============================================================
+    // ============================================================
+    // CTOR & DTOR
+    // ============================================================
 
-  Widget(const WidgetClassName& className, Widget* parent, const Style& style);
-  explicit Widget(Widget* parent, const Style& style = Styles::Default);
-  explicit Widget(HWND handle);
-  ~Widget() override;
+    Widget(const WidgetClassName &className, Widget *parent, const Style &style);
 
-  // ============================================================
-  // PARENT & CHILDREN RELATIONSHIP
-  // ============================================================
+    explicit Widget(Widget *parent, const Style &style = Styles::Default);
 
-  Widget* getRoot();
-  [[nodiscard]] Widget* getParent() const;
-  [[nodiscard]] Widget* getFirstChild() const;
-  [[nodiscard]] Widget* getLastChild() const;
-  [[nodiscard]] Widget* getPreviousSibling() const;
-  [[nodiscard]] Widget* getNextSibling() const;
-  [[nodiscard]] WidgetList getChildren() const;
+    explicit Widget(HWND handle);
 
-  void addChild(Widget* child);
-  void removeChild(Widget* child);
-  bool hasChild(const Widget* child) const;
-  bool hasDescendant(const Widget* descendant) const;
+    ~Widget() override;
 
-  void moveBeforeWidget(Widget* sibling);
-  void moveAfterWidget(Widget* sibling);
+    // ============================================================
+    // PARENT & CHILDREN RELATIONSHIP
+    // ============================================================
 
-  // ===============================================================
-  // LAYOUT & CONSTRAINT
-  // ===============================================================
+    Widget *getRoot();
 
-  LayoutPtr getLayout();
-  void setLayout(const LayoutPtr& layout);
+    [[nodiscard]] Widget *getParent() const;
 
-  ConstraintPtr getConstraint();
-  void setConstraint(const ConstraintPtr& constraint);
+    [[nodiscard]] Widget *getFirstChild() const;
 
-  [[nodiscard]] virtual bool isLayoutFree() const;
+    [[nodiscard]] Widget *getLastChild() const;
+
+    [[nodiscard]] Widget *getPreviousSibling() const;
+
+    [[nodiscard]] Widget *getNextSibling() const;
+
+    [[nodiscard]] WidgetList getChildren() const;
+
+    void addChild(Widget *child);
+
+    void removeChild(Widget *child);
+
+    bool hasChild(const Widget *child) const;
+
+    bool hasDescendant(const Widget *descendant) const;
+
+    void moveBeforeWidget(Widget *sibling);
+
+    void moveAfterWidget(Widget *sibling);
+
+    // ===============================================================
+    // LAYOUT & CONSTRAINT
+    // ===============================================================
+
+    LayoutPtr getLayout();
+
+    void setLayout(const LayoutPtr &layout);
+
+    ConstraintPtr getConstraint();
+
+    void setConstraint(const ConstraintPtr &constraint);
+
+    [[nodiscard]] virtual bool isLayoutFree() const;
 
     virtual void layout();
 
-  // ===============================================================
-  // TEXT & FONT
-  // ===============================================================
+    // ===============================================================
+    // TEXT & FONT
+    // ===============================================================
 
-  [[nodiscard]] virtual String getText() const;
-  virtual void setText(const String& str);
+    [[nodiscard]] virtual String getText() const;
 
-  [[nodiscard]] virtual Font getFont() const;
-  virtual void setFont(Font font);
+    virtual void setText(const String &str);
 
-  // ===============================================================
-  // COMMAND
-  // ===============================================================
+    [[nodiscard]] virtual Font getFont() const;
 
-  [[nodiscard]] CommandId getId() const;
-  void setId(CommandId id);
+    virtual void setFont(Font font);
 
-  Command* getCommandById(CommandId id);
-  Command* findCommandById(CommandId id);
+    // ===============================================================
+    // COMMAND
+    // ===============================================================
 
-  // ===============================================================
-  // WIDGET STYLE
-  // ===============================================================
+    [[nodiscard]] CommandId getId() const;
 
-  [[nodiscard]] Style getStyle() const;
-  [[nodiscard]] bool hasStyle(const Style& style) const;
+    void setId(CommandId id);
 
-  void setStyle(const Style& style);
-  void addStyle(const Style& style);
-  void removeStyle(const Style& style);
+    Command *getCommandById(CommandId id);
 
-  // ===============================================================
-  // SIZE & POSITION
-  // ===============================================================
+    Command *findCommandById(CommandId id);
 
-  [[nodiscard]] Rect getBounds() const;
-  [[nodiscard]] Rect getAbsoluteBounds() const;
-  [[nodiscard]] Rect getClientBounds() const;
-  [[nodiscard]] Rect getAbsoluteClientBounds() const;
+    // ===============================================================
+    // WIDGET STYLE
+    // ===============================================================
 
-  void setBounds(const Rect& rc);
-  void setBounds(int x, int y, int w, int h);
+    [[nodiscard]] Style getStyle() const;
 
-  void center();
-  void setOrigin(const Point& pt);
-  void setOrigin(int x, int y);
-  void setSize(const Size& sz);
-  void setSize(int w, int h);
+    [[nodiscard]] bool hasStyle(const Style &style) const;
 
-  Size getPreferredSize();
-  Size getPreferredSize(const Size& fitIn);
-  void setPreferredSize(const Size& fixedSize);
-  void setPreferredSize(int fixedWidth, int fixedHeight);
+    void setStyle(const Style &style);
 
-  // ===============================================================
-  // REFRESH ISSUES
-  // ===============================================================
+    void addStyle(const Style &style);
 
-  [[nodiscard]] bool isDoubleBuffered() const;
-  void setDoubleBuffered(bool doubleBuffered);
+    void removeStyle(const Style &style);
 
-  void validate();
-  void validate(const Rect& rc);
-  void invalidate(bool eraseBg);
-  void invalidate(const Rect& rc, bool eraseBg);
-  void update();
-  void updateIndicators();
+    // ===============================================================
+    // SIZE & POSITION
+    // ===============================================================
 
-  // ===============================================================
-  // COMMON PROPERTIES
-  // ===============================================================
+    [[nodiscard]] Rect getBounds() const;
 
-  bool isVisible();
-  virtual void setVisible(bool visible);
+    [[nodiscard]] Rect getAbsoluteBounds() const;
 
-  bool isEnabled();
-  void setEnabled(bool state);
+    [[nodiscard]] Rect getClientBounds() const;
 
-  Color getFgColor();
-  Color getBgColor();
-  virtual void setFgColor(const Color& color);
-  virtual void setBgColor(const Color& color);
+    [[nodiscard]] Rect getAbsoluteClientBounds() const;
 
-  int getOpacity();
-  void setOpacity(int opacity);
+    void setBounds(const Rect &rc);
 
-  // ===============================================================
-  // FOCUS & MOUSE
-  // ===============================================================
+    void setBounds(int x, int y, int w, int h);
 
-  void requestFocus();
-  void releaseFocus();
-  void captureMouse();
-  void releaseMouse();
-  bool hasFocus();
-  [[nodiscard]] bool hasMouse() const;
-  bool hasMouseAbove();
-  bool hasCapture();
+    void center();
 
-  // ===============================================================
-  // SCROLL
-  // ===============================================================
+    void setOrigin(const Point &pt);
 
-  [[nodiscard]] ScrollInfo getScrollInfo(Orientation orientation) const;
-  void setScrollInfo(Orientation orientation, const ScrollInfo& scrollInfo);
+    void setOrigin(int x, int y);
 
-  [[nodiscard]] int getScrollPos(Orientation orientation) const;
-  void setScrollPos(Orientation orientation, int pos);
+    void setSize(const Size &sz);
 
-  [[nodiscard]] Point getScrollPoint() const;
-  void setScrollPoint(const Point& pt);
+    void setSize(int w, int h);
 
-  void hideScrollBar(Orientation orientation) const;
+    Size getPreferredSize();
 
-  void scrollRect(const Rect& rect, const Point& delta);
+    Size getPreferredSize(const Size &fitIn);
 
-  // ===============================================================
-  // MESSAGES
-  // ===============================================================
+    void setPreferredSize(const Size &fixedSize);
 
-  void enqueueMessage(const Message& message) const;
-  virtual bool preTranslateMessage(Message& message);
+    void setPreferredSize(int fixedWidth, int fixedHeight);
 
-  // ===============================================================
-  // WIN32 SPECIFIC
-  // ===============================================================
+    // ===============================================================
+    // REFRESH ISSUES
+    // ===============================================================
 
-  [[nodiscard]] HWND getHandle() const;
-  [[nodiscard]] HWND getParentHandle() const;
+    [[nodiscard]] bool isDoubleBuffered() const;
 
-  static Widget* fromHandle(HWND hwnd);
-  static WNDPROC getGlobalWndProc();
+    void setDoubleBuffered(bool doubleBuffered);
 
-  LRESULT sendMessage(UINT message, WPARAM wParam, LPARAM lParam);
+    void validate();
 
-  // ===============================================================
-  // SIGNALS (signals are public, see TN004)
-  // ===============================================================
+    void validate(const Rect &rc);
 
-  Signal1<void, ResizeEvent&> Resize; ///< @see onResize
-  Signal1<void, MouseEvent&> MouseEnter; ///< @see onMouseEnter
-  Signal1<void, MouseEvent&> MouseLeave; ///< @see onMouseLeave
-  Signal1<void, MouseEvent&> MouseDown; ///< @see onMouseDown
-  Signal1<void, MouseEvent&> MouseUp; ///< @see onMouseUp
-  Signal1<void, MouseEvent&> MouseMove; ///< @see onMouseMove
-  Signal1<void, MouseEvent&> MouseWheel; ///< @see onMouseWheel
-  Signal1<void, MouseEvent&> DoubleClick; ///< @see onDoubleClick
-  Signal1<void, KeyEvent&> KeyUp; ///< @see onKeyUp
-  Signal1<void, KeyEvent&> KeyDown; ///< @see onKeyDown
-  Signal1<void, FocusEvent&> FocusEnter; ///< @see onFocusEnter
-  Signal1<void, FocusEvent&> FocusLeave; ///< @see onFocusLeave
-  Signal1<void, DropFilesEvent&> DropFiles; ///< @see onDropFiles
+    void invalidate(bool eraseBg);
+
+    void invalidate(const Rect &rc, bool eraseBg);
+
+    void update();
+
+    void updateIndicators();
+
+    // ===============================================================
+    // COMMON PROPERTIES
+    // ===============================================================
+
+    bool isVisible();
+
+    virtual void setVisible(bool visible);
+
+    bool isEnabled();
+
+    void setEnabled(bool state);
+
+    Color getFgColor();
+
+    Color getBgColor();
+
+    virtual void setFgColor(const Color &color);
+
+    virtual void setBgColor(const Color &color);
+
+    int getOpacity();
+
+    void setOpacity(int opacity);
+
+    // ===============================================================
+    // FOCUS & MOUSE
+    // ===============================================================
+
+    void requestFocus();
+
+    void releaseFocus();
+
+    void captureMouse();
+
+    void releaseMouse();
+
+    bool hasFocus();
+
+    [[nodiscard]] bool hasMouse() const;
+
+    bool hasMouseAbove();
+
+    bool hasCapture();
+
+    // ===============================================================
+    // SCROLL
+    // ===============================================================
+
+    [[nodiscard]] ScrollInfo getScrollInfo(Orientation orientation) const;
+
+    void setScrollInfo(Orientation orientation, const ScrollInfo &scrollInfo);
+
+    [[nodiscard]] int getScrollPos(Orientation orientation) const;
+
+    void setScrollPos(Orientation orientation, int pos);
+
+    [[nodiscard]] Point getScrollPoint() const;
+
+    void setScrollPoint(const Point &pt);
+
+    void hideScrollBar(Orientation orientation) const;
+
+    void scrollRect(const Rect &rect, const Point &delta);
+
+    // ===============================================================
+    // MESSAGES
+    // ===============================================================
+
+    void enqueueMessage(const Message &message) const;
+
+    virtual bool preTranslateMessage(Message &message);
+
+    // ===============================================================
+    // WIN32 SPECIFIC
+    // ===============================================================
+
+    [[nodiscard]] HWND getHandle() const;
+
+    [[nodiscard]] HWND getParentHandle() const;
+
+    static Widget *fromHandle(HWND hwnd);
+
+    static WNDPROC getGlobalWndProc();
+
+    LRESULT sendMessage(UINT message, WPARAM wParam, LPARAM lParam);
+
+    // ===============================================================
+    // SIGNALS (signals are public, see TN004)
+    // ===============================================================
+
+    Signal1<void, ResizeEvent &> Resize; ///< @see onResize
+    Signal1<void, MouseEvent &> MouseEnter; ///< @see onMouseEnter
+    Signal1<void, MouseEvent &> MouseLeave; ///< @see onMouseLeave
+    Signal1<void, MouseEvent &> MouseDown; ///< @see onMouseDown
+    Signal1<void, MouseEvent &> MouseUp; ///< @see onMouseUp
+    Signal1<void, MouseEvent &> MouseMove; ///< @see onMouseMove
+    Signal1<void, MouseEvent &> MouseWheel; ///< @see onMouseWheel
+    Signal1<void, MouseEvent &> DoubleClick; ///< @see onDoubleClick
+    Signal1<void, KeyEvent &> KeyUp; ///< @see onKeyUp
+    Signal1<void, KeyEvent &> KeyDown; ///< @see onKeyDown
+    Signal1<void, FocusEvent &> FocusEnter; ///< @see onFocusEnter
+    Signal1<void, FocusEvent &> FocusLeave; ///< @see onFocusLeave
+    Signal1<void, DropFilesEvent &> DropFiles; ///< @see onDropFiles
 
 protected:
 
-  // ===============================================================
-  // EVENTS
-  // ===============================================================
+    // ===============================================================
+    // EVENTS
+    // ===============================================================
 
-  virtual void onPreferredSize(PreferredSizeEvent& ev);
-  virtual void onLayout(LayoutEvent& ev);
-  virtual void onPaint(PaintEvent& ev);
-  virtual void onResize(ResizeEvent& ev);
-  virtual void onMouseEnter(MouseEvent& ev);
-  virtual void onMouseLeave(MouseEvent& ev);
-  virtual void onMouseDown(MouseEvent& ev);
-  virtual void onMouseUp(MouseEvent& ev);
-  virtual void onMouseMove(MouseEvent& ev);
-  virtual void onMouseWheel(MouseEvent& ev);
-  virtual void onDoubleClick(MouseEvent& ev);
-  virtual void onSetCursor(SetCursorEvent& ev);
-  virtual void onKeyDown(KeyEvent& ev);
-  virtual void onKeyUp(KeyEvent& ev);
-  virtual void onFocusEnter(FocusEvent& ev);
-  virtual void onFocusLeave(FocusEvent& ev);
-  virtual void onCommand(CommandEvent& ev);
-  virtual void onUpdateIndicators();
-  virtual void onScroll(ScrollEvent& ev);
-  virtual void onDropFiles(DropFilesEvent& ev);
+    virtual void onPreferredSize(PreferredSizeEvent &ev);
 
-  // ===============================================================
-  // REFLECTION
-  // ===============================================================
+    virtual void onLayout(LayoutEvent &ev);
 
-  virtual bool onReflectedCommand(int id, int code, LRESULT& lResult);
-  virtual bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT& lResult);
-  virtual bool onReflectedDrawItem(Graphics& g, LPDRAWITEMSTRUCT lpDrawItem);
+    virtual void onPaint(PaintEvent &ev);
 
-  // ===============================================================
-  // CREATION & MESSAGE PROCESSING
-  // ===============================================================
+    virtual void onResize(ResizeEvent &ev);
 
-  void create(const WidgetClassName& className, Widget* parent, Style style);
-  void subClass();
-  LRESULT defWndProc(UINT message, WPARAM wParam, LPARAM lParam);
-  virtual bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& lResult);
+    virtual void onMouseEnter(MouseEvent &ev);
 
-  bool doPaint(Graphics& g);
+    virtual void onMouseLeave(MouseEvent &ev);
 
-  void setDefWndProc(WNDPROC proc);
-  void setDestroyHandleProc(void (*proc)(HWND));
+    virtual void onMouseDown(MouseEvent &ev);
+
+    virtual void onMouseUp(MouseEvent &ev);
+
+    virtual void onMouseMove(MouseEvent &ev);
+
+    virtual void onMouseWheel(MouseEvent &ev);
+
+    virtual void onDoubleClick(MouseEvent &ev);
+
+    virtual void onSetCursor(SetCursorEvent &ev);
+
+    virtual void onKeyDown(KeyEvent &ev);
+
+    virtual void onKeyUp(KeyEvent &ev);
+
+    virtual void onFocusEnter(FocusEvent &ev);
+
+    virtual void onFocusLeave(FocusEvent &ev);
+
+    virtual void onCommand(CommandEvent &ev);
+
+    virtual void onUpdateIndicators();
+
+    virtual void onScroll(ScrollEvent &ev);
+
+    virtual void onDropFiles(DropFilesEvent &ev);
+
+    // ===============================================================
+    // REFLECTION
+    // ===============================================================
+
+    virtual bool onReflectedCommand(int id, int code, LRESULT &lResult);
+
+    virtual bool onReflectedNotify(LPNMHDR lpnmhdr, LRESULT &lResult);
+
+    virtual bool onReflectedDrawItem(Graphics &g, LPDRAWITEMSTRUCT lpDrawItem);
+
+    // ===============================================================
+    // CREATION & MESSAGE PROCESSING
+    // ===============================================================
+
+    void create(const WidgetClassName &className, Widget *parent, Style style);
+
+    void subClass();
+
+    LRESULT defWndProc(UINT message, WPARAM wParam, LPARAM lParam);
+
+    virtual bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT &lResult);
+
+    bool doPaint(Graphics &g);
+
+    void setDefWndProc(WNDPROC proc);
+
+    void setDestroyHandleProc(void (*proc)(HWND));
 
 private:
 
-  void initialize();
-  void addChildWin32(Widget* child, bool setParent);
-  void removeChildWin32(Widget* child, bool setParent);
+    void initialize();
 
-  virtual HWND createHandle(LPCTSTR className, Widget* parent, Style style);
+    void addChildWin32(Widget *child, bool setParent);
 
-  static LRESULT CALLBACK globalWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+    void removeChildWin32(Widget *child, bool setParent);
+
+    virtual HWND createHandle(LPCTSTR className, Widget *parent, Style style);
+
+    static LRESULT CALLBACK globalWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 };
 
@@ -452,18 +538,18 @@ private:
    Makes a reference to the specified widget. Reference lives in the
    scope of the MakeWidgetRef's instance.
 */
-class VACA_DLL MakeWidgetRef : private NonCopyable
-{
-  WidgetList m_container;
+class VACA_DLL MakeWidgetRef : private NonCopyable {
+    WidgetList m_container;
 
 public:
-  MakeWidgetRef(Widget* widget);
-  virtual ~MakeWidgetRef();
+    MakeWidgetRef(Widget *widget);
+
+    virtual ~MakeWidgetRef();
 
 private:
-  void safeDelete(Widget* widget);
+    void safeDelete(Widget *widget);
 };
 
-VACA_DLL void delete_widget(Widget* widget);
+VACA_DLL void delete_widget(Widget *widget);
 
 } // namespace vaca

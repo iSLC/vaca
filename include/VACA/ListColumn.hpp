@@ -14,41 +14,46 @@ namespace vaca {
 /**
    A column in a ListView.
 */
-class VACA_DLL ListColumn : public Component
-{
-  friend class ListView;
+class VACA_DLL ListColumn : public Component {
+    friend class ListView;
 
-  int		m_index;
-  String	m_text;
-  TextAlign	m_textAlign;
-  int		m_width;
-  ListView*	m_owner;
+    int m_index;
+    String m_text;
+    TextAlign m_textAlign;
+    int m_width;
+    ListView *m_owner;
 
 public:
 
-  ListColumn(const String& text, TextAlign textAlign = TextAlign::Left);
-  ~ListColumn() override;
+    ListColumn(const String &text, TextAlign textAlign = TextAlign::Left);
 
-  ListView* getListView();
+    ~ListColumn() override;
 
-  [[nodiscard]] String getText() const;
-  void setText(const String& text);
+    ListView *getListView();
 
-  [[nodiscard]] TextAlign getTextAlign() const;
-  void setTextAlign(TextAlign textAlign);
+    [[nodiscard]] String getText() const;
 
-  [[nodiscard]] int getWidth() const;
-  void setWidth(int width);
-  void setPreferredWidth(bool useHeader = true);
+    void setText(const String &text);
 
-  [[nodiscard]] Rect getBounds() const;
+    [[nodiscard]] TextAlign getTextAlign() const;
 
-  // int getIndex() const;
-  // static ListColumn* fromIndex(HWND hwnd, int index);
+    void setTextAlign(TextAlign textAlign);
+
+    [[nodiscard]] int getWidth() const;
+
+    void setWidth(int width);
+
+    void setPreferredWidth(bool useHeader = true);
+
+    [[nodiscard]] Rect getBounds() const;
+
+    // int getIndex() const;
+    // static ListColumn* fromIndex(HWND hwnd, int index);
 
 private:
-  void addToListView(ListView* listView);
-  void removeFromListView();
+    void addToListView(ListView *listView);
+
+    void removeFromListView();
 
 };
 

@@ -16,30 +16,29 @@ namespace vaca {
 /**
    @see SysCursor
 */
-struct SysCursorEnum
-{
-  enum enumeration {
-    None,
-    Arrow,
-    Crosshair,
-    Hand,
-    Help,
-    Text,
-    Forbidden,
-    Move,
-    SizeE,
-    SizeN,
-    SizeNE,
-    SizeNW,
-    SizeS,
-    SizeSE,
-    SizeSW,
-    SizeW,
-    UpArrow,
-    Wait,
-    WaitBg
-  };
-  static const enumeration default_value = Arrow;
+struct SysCursorEnum {
+    enum enumeration {
+        None,
+        Arrow,
+        Crosshair,
+        Hand,
+        Help,
+        Text,
+        Forbidden,
+        Move,
+        SizeE,
+        SizeN,
+        SizeNE,
+        SizeNW,
+        SizeS,
+        SizeSE,
+        SizeSW,
+        SizeW,
+        UpArrow,
+        Wait,
+        WaitBg
+    };
+    static const enumeration default_value = Arrow;
 };
 
 /**
@@ -54,17 +53,15 @@ typedef Enum<SysCursorEnum> SysCursor;
 
    @internal
 */
-struct Win32DestroyCursor
-{
-  /**
-     @win32
-     Calls @msdn{DestroyCursor}.
-     @endwin32
-  */
-  static void destroy(HCURSOR handle)
-  {
-    ::DestroyCursor(handle);
-  }
+struct Win32DestroyCursor {
+    /**
+       @win32
+       Calls @msdn{DestroyCursor}.
+       @endwin32
+    */
+    static void destroy(HCURSOR handle) {
+        ::DestroyCursor(handle);
+    }
 };
 
 /**
@@ -78,20 +75,25 @@ struct Win32DestroyCursor
      This is a @msdn{HCURSOR} wrapper.
    @endwin32
 */
-class VACA_DLL Cursor : private SharedPtr<GdiObject<HCURSOR, Win32DestroyCursor> >
-{
+class VACA_DLL Cursor : private SharedPtr<GdiObject<HCURSOR, Win32DestroyCursor> > {
 public:
-  Cursor();
-  Cursor(const Cursor& cursor);
-  explicit Cursor(ResourceId cursorId);
-  explicit Cursor(SysCursor cursor);
-  explicit Cursor(const String& fileName);
-  explicit Cursor(HCURSOR handle);
-  ~Cursor() override;
+    Cursor();
 
-  Cursor& operator=(const Cursor& cursor);
+    Cursor(const Cursor &cursor);
 
-  [[nodiscard]] HCURSOR getHandle() const;
+    explicit Cursor(ResourceId cursorId);
+
+    explicit Cursor(SysCursor cursor);
+
+    explicit Cursor(const String &fileName);
+
+    explicit Cursor(HCURSOR handle);
+
+    ~Cursor() override;
+
+    Cursor &operator=(const Cursor &cursor);
+
+    [[nodiscard]] HCURSOR getHandle() const;
 
 };
 

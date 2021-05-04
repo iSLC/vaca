@@ -27,30 +27,32 @@ namespace vaca {
 
    @see @ref page_tn_011
 */
-class VACA_DLL Layout : public Referenceable
-{
+class VACA_DLL Layout : public Referenceable {
 public:
-  Layout();
-  ~Layout() override;
+    Layout();
 
-  virtual Size getPreferredSize(Widget* parent, WidgetList& widgets, const Size& fitIn);
-  virtual void layout(Widget* parent, WidgetList& widgets, const Rect& rc) = 0;
+    ~Layout() override;
+
+    virtual Size getPreferredSize(Widget *parent, WidgetList &widgets, const Size &fitIn);
+
+    virtual void layout(Widget *parent, WidgetList &widgets, const Rect &rc) = 0;
 };
 
 /**
    Auxiliary class to move widgets inside onLayout() method.
  */
-class VACA_DLL WidgetsMovement
-{
+class VACA_DLL WidgetsMovement {
 public:
-  WidgetsMovement(const WidgetList& widgets);
-  ~WidgetsMovement();
+    WidgetsMovement(const WidgetList &widgets);
 
-  void moveWidget(Widget* widget, const Rect& rc);
+    ~WidgetsMovement();
+
+    void moveWidget(Widget *widget, const Rect &rc);
 
 private:
-  class WidgetsMovementImpl;
-  WidgetsMovementImpl* m_impl;
+    class WidgetsMovementImpl;
+
+    WidgetsMovementImpl *m_impl;
 };
 
 } // namespace vaca

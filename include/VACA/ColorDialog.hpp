@@ -15,19 +15,19 @@ namespace vaca {
 /**
    A common dialog box to select colors.
 */
-class VACA_DLL ColorDialog : public CommonDialog
-{
-  Color m_color;
-  COLORREF m_customColors[16]{};
+class VACA_DLL ColorDialog : public CommonDialog {
+    Color m_color;
+    COLORREF m_customColors[16]{};
 
 public:
 
-  ColorDialog(const Color& color, Widget* parent);
-  ~ColorDialog() override;
+    ColorDialog(const Color &color, Widget *parent);
 
-  bool doModal() override;
+    ~ColorDialog() override;
 
-  [[nodiscard]] Color getColor() const;
+    bool doModal() override;
+
+    [[nodiscard]] Color getColor() const;
 
 };
 

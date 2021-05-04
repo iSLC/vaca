@@ -41,25 +41,22 @@ namespace vaca {
    @endcode
 */
 template<typename Base>
-struct Enum : public Base
-{
-  typedef typename Base::enumeration enumeration;
+struct Enum : public Base {
+    typedef typename Base::enumeration enumeration;
 
-  Enum() : m_value(Base::default_value)
-  { }
+    Enum() : m_value(Base::default_value) {}
 
-  Enum(enumeration value) : m_value(value)
-  { }
+    Enum(enumeration value) : m_value(value) {}
 
-  operator enumeration() const
-  { return m_value; }
+    operator enumeration() const { return m_value; }
 
-  Enum<Base> &operator=(enumeration value)
-  { m_value = value;
-    return *this; }
+    Enum<Base> &operator=(enumeration value) {
+        m_value = value;
+        return *this;
+    }
 
 private:
-  enumeration m_value;
+    enumeration m_value;
 };
 
 /**
@@ -98,44 +95,41 @@ private:
    @endcode
 */
 template<typename Base>
-struct EnumSet : public Base
-{
-  EnumSet() : m_value(0)
-  { }
+struct EnumSet : public Base {
+    EnumSet() : m_value(0) {}
 
-  EnumSet(int value) : m_value(value)
-  { }
+    EnumSet(int value) : m_value(value) {}
 
-  operator int() const
-  { return m_value; }
+    operator int() const { return m_value; }
 
-  EnumSet<Base> operator|(int value)
-  { return m_value | value; }
+    EnumSet<Base> operator|(int value) { return m_value | value; }
 
-  EnumSet<Base> operator&(int value)
-  { return m_value & value; }
+    EnumSet<Base> operator&(int value) { return m_value & value; }
 
-  EnumSet<Base> operator^(int value)
-  { return m_value ^ value; }
+    EnumSet<Base> operator^(int value) { return m_value ^ value; }
 
-  EnumSet<Base> &operator=(int value)
-  { m_value = value;
-    return *this; }
+    EnumSet<Base> &operator=(int value) {
+        m_value = value;
+        return *this;
+    }
 
-  EnumSet<Base> &operator|=(int value)
-  { m_value |= value;
-    return *this; }
+    EnumSet<Base> &operator|=(int value) {
+        m_value |= value;
+        return *this;
+    }
 
-  EnumSet<Base> &operator&=(int value)
-  { m_value &= value;
-    return *this; }
+    EnumSet<Base> &operator&=(int value) {
+        m_value &= value;
+        return *this;
+    }
 
-  EnumSet<Base> &operator^=(int value)
-  { m_value ^= value;
-    return *this; }
+    EnumSet<Base> &operator^=(int value) {
+        m_value ^= value;
+        return *this;
+    }
 
 private:
-  int m_value;
+    int m_value;
 };
 
 } // namespace vaca

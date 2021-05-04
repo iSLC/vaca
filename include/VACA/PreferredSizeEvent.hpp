@@ -12,23 +12,27 @@
 
 namespace vaca {
 
-class VACA_DLL PreferredSizeEvent : public Event
-{
-  Size m_fitIn;
-  Size m_preferredSize;
+class VACA_DLL PreferredSizeEvent : public Event {
+    Size m_fitIn;
+    Size m_preferredSize;
 
 public:
 
-  PreferredSizeEvent(Widget* source, const Size& fitIn);
-  ~PreferredSizeEvent() override;
+    PreferredSizeEvent(Widget *source, const Size &fitIn);
 
-  [[nodiscard]] Size fitInSize() const;
-  [[nodiscard]] int fitInWidth() const;
-  [[nodiscard]] int fitInHeight() const;
+    ~PreferredSizeEvent() override;
 
-  [[nodiscard]] Size getPreferredSize() const;
-  void setPreferredSize(const Size& preferredSize);
-  void setPreferredSize(int w, int h);
+    [[nodiscard]] Size fitInSize() const;
+
+    [[nodiscard]] int fitInWidth() const;
+
+    [[nodiscard]] int fitInHeight() const;
+
+    [[nodiscard]] Size getPreferredSize() const;
+
+    void setPreferredSize(const Size &preferredSize);
+
+    void setPreferredSize(int w, int h);
 
 };
 

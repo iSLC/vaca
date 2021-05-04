@@ -19,104 +19,106 @@ namespace vaca {
    DockArea (e.g. BasicDockArea uses a BasicDockInfo for each DockBar
    docked on it).
 */
-class DockInfo
-{
+class DockInfo {
 public:
-  virtual Size getSize() = 0;
-  virtual Side getSide() = 0;
+    virtual Size getSize() = 0;
+
+    virtual Side getSide() = 0;
 };
 
 /**
    Represents the Win32 class used by DockArea.
 */
-class DockAreaClass : public WidgetClass
-{
+class DockAreaClass : public WidgetClass {
 public:
-  static WidgetClassName getClassName()
-  { return WidgetClassName(L"Vaca.DockArea"); }
+    static WidgetClassName getClassName() { return WidgetClassName(L"Vaca.DockArea"); }
 };
 
 /**
    The abstract class to create DockAreas. A DockArea is the place
    where you can dock toolbars (any DockBar really).
 */
-class VACA_DLL DockArea : public Register<DockAreaClass>, public Widget
-{
-  friend class DockBar;
+class VACA_DLL DockArea : public Register<DockAreaClass>, public Widget {
+    friend class DockBar;
 
-  Side m_side;
+    Side m_side;
 
 public:
 
-  struct VACA_DLL Styles {
-    static const Style Default;
-  };
+    struct VACA_DLL Styles {
+        static const Style Default;
+    };
 
-  DockArea(Side side, Widget* parent, const Style& style = Styles::Default);
-  ~DockArea() override;
+    DockArea(Side side, Widget *parent, const Style &style = Styles::Default);
 
-  bool isHorizontal();
-  bool isVertical();
+    ~DockArea() override;
 
-  Side getSide();
+    bool isHorizontal();
 
-  [[nodiscard]] bool isLayoutFree() const override;
+    bool isVertical();
 
-  /**
-     Returns true if the point @a pt is inside a valid rectangle to dock
-     in this DockArea.
+    Side getSide();
 
-     @param bar
-	 The DockBar to dock.
+    [[nodiscard]] bool isLayoutFree() const override;
 
-     @param cursor
-	 Absolute position.
+    /**
+       Returns true if the point @a pt is inside a valid rectangle to dock
+       in this DockArea.
 
-     @param fromInside
-	 True means that we are already inside the
-     	 DockArea, so try to use the more biggest are to
-	 return a true hit-test.
-  */
-  virtual bool hitTest(DockBar* bar, const Point& cursor, const Point& anchor, bool fromInside) = 0;
+       @param bar
+       The DockBar to dock.
 
-  /**
-     Returns a default DockInfo for the floating DockBar that want to be
-     docked by double-click by first-time.
-  */
-  virtual DockInfo* createDefaultDockInfo(DockBar* bar) = 0;
+       @param cursor
+       Absolute position.
 
-  /**
-     @return A new created dockInfo (you must to delete this pointer).
-  */
-  virtual DockInfo* createDockInfo(DockBar* bar, const Point& cursor, const Point& anchor) = 0;
+       @param fromInside
+       True means that we are already inside the
+            DockArea, so try to use the more biggest are to
+       return a true hit-test.
+    */
+    virtual bool hitTest(DockBar *bar, const Point &cursor, const Point &anchor, bool fromInside) = 0;
 
-  /**
-     Draws the tracker (generally a rectangle) in Xor mode that
-     represents the specified @a dockInfo.
-  */
-  virtual void drawXorTracker(Graphics& g, DockInfo* dockInfo) = 0;
+    /**
+       Returns a default DockInfo for the floating DockBar that want to be
+       docked by double-click by first-time.
+    */
+    virtual DockInfo *createDefaultDockInfo(DockBar *bar) = 0;
 
-  /**
-     Lays out all dock bars inside the dock area using the DockInfo of
-     each DockBar.
+    /**
+       @return A new created dockInfo (you must to delete this pointer).
+    */
+    virtual DockInfo *createDockInfo(DockBar *bar, const Point &cursor, const Point &anchor) = 0;
 
-     @see DockBar, DockInfo
-  */
-  void layout() override = 0;
+    /**
+       Draws the tracker (generally a rectangle) in Xor mode that
+       represents the specified @a dockInfo.
+    */
+    virtual void drawXorTracker(Graphics &g, DockInfo *dockInfo) = 0;
+
+    /**
+       Lays out all dock bars inside the dock area using the DockInfo of
+       each DockBar.
+
+       @see DockBar, DockInfo
+    */
+    void layout() override = 0;
 
 private:
 
-  void addDockBar(DockBar* dockBar);
-  void removeDockBar(DockBar* dockBar);
+    void addDockBar(DockBar *dockBar);
+
+    void removeDockBar(DockBar *dockBar);
 
 protected:
-  // Events
-  void onPreferredSize(PreferredSizeEvent& ev) override = 0;
+    // Events
+    void onPreferredSize(PreferredSizeEvent &ev) override = 0;
 
-  // New events
-  virtual void onAddDockBar(DockBar* dockBar);
-  virtual void onRemoveDockBar(DockBar* dockBar);
-  virtual void onRedock(DockBar* dockBar, DockInfo* newDockInfo);
+    // New events
+    virtual void onAddDockBar(DockBar *dockBar);
+
+    virtual void onRemoveDockBar(DockBar *dockBar);
+
+    virtual void onRedock(DockBar *dockBar, DockInfo *newDockInfo);
 
 };
 

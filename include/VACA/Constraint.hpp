@@ -24,12 +24,12 @@ namespace vaca {
    parent widget) special properties to be used when the layout manager
    must to arrange the widget.
 */
-class VACA_DLL Constraint : public Referenceable
-{
+class VACA_DLL Constraint : public Referenceable {
 public:
 
-  Constraint();
-  ~Constraint() override;
+    Constraint();
+
+    ~Constraint() override;
 
 };
 

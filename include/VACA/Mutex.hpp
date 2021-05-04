@@ -26,19 +26,22 @@ namespace vaca {
 	@wikipedia{Critical_section, Critical Section in Wikipedia}
 	@wikipedia{Mutex, Mutex in Wikipedia}
 */
-class VACA_DLL Mutex : private NonCopyable
-{
-  class MutexImpl;
-  MutexImpl* m_impl;
+class VACA_DLL Mutex : private NonCopyable {
+    class MutexImpl;
+
+    MutexImpl *m_impl;
 
 public:
 
-  Mutex();
-  ~Mutex();
+    Mutex();
 
-  void lock();
-  bool tryLock();
-  void unlock();
+    ~Mutex();
+
+    void lock();
+
+    bool tryLock();
+
+    void unlock();
 
 };
 

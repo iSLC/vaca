@@ -16,40 +16,46 @@ namespace vaca {
 /**
    An item in a ListView.
 */
-class VACA_DLL ListItem : public Component
-{
-  friend class ListView;
+class VACA_DLL ListItem : public Component {
+    friend class ListView;
 
-  int			m_index;
-  std::vector<String>	m_text;
-  int			m_image;
-  ListView*		m_owner;
+    int m_index;
+    std::vector<String> m_text;
+    int m_image;
+    ListView *m_owner;
 
 public:
 
-  ListItem(const String& text = L"", int imageIndex = -1);
-  ~ListItem() override;
+    ListItem(const String &text = L"", int imageIndex = -1);
 
-  ListView* getListView();
-  [[nodiscard]] int getIndex() const;
-  [[nodiscard]] Rect getBounds() const;
+    ~ListItem() override;
 
-  virtual String getText(size_t columnIndex);
-  virtual int getImage();
+    ListView *getListView();
 
-  void setText(const String& text, size_t columnIndex = 0);
-  void setImage(int image);
+    [[nodiscard]] int getIndex() const;
 
-  void update();
+    [[nodiscard]] Rect getBounds() const;
 
-  [[nodiscard]] bool isSelected() const;
-  void setSelected(bool state);
+    virtual String getText(size_t columnIndex);
 
-  void ensureVisible();
+    virtual int getImage();
+
+    void setText(const String &text, size_t columnIndex = 0);
+
+    void setImage(int image);
+
+    void update();
+
+    [[nodiscard]] bool isSelected() const;
+
+    void setSelected(bool state);
+
+    void ensureVisible();
 
 private:
-  void addToListView(ListView* listView);
-  void removeFromListView();
+    void addToListView(ListView *listView);
+
+    void removeFromListView();
 
 };
 
