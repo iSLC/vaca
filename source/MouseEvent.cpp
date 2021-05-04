@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/MouseEvent.hpp"
-#include "VACA/Widget.hpp"
+#include "Wg/MouseEvent.hpp"
+#include "Wg/Widget.hpp"
 
 using namespace Wg;
 

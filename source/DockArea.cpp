@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/DockArea.hpp"
-#include "VACA/DockBar.hpp"
-#include "VACA/Frame.hpp"
-#include "VACA/Point.hpp"
-#include "VACA/Debug.hpp"
+#include "Wg/DockArea.hpp"
+#include "Wg/DockBar.hpp"
+#include "Wg/Frame.hpp"
+#include "Wg/Point.hpp"
+#include "Wg/Debug.hpp"
 
 using namespace Wg;
 

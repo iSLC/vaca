@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Clipboard.hpp"
-#include "VACA/Widget.hpp"
-#include "VACA/System.hpp"
-#include "VACA/String.hpp"
+#include "Wg/Clipboard.hpp"
+#include "Wg/Widget.hpp"
+#include "Wg/System.hpp"
+#include "Wg/String.hpp"
 
 using namespace Wg;
 

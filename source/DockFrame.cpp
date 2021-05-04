@@ -6,11 +6,11 @@
 
 #if 0
 
-#include "VACA/DockFrame.h"
-#include "VACA/DockBar.h"
-#include "VACA/ClientLayout.h"
-#include "VACA/Event.h"
-#include "VACA/Debug.h"
+#include "Wg/DockFrame.h"
+#include "Wg/DockBar.h"
+#include "Wg/ClientLayout.h"
+#include "Wg/Event.h"
+#include "Wg/Debug.h"
 
 using namespace Wg;
 

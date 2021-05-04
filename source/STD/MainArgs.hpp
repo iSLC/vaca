@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "VACA/String.hpp"
+#include "Wg/String.hpp"
 
 void vaca::details::MainArgs::setArgs(int argc, char* argv[])
 {

@@ -5,13 +5,13 @@
 // please read LICENSE.txt for more information.
 
 
-#include "VACA/ReBar.hpp"
-#include "VACA/Event.hpp"
-#include "VACA/ImageList.hpp"
-#include "VACA/WidgetClass.hpp"
-#include "VACA/LayoutEvent.hpp"
-#include "VACA/PreferredSizeEvent.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/ReBar.hpp"
+#include "Wg/Event.hpp"
+#include "Wg/ImageList.hpp"
+#include "Wg/WidgetClass.hpp"
+#include "Wg/LayoutEvent.hpp"
+#include "Wg/PreferredSizeEvent.hpp"
+#include "Wg/Win32.hpp"
 
 // Warning:
 //   You must define WINVER & _WIN32_WINNT version, otherwise,

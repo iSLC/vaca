@@ -6,8 +6,8 @@
 
 #include <utility>
 
-#include "VACA/TreeViewEvent.hpp"
-#include "VACA/TreeView.hpp"
+#include "Wg/TreeViewEvent.hpp"
+#include "Wg/TreeView.hpp"
 
 using namespace Wg;
 

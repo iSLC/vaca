@@ -12,9 +12,9 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-#include "VACA/Color.hpp"
-#include "VACA/GdiObject.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/Color.hpp"
+#include "Wg/GdiObject.hpp"
+#include "Wg/Win32.hpp"
 
 class Wg::Pen::PenImpl : public GdiObject<HPEN>
 {

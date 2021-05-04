@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/BoxLayout.hpp"
-#include "VACA/BoxConstraint.hpp"
-#include "VACA/Size.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Widget.hpp"
+#include "Wg/BoxLayout.hpp"
+#include "Wg/BoxConstraint.hpp"
+#include "Wg/Size.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Widget.hpp"
 
 using namespace Wg;
 

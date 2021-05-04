@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/CloseEvent.hpp"
-#include "VACA/Frame.hpp"
+#include "Wg/CloseEvent.hpp"
+#include "Wg/Frame.hpp"
 
 using namespace Wg;
 

@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/DropFilesEvent.hpp"
-#include "VACA/Widget.hpp"
+#include "Wg/DropFilesEvent.hpp"
+#include "Wg/Widget.hpp"
 
 using namespace Wg;
 

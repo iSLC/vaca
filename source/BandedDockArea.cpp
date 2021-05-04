@@ -6,14 +6,14 @@
 
 #if 0
 
-#include "VACA/BandedDockArea.h"
-#include "VACA/DockBar.h"
-#include "VACA/Frame.h"
-#include "VACA/Point.h"
-#include "VACA/Debug.h"
-#include "VACA/System.h"
-#include "VACA/Pen.h"
-#include "VACA/PreferredSizeEvent.h"
+#include "Wg/BandedDockArea.h"
+#include "Wg/DockBar.h"
+#include "Wg/Frame.h"
+#include "Wg/Point.h"
+#include "Wg/Debug.h"
+#include "Wg/System.h"
+#include "Wg/Pen.h"
+#include "Wg/PreferredSizeEvent.h"
 
 using namespace Wg;
 

@@ -4,19 +4,19 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/LinkLabel.hpp"
-#include "VACA/Point.hpp"
-#include "VACA/MouseEvent.hpp"
-#include "VACA/PaintEvent.hpp"
-#include "VACA/Cursor.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Font.hpp"
-#include "VACA/Brush.hpp"
-#include "VACA/Pen.hpp"
-#include "VACA/KeyEvent.hpp"
-#include "VACA/Image.hpp"
-#include "VACA/PreferredSizeEvent.hpp"
-#include "VACA/SetCursorEvent.hpp"
+#include "Wg/LinkLabel.hpp"
+#include "Wg/Point.hpp"
+#include "Wg/MouseEvent.hpp"
+#include "Wg/PaintEvent.hpp"
+#include "Wg/Cursor.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Font.hpp"
+#include "Wg/Brush.hpp"
+#include "Wg/Pen.hpp"
+#include "Wg/KeyEvent.hpp"
+#include "Wg/Image.hpp"
+#include "Wg/PreferredSizeEvent.hpp"
+#include "Wg/SetCursorEvent.hpp"
 
 using namespace Wg;
 

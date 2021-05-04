@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/SetCursorEvent.hpp"
-#include "VACA/Widget.hpp"
-#include "VACA/Cursor.hpp"
+#include "Wg/SetCursorEvent.hpp"
+#include "Wg/Widget.hpp"
+#include "Wg/Cursor.hpp"
 
 using namespace Wg;
 

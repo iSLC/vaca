@@ -4,7 +4,7 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Pen.hpp"
+#include "Wg/Pen.hpp"
 
 #if defined(VACA_WINDOWS)
   #include "win32/PenImpl.hpp"

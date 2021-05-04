@@ -4,19 +4,19 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/TreeView.hpp"
-#include "VACA/TreeViewEvent.hpp"
-#include "VACA/System.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/ImageList.hpp"
-#include "VACA/WidgetClass.hpp"
-#include "VACA/MouseEvent.hpp"
-#include "VACA/Cursor.hpp"
-#include "VACA/SetCursorEvent.hpp"
+#include "Wg/TreeView.hpp"
+#include "Wg/TreeViewEvent.hpp"
+#include "Wg/System.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/ImageList.hpp"
+#include "Wg/WidgetClass.hpp"
+#include "Wg/MouseEvent.hpp"
+#include "Wg/Cursor.hpp"
+#include "Wg/SetCursorEvent.hpp"
 
-#include "VACA/Brush.hpp"
-#include "VACA/Pen.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/Brush.hpp"
+#include "Wg/Pen.hpp"
+#include "Wg/Win32.hpp"
 
 using namespace Wg;
 

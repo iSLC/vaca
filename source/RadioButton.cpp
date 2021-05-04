@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/RadioButton.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Event.hpp"
-#include "VACA/Mutex.hpp"
-#include "VACA/ScopedLock.hpp"
+#include "Wg/RadioButton.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Event.hpp"
+#include "Wg/Mutex.hpp"
+#include "Wg/ScopedLock.hpp"
 
 using namespace Wg;
 

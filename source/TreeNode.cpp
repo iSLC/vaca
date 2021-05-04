@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/TreeNode.hpp"
-#include "VACA/TreeView.hpp"
-#include "VACA/TreeViewEvent.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/TreeNode.hpp"
+#include "Wg/TreeView.hpp"
+#include "Wg/TreeViewEvent.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Win32.hpp"
 
 using namespace Wg;
 

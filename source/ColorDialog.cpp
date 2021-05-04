@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ColorDialog.hpp"
-#include "VACA/Application.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/ColorDialog.hpp"
+#include "Wg/Application.hpp"
+#include "Wg/Win32.hpp"
 
 using namespace Wg;
 

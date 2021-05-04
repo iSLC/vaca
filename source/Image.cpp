@@ -4,12 +4,12 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Image.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Graphics.hpp"
-#include "VACA/Application.hpp"
-#include "VACA/ResourceException.hpp"
-#include "VACA/String.hpp"
+#include "Wg/Image.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Graphics.hpp"
+#include "Wg/Application.hpp"
+#include "Wg/ResourceException.hpp"
+#include "Wg/String.hpp"
 
 using namespace Wg;
 

@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/MsgBox.hpp"
-#include "VACA/System.hpp"
-#include "VACA/Widget.hpp"
+#include "Wg/MsgBox.hpp"
+#include "Wg/System.hpp"
+#include "Wg/Widget.hpp"
 
 using namespace Wg;
 

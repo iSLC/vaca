@@ -4,21 +4,21 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Graphics.hpp"
-#include "VACA/Image.hpp"
-#include "VACA/ImageList.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Font.hpp"
-#include "VACA/Rect.hpp"
-#include "VACA/Point.hpp"
-#include "VACA/Size.hpp"
-#include "VACA/Widget.hpp"
-#include "VACA/System.hpp"
-#include "VACA/Region.hpp"
-#include "VACA/Pen.hpp"
-#include "VACA/Brush.hpp"
-#include "VACA/GraphicsPath.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/Graphics.hpp"
+#include "Wg/Image.hpp"
+#include "Wg/ImageList.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Font.hpp"
+#include "Wg/Rect.hpp"
+#include "Wg/Point.hpp"
+#include "Wg/Size.hpp"
+#include "Wg/Widget.hpp"
+#include "Wg/System.hpp"
+#include "Wg/Region.hpp"
+#include "Wg/Pen.hpp"
+#include "Wg/Brush.hpp"
+#include "Wg/GraphicsPath.hpp"
+#include "Wg/Win32.hpp"
 
 #include <cmath>
 #ifndef M_PI

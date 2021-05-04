@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Label.hpp"
-#include "VACA/Font.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/WidgetClass.hpp"
-#include "VACA/PreferredSizeEvent.hpp"
+#include "Wg/Label.hpp"
+#include "Wg/Font.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/WidgetClass.hpp"
+#include "Wg/PreferredSizeEvent.hpp"
 
 using namespace Wg;
 

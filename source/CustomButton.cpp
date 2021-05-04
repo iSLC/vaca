@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/CustomButton.hpp"
-#include "VACA/Debug.hpp"
+#include "Wg/CustomButton.hpp"
+#include "Wg/Debug.hpp"
 
 using namespace Wg;
 

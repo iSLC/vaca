@@ -4,13 +4,13 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/GraphicsPath.hpp"
-#include "VACA/Point.hpp"
-#include "VACA/Region.hpp"
-#include "VACA/Pen.hpp"
-#include "VACA/Brush.hpp"
-#include "VACA/Graphics.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/GraphicsPath.hpp"
+#include "Wg/Point.hpp"
+#include "Wg/Region.hpp"
+#include "Wg/Pen.hpp"
+#include "Wg/Brush.hpp"
+#include "Wg/Graphics.hpp"
+#include "Wg/Win32.hpp"
 
 using namespace Wg;
 

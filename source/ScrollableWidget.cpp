@@ -4,13 +4,13 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ScrollableWidget.hpp"
-#include "VACA/ResizeEvent.hpp"
-#include "VACA/MouseEvent.hpp"
-#include "VACA/SetCursorEvent.hpp"
-#include "VACA/Cursor.hpp"
-#include "VACA/ScrollInfo.hpp"
-#include "VACA/ScrollEvent.hpp"
+#include "Wg/ScrollableWidget.hpp"
+#include "Wg/ResizeEvent.hpp"
+#include "Wg/MouseEvent.hpp"
+#include "Wg/SetCursorEvent.hpp"
+#include "Wg/Cursor.hpp"
+#include "Wg/ScrollInfo.hpp"
+#include "Wg/ScrollEvent.hpp"
 
 using namespace Wg;
 

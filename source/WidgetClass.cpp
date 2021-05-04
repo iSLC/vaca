@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/WidgetClass.hpp"
-#include "VACA/Widget.hpp"
-#include "VACA/Debug.hpp"
+#include "Wg/WidgetClass.hpp"
+#include "Wg/Widget.hpp"
+#include "Wg/Debug.hpp"
 
 using namespace Wg;
 

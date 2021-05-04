@@ -4,12 +4,12 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Mdi.hpp"
-#include "VACA/Application.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Event.hpp"
-#include "VACA/ClientLayout.hpp"
-#include "VACA/Menu.hpp"
+#include "Wg/Mdi.hpp"
+#include "Wg/Application.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Event.hpp"
+#include "Wg/ClientLayout.hpp"
+#include "Wg/Menu.hpp"
 
 using namespace Wg;
 

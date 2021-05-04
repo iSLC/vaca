@@ -4,15 +4,15 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Tab.hpp"
-#include "VACA/Font.hpp"
-#include "VACA/Point.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Event.hpp"
-#include "VACA/ClientLayout.hpp"
-#include "VACA/PreferredSizeEvent.hpp"
-#include "VACA/LayoutEvent.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/Tab.hpp"
+#include "Wg/Font.hpp"
+#include "Wg/Point.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Event.hpp"
+#include "Wg/ClientLayout.hpp"
+#include "Wg/PreferredSizeEvent.hpp"
+#include "Wg/LayoutEvent.hpp"
+#include "Wg/Win32.hpp"
 
 using namespace Wg;
 

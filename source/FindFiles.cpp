@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/FindFiles.hpp"
-#include "VACA/String.hpp"
+#include "Wg/FindFiles.hpp"
+#include "Wg/String.hpp"
 
 using namespace Wg;
 

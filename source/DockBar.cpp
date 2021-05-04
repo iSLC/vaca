@@ -6,15 +6,15 @@
 
 #if 0
 
-#include "VACA/DockBar.h"
-#include "VACA/DockFrame.h"
-#include "VACA/Debug.h"
-#include "VACA/Application.h"
-#include "VACA/MouseEvent.h"
-#include "VACA/PaintEvent.h"
-#include "VACA/Debug.h"
-#include "VACA/System.h"
-#include "VACA/PreferredSizeEvent.h"
+#include "Wg/DockBar.h"
+#include "Wg/DockFrame.h"
+#include "Wg/Debug.h"
+#include "Wg/Application.h"
+#include "Wg/MouseEvent.h"
+#include "Wg/PaintEvent.h"
+#include "Wg/Debug.h"
+#include "Wg/System.h"
+#include "Wg/PreferredSizeEvent.h"
 
 #define DEF_GRIPPER_SIZE 8
 

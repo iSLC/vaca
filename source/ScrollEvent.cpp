@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ScrollEvent.hpp"
-#include "VACA/Widget.hpp"
+#include "Wg/ScrollEvent.hpp"
+#include "Wg/Widget.hpp"
 
 using namespace Wg;
 

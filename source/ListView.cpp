@@ -4,14 +4,14 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ListView.hpp"
-#include "VACA/System.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/ImageList.hpp"
-#include "VACA/WidgetClass.hpp"
-#include "VACA/ListItem.hpp"
-#include "VACA/ListColumn.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/ListView.hpp"
+#include "Wg/System.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/ImageList.hpp"
+#include "Wg/WidgetClass.hpp"
+#include "Wg/ListItem.hpp"
+#include "Wg/ListColumn.hpp"
+#include "Wg/Win32.hpp"
 
 using namespace Wg;
 

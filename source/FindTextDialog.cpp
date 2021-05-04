@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/FindTextDialog.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Application.hpp"
-#include "VACA/WidgetClass.hpp"
-#include "VACA/CloseEvent.hpp"
+#include "Wg/FindTextDialog.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Application.hpp"
+#include "Wg/WidgetClass.hpp"
+#include "Wg/CloseEvent.hpp"
 
 using namespace Wg;
 

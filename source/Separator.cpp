@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Separator.hpp"
-#include "VACA/WidgetClass.hpp"
-#include "VACA/PreferredSizeEvent.hpp"
+#include "Wg/Separator.hpp"
+#include "Wg/WidgetClass.hpp"
+#include "Wg/PreferredSizeEvent.hpp"
 
 using namespace Wg;
 

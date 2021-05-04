@@ -4,18 +4,18 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ToolBar.hpp"
-#include "VACA/AnchorLayout.hpp"
-#include "VACA/Anchor.hpp"
-#include "VACA/ClientLayout.hpp"
-#include "VACA/Event.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/ImageList.hpp"
-#include "VACA/DockFrame.hpp"
-#include "VACA/Command.hpp"
-#include "VACA/CommandEvent.hpp"
-#include "VACA/PreferredSizeEvent.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/ToolBar.hpp"
+#include "Wg/AnchorLayout.hpp"
+#include "Wg/Anchor.hpp"
+#include "Wg/ClientLayout.hpp"
+#include "Wg/Event.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/ImageList.hpp"
+#include "Wg/DockFrame.hpp"
+#include "Wg/Command.hpp"
+#include "Wg/CommandEvent.hpp"
+#include "Wg/PreferredSizeEvent.hpp"
+#include "Wg/Win32.hpp"
 
 using namespace Wg;
 

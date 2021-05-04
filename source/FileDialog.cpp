@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/FileDialog.hpp"
-#include "VACA/Widget.hpp"
-#include "VACA/Application.hpp"
-#include "VACA/System.hpp"
-#include "VACA/String.hpp"
+#include "Wg/FileDialog.hpp"
+#include "Wg/Widget.hpp"
+#include "Wg/Application.hpp"
+#include "Wg/System.hpp"
+#include "Wg/String.hpp"
 
 // 32k is the limit for Win95/98/Me/NT4/2000/XP with ANSI version
 #define FILENAME_BUFSIZE (1024*32)

@@ -4,14 +4,14 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/SplitBar.hpp"
-#include "VACA/Color.hpp"
-#include "VACA/Brush.hpp"
-#include "VACA/Cursor.hpp"
-#include "VACA/MouseEvent.hpp"
-#include "VACA/PaintEvent.hpp"
-#include "VACA/System.hpp"
-#include "VACA/SetCursorEvent.hpp"
+#include "Wg/SplitBar.hpp"
+#include "Wg/Color.hpp"
+#include "Wg/Brush.hpp"
+#include "Wg/Cursor.hpp"
+#include "Wg/MouseEvent.hpp"
+#include "Wg/PaintEvent.hpp"
+#include "Wg/System.hpp"
+#include "Wg/SetCursorEvent.hpp"
 
 using namespace Wg;
 

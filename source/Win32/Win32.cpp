@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Win32.hpp"
-#include "VACA/Point.hpp"
-#include "VACA/Size.hpp"
-#include "VACA/Rect.hpp"
-#include "VACA/Color.hpp"
+#include "Wg/Win32.hpp"
+#include "Wg/Point.hpp"
+#include "Wg/Size.hpp"
+#include "Wg/Rect.hpp"
+#include "Wg/Color.hpp"
 
 using namespace Wg;
 

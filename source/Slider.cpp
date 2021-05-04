@@ -4,12 +4,12 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Slider.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Event.hpp"
-#include "VACA/ScrollEvent.hpp"
-#include "VACA/WidgetClass.hpp"
-#include "VACA/PreferredSizeEvent.hpp"
+#include "Wg/Slider.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Event.hpp"
+#include "Wg/ScrollEvent.hpp"
+#include "Wg/WidgetClass.hpp"
+#include "Wg/PreferredSizeEvent.hpp"
 #include <limits>
 #include <climits>
 

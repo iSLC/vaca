@@ -4,11 +4,11 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/FontDialog.hpp"
-#include "VACA/Font.hpp"
-#include "VACA/Widget.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Application.hpp"
+#include "Wg/FontDialog.hpp"
+#include "Wg/Font.hpp"
+#include "Wg/Widget.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Application.hpp"
 
 using namespace Wg;
 

@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/StatusBar.hpp"
-#include "VACA/WidgetClass.hpp"
-#include "VACA/PreferredSizeEvent.hpp"
-#include "VACA/LayoutEvent.hpp"
+#include "Wg/StatusBar.hpp"
+#include "Wg/WidgetClass.hpp"
+#include "Wg/PreferredSizeEvent.hpp"
+#include "Wg/LayoutEvent.hpp"
 
 using namespace Wg;
 

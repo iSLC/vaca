@@ -4,8 +4,8 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Exception.hpp"
-#include "VACA/String.hpp"
+#include "Wg/Exception.hpp"
+#include "Wg/String.hpp"
 
 #include <lmerr.h>
 #include <wininet.h>

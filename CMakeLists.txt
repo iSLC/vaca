@@ -106,10 +106,10 @@ endif()
 
 # Should we create a shared or static library?
 if(VACA_BUILD_SHARED)
-    add_library(vaca SHARED source/VACA.cpp)
+    add_library(vaca SHARED source/Wg.cpp)
     target_compile_definitions(vaca PUBLIC VACA_SHARED)
 else(VACA_BUILD_SHARED)
-    add_library(vaca STATIC source/VACA.cpp)
+    add_library(vaca STATIC source/Wg.cpp)
     target_compile_definitions(vaca PUBLIC VACA_STATIC)
 endif(VACA_BUILD_SHARED)
 

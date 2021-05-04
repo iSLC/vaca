@@ -4,10 +4,10 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Font.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Graphics.hpp"
-#include "VACA/String.hpp"
+#include "Wg/Font.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Graphics.hpp"
+#include "Wg/String.hpp"
 
 using namespace Wg;
 

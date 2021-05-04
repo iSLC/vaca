@@ -4,9 +4,9 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Rect.hpp"
-#include "VACA/Point.hpp"
-#include "VACA/Size.hpp"
+#include "Wg/Rect.hpp"
+#include "Wg/Point.hpp"
+#include "Wg/Size.hpp"
 
 using namespace Wg;
 

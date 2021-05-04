@@ -4,13 +4,13 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/ComboBox.hpp"
-#include "VACA/Event.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/System.hpp"
-#include "VACA/WidgetClass.hpp"
-#include "VACA/PreferredSizeEvent.hpp"
-#include "VACA/Win32.hpp"
+#include "Wg/ComboBox.hpp"
+#include "Wg/Event.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/System.hpp"
+#include "Wg/WidgetClass.hpp"
+#include "Wg/PreferredSizeEvent.hpp"
+#include "Wg/Win32.hpp"
 
 using namespace Wg;
 

@@ -4,15 +4,15 @@
 // This file is distributed under the terms of the MIT license,
 // please read LICENSE.txt for more information.
 
-#include "VACA/Application.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Frame.hpp"
-#include "VACA/Timer.hpp"
-#include "VACA/Graphics.hpp"
-#include "VACA/Font.hpp"
+#include "Wg/Application.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Frame.hpp"
+#include "Wg/Timer.hpp"
+#include "Wg/Graphics.hpp"
+#include "Wg/Font.hpp"
 
 #ifndef NDEBUG
-#include "VACA/System.hpp"
+#include "Wg/System.hpp"
 #endif
 
 using namespace Wg;

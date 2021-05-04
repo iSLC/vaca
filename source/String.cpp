@@ -6,9 +6,9 @@
 
 #define VACA_STRING_CPP
 
-#include "VACA/String.hpp"
-#include "VACA/Debug.hpp"
-#include "VACA/Exception.hpp"
+#include "Wg/String.hpp"
+#include "Wg/Debug.hpp"
+#include "Wg/Exception.hpp"
 #include <cstdarg>
 #include <cstdlib>
 #include <cctype>
