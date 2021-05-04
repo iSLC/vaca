@@ -210,6 +210,7 @@ target_sources(vaca PRIVATE
     source/ScrollableWidget.cpp
     source/Separator.cpp
     source/SetCursorEvent.cpp
+    source/Signal.cpp
     source/Size.cpp
     source/Slider.cpp
     source/SpinButton.cpp

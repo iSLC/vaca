@@ -8,7 +8,7 @@
 
 #include "Wg/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    @defgroup signal_group Signal Classes
@@ -168,7 +168,7 @@ protected:
 };
 
 /// Base signal class which implements code that can be shared by the signal specializations.
-struct SGUI_API SignalBase {
+struct VACA_DLL SignalBase {
     using Slot = SignalSlotPOD; ///< Basic type used to store a signal slot.
     /// Connect the specified slot to the signal.
     bool Connect(const Slot & slot) noexcept;
@@ -180,17 +180,17 @@ struct SGUI_API SignalBase {
     /// Disconnect all occurrences of the specified slot from the signal.
     uint32_t Disconnect(const Slot & slot) noexcept { return Eliminate(slot); }
     // See if the specified slot is connected to the signal.
-    bool Exists(const Slot & slot) const noexcept;
+    [[nodiscard]] bool Exists(const Slot & slot) const noexcept;
     /// See if the specified slot instance is connected to the signal.
-    bool ExistsThis(const Slot & slot) const noexcept;
+    [[nodiscard]] bool ExistsThis(const Slot & slot) const noexcept;
     /// See if the specified slot executor is connected to the signal.
-    bool ExistsExec(const Slot & slot) const noexcept;
+    [[nodiscard]] bool ExistsExec(const Slot & slot) const noexcept;
     /// Count all occurrences of the selected slot.
-    uint32_t Count(const Slot & slot) const noexcept;
+    [[nodiscard]] uint32_t Count(const Slot & slot) const noexcept;
     /// Count all occurrences of the selected slot instance.
-    uint32_t CountThis(const Slot & slot) const noexcept;
+    [[nodiscard]] uint32_t CountThis(const Slot & slot) const noexcept;
     /// Count all occurrences of the selected slot executor.
-    uint32_t CountExec(const Slot & slot) const noexcept;
+    [[nodiscard]] uint32_t CountExec(const Slot & slot) const noexcept;
     /// Move all occurrences of the selected slot to the front.
     void Lead(const Slot & slot, bool one = false, bool append = true) noexcept;
     /// Move all occurrences of the selected slot instance to the front.
@@ -215,10 +215,10 @@ struct SGUI_API SignalBase {
     bool Empty() const noexcept { return (m_Connected == 0u); }
     /// Execution scope used to adjust iterators when removing slots or modifying the storage during emission.
     struct Scope {
-        Slot *          mItr; ///< Currently executed slot.
-        Slot *          mEnd; ///< Where the execution ends.
-        Scope *         mParent; ///< Previous execution scope.
-        Scope *         mChild; ///< Next execution scope.
+        Slot *          mItr{}; ///< Currently executed slot.
+        Slot *          mEnd{}; ///< Where the execution ends.
+        Scope *         mParent{}; ///< Previous execution scope.
+        Scope *         mChild{}; ///< Next execution scope.
         /// Base constructor.
         Scope(Scope * p, Slot * b, Slot * e) noexcept
             : mItr(b), mEnd(e), mParent(p), mChild(nullptr) {
@@ -288,12 +288,14 @@ struct SGUI_API SignalBase {
     /// Increase the internal slot storage size by at least the specified amount. Amount must be greater than 0!
     bool Expand(uint32_t ammount) noexcept;
 protected:
-    uint32_t   m_Connected; /// Number of slots that are currently active and can be invoked.
-    uint32_t   m_Capacity; /// Number of stored slots that can be stored in the allocated memory buffer.
-    Slot *     m_Slots; /// Pointer to the allocated memory where the slots currently are stored.
-    Scope *    m_Scope; /// Pointer to the current execution state.
-    Slot       m_Local; /// Local buffer optimization knowing most signals will have one slot connected.
+    uint32_t   m_Connected{0}; /// Number of slots that are currently active and can be invoked.
+    uint32_t   m_Capacity{0}; /// Number of stored slots that can be stored in the allocated memory buffer.
+    Slot *     m_Slots{&m_Local}; /// Pointer to the allocated memory where the slots currently are stored.
+    Scope *    m_Scope{nullptr}; /// Pointer to the current execution state.
+    Slot       m_Local{}; /// Local buffer optimization knowing most signals will have one slot connected.
 };
+
+} // Namespace:: detail
 
 // ====================================================================================================================
 ///
@@ -344,8 +346,6 @@ protected:
 
 };
 
-} // Namespace:: detail
-
 /** @} */
 
-} // namespace vaca
+} // namespace Wg
