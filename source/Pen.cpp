@@ -12,7 +12,7 @@
   #error Implement Pen class in your platform
 #endif
 
-using namespace vaca;
+using namespace Wg;
 
 Pen::Pen()
   : m_impl(new PenImpl())

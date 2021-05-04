@@ -12,7 +12,7 @@
 #include "VACA/NonCopyable.hpp"
 #include "VACA/Slot.hpp"
 
-namespace vaca {
+namespace Wg {
 
 // ======================================================================
 
@@ -160,4 +160,4 @@ namespace details {
 VACA_DLL void removeAllThreadData();
 }
 
-} // namespace vaca
+} // namespace Wg

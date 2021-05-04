@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A rectangle.
@@ -102,4 +102,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Class which can't be copied.
@@ -45,4 +45,4 @@ private:
     NonCopyable &operator=(const NonCopyable &) = delete;
 };
 
-} // namespace vaca
+} // namespace Wg

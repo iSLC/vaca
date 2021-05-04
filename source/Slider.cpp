@@ -13,7 +13,7 @@
 #include <limits>
 #include <climits>
 
-using namespace vaca;
+using namespace Wg;
 
 const int Slider::MinLimit = SHRT_MIN; // std::numeric_limits<short>::min();
 const int Slider::MaxLimit = SHRT_MAX; // std::numeric_limits<short>::max();

@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Referenceable.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Abstract class to represent a constraint. Constraints are useful to
@@ -33,4 +33,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

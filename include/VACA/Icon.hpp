@@ -12,7 +12,7 @@
 #include "VACA/SharedPtr.hpp"
 #include "VACA/GdiObject.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Used to destroy the HICON handle from GdiObject.
@@ -65,4 +65,4 @@ public:
     [[nodiscard]] HICON getHandle() const;
 };
 
-} // namespace vaca
+} // namespace Wg

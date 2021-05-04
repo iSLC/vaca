@@ -14,7 +14,7 @@
 #include "VACA/Point.hpp"
 #include "VACA/SharedPtr.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class ImagePixelsHandle : public Referenceable {
 public:
@@ -172,4 +172,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

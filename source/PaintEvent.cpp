@@ -7,7 +7,7 @@
 #include "VACA/PaintEvent.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 PaintEvent::PaintEvent(Widget* source, Graphics& graphics)
   : Event(source)

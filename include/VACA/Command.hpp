@@ -12,7 +12,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    A command, action or function of the application.
@@ -118,4 +118,4 @@ public:
     [[nodiscard]] Command *getCommandById(CommandId id) const;
 };
 
-} // namespace vaca
+} // namespace Wg

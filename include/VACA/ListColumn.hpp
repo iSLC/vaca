@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Component.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A column in a ListView.
@@ -57,4 +57,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

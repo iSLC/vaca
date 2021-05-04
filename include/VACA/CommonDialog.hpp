@@ -11,7 +11,7 @@
 
 #include <commdlg.h>
 
-namespace vaca {
+namespace Wg {
 
 /**
    Base class for common dialogs.
@@ -33,4 +33,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

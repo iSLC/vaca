@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Loads the RichEdit DLL.
@@ -85,4 +85,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

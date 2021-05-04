@@ -38,7 +38,7 @@
 
 #include <limits>
 
-using namespace vaca;
+using namespace Wg;
 
 class ScopedUnlock : private NonCopyable
 {

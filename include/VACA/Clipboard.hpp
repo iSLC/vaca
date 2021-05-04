@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Handles the global clipboard.
@@ -30,4 +30,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

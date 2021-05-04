@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Layout.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    The more simplest Layout manager: positions all the widgets in the
@@ -33,4 +33,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

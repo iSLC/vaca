@@ -13,7 +13,7 @@
 #include "VACA/TextEdit.hpp"
 #include "VACA/SpinButton.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Represents the Win32 class used by Spinner.
@@ -79,4 +79,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

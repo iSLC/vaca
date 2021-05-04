@@ -11,7 +11,7 @@
 #include "VACA/WidgetClass.hpp"
 #include "VACA/Register.hpp"
 
-namespace vaca {
+namespace Wg {
 
 // ======================================================================
 // TabBase
@@ -156,4 +156,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

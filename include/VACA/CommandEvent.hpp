@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/ConsumableEvent.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL CommandEvent : public ConsumableEvent {
     CommandId m_commandId;
@@ -24,4 +24,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

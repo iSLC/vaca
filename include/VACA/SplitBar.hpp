@@ -11,7 +11,7 @@
 #include "VACA/Register.hpp"
 #include "VACA/WidgetClass.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Represents the Win32 class used by SplitBar.
@@ -100,4 +100,4 @@ private:
     void cleanTracker(Graphics &g);
 };
 
-} // namespace vaca
+} // namespace Wg

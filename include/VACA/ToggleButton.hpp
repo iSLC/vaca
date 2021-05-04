@@ -8,7 +8,7 @@
 
 #include "VACA/ButtonBase.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Handles a pusheable button (with BS_AUTOCHECKBOX | BS_PUSHLIKE styles).
@@ -26,4 +26,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

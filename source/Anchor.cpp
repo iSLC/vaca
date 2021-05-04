@@ -6,7 +6,7 @@
 
 #include "VACA/Anchor.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates an anchor constraint to be used in a child that has a

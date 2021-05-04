@@ -10,7 +10,7 @@
 
 #include <cassert>
 
-namespace vaca {
+namespace Wg {
 
 #ifdef NDEBUG
 #  ifdef __GNUC__
@@ -20,9 +20,9 @@ namespace vaca {
 #  endif
 #else
 #  ifdef __GNUC__
-#    define VACA_TRACE(msg...) vaca::details::trace(__FILE__, __LINE__, msg)
+#    define VACA_TRACE(msg...) Wg::details::trace(__FILE__, __LINE__, msg)
 #  else
-#    define VACA_TRACE         vaca::details::make_trace(__FILE__, __LINE__)
+#    define VACA_TRACE         Wg::details::make_trace(__FILE__, __LINE__)
 #  endif
 #endif
 
@@ -47,7 +47,7 @@ struct trace_t {
     va_start(ap, fmt);
     vsprintf(buf, fmt, ap);
     va_end(ap);
-    vaca::details::trace(filename, line, buf);
+    Wg::details::trace(filename, line, buf);
   }
 };
 inline trace_t make_trace(const char* filename, size_t line) {
@@ -60,4 +60,4 @@ inline trace_t make_trace(const char* filename, size_t line) {
 
 } // namespace details
 
-} // namespace vaca
+} // namespace Wg

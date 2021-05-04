@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Loads the Scintilla DLL.
@@ -666,4 +666,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

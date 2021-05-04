@@ -11,7 +11,7 @@
 #include "VACA/Size.hpp"
 #include "VACA/Win32.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 Region::Region()
   : SharedPtr<GdiObject<HRGN> >(new GdiObject<HRGN>(CreateRectRgn(0, 0, 0, 0)))

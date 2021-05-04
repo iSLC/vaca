@@ -7,7 +7,7 @@
 #include "VACA/KeyEvent.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 KeyEvent::KeyEvent(Widget* source, Keys::Type keys, Char charCode)
   : ConsumableEvent(source)

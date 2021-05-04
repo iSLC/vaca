@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Layout.hpp"
 
-namespace vaca {
+namespace Wg {
 
 // ======================================================================
 // BoxLayout
@@ -49,4 +49,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

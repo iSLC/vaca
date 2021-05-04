@@ -10,7 +10,7 @@
 #include "VACA/SharedPtr.hpp"
 #include "VACA/GdiObject.hpp"
 
-namespace vaca {
+namespace Wg {
 
 // ======================================================================
 
@@ -114,4 +114,4 @@ private:
     void assign(LPLOGFONT lplf);
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -13,7 +13,7 @@
 #include "VACA/GdiObject.hpp"
 #include "VACA/SharedPtr.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Used to destroy the HIMAGELIST handle from GdiObject.
@@ -75,4 +75,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

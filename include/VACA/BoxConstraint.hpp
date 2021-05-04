@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Constraint.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Defines a constraint for the BoxLayout. With BoxLayout a Widget can
@@ -35,4 +35,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

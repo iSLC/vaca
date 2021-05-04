@@ -7,7 +7,7 @@
 #include "VACA/ClientLayout.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ClientLayout::ClientLayout()
 {

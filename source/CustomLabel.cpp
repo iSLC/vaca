@@ -7,7 +7,7 @@
 #include "VACA/CustomLabel.hpp"
 #include "VACA/Debug.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 CustomLabel::CustomLabel(const String& text, Widget* parent, const Style& style)
   : Label(text, parent, style)

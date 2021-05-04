@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/CustomLabel.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A link to Internet (or whatever you want).
@@ -87,4 +87,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

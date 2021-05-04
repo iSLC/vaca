@@ -8,7 +8,7 @@
 
 #include "VACA/ButtonBase.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Handles a check box button.
@@ -28,4 +28,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

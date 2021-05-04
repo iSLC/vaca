@@ -16,7 +16,7 @@
 
 #include <windows.h>
 
-namespace vaca {
+namespace Wg {
 
 template<>
 VACA_DLL POINT convert_to(const Point &pt);

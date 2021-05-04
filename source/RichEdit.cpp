@@ -14,7 +14,7 @@
 #include <richedit.h>
 #include <memory>
 
-using namespace vaca;
+using namespace Wg;
 
 HINSTANCE RichEditRegister::hmod = nullptr;
 

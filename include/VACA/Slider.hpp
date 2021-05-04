@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL Slider : public Widget {
 public:
@@ -73,4 +73,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

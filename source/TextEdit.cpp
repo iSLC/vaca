@@ -10,7 +10,7 @@
 #include "VACA/WidgetClass.hpp"
 #include "VACA/PreferredSizeEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 TextEdit::TextEdit(const String& text, Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_EDIT), parent, style)

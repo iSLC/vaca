@@ -6,7 +6,7 @@
 
 #include "VACA/Keys.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 Keys::Type Keys::fromMessageParams(WPARAM wParam, LPARAM lParam)
 {

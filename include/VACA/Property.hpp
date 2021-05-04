@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Referenceable.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL Property : public Referenceable {
     String m_name;
@@ -22,4 +22,4 @@ public:
     [[nodiscard]] String getName() const;
 };
 
-} // namespace vaca
+} // namespace Wg

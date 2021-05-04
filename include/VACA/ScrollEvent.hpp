@@ -11,7 +11,7 @@
 #include "VACA/Event.hpp"
 #include "VACA/Point.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    It's like a namespace for ScrollRequest.
@@ -69,4 +69,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

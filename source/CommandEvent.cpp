@@ -6,7 +6,7 @@
 
 #include "VACA/CommandEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 CommandEvent::CommandEvent(Component* source, CommandId commandId)
   : ConsumableEvent(source)

@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Event.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL MenuItemEvent : public Event {
 
@@ -23,4 +23,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

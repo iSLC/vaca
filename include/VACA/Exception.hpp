@@ -10,7 +10,7 @@
 
 #include <exception>
 
-namespace vaca {
+namespace Wg {
 
 /**
    Exception generated from Vaca.
@@ -42,4 +42,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

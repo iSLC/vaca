@@ -10,7 +10,7 @@
 #include "VACA/WidgetClass.hpp"
 #include "VACA/CloseEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 #define FINDREPLACE_BUFSIZE 1024
 

@@ -10,7 +10,7 @@
 #include "VACA/Point.hpp"
 #include "VACA/Debug.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 DockArea::DockArea(Side side, Widget* parent, const Style& style)
   : Widget(DockAreaClass::getClassName(), parent, style)

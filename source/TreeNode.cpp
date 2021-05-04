@@ -10,7 +10,7 @@
 #include "VACA/Debug.hpp"
 #include "VACA/Win32.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 TreeNode::TreeNode(const String& text, int imageIndex, int selectedImageIndex)
   : m_text(text)

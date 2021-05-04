@@ -11,7 +11,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    Set of nodes to draw polygons and shapes in Graphics.
@@ -116,4 +116,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

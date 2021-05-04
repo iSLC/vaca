@@ -9,7 +9,7 @@
 #include "VACA/TreeViewEvent.hpp"
 #include "VACA/TreeView.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 TreeViewEvent::TreeViewEvent(TreeView* treeView, TreeNode* treeNode, String label)
   : CancelableEvent(treeView)

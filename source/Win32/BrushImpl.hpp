@@ -16,7 +16,7 @@
 #include "VACA/GdiObject.hpp"
 #include "VACA/Win32.hpp"
 
-class vaca::Brush::BrushImpl : public GdiObject<HBRUSH>
+class Wg::Brush::BrushImpl : public GdiObject<HBRUSH>
 {
 public:
 
@@ -40,7 +40,7 @@ public:
 
 };
 
-template<> HBRUSH vaca::convert_to(const Brush& brush)
+template<> HBRUSH Wg::convert_to(const Brush& brush)
 {
   // 1) getHandle is defined in GdiObject<HBRUSH> class
   // 2) convert_to<> is friend of Brush class

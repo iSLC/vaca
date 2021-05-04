@@ -7,7 +7,7 @@
 #include "VACA/ResourceId.hpp"
 #include "VACA/String.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ResourceId::ResourceId(int id)
 {

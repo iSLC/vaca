@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A 2D size.
@@ -64,4 +64,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

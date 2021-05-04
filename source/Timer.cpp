@@ -15,7 +15,7 @@
 #include <limits>
 #include <climits>		// because MSVC
 
-using namespace vaca;
+using namespace Wg;
 
 static Mutex               timer_mutex;		// monitor
 static Thread*             timer_thread = nullptr; // the thread that process timers

@@ -11,7 +11,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    @defgroup signal_group Signal Classes
@@ -433,4 +433,4 @@ public:
 
 /** @} */
 
-} // namespace vaca
+} // namespace Wg

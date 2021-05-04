@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    @defgroup slot_group Slot Classes
@@ -280,4 +280,4 @@ public:
 
 /** @} */
 
-} // namespace vaca
+} // namespace Wg

@@ -10,7 +10,7 @@
 #define PBS_MARQUEE 8
 #endif
 
-using namespace vaca;
+using namespace Wg;
 
 // ===================================================================
 // Base Styles

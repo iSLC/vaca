@@ -19,7 +19,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    Class to show a message box.
@@ -77,4 +77,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

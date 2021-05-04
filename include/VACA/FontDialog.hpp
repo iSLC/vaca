@@ -10,7 +10,7 @@
 #include "VACA/CommonDialog.hpp"
 #include "VACA/Font.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A common dialog box to select fonts.
@@ -35,4 +35,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

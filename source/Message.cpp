@@ -7,7 +7,7 @@
 #include "VACA/Message.hpp"
 #include "VACA/String.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 Message::Message()
 = default;

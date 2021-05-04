@@ -7,7 +7,7 @@
 #include "VACA/Point.hpp"
 #include "VACA/Size.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 Point::Point()
 {

@@ -11,7 +11,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    An item in a ListView.
@@ -59,4 +59,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

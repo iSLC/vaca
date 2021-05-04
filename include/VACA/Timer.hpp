@@ -11,7 +11,7 @@
 #include "VACA/NonCopyable.hpp"
 #include "VACA/Thread.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Class to schedule events every @e x milliseconds.
@@ -75,4 +75,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

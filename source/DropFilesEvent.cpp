@@ -7,7 +7,7 @@
 #include "VACA/DropFilesEvent.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates the event.

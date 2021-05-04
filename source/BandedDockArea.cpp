@@ -15,7 +15,7 @@
 #include "VACA/Pen.h"
 #include "VACA/PreferredSizeEvent.h"
 
-using namespace vaca;
+using namespace Wg;
 
 // Information about the docked position of the DockBar in a BandedDockArea.
 class BandedDockInfo : public DockInfo

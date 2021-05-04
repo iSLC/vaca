@@ -19,7 +19,7 @@
 #include <lmcons.h>
 
 using namespace std;
-using namespace vaca;
+using namespace Wg;
 
 /**
    Prints a line in the console.

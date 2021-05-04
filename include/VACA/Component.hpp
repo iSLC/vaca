@@ -10,7 +10,7 @@
 #include "VACA/Referenceable.hpp"
 #include <map>
 
-namespace vaca {
+namespace Wg {
 
 /**
    A component is a visual object, such as widgets or menus.
@@ -42,4 +42,4 @@ private:
     Properties m_properties;
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -8,7 +8,7 @@
 
 #include "VACA/Exception.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    This exception is thrown when a routine that parse a string has
@@ -83,4 +83,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

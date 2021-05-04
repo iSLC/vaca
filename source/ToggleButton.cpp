@@ -6,7 +6,7 @@
 
 #include "VACA/ToggleButton.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ToggleButton::ToggleButton(const String& text, Widget* parent, const Style& style)
   : ButtonBase(parent, style)

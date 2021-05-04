@@ -10,7 +10,7 @@
 #include <memory>
 #include <cassert>
 
-using namespace vaca;
+using namespace Wg;
 using namespace std;
 
 // ======================================================================

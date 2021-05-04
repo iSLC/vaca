@@ -10,7 +10,7 @@
 #include <lmerr.h>
 #include <wininet.h>
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates generic exception with an empty error message.

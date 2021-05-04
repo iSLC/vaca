@@ -12,7 +12,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 typedef std::vector<TreeNode *> TreeNodeList;
 
@@ -108,4 +108,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

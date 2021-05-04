@@ -10,7 +10,7 @@
 #include "VACA/Event.hpp"
 #include "VACA/Size.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL ResizeEvent : public Event {
     Size m_size;
@@ -25,4 +25,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

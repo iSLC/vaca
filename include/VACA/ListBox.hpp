@@ -11,7 +11,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    List box control. Widget to manage a list of strings.
@@ -76,4 +76,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

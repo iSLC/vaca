@@ -10,5 +10,5 @@ bars and layout managers.
 This library is released under the terms of the MIT License. See
 [LICENSE.txt](LICENSE.txt) for more information.
 
-* [Wiki](https://github.com/dacap/vaca/wiki)
-* [Examples](https://github.com/dacap/vaca/wiki/Examples)
+* [Wiki](https://github.com/dacap/Wg/wiki)
+* [Examples](https://github.com/dacap/Wg/wiki/Examples)

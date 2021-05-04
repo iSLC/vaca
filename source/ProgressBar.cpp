@@ -14,7 +14,7 @@
 #define PBM_SETMARQUEE 1034
 #endif
 
-using namespace vaca;
+using namespace Wg;
 
 ProgressBar::ProgressBar(Widget* parent, const Style& style)
   : Widget(WidgetClassName(PROGRESS_CLASS), parent, style)

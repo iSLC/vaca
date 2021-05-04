@@ -14,10 +14,10 @@
 
 #include <iterator>
 
-namespace vaca {
+namespace Wg {
 
 /**
-   @internal You should use @link vaca::TreeView::iterator TreeView::iterator @endlink.
+   @internal You should use @link Wg::TreeView::iterator TreeView::iterator @endlink.
 */
 class VACA_DLL TreeViewIterator
         : public std::iterator<std::bidirectional_iterator_tag,
@@ -196,4 +196,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/NonCopyable.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL FindFiles : public NonCopyable {
     String m_pattern;
@@ -34,4 +34,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

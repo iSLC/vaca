@@ -18,7 +18,7 @@
   #endif
 #endif
 
-using namespace vaca;
+using namespace Wg;
 
 #ifndef NDEBUG
 static Mutex s_mutex;

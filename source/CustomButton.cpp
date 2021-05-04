@@ -7,7 +7,7 @@
 #include "VACA/CustomButton.hpp"
 #include "VACA/Debug.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 #ifndef ODS_HOTLIGHT
 #  define ODS_HOTLIGHT 64

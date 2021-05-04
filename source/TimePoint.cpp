@@ -6,7 +6,7 @@
 
 #include "VACA/TimePoint.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates a new TimePoint starting the chronometer from this point.

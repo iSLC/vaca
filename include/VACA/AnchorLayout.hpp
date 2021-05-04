@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Layout.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    An AnchorLayout tries to maintain the same aspect of the widgets
@@ -37,4 +37,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

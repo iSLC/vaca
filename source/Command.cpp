@@ -6,7 +6,7 @@
 
 #include "VACA/Command.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 // ======================================================================
 // Command

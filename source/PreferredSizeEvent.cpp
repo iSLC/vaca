@@ -7,7 +7,7 @@
 #include "VACA/PreferredSizeEvent.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Event generated to calculate the preferred size of a widget.

@@ -10,7 +10,7 @@
 #include "VACA/ImageList.hpp"
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 struct ReBarBandStyleEnumSet {
     enum {
@@ -153,4 +153,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

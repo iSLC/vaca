@@ -10,7 +10,7 @@
 #include "VACA/CommonDialog.hpp"
 #include "VACA/Color.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A common dialog box to select colors.
@@ -31,4 +31,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

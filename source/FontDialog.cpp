@@ -10,7 +10,7 @@
 #include "VACA/Debug.hpp"
 #include "VACA/Application.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 FontDialog::FontDialog(const Font& font, Widget* parent)
   : CommonDialog(parent)

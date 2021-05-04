@@ -8,7 +8,7 @@
 
 #include "VACA/ButtonBase.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Handles a pusheable button. These are the more common buttons, like
@@ -37,4 +37,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

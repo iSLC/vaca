@@ -10,7 +10,7 @@
 #include "VACA/ConsumableEvent.hpp"
 #include "VACA/Keys.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Data for an event that comes from the keyboard.
@@ -50,4 +50,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -7,7 +7,7 @@
 #include "VACA/Property.hpp"
 #include "VACA/Debug.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates a new named property.

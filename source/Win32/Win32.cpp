@@ -10,31 +10,31 @@
 #include "VACA/Rect.hpp"
 #include "VACA/Color.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
-template<> POINT vaca::convert_to(const Point& pt)
+template<> POINT Wg::convert_to(const Point& pt)
 {
   POINT res = { pt.x, pt.y };
   return res;
 }
 
-template<> Point vaca::convert_to(const POINT& pt)
+template<> Point Wg::convert_to(const POINT& pt)
 {
   return Point(pt.x, pt.y);
 }
 
-template<> Point vaca::convert_to(const POINTS& pt)
+template<> Point Wg::convert_to(const POINTS& pt)
 {
   return Point(pt.x, pt.y);
 }
 
-template<> SIZE vaca::convert_to(const Size& sz)
+template<> SIZE Wg::convert_to(const Size& sz)
 {
   SIZE res = { sz.w, sz.h };
   return res;
 }
 
-template<> Size vaca::convert_to(const SIZE& sz)
+template<> Size Wg::convert_to(const SIZE& sz)
 {
   return Size(sz.cx, sz.cy);
 }
@@ -45,7 +45,7 @@ template<> Size vaca::convert_to(const SIZE& sz)
 
    @internal
 */
-template<> RECT vaca::convert_to(const Rect& rc)
+template<> RECT Wg::convert_to(const Rect& rc)
 {
   RECT res = { rc.x, rc.y, rc.x+rc.w, rc.y+rc.h };
   return res;
@@ -57,19 +57,19 @@ template<> RECT vaca::convert_to(const Rect& rc)
 
    @internal
 */
-template<> Rect vaca::convert_to(const RECT& rc)
+template<> Rect Wg::convert_to(const RECT& rc)
 {
   return Rect(rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top);
 }
 
-template<> COLORREF vaca::convert_to(const Color& color)
+template<> COLORREF Wg::convert_to(const Color& color)
 {
   return RGB(color.getR(),
 	     color.getG(),
 	     color.getB());
 }
 
-template<> Color vaca::convert_to(const COLORREF& colorref)
+template<> Color Wg::convert_to(const COLORREF& colorref)
 {
   return Color(GetRValue(colorref),
 	       GetGValue(colorref),

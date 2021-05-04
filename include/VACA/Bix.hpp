@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Layout.hpp"
 
-namespace vaca {
+namespace Wg {
 
 enum {
     // flags: type
@@ -114,4 +114,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

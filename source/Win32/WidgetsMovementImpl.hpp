@@ -12,7 +12,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-class vaca::WidgetsMovement::WidgetsMovementImpl
+class Wg::WidgetsMovement::WidgetsMovementImpl
 {
   HDWP m_hdwp;
   WidgetList m_relayoutWidgets;

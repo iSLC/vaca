@@ -11,7 +11,7 @@
 #include "VACA/Referenceable.hpp"
 #include "VACA/WidgetList.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A Layout setups the position of a collection of widgets. It's used
@@ -55,4 +55,4 @@ private:
     WidgetsMovementImpl *m_impl;
 };
 
-} // namespace vaca
+} // namespace Wg

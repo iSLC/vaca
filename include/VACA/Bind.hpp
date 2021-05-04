@@ -6,7 +6,7 @@
 
 #pragma once
 
-namespace vaca {
+namespace Wg {
 
 /**
    @defgroup bind_group Bind Classes and Functions
@@ -595,4 +595,4 @@ RefWrapper<T> Ref(T &ref) {
 
 /** @} */
 
-} // namespace vaca
+} // namespace Wg

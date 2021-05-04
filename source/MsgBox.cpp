@@ -8,7 +8,7 @@
 #include "VACA/System.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Shows a message box, locking the specified @a parent widget.

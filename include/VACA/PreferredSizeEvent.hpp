@@ -10,7 +10,7 @@
 #include "VACA/Event.hpp"
 #include "VACA/Size.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL PreferredSizeEvent : public Event {
     Size m_fitIn;
@@ -36,4 +36,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

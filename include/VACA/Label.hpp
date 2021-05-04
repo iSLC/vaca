@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A static label of text. It's just an informative label. Remember to
@@ -55,4 +55,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

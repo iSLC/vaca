@@ -10,7 +10,7 @@
 #include "VACA/Thread.hpp"
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 // Forward declarations
 namespace details { class MainArgs; }
@@ -102,4 +102,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

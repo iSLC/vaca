@@ -11,7 +11,7 @@
 #include "VACA/PreferredSizeEvent.hpp"
 #include "VACA/LayoutEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 GroupBox::GroupBox(const String& text, Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_BUTTON), parent, style)

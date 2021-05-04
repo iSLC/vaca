@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Auxiliary structure to get and set scroll information.
@@ -44,4 +44,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

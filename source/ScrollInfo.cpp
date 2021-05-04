@@ -6,7 +6,7 @@
 
 #include "VACA/ScrollInfo.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ScrollInfo::ScrollInfo()
 {

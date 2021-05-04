@@ -9,7 +9,7 @@
 #include "VACA/Debug.hpp"
 #include "VACA/Win32.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ListItem::ListItem(const String& text, int imageIndex)
 {

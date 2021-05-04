@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A 2D coordinate in the screen or client area of a widget.
@@ -60,4 +60,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

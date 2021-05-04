@@ -10,7 +10,7 @@
 #include "VACA/ResourceException.hpp"
 #include "VACA/String.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 #define GdiObj GdiObject<HCURSOR, Win32DestroyIcon>
 

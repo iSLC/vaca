@@ -11,7 +11,7 @@
 #include "VACA/ConsumableEvent.hpp"
 #include "VACA/Point.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Namespace for MouseButton enumeration.
@@ -96,4 +96,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

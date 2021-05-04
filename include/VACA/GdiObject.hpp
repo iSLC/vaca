@@ -11,7 +11,7 @@
 
 #include <cassert>
 
-namespace vaca {
+namespace Wg {
 
 /**
    Helper for GdiObject class to destroy Win32's HGDIOBJ handles.
@@ -99,4 +99,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

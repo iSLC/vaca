@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Frame.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    ID for the first MdiChild. These IDs are used internally by Win32
@@ -139,4 +139,4 @@ protected:
 };
 
 
-} // namespace vaca
+} // namespace Wg

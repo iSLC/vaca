@@ -66,7 +66,7 @@
 #include "debug_new.h"
 #endif
 
-namespace vaca {
+namespace Wg {
 
 #define VACA_VERSION     0
 #define VACA_SUB_VERSION 0
@@ -715,4 +715,4 @@ typedef SharedPtr<Widget> WidgetPtr;
 
 /** @} */
 
-} // namespace vaca
+} // namespace Wg

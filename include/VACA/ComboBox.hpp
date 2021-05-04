@@ -11,7 +11,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    Combo box control. Widget to select an option from a drop down
@@ -82,4 +82,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

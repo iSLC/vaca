@@ -6,7 +6,7 @@
 
 #pragma once
 
-namespace vaca {
+namespace Wg {
 
 /**
    This class is used to define enumerations "a la" C++0x.
@@ -132,4 +132,4 @@ private:
     int m_value;
 };
 
-} // namespace vaca
+} // namespace Wg

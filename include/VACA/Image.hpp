@@ -13,7 +13,7 @@
 #include "VACA/SharedPtr.hpp"
 #include "VACA/ImagePixels.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Used to destroy the HBITMAP handle of a Image.
@@ -111,4 +111,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

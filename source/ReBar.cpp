@@ -26,7 +26,7 @@
 #error You have to define _WIN32_IE to compile ReBar
 #endif
 
-using namespace vaca;
+using namespace Wg;
 
 // ======================================================================
 // ReBarBand class

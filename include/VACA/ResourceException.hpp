@@ -8,7 +8,7 @@
 
 #include "VACA/Exception.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A resource (from exe or from an external file) can't be loaded.
@@ -24,4 +24,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

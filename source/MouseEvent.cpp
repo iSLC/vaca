@@ -7,7 +7,7 @@
 #include "VACA/MouseEvent.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates an event from the mouse.

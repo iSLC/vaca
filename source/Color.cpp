@@ -6,7 +6,7 @@
 
 #include "VACA/Color.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    White color, RGB(255,255,255) or \#ffffff.

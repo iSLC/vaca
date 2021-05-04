@@ -10,7 +10,7 @@
 #include "VACA/Enum.hpp"
 #include "VACA/SharedPtr.hpp"
 
-namespace vaca {
+namespace Wg {
 
 // ======================================================================
 
@@ -148,4 +148,4 @@ private:
     SharedPtr<PenImpl> m_impl;
 };
 
-} // namespace vaca
+} // namespace Wg

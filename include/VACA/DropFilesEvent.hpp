@@ -11,7 +11,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL DropFilesEvent : public Event {
     std::vector<String> &m_files;
@@ -26,4 +26,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

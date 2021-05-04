@@ -12,7 +12,7 @@
   #error Implement Brush class in your platform
 #endif
 
-using namespace vaca;
+using namespace Wg;
 
 Brush::Brush()
   : m_impl(new BrushImpl())

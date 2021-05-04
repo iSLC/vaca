@@ -12,7 +12,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 // ======================================================================
 
@@ -264,4 +264,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

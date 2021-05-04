@@ -11,7 +11,7 @@
 #include "VACA/ResourceException.hpp"
 #include "VACA/String.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 // ======================================================================
 

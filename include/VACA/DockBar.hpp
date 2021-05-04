@@ -13,7 +13,7 @@
 #include "VACA/Point.hpp"
 #include "VACA/Size.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Represents the Win32 class used by DockBar.
@@ -179,4 +179,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

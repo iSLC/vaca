@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/SharedPtr.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A brush can be used to fill rectangles, ellipses, and paths.
@@ -47,4 +47,4 @@ private:
     SharedPtr<BrushImpl> m_impl;
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -9,7 +9,7 @@
 #include "VACA/Graphics.hpp"
 #include "VACA/String.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Constructs the default font.

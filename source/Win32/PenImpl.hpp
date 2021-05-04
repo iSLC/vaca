@@ -16,7 +16,7 @@
 #include "VACA/GdiObject.hpp"
 #include "VACA/Win32.hpp"
 
-class vaca::Pen::PenImpl : public GdiObject<HPEN>
+class Wg::Pen::PenImpl : public GdiObject<HPEN>
 {
 public:
 
@@ -139,7 +139,7 @@ public:
 
 };
 
-template<> HPEN vaca::convert_to(const Pen& pen)
+template<> HPEN Wg::convert_to(const Pen& pen)
 {
   // 1) getHandle is defined in GdiObject<HPEN> class
   // 2) convert_to<> is friend of Pen class

@@ -10,7 +10,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    Collection of widgets.
@@ -19,4 +19,4 @@ namespace vaca {
 */
 typedef std::vector<Widget *> WidgetList;
 
-} // namespace vaca
+} // namespace Wg

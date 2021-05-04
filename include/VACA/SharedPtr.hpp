@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Referenceable.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A pointer which maintains reference counting and
@@ -129,4 +129,4 @@ bool operator!=(const SharedPtr<T> &ptr1, const SharedPtr<T> &ptr2) {
     return ptr1.get() != ptr2.get();
 }
 
-} // namespace vaca
+} // namespace Wg

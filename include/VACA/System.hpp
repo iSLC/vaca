@@ -13,7 +13,7 @@
 #include <vector>
 #include <shlobj.h>
 
-namespace vaca {
+namespace Wg {
 
 /**
    Class to access to operating system information.
@@ -62,4 +62,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

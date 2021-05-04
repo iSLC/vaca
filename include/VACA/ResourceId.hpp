@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Class to wrap an ID of an object in the resource file (.rc).
@@ -36,4 +36,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

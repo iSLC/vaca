@@ -11,7 +11,7 @@
 #include "VACA/Size.hpp"
 #include "VACA/Point.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A wrapper ready-to-use to create scrollable widgets.
@@ -60,4 +60,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

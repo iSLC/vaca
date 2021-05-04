@@ -14,7 +14,7 @@
 #include <list>
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 // ======================================================================
 
@@ -280,4 +280,4 @@ public:
     ~ScreenGraphics() override;
 };
 
-} // namespace vaca
+} // namespace Wg

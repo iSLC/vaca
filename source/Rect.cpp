@@ -8,7 +8,7 @@
 #include "VACA/Point.hpp"
 #include "VACA/Size.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates a new empty rectangle with the origin in @c Point(0,0).

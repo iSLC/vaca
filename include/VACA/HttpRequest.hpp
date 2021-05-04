@@ -12,7 +12,7 @@
 
 #include <wininet.h>
 
-namespace vaca {
+namespace Wg {
 
 /**
    This exception is thrown when HttpRequest generates an error due
@@ -80,4 +80,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

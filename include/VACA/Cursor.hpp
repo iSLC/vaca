@@ -11,7 +11,7 @@
 #include "VACA/SharedPtr.hpp"
 #include "VACA/GdiObject.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    @see SysCursor
@@ -97,4 +97,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

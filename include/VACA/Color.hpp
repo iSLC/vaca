@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A color that can be used to create pens or brushes.
@@ -70,4 +70,4 @@ private:
     unsigned int m_raw;
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -10,7 +10,7 @@
 #include "VACA/NonCopyable.hpp"
 #include "VACA/Exception.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    This exception is thrown when a ConditionVariable couldn't be created.
@@ -67,4 +67,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

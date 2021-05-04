@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A widget style.
@@ -55,4 +55,4 @@ struct VACA_DLL Style {
 
 };
 
-} // namespace vaca
+} // namespace Wg

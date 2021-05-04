@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL StatusBar : public Widget {
 public:
@@ -31,4 +31,4 @@ protected:
     void onLayout(LayoutEvent &ev) override;
 };
 
-} // namespace vaca
+} // namespace Wg

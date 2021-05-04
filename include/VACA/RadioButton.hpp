@@ -8,12 +8,12 @@
 
 #include "VACA/ButtonBase.hpp"
 
-namespace vaca {
+namespace Wg {
 
 typedef std::vector<RadioButton *> RadioButtonList;
 
 /**
-   Groups a set of @link vaca::RadioButton RadioButtons@endlink. It's used to known
+   Groups a set of @link Wg::RadioButton RadioButtons@endlink. It's used to known
    which RadioButton should be desactived when the user select a
    RadioButton of its same group.
 */
@@ -89,4 +89,4 @@ protected:
     bool onReflectedCommand(int id, int code, LRESULT &lResult) override;
 };
 
-} // namespace vaca
+} // namespace Wg

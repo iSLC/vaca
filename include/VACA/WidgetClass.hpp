@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Represents the name of a WidgetClass.
@@ -103,4 +103,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -10,7 +10,7 @@
 #include "VACA/Constraint.hpp"
 #include "VACA/Rect.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Anchor constraint. You should setup an Anchor contraint for every
@@ -38,4 +38,4 @@ public:
 
 }; // Anchor
 
-} // namespace vaca
+} // namespace Wg

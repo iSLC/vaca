@@ -10,7 +10,7 @@
 #include "VACA/Mutex.hpp"
 #include "VACA/ScopedLock.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 // ======================================================================
 // RadioButton

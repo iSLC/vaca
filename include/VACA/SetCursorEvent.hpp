@@ -10,7 +10,7 @@
 #include "VACA/MouseEvent.hpp"
 #include "VACA/WidgetHit.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL SetCursorEvent : public MouseEvent {
     WidgetHit m_hit;
@@ -27,4 +27,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

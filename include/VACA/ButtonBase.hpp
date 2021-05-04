@@ -8,7 +8,7 @@
 
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Base for every button.
@@ -44,4 +44,4 @@ protected:
     bool onReflectedCommand(int id, int code, LRESULT &lResult) override;
 };
 
-} // namespace vaca
+} // namespace Wg

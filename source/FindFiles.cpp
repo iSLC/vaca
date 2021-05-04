@@ -7,7 +7,7 @@
 #include "VACA/FindFiles.hpp"
 #include "VACA/String.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 FindFiles::FindFiles(const String& pattern)
 {

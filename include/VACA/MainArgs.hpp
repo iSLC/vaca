@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 namespace details {
 class VACA_DLL MainArgs {
@@ -17,4 +17,4 @@ public:
 };
 }
 
-} // namespace vaca
+} // namespace Wg

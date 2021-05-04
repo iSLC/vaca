@@ -11,7 +11,7 @@
 #include "VACA/WidgetClass.hpp"
 #include "VACA/Register.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Information needed for every DockBar that is docked in a specific
@@ -122,4 +122,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

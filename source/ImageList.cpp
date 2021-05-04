@@ -11,7 +11,7 @@
 #include "VACA/String.hpp"
 #include "VACA/Win32.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 #define GdiObj GdiObject<HIMAGELIST, Win32DestroyImageList>
 

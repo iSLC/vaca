@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/NonCopyable.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Class that counts references and can be wrapped by a SharedPtr.
@@ -40,4 +40,4 @@ private:
     void destroy();
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -8,8 +8,8 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 // TODO
 
-} // namespace vaca
+} // namespace Wg

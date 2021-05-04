@@ -7,7 +7,7 @@
 #include "VACA/ScrollEvent.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ScrollEvent::ScrollEvent(Widget* source, Orientation orien, ScrollRequest req, int pos)
   : Event(source)

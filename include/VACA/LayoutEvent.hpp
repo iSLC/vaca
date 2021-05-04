@@ -10,7 +10,7 @@
 #include "VACA/Event.hpp"
 #include "VACA/Rect.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL LayoutEvent : public Event {
     Rect m_bounds;
@@ -27,4 +27,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

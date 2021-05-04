@@ -18,7 +18,7 @@
 #include <algorithm>
 #include <memory>
 
-using namespace vaca;
+using namespace Wg;
 
 // ======================================================================
 
@@ -260,11 +260,11 @@ void CurrentThread::enqueueMessage(const Message& message)
 
 /**
    Does the message loop while there are
-   visible @link vaca::Frame frames@endlink.
+   visible @link Wg::Frame frames@endlink.
 
    @see Frame::setVisible
 */
-void vaca::CurrentThread::doMessageLoop()
+void Wg::CurrentThread::doMessageLoop()
 {
   // message loop
   Message msg;
@@ -275,7 +275,7 @@ void vaca::CurrentThread::doMessageLoop()
 /**
    Does the message loop until the @a widget is hidden.
 */
-void vaca::CurrentThread::doMessageLoopFor(Widget* widget)
+void Wg::CurrentThread::doMessageLoopFor(Widget* widget)
 {
   // get widget HWND
   HWND hwnd = widget->getHandle();
@@ -298,25 +298,25 @@ void vaca::CurrentThread::doMessageLoopFor(Widget* widget)
     ::EnableWindow(hparent, TRUE);
 }
 
-void vaca::CurrentThread::pumpMessageQueue()
+void Wg::CurrentThread::pumpMessageQueue()
 {
   Message msg;
   while (peekMessage(msg))
     processMessage(msg);
 }
 
-void vaca::CurrentThread::breakMessageLoop()
+void Wg::CurrentThread::breakMessageLoop()
 {
   get_thread_data()->breakLoop = true;
   ::PostThreadMessage(::GetCurrentThreadId(), WM_NULL, 0, 0);
 }
 
-void vaca::CurrentThread::yield()
+void Wg::CurrentThread::yield()
 {
   ::Sleep(0);
 }
 
-void vaca::CurrentThread::sleep(int msecs)
+void Wg::CurrentThread::sleep(int msecs)
 {
   ::Sleep(static_cast<DWORD>(msecs));
 }
@@ -330,7 +330,7 @@ void vaca::CurrentThread::sleep(int msecs)
      or false if there aren't more visible @link Frame frames@endlink
      to dispatch messages.
 */
-bool vaca::CurrentThread::getMessage(Message& message)
+bool Wg::CurrentThread::getMessage(Message& message)
 {
   ThreadData* data = get_thread_data();
 

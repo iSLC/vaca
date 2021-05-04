@@ -24,7 +24,7 @@
 #  define MIM_STYLE 16
 #endif
 
-using namespace vaca;
+using namespace Wg;
 
 // ======================================================================
 // MenuItem

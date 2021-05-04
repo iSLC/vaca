@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Namespace for keyboard scancodes and modifiers.
@@ -241,4 +241,4 @@ struct Keys {
 
 };
 
-} // namespace vaca
+} // namespace Wg

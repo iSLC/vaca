@@ -11,7 +11,7 @@
 #include "VACA/Debug.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates a new anchor layout.

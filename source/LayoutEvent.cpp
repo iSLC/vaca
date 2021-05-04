@@ -7,7 +7,7 @@
 #include "VACA/LayoutEvent.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 LayoutEvent::LayoutEvent(Widget* source, const Rect& bounds)
   : Event(source)

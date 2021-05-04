@@ -12,7 +12,7 @@
 #include <vector>
 #include <utility>
 
-namespace vaca {
+namespace Wg {
 
 /**
    A common dialog box to select files. You shouldn't use directly
@@ -90,4 +90,4 @@ private:
     bool showDialog(LPOPENFILENAME lpofn) override;
 };
 
-} // namespace vaca
+} // namespace Wg

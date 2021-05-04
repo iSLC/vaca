@@ -10,7 +10,7 @@
 #include "VACA/NonCopyable.hpp"
 #include "VACA/Exception.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Thrown when a Message cannot be registered/created.
@@ -62,4 +62,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

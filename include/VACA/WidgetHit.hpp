@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    @see WidgetHit
@@ -152,4 +152,4 @@ struct WidgetHitEnum {
 */
 typedef Enum <WidgetHitEnum> WidgetHit;
 
-} // namespace vaca
+} // namespace Wg

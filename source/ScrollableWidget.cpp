@@ -12,7 +12,7 @@
 #include "VACA/ScrollInfo.hpp"
 #include "VACA/ScrollEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ScrollableWidget::ScrollableWidget(Widget* parent, const Style& style)
 : Widget(parent, style), m_fullSize(0, 0)

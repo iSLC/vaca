@@ -10,7 +10,7 @@
 #include "VACA/WidgetClass.hpp"
 #include "VACA/PreferredSizeEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 SpinButton::SpinButton(Widget* parent, const Style& style)
   : Widget(WidgetClassName(UPDOWN_CLASS), parent, style)

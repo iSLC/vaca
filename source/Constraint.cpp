@@ -6,7 +6,7 @@
 
 #include "VACA/Constraint.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 Constraint::Constraint()
 = default;

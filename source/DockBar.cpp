@@ -18,7 +18,7 @@
 
 #define DEF_GRIPPER_SIZE 8
 
-using namespace vaca;
+using namespace Wg;
 
 // Information about the DockBar when the user is dragging it.
 struct DockBar::DragInfo
@@ -108,8 +108,8 @@ DockBar::~DockBar()
    Hides or shows the DockBar.
 
    If you hide the DockBar, this member function deletes the
-   #vaca::DockFrame if it exist, or remove the DockBar from the
-   #vaca::DockArea. All is automatic.
+   #Wg::DockFrame if it exist, or remove the DockBar from the
+   #Wg::DockArea. All is automatic.
 */
 void DockBar::setVisible(bool visible)
 {

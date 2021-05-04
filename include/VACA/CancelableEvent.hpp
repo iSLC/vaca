@@ -8,7 +8,7 @@
 
 #include "VACA/Event.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Event that can be canceled.
@@ -34,4 +34,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

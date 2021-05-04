@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Shows progress for a task that is running in background.
@@ -54,4 +54,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

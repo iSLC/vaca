@@ -10,7 +10,7 @@
 #include "VACA/Frame.hpp"
 #include "VACA/Event.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Represents the Win32 class used by Dialog.
@@ -134,4 +134,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

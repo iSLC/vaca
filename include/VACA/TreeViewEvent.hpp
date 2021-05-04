@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/CancelableEvent.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Event where interact a TreeView and TreeNode.
@@ -32,4 +32,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

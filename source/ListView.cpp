@@ -13,7 +13,7 @@
 #include "VACA/ListColumn.hpp"
 #include "VACA/Win32.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 #ifndef LVS_EX_DOUBLEBUFFER
 #define LVS_EX_DOUBLEBUFFER 0x00010000

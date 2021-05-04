@@ -13,7 +13,7 @@
 #include "VACA/Exception.hpp"
 #include "VACA/String.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Thrown when Register can't registers the WidgetClass.
@@ -77,4 +77,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

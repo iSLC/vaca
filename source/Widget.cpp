@@ -37,10 +37,10 @@
 
 #include <iterator>
 
-// uncomment this if you want message reporting in the "vaca.log"
+// uncomment this if you want message reporting in the "Wg.log"
 // #define REPORT_MESSAGES
 
-using namespace vaca;
+using namespace Wg;
 
 #define VACA_ATOM (reinterpret_cast<LPCTSTR>(MAKELPARAM(atom, 0)))
 
@@ -992,8 +992,8 @@ Size Widget::getPreferredSize()
        This can have both attributes (width and height) in
        zero, which means that it'll behave same as #getPreferredSize().
        If the width is great than zero the #onPreferredSize will try to
-       fit in that width (this is useful to fit @link vaca::Label Label@endlink
-       or @link vaca::Edit Edit@endlink controls in a specified width and
+       fit in that width (this is useful to fit @link Wg::Label Label@endlink
+       or @link Wg::Edit Edit@endlink controls in a specified width and
        calculate the height it could occupy).
 
    @see getPreferredSize
@@ -3408,7 +3408,7 @@ void MakeWidgetRef::safeDelete(Widget* widget)
 
    @see @ref page_tn_006
 */
-void vaca::delete_widget(Widget* widget)
+void Wg::delete_widget(Widget* widget)
 {
   // is unreferenced?
   if (widget->getRefCount() == 0)

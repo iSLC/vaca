@@ -7,7 +7,7 @@
 #include "VACA/MainArgs.hpp"
 #include "VACA/Application.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 #if defined(VACA_WINDOWS)
   #include "win32/MainArgs.hpp"

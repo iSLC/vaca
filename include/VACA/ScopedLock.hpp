@@ -10,7 +10,7 @@
 #include "VACA/Mutex.hpp"
 #include "VACA/NonCopyable.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    An object to safely lock and unlock mutexes.
@@ -69,4 +69,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

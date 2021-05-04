@@ -30,7 +30,7 @@
   #define GRADIENT_FILL_RECT_V 1
 #endif
 
-using namespace vaca;
+using namespace Wg;
 
 // ======================================================================
 // Graphics

@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Label.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Customized static label control.
@@ -41,4 +41,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

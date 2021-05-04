@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL Separator : public Widget {
 public:
@@ -29,4 +29,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

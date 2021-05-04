@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    @defgroup string_utils String Utilities
@@ -126,4 +126,4 @@ VACA_DLL String decode_url(const String &url);
 
 /** @} */
 
-} // namespace vaca
+} // namespace Wg

@@ -8,7 +8,7 @@
 #include "VACA/PreferredSizeEvent.hpp"
 #include "VACA/LayoutEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 Spinner::Spinner(Widget* parent, const Style& spinStyle, const Style& style)
   : Widget(SpinnerClass::getClassName(), parent, style)

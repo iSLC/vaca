@@ -15,7 +15,7 @@
 #include "VACA/System.hpp"
 #endif
 
-using namespace vaca;
+using namespace Wg;
 
 HINSTANCE Application::m_HINSTANCE = nullptr;
 Application* Application::m_instance = nullptr;

@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Widget to edit text.
@@ -108,4 +108,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -11,7 +11,7 @@
 #include "VACA/WidgetClass.hpp"
 #include "VACA/PreferredSizeEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ButtonBase::ButtonBase(Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_BUTTON), parent, style)

@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Base class for every kind of event.
@@ -30,4 +30,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

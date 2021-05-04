@@ -8,7 +8,7 @@
 #include "VACA/Widget.hpp"
 #include "VACA/Debug.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 const WidgetClassName WidgetClassName::None;
 

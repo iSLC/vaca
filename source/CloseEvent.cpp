@@ -7,7 +7,7 @@
 #include "VACA/CloseEvent.hpp"
 #include "VACA/Frame.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates a new CloseEvent for the specified Frame.

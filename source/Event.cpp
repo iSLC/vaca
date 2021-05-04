@@ -6,7 +6,7 @@
 
 #include "VACA/Event.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates a new event specifying that it was generated

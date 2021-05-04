@@ -6,7 +6,7 @@
 
 #include "VACA/ResizeEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ResizeEvent::ResizeEvent(Component* source, const Size& size)
   : Event(source)

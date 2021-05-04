@@ -10,7 +10,7 @@
 #include "VACA/Widget.hpp"
 #include "VACA/CancelableEvent.hpp"
 
-namespace vaca {
+namespace Wg {
 
 // TODO move this to "SpinButtonEvent.h"
 class SpinButtonEvent : public CancelableEvent {
@@ -99,4 +99,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg

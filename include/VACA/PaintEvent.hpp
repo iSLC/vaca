@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Event.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Event to paint a widget.
@@ -29,4 +29,4 @@ public:
     [[nodiscard]] bool isPainted() const;
 };
 
-} // namespace vaca
+} // namespace Wg

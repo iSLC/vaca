@@ -8,7 +8,7 @@
 
 #include "VACA/CancelableEvent.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Event generated when a Frame is being closed.
@@ -27,4 +27,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

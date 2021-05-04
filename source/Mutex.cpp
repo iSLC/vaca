@@ -14,7 +14,7 @@
   #error Your platform does not support mutexes
 #endif 
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates a new mutex.

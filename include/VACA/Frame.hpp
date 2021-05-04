@@ -14,7 +14,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    Represents the Win32 class used by Frame.
@@ -111,4 +111,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

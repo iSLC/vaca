@@ -13,7 +13,7 @@
 #include <cassert>
 #include <algorithm>
 
-using namespace vaca;
+using namespace Wg;
 
 #define MAIN_BIX_DEFAULT_BORDER		4
 #define BIX_DEFAULT_BORDER		0

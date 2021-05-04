@@ -10,7 +10,7 @@
 #include "VACA/GdiObject.hpp"
 #include "VACA/SharedPtr.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A region, it can be simple as a rectangle, complex as any shape,
@@ -83,4 +83,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

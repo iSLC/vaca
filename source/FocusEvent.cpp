@@ -7,7 +7,7 @@
 #include "VACA/FocusEvent.hpp"
 #include "VACA/Widget.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 FocusEvent::FocusEvent(Widget* source, Widget* oldFocus, Widget* newFocus)
   : Event(source)

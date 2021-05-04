@@ -6,7 +6,7 @@
 
 #include "VACA/ConsumableEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ConsumableEvent::ConsumableEvent(Component* source)
   : Event(source)

@@ -8,7 +8,7 @@
 #include "VACA/Application.hpp"
 #include "VACA/Win32.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 ColorDialog::ColorDialog(const Color& color, Widget* parent)
   : CommonDialog(parent)

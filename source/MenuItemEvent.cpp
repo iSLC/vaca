@@ -7,7 +7,7 @@
 #include "VACA/MenuItemEvent.hpp"
 #include "VACA/Menu.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 MenuItemEvent::MenuItemEvent(MenuItem* source)
   : Event(source)

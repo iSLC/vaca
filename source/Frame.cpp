@@ -22,7 +22,7 @@
 #include "VACA/PreferredSizeEvent.hpp"
 #include "VACA/Win32.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 /**
    Creates a frame using the FrameClass.  Also, remember that by

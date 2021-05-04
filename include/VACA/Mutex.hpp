@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/NonCopyable.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    An object to synchronize threads using mutual exclusion of critical
@@ -45,4 +45,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

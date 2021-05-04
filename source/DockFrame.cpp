@@ -12,7 +12,7 @@
 #include "VACA/Event.h"
 #include "VACA/Debug.h"
 
-using namespace vaca;
+using namespace Wg;
 
 DockFrame::DockFrame(DockBar* dockBar, Widget* parent, Style style)
   : Frame(DockFrameClass::getClassName(), dockBar->getText(), parent, style)

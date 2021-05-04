@@ -10,7 +10,7 @@
 #include "VACA/Dialog.hpp"
 #include "VACA/Signal.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    A common dialog box to find (or replace) text.
@@ -69,4 +69,4 @@ private:
 
 };
 
-} // namespace vaca
+} // namespace Wg

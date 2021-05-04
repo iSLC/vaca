@@ -8,7 +8,7 @@
 
 #include "VACA/Base.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Class to measure elapsed time, like a chronometer.
@@ -27,4 +27,4 @@ public:
     [[nodiscard]] double elapsed() const;
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -6,7 +6,7 @@
 
 #include "VACA/BoxConstraint.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 BoxConstraint::BoxConstraint(bool expansive)
   : m_expansive(expansive)

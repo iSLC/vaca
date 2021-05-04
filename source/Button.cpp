@@ -7,7 +7,7 @@
 #include "VACA/Button.hpp"
 #include "VACA/Debug.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 Button::Button(const String& text, Widget* parent, const Style& style)
   : ButtonBase(parent, style)

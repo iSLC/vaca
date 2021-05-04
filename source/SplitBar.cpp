@@ -13,7 +13,7 @@
 #include "VACA/System.hpp"
 #include "VACA/SetCursorEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 #define SPLITBAR_DEFAULT_SIZE		5
 #define SPLITBAR_DEFAULT_POS		50

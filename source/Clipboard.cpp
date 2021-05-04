@@ -9,7 +9,7 @@
 #include "VACA/System.hpp"
 #include "VACA/String.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 Clipboard::Clipboard(Widget* owner)
 {

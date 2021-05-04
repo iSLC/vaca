@@ -8,7 +8,7 @@
 
 #include "VACA/Button.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Customizable button to draw it with your own Widget#onPaint member function.
@@ -86,4 +86,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

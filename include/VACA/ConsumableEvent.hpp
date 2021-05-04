@@ -8,7 +8,7 @@
 
 #include "VACA/Event.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Event that can be consumed.
@@ -31,4 +31,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

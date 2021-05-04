@@ -6,7 +6,7 @@
 
 #include "VACA/CheckBox.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 CheckBox::CheckBox(const String& text, Widget* parent, const Style& style)
   : ButtonBase(parent, style)

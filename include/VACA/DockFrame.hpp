@@ -10,7 +10,7 @@
 #include "VACA/Frame.hpp"
 #include "VACA/Event.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    Represents the Win32 class used by DockFrame.
@@ -61,4 +61,4 @@ protected:
     bool wndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT &lResult) override;
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -9,7 +9,7 @@
 #include "VACA/Base.hpp"
 #include "VACA/Event.hpp"
 
-namespace vaca {
+namespace Wg {
 
 class VACA_DLL FocusEvent : public Event {
     Widget *m_oldFocus;
@@ -27,4 +27,4 @@ public:
 
 };
 
-} // namespace vaca
+} // namespace Wg

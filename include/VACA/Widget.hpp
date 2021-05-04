@@ -23,7 +23,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 /**
    This exception is thrown when the operating system can't create the Widget.
@@ -552,4 +552,4 @@ private:
 
 VACA_DLL void delete_widget(Widget *widget);
 
-} // namespace vaca
+} // namespace Wg

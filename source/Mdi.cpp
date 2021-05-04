@@ -11,7 +11,7 @@
 #include "VACA/ClientLayout.hpp"
 #include "VACA/Menu.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 // ======================================================================
 // MdiChild

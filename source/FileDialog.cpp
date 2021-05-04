@@ -13,7 +13,7 @@
 // 32k is the limit for Win95/98/Me/NT4/2000/XP with ANSI version
 #define FILENAME_BUFSIZE (1024*32)
 
-using namespace vaca;
+using namespace Wg;
 
 // ======================================================================
 // FileDialog

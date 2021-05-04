@@ -8,7 +8,7 @@
 #include "VACA/WidgetClass.hpp"
 #include "VACA/PreferredSizeEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 Separator::Separator(Widget* parent, const Style& style)
   : Widget(WidgetClassName(WC_STATIC), parent, style)

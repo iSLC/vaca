@@ -13,7 +13,7 @@
 
 #include <vector>
 
-namespace vaca {
+namespace Wg {
 
 typedef std::vector<MenuItem *> MenuItemList;
 
@@ -223,4 +223,4 @@ public:
     [[nodiscard]] bool isMdiList() const override;
 };
 
-} // namespace vaca
+} // namespace Wg

@@ -13,7 +13,7 @@
 #include <cstdio>
 
 using namespace std;
-using namespace vaca;
+using namespace Wg;
 
 #ifndef NDEBUG
 struct Debug;
@@ -25,7 +25,7 @@ struct Debug {
   Mutex mutex;
   FILE* file;
   Debug() {
-    file = fopen("vaca.log", "w");
+    file = fopen("Wg.log", "w");
     fprintf(file, "Log file created\n");
   }
   virtual ~Debug() {
@@ -37,7 +37,7 @@ struct Debug {
 };
 #endif
 
-void vaca::details::trace(const char* filename, size_t line, const char* fmt, ...)
+void Wg::details::trace(const char* filename, size_t line, const char* fmt, ...)
 {
 #ifndef NDEBUG
   if (closed) { return; }
@@ -57,7 +57,7 @@ void vaca::details::trace(const char* filename, size_t line, const char* fmt, ..
 #endif
 }
 
-void vaca::details::closeLogFile()
+void Wg::details::closeLogFile()
 {
 #ifndef NDEBUG
   delete dbg;

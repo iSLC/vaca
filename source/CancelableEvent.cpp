@@ -6,7 +6,7 @@
 
 #include "VACA/CancelableEvent.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 CancelableEvent::CancelableEvent(Component* source)
   : Event(source)

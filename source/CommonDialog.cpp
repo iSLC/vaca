@@ -9,7 +9,7 @@
 #include "VACA/Debug.hpp"
 #include "VACA/Application.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 CommonDialog::CommonDialog(Widget* parent)
 {

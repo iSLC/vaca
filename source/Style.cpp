@@ -6,7 +6,7 @@
 
 #include "VACA/Style.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 // This constructor must be here to export const styles
 // (e.g. Widget::Styles::Default, etc.)

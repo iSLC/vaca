@@ -8,7 +8,7 @@
 #include "VACA/Widget.hpp"
 #include "VACA/Cursor.hpp"
 
-using namespace vaca;
+using namespace Wg;
 
 SetCursorEvent::SetCursorEvent(Widget* source, const Point& point, WidgetHit hit)
   : MouseEvent(source, point, 0, 0, MouseButton::None)

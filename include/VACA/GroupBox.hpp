@@ -8,7 +8,7 @@
 
 #include "VACA/Widget.hpp"
 
-namespace vaca {
+namespace Wg {
 
 /**
    An edge (with a label optionally) that can be used to group
@@ -38,4 +38,4 @@ protected:
 
 };
 
-} // namespace vaca
+} // namespace Wg
